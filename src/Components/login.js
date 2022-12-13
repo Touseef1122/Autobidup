@@ -16,7 +16,7 @@ class login extends Component {
       <Container>
        <Row>
         <Col  style={{ padding: "150px 200px" }}>
-        <h2 className='lh'>Login</h2>
+        <h2 className='lh'>jknjknjk</h2>
          <Form>
           <Form.Group as={Col}  >
             <Form.Label className="mb-1">Email</Form.Label>
