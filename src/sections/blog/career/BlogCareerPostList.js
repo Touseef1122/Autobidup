@@ -19,14 +19,14 @@ export default function BlogCareerPostList({ posts }) {
   return (
     <>
       <Masonry
-        columns={{ xs: 1, md: 2 }}
-        spacing={4}
-        defaultHeight={450}
-        defaultColumns={1}
-        defaultSpacing={4}
-        sx={{
-          mx: { xs: 'unset', md: 0 },
-        }}
+        // columns={{ xs: 1, md: 2 }}
+        // spacing={4}
+        // defaultHeight={450}
+        // defaultColumns={1}
+        // defaultSpacing={4}
+        // sx={{
+        //   mx: { xs: 'unset', md: 0 },
+        // }}
       >
         {posts.slice(0, 8).map((post, index) => (
           <BlogCareerPostItem key={post.slug} post={post} index={index} />

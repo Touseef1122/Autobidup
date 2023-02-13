@@ -43,13 +43,13 @@ export default function HeaderSimple({ transparent }) {
             divider={<Divider orientation="vertical" sx={{ height: 24 }} />}
             spacing={2.5}
           >
-            <LanguagePopover
+            {/* <LanguagePopover
               sx={{
                 ...(isScrolling && { color: 'text.primary' }),
               }}
-            />
+            /> */}
 
-            <NextLink href={Routes.support} passHref>
+            {/* <NextLink href={Routes.support} passHref>
               <Link
                 color="inherit"
                 variant="body2"
@@ -58,9 +58,9 @@ export default function HeaderSimple({ transparent }) {
                   ...(isScrolling && { color: 'text.primary' }),
                 }}
               >
-                Support
+                Contact us
               </Link>
-            </NextLink>
+            </NextLink> */}
           </Stack>
         </Container>
       </ToolbarStyle>

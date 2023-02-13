@@ -8,9 +8,9 @@ import { Image, AppStoreButton } from '../../../components';
 
 const RootStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
-  [theme.breakpoints.down('md')]: {
-    backgroundColor: alpha(theme.palette.primary.main, 0.08),
-  },
+  // [theme.breakpoints.down('md')]: {
+  //   backgroundColor: alpha(theme.palette.primary.main, 0.08),
+  // },
   [theme.breakpoints.up('md')]: { padding: theme.spacing(21, 0) },
 }));
 
@@ -21,7 +21,7 @@ const ContentStyle = styled(Stack)(({ theme }) => ({
     textAlign: 'unset',
     paddingLeft: theme.spacing(10),
     borderRadius: Number(theme.shape.borderRadius) * 3,
-    backgroundColor: alpha(theme.palette.primary.main, 0.08),
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -38,7 +38,7 @@ export default function DownloadAppCareer() {
             alignItems={{ xs: 'center', md: 'flex-start' }}
             sx={{
               maxWidth: { md: 380 },
-              my: { xs: 8, md: 15 },
+              my: { xs: 5, md: 5 },
             }}
           >
             <Typography variant="h2"> Download App </Typography>

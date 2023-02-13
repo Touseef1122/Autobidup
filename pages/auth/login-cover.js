@@ -24,8 +24,8 @@ const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(5, 2.5),
   [theme.breakpoints.up('md')]: {
-    maxWidth: 480,
-    padding: theme.spacing(8, 10),
+    maxWidth: 580,
+    padding: theme.spacing(8, 8),
   },
 }));
 
@@ -41,30 +41,30 @@ export default function LoginCoverPage() {
           <Stack
             sx={{
               pb: 5,
-              pt: { xs: 5, md: 10 },
+              pt: 5,
               textAlign: { xs: 'center', md: 'left' },
             }}
           >
             <Typography variant="h3" paragraph>
-              Login
+              Sign in
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               Don’t have an account?
               <NextLink href={Routes.registerCover} passHref>
-                <Link variant="subtitle2" color="primary">
+                <Link variant="subtitle2" color="#c49a52">
                   {''} Get started
                 </Link>
               </NextLink>
             </Typography>
           </Stack>
 
-          <AuthWithSocial />
+          {/* <AuthWithSocial />
 
           <Divider sx={{ py: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.disabled' }}>
               OR
             </Typography>
-          </Divider>
+          </Divider> */}
 
           <LoginForm />
         </ContentStyle>

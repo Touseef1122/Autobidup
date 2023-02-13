@@ -104,7 +104,7 @@ export default function TravelLandingHero({ tours }) {
     arrows: false,
     vertical: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     verticalSwiping: true,
     swipeToSlide: true,
@@ -115,16 +115,8 @@ export default function TravelLandingHero({ tours }) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ minHeight: '100vh' }}>
-        {!!tours.length && (
-          <div>
-            <Slider {...carouselContentSettings} asNavFor={carouselThumbnail} ref={carouselRef1}>
-              {tours.map((tour, index) => (
-                <ContentItem key={tour.id} tour={tour} isSelected={selected === index} />
-              ))}
-            </Slider>
-          </div>
-        )}
+      <Box>
+        <ContentItem />
 
         {/* <Stack
         spacing={2}
@@ -166,7 +158,7 @@ ContentItem.propTypes = {
 
 function ContentItem({ tour }) {
   const theme = useTheme();
-  const { slug, location, heroImg, ratings, price, duration } = tour;
+  // const { slug, location, heroImg, ratings, price, duration } = tour;
 
   const [value, setValue] = React.useState(0);
 
@@ -179,7 +171,6 @@ function ContentItem({ tour }) {
       sx={{
         display: 'flex',
         textAlign: 'center',
-        alignItems: 'center',
         position: 'relative',
         color: 'common.white',
         justifyContent: 'flex-end',
@@ -187,11 +178,12 @@ function ContentItem({ tour }) {
     >
       {/* Content */}
       <Stack
-        marginRight="10%"
+        // marginRight="10%"
         sx={{
           zIndex: 9,
-          py: { xs: 20, md: 0 },
+          py: 0,
           position: { md: 'absolute' },
+          width: '100%'
         }}
       >
         {/* <Typography variant="overline" sx={{ color: 'secondary.main', mb: 5 }}>
@@ -238,47 +230,56 @@ function ContentItem({ tour }) {
         {/* <Button variant="contained" size="large">
           Book Now
         </Button> */}
-        <Box
-          sx={{
-            textAlign: 'left',
-            width: '440px',
-            height: 'auto',
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            boxShadow: 24,
-            padding: '0px',
-          }}
-        >
-          <Box sx={{}}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-              TabIndicatorProps={{ sx: { backgroundColor: 'transparent' } }}
-              sx={{
-                '& button': {
-                  backgroundColor: '#f0f2f7',
-                  width: '50%',
-                  marginRight: '0 !important',
-                },
-                '& button:focus': {
-                  backgroundColor: 'white',
-                  width: '50%',
-                  marginRight: '0 !important',
-                },
-              }}
-            >
-              <Tab label="One Way" {...a11yProps(0)} />
-              <Tab label="By the hour" {...a11yProps(1)} />
-            </Tabs>
+        <Container>
+          <Box
+            sx={{
+              textAlign: 'left',
+              width: { xs: '100%', sm: '440px' },
+              marginLeft: {sm:'auto'},
+              marginTop: { xs: '30%', sm: '-50px' },
+              height: 'auto',
+              backgroundColor: 'white',
+              borderRadius: '4px',
+              boxShadow: 12,
+              // padding: '0px',
+              overflow: 'hidden',
+              boxShadow: '0 12px 28px #64666b',
+            }}
+          >
+            <Box sx={{}}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+                TabIndicatorProps={{ sx: { backgroundColor: 'transparent' } }}
+                sx={{
+                  '& button': {
+                    backgroundColor: '#f0f2f7',
+                    width: '50%',
+                    marginRight: '0 !important',
+                  },
+                  '& button:focus': {
+                    backgroundColor: 'white',
+                    width: '50%',
+                    marginRight: '0 !important',
+                  },
+                  '& .Mui-selected': {
+                    backgroundColor: 'white !important',
+                  },
+                }}
+              >
+                <Tab label="One Way" {...a11yProps(0)} />
+                <Tab label="By the hour" {...a11yProps(1)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0} sx={{}}>
+              <CheckoutForm />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <CheckoutForm2 />
+            </TabPanel>
           </Box>
-          <TabPanel value={value} index={0}>
-            <CheckoutForm />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <CheckoutForm2 />
-          </TabPanel>
-        </Box>
+        </Container>
       </Stack>
 
       {/* Background */}
@@ -301,7 +302,7 @@ function ContentItem({ tour }) {
           alt="hero"
           src={landing.src}
           sx={{
-            height: { xs: 1, md: '100vh' },
+            height: { xs: 1 },
             bgcolor: 'transparent',
           }}
         />

@@ -14,6 +14,7 @@ import { Stack, Link, TextField, IconButton, InputAdornment } from '@mui/materia
 import Routes from '../../routes';
 // components
 import { Iconify } from '../../components';
+import Typography from 'src/theme/overrides/Typography';
 
 // ----------------------------------------------------------------------
 
@@ -54,6 +55,7 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2.5} alignItems="flex-end">
+        
         <Controller
           name="email"
           control={control}
@@ -102,8 +104,11 @@ export default function LoginForm() {
           fullWidth
           size="large"
           type="submit"
-          variant="contained"
+          variant="contained"         
           loading={isSubmitting}
+          sx={{
+            marginTop: '30px !important',
+          }}
         >
           Login
         </LoadingButton>

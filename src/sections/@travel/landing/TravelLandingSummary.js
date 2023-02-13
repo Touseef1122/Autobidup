@@ -68,10 +68,9 @@ export default function TravelLandingSummary() {
             gridTemplateColumns: {
               xs: 'repeat(1, 1fr)',
               sm: 'repeat(2, 1fr)',
-              md: 'repeat(4, 1fr)',
-            },
+              md: 'repeat(4, 1fr)',},
           }}
-        >
+           >
           {SUMMARY.map((value) => (
             <div key={value.description}>
               <Image alt={value.icon} src={value.icon} sx={{ width: 80, height: 80, mx: 'auto' }} />

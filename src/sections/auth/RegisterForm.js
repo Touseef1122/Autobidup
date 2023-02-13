@@ -7,7 +7,18 @@ import viewIcon from '@iconify/icons-carbon/view';
 import viewOff from '@iconify/icons-carbon/view-off';
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Typography, Stack, Link, TextField, IconButton, InputAdornment } from '@mui/material';
+import {
+  Typography,
+  Stack,
+  Link,
+  TextField,
+  IconButton,
+  InputAdornment,
+  MenuItem,
+  Grid,
+  Checkbox,
+  FormControlLabel,
+} from '@mui/material';
 // components
 import { Iconify } from '../../components';
 
@@ -58,18 +69,27 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={2.5}>
+      <Stack spacing={1.5}>
         <Controller
           name="fullName"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
               {...field}
-              label="Full Name"
+              label="Company name"
               error={Boolean(error)}
               helperText={error?.message}
+              sx={{ padding: '0px' }}
             />
           )}
+        />
+        <Country
+          control={control}
+          name="billingAddress.fullAddress"
+          label="Country"
+          sx={{ backgroundColor: '#f0f2f7' }}
+          id="select"
+          select
         />
 
         <Controller
@@ -79,7 +99,62 @@ export default function RegisterForm() {
             <TextField
               {...field}
               fullWidth
-              label="Email address"
+              label="Company Street Address"
+              error={Boolean(error)}
+              helperText={error?.message}
+            />
+          )}
+        />
+
+        <Stack direction="row" spacing={2}>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                {...field}
+                fullWidth
+                label="First name"
+                error={Boolean(error)}
+                helperText={error?.message}
+              />
+            )}
+          />
+          <Controller
+            name="email"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                {...field}
+                fullWidth
+                label="Last name"
+                error={Boolean(error)}
+                helperText={error?.message}
+              />
+            )}
+          />
+        </Stack>
+
+        <Controller
+          name="email"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <TextField
+              {...field}
+              fullWidth
+              label="Mobile number"
+              error={Boolean(error)}
+              helperText={error?.message}
+            />
+          )}
+        />
+        <Controller
+          name="fullName"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <TextField
+              {...field}
+              label="Work email"
               error={Boolean(error)}
               helperText={error?.message}
             />
@@ -92,7 +167,6 @@ export default function RegisterForm() {
           render={({ field, fieldState: { error } }) => (
             <TextField
               {...field}
-              fullWidth
               label="Password"
               type={showPassword ? 'text' : 'password'}
               InputProps={{
@@ -133,17 +207,38 @@ export default function RegisterForm() {
           )}
         />
 
+        <FormControlLabel
+          sx={{ marginTop: '30px !important' }}
+          control={<Checkbox size="small" />}
+          label={
+            <Typography variant="caption" align="center" sx={{ color: 'text.secondary' }}>
+              I agree to
+              <Link color="text.primary" href="#">
+                {''} Terms of Service {''}
+              </Link>
+              and
+              <Link color="text.primary" href="#">
+                {''} Privacy Policy.
+              </Link>
+            </Typography>
+          }
+          fontSize="10px"
+        ></FormControlLabel>
+
         <LoadingButton
           fullWidth
           size="large"
           type="submit"
           variant="contained"
+          sx={{
+            marginTop: '30px !important',
+          }}
           loading={isSubmitting}
         >
-          Register
+          Sign up
         </LoadingButton>
 
-        <Typography variant="caption" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
+        {/* <Typography variant="caption" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
           I agree to
           <Link color="text.primary" href="#">
             {''} Terms of Service {''}
@@ -152,8 +247,35 @@ export default function RegisterForm() {
           <Link color="text.primary" href="#">
             {''} Privacy Policy.
           </Link>
-        </Typography>
+        </Typography> */}
       </Stack>
     </form>
+  );
+}
+
+const time = ['3 hours'];
+function Country({ control, name, icon, label, ...other }) {
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error } }) => (
+        <TextField
+          {...field}
+          fullWidth
+          label={label}
+          error={Boolean(error)}
+          helperText={error?.message}
+          select
+        >
+          {time.map((name) => (
+            <MenuItem key={name} value={name}>
+              {name}
+            </MenuItem>
+          ))}
+        </TextField>
+      )}
+      {...other}
+    />
   );
 }

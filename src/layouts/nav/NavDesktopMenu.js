@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import { m } from 'framer-motion';
 // next
@@ -13,6 +13,7 @@ import { HEADER_DESKTOP_HEIGHT } from '../../config';
 //
 import { Image, CarouselDots, CarouselArrows } from '../../components';
 import { DialogAnimate, MotionContainer, varFade } from '../../components/animate';
+import navImage from '../../assets/images/airport1.jpg';
 
 // ----------------------------------------------------------------------
 
@@ -83,13 +84,20 @@ NavDesktopMenu.propTypes = {
 export default function NavDesktopMenu({ lists, isOpen, onClose, isScrolling }) {
   const router = useRouter();
 
+  // const [navImage, setNavImage] = useState();
+
   const theme = useTheme();
 
   const carouselRef = useRef(null);
 
   const carouselList = lists.filter((list) => list.subheader !== 'Common');
 
-  const commonList = lists.filter((list) => list.subheader === 'Common')[0];
+  const commonList =
+    lists.filter((list) => list.subheader === 'Common').length !== 0
+      ? lists.filter((list) => list.subheader === 'Common')[0]
+      : null;
+
+  console.log(commonList);
 
   const minList = lists.length > 5;
 
@@ -140,108 +148,42 @@ export default function NavDesktopMenu({ lists, isOpen, onClose, isScrolling }) 
         },
       }}
     >
-      <Grid container columns={15} spacing={4}>
-        <Grid item xs={12}>
-          <Box sx={{ position: 'relative', px: 2, py: 6 }}>
+      <Grid container columns={13} spacing={4} sx={{ width: '100%', px: 2, pt: 7, pb: 3 }}>
+        <Grid item xs={12} md={6} sx={{ pt: '0 !important' }}>
+          <Box sx={{ position: 'relative' }}>
             <Slider ref={carouselRef} {...carouselSettings}>
               {carouselList.map((list) => {
                 const { subheader, items, cover } = list;
+                // setNavImage(cover);
 
                 const path = items.length > 0 ? items[0].path : '';
 
                 return (
                   <List key={subheader} disablePadding sx={{ px: 2 }} component={MotionContainer}>
-                    <m.div variants={varFade({ distance: 80 }).inLeft}>
-                      <ListSubheaderStyled>{subheader}</ListSubheaderStyled>
-                    </m.div>
+                    <Stack
+                      // spacing={1.5}
+                      alignItems="center"
+                      justifyContent="space-between"
+                      direction="row"
+                      flexWrap="nowrap"
+                      sx={{ width: '200%' }}
+                      // flex-wrap: nowrap
+                    >
+                      <Stack>
+                        {items?.map((item) => {
+                          const { title, path } = item;
 
-                    {cover ? (
-                      <NextLink href={path} passHref>
-                        <Box
-                          component={m.a}
-                          variants={varFade({ distance: 80 }).inLeft}
-                          sx={{ display: 'block' }}
-                        >
-                          <Image
-                            alt={cover}
-                            src={cover}
-                            sx={{
-                              mb: 2.5,
-                              minHeight: 80,
-                              borderRadius: 1.5,
-                              cursor: 'pointer',
-                              transition: theme.transitions.create('opacity'),
-                              border: (theme) => `solid 1px ${theme.palette.divider}`,
-                              '&:hover': { opacity: 0.8 },
-                            }}
-                          />
-                        </Box>
-                      </NextLink>
-                    ) : (
-                      <Box
-                        sx={{
-                          mb: 2.5,
-                          height: 132,
-                          borderRadius: 1.5,
-                          display: 'flex',
-                          typography: 'h5',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'text.disabled',
-                          bgcolor: 'background.neutral',
-                        }}
-                      >
-                        Coming Soon!
-                      </Box>
-                    )}
+                          const active = router.pathname === path || router.asPath === path;
 
-                    <Stack spacing={1.5} alignItems="flex-start">
-                      {items?.map((item) => {
-                        const { title, path } = item;
-
-                        const active = router.pathname === path || router.asPath === path;
-
-                        return <LinkItem key={title} title={title} href={path} active={active} />;
-                      })}
+                          return <LinkItem key={title} title={title} href={path} active={active} />;
+                        })}
+                      </Stack>
                     </Stack>
                   </List>
                 );
               })}
             </Slider>
-
-            {minList && (
-              <CarouselArrows
-                onNext={handleNext}
-                onPrevious={handlePrevious}
-                sx={{
-                  top: -28,
-                  position: 'relative',
-                  justifyContent: 'flex-end',
-                }}
-              />
-            )}
           </Box>
-        </Grid>
-
-        {/* Common List */}
-        <Grid
-          item
-          xs={3}
-          sx={{
-            borderLeft: (theme) => `dashed 1px ${theme.palette.divider}`,
-          }}
-        >
-          <List disablePadding sx={{ py: 6 }} component={MotionContainer}>
-            <ListSubheaderStyled>{commonList.subheader}</ListSubheaderStyled>
-            <Stack spacing={1.5} alignItems="flex-start">
-              {commonList.items.map((item) => {
-                const { title, path } = item;
-                const active = router.pathname === path;
-
-                return <LinkItem key={title} title={title} href={path} active={active} />;
-              })}
-            </Stack>
-          </List>
         </Grid>
       </Grid>
     </DialogAnimate>

@@ -14,15 +14,15 @@ export const contrastText = {
 const PRIMARY = {
   lighter: '#FEE9D1',
   light: '#FDAB76',
-  main: '#FA541C',
-  dark: '#B3200E',
+  main: '#c49a52',
+  dark: '#215d15',
   darker: '#770508',
   contrastText: contrastText.white,
 };
 const SECONDARY = {
   lighter: '#D2FCF4',
   light: '#77F0ED',
-  main: '#22B8CF',
+  main: '#215d15',
   dark: '#116E95',
   darker: '#063963',
   contrastText: contrastText.white,

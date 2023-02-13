@@ -11,13 +11,16 @@ import TravelTourItem from '../tours/TravelTourItem';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled('div')(({ theme }) => ({
-  padding: theme.spacing(10, 0),
-  backgroundColor: theme.palette.background.neutral,
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(15, 0),
-  },
-}));
+
+
+//-----------------------------------------------------------------------
+// const RootStyle = styled('div')(({ theme }) => ({
+//   padding: theme.spacing(10, 0),
+//   backgroundColor: theme.palette.background.neutral,
+//   [theme.breakpoints.up('md')]: {
+//     padding: theme.spacing(5, 0),
+//   },
+// }));
 
 // ----------------------------------------------------------------------
 
@@ -27,11 +30,10 @@ TravelLandingTourFeatured.propTypes = {
 
 export default function TravelLandingTourFeatured({ tours }) {
   return (
-    <RootStyle>
-      <Container>
+    <Container sx={{marginBottom: "40px"}}>
         <Stack spacing={3} sx={{ textAlign: 'center' }}>
-          <Typography variant="h1" >Intercity routes</Typography>
-          <Typography variant= "h3" sx={{ color: 'black' ,
+          <Typography variant="h3" >Intercity routes</Typography>
+          <Typography variant= "h5" sx={{ color: 'black' ,
           display: 'flex',
             alignItems: 'center',
              justifyContent: 'flex-start'}}>
@@ -41,7 +43,7 @@ export default function TravelLandingTourFeatured({ tours }) {
 
         <Box
           sx={{
-            my: { xs: 8, md: 10 },
+            mt: 4,
             display: 'grid',
             gap: { xs: 4, md: 3 },
             gridTemplateColumns: {
@@ -51,8 +53,8 @@ export default function TravelLandingTourFeatured({ tours }) {
             },
           }}
         >
-          {tours.map((tour) => (
-            <TravelTourItem key={tour.id} tour={tour} />
+          {tours?.map((tour) => (
+            <TravelTourItem key={tour.id.src} tour={tour} />
           ))}
         </Box>
 
@@ -64,6 +66,12 @@ export default function TravelLandingTourFeatured({ tours }) {
           </NextLink>
         </Box> */}
       </Container>
-    </RootStyle>
+
+
+
+
   );
 }
+
+
+

@@ -19,7 +19,7 @@ const ButtonStyle = styled((props) => <Button color="inherit" {...props} />)(({ 
 
 export default function AppStoreButton({ ...other }) {
   return (
-    <Stack direction="row" spacing={2} {...other}>
+    <Stack direction={{xs:'column', sm:'row'}} spacing={2} {...other}>
       <ButtonStyle
         startIcon={
           <Box
@@ -48,6 +48,7 @@ export default function AppStoreButton({ ...other }) {
             sx={{ width: 28, height: 28 }}
           />
         }
+        sx={{marginLeft: {xs:0, sm:2}}}
       >
         <Stack alignItems="flex-start">
           <Typography variant="caption" sx={{ opacity: 0.72 }}>

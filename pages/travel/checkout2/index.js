@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Box, Grid, Stack, Divider, Container, Typography, Button } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 // hooks
 import { useRequest } from '../../../src/hooks';
 // routes
@@ -103,25 +104,47 @@ export default function TravelCheckoutPage() {
   }
 
   return (
-    <Page title="Checkout - Travel">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={5}>
-          <section>
-            <TravelCheckOutForm
-              control={control}
-              sameBilling={sameBilling}
-              onChangeSameBilling={handleChangeSameBilling}
-            />
-            <TravelCheckOutSummary
-              tour={tour}
-              departureDay={departureDay}
-              setDepartureDay={setDepartureDay}
-              isSubmitting={isSubmitting}
-            />
-          </section>
-        </Stack>
-      </form>
-    </Page>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack spacing={5}>
+        <section>
+          <TravelCheckOutForm
+            control={control}
+            sameBilling={sameBilling}
+            onChangeSameBilling={handleChangeSameBilling}
+          />
+          <TravelCheckOutSummary
+            tour={tour}
+            departureDay={departureDay}
+            setDepartureDay={setDepartureDay}
+            isSubmitting={isSubmitting}
+          />
+          <Stack
+            sx={{
+              textAlign: 'center',
+              color: '#64666b',
+              fontSize: '14px',
+              letterSpacing: '0.15px',
+              marginBottom: '24px',
+            }}
+          >
+            <p></p>
+          </Stack>
+          <LoadingButton
+            type="submit"
+            size="large"
+            variant="contained"
+            loading={isSubmitting}
+            sx={{
+              marginTop: '10px',
+              width: '100%',
+              borderRadius: '4px',
+            }}
+          >
+            Search
+          </LoadingButton>
+        </section>
+      </Stack>
+    </form>
   );
 }
 

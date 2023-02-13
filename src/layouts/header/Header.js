@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box, Stack, Button, AppBar, Divider, Container, Link } from '@mui/material';
+import { Box, Stack, Button, AppBar, Divider, Container, Typography } from '@mui/material';
 // hooks
 import { useOffSetTop, useResponsive } from '../../hooks';
 // routes
@@ -36,23 +36,55 @@ export default function Header({ transparent }) {
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
       <ToolbarStyle disableGutters transparent={transparent} scrolling={isScrolling}>
-        <Container>
-        <Container
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-             justifyContent: 'flex-start'
-            
-          }}
-        >
-        
-        
+        <Container sx={{ px: 0 }}>
+          {/* <Container
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+            }}
+          >
+            <Stack spacing={4} direction="row">
+              <Box sx={{ lineHeight: 0, position: 'relative' }}>
+                <Logo onDark={transparent && !isScrolling} />
 
-         <Stack spacing={4} direction="row"  >
-          <Box sx={{ lineHeight: 0, position: 'relative'}}>
-            <Logo onDark={transparent && !isScrolling} />
-            
-            {/* <Link href="https://royal_fleet/src/assets/images/logo.svg" target="_blank" rel="noopener">
+                <Link
+                  href="https://royal_fleet/src/assets/images/logo.svg"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Label
+                    color="info"
+                    sx={{
+                      ml: 0.5,
+                      px: 0.5,
+                      top: -14,
+                      left: 64,
+                      height: 20,
+                      fontSize: 11,
+                      cursor: 'pointer',
+                      position: 'absolute',
+                    }}
+                  >
+                    v1.4
+                  </Label>
+                </Link>
+              </Box>
+            </Stack>
+          </Container> */}
+
+          <Container
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Stack spacing={4} direction="row">
+              <Box sx={{ lineHeight: 0, position: 'relative' }}>
+                <Logo onDark={transparent && !isScrolling} />
+
+                {/* <Link href="https://royal_fleet/src/assets/images/logo.svg" target="_blank" rel="noopener">
               <Label
                 color="info"
                 sx={{
@@ -69,48 +101,38 @@ export default function Header({ transparent }) {
                 v1.4
               </Label>
             </Link> */}
-          </Box>
-          </Stack>
-          </Container>
+              </Box>
+            </Stack>
+            <Stack spacing={4} direction="row">
+              {isDesktop && (
+                <>
+                  <NavDesktop
+                    isScrolling={isScrolling}
+                    isTransparent={transparent}
+                    navConfig={navConfig}
+                  />
+                </>
+              )}
 
+              {/* <Box sx={{ flexGrow: 1 }} /> */}
 
-         <Container
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-             justifyContent: 'flex-end'
-            
-          }}
-        > 
-          <Stack spacing={4} direction="row"  >
-          {isDesktop && (
-            <NavDesktop 
-              isScrolling={isScrolling}
-              isTransparent={transparent}
-              navConfig={navConfig}
-            />
-          )}
-
-          {/* <Box sx={{ flexGrow: 1 }} /> */}
-
-          
-            {/* <Searchbar
+              {/* <Searchbar
               sx={{
                 ...(isScrolling && { color: 'text.primary' }),
               }}
             /> */}
 
-            <LanguagePopover
-              sx={{
-                ...(isScrolling && { color: 'text.primary' }),
-              }}
-            />
+              {/* <LanguagePopover
+                sx={{
+                  ...(isScrolling && { color: 'text.primary' }),
+                }}
+              /> */}
 
-            {/* <Divider orientation="vertical" sx={{ height: 24 }} /> */}
+              {/* <Divider orientation="vertical" sx={{ height: 24 }} /> */}
 
-            {/* {isDesktop && ( */}
+              {/* {isDesktop && ( */}
               {/* <Stack direction="row" spacing={1} > */}
-                {/* <NextLink href={Routes.registerIllustration} prefetch={false} passHref>
+              {/* <NextLink href={Routes.registerIllustration} prefetch={false} passHref>
                   <Button
                     color="inherit"
                     variant="outlined"
@@ -125,30 +147,29 @@ export default function Header({ transparent }) {
                   </Button>
                 </NextLink> */}
 
-                {/* <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
+              {/* <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
                   Buy Now
                 </Button> */}
               {/* </Stack> */}
-              
-            {/* )} */}
+
+              {/* )} */}
             </Stack>
 
-    
-          {!isDesktop && (
-            <NavMobile
-              navConfig={navConfig}
-              sx={{
-                ml: 1,
-                ...(isScrolling && { color: 'text.primary' }),
-              }}
-            />
-          )}
-          
-        </Container>
+            {!isDesktop && (
+              <NavMobile
+                navConfig={navConfig}
+                sx={{
+                  ml: 1,
+                  ...(isScrolling && { color: 'text.primary' }),
+                }}
+              />
+            )}
+          </Container>
         </Container>
       </ToolbarStyle>
 
       {isScrolling && <ToolbarShadowStyle />}
+      
     </AppBar>
   );
 }

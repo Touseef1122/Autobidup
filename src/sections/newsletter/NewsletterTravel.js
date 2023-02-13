@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 // utils
 import cssStyles from '../../utils/cssStyles';
+import bgc from '../../assets/images/A06.jpg'
 // components
 import { Iconify } from '../../components';
 
@@ -21,14 +22,14 @@ import { Iconify } from '../../components';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   ...cssStyles(theme).bgImage({
-    url: 'https://zone-assets-api.vercel.app/assets/images/travel/travel_newsletter.jpg',
+    url: '../../assets/images/A06.jpg',
     startColor: `${alpha(theme.palette.grey[900], 0.88)}`,
     endColor: `${alpha(theme.palette.grey[900], 0.88)}`,
   }),
   [theme.breakpoints.up('md')]: {
     ...cssStyles(theme).bgImage({
       direction: 'right',
-      url: 'https://zone-assets-api.vercel.app/assets/images/travel/travel_newsletter.jpg',
+       url: '../../assets/images/A06.jpg',
       startColor: `${alpha(theme.palette.grey[900], 0)} 0%`,
       endColor: `${alpha(theme.palette.grey[900], 1)} 50%`,
     }),
@@ -58,7 +59,7 @@ export default function NewsletterTravel() {
                 <br /> and information about the best tours!
               </Typography>
 
-              <FilledInput
+              {/* <FilledInput
                 fullWidth
                 placeholder="Enter your email"
                 endAdornment={
@@ -75,7 +76,7 @@ export default function NewsletterTravel() {
                     py: '18px',
                   },
                 }}
-              />
+              /> */}
             </Stack>
           </Grid>
         </Grid>

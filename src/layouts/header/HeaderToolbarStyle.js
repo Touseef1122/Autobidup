@@ -21,9 +21,15 @@ export const ToolbarStyle = styled(Toolbar, {
   [theme.breakpoints.up('md')]: {
     height: HEADER_DESKTOP_HEIGHT,
   },
+  // ...(transparent && {
+  //   color: theme.palette.common.white,
+  //   backgroundColor: 'transparent',
+  // }),
   ...(transparent && {
-    color: theme.palette.common.white,
-    backgroundColor: 'transparent',
+    ...cssStyles(theme).bgBlur(),
+    // [theme.breakpoints.up('md')]: {
+    //   height: HEADER_DESKTOP_HEIGHT - 20,
+    // },
   }),
   ...(scrolling && {
     ...cssStyles(theme).bgBlur(),

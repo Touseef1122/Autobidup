@@ -6,10 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 import { Box, Grid, Stack, Divider, Container, Typography, Button, TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 // hooks
 import { useRequest } from '../../../src/hooks';
 // routes
@@ -62,11 +62,10 @@ const FormSchema = Yup.object().shape({
 
 export default function TravelCheckoutPage() {
   const router = useRouter();
+  const [value, setValue] = useState('2018-01-01T00:00:00.000Z');
 
   const [sameBilling, setSameBilling] = useState(false);
   const [departureDay, setDepartureDay] = useState(new Date());
-
-  const [value, setValue] = useState(null);
 
   const handleChangeSameBilling = (event) => {
     setSameBilling(event.target.checked);
@@ -106,35 +105,46 @@ export default function TravelCheckoutPage() {
   }
 
   return (
-    <Page title="Checkout - Travel">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={5}>
-          <section>
-            <TravelCheckOutShippingForm
-              control={control}
-              sameBilling={sameBilling}
-              onChangeSameBilling={handleChangeSameBilling}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <TimePicker
-                label="Basic example"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} fullWidth sx={{marginTop: '16px'}}/>}
-              />
-            </LocalizationProvider>
-            <TravelCheckOutSummary
-              tour={tour}
-              departureDay={departureDay}
-              setDepartureDay={setDepartureDay}
-              isSubmitting={isSubmitting}
-            />
-          </section>
+    <form onSubmit={handleSubmit(onSubmit)}>
+        <TravelCheckOutShippingForm
+          control={control}
+          sameBilling={sameBilling}
+          onChangeSameBilling={handleChangeSameBilling}
+        />
+
+        <TravelCheckOutSummary
+          tour={tour}
+          departureDay={departureDay}
+          setDepartureDay={setDepartureDay}
+          isSubmitting={isSubmitting}
+        />
+        <Stack
+          sx={{
+            textAlign: 'center',
+            color: '#64666b',
+            fontSize: '14px',
+            letterSpacing: '0.15px',
+            marginBottom: '24px',
+          }}
+        >
+          <p>Chauffeur will wait 15 minutes free of charge.</p>
         </Stack>
+        <LoadingButton
+          type="submit"
+          size="large"
+          variant="contained"
+          loading={isSubmitting}
+          onClick={() => router.push('/travel/booking-request/serviceclass')}
+
+          sx={{
+            // marginTop: '10px',
+            width: '100%',
+            borderRadius: '4px',
+          }}
+        >
+          Search
+        </LoadingButton>
       </form>
-    </Page>
   );
 }
 

@@ -3,31 +3,29 @@ import { styled, alpha } from '@mui/material/styles';
 import { Stack, Button, Container, Typography, FilledInput, InputAdornment } from '@mui/material';
 // utils
 import cssStyles from '../../utils/cssStyles';
-
+import bgc from '../../assets/images/A06.jpg';
+import { style } from '@mui/system';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
-  ...cssStyles(theme).bgImage({
-    url: 'https://zone-assets-api.vercel.app/assets/images/career/career_newsletter.jpg',
-    startColor: `${alpha(theme.palette.grey[900], 0.88)}`,
-    endColor: `${alpha(theme.palette.grey[900], 0.88)}`,
-  }),
+  // ...cssStyles(theme).bgImage({
+  //   backgroundImage: 'url(${"../../assets/images/A06.jpg"})',
+  // }
+  // ),
 }));
 
 // ----------------------------------------------------------------------
 
 export default function NewsletterCareer() {
   return (
-    <RootStyle>
+    <RootStyle background-image='url("../../assets/images/A06.jpg")'>
       <Container>
         <Stack spacing={3} alignItems="center" sx={{ color: 'common.white', textAlign: 'center' }}>
-          <Typography variant="h2">Get The Right Job For You</Typography>
-          <Typography>
-            Subscribe to get updated on latest and relevant career opportunities
-          </Typography>
-
-          <FilledInput
+          <Typography variant="h2">I'M MORE THAN A CHAUFFEUR</Typography>
+          <Typography>I'M YOUR SAFE SPACE ON WHEELS</Typography>
+          <h3>Royal Fleet Chauffeur</h3>
+          {/* <FilledInput
             placeholder="Enter your email"
             endAdornment={
               <InputAdornment position="end">
@@ -59,7 +57,7 @@ export default function NewsletterCareer() {
                 },
               },
             }}
-          />
+          /> */}
         </Stack>
       </Container>
     </RootStyle>

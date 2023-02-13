@@ -2,10 +2,18 @@ import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
 import locationIcon from '@iconify/icons-carbon/location';
 
-import { Iconify} from '../../../components';
-import SvgIcon from "@mui/material/SvgIcon";
+import { Iconify } from '../../../components';
+import SvgIcon from '@mui/material/SvgIcon';
 // @mui
-import { Stack, Switch, Collapse, TextField, Typography, FormControlLabel,InputAdornment } from '@mui/material';
+import {
+  Stack,
+  Switch,
+  Collapse,
+  TextField,
+  Typography,
+  FormControlLabel,
+  InputAdornment,
+} from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -23,11 +31,24 @@ export default function TravelCheckOutShippingForm({ control, sameBilling, onCha
           Billing Address
         </Typography> */}
 
-        <Stack spacing={2} width={"100%"}>      
+        <Stack spacing={1.5} width={'100%'}>
+          <Stack sx={{ background: '#f0f2f7', borderRadius: '4px' }}>
+            <Field
+              control={control}
+              name="billingAddress.fullAddress"
+              label="From Address"
+              icon={<Iconify icon={locationIcon} sx={{ fontSize:"22px",marginTop:"15px",color:"#919EAB", marginRight: "10px" }} />}
+            />
+          </Stack>
 
-        <Field control={control} name="billingAddress.fullAddress" placeholder="Address, airport, hotel,..." label="From Address"/> 
-        <Field control={control} name="billingAddress.fullAddress2" label="To Address" />
-        
+          <Stack sx={{ background: '#f0f2f7', borderRadius: '4px' }}>
+            <Field
+              control={control}
+              name="billingAddress.fullAddress2"
+              label="To Address"
+              icon={<Iconify icon={locationIcon} sx={{fontSize:"22px",marginTop:"15px",color:"#919EAB", marginRight: "10px" }} />}
+            />
+          </Stack>
           {/* <Stack spacing={{ xs: 2.5, md: 2 }} direction={{ xs: 'column', md: 'row' }}>
             <Field control={control} name="billingAddress.firstName" label="First Name" />
             <Field control={control} name="billingAddress.lastName" label="Last Name" />
@@ -80,7 +101,7 @@ Field.propTypes = {
   name: PropTypes.string,
 };
 
-function Field({ control, name, label, ...other }) {
+function Field({ control, name, label, icon, ...other }) {
   return (
     <Controller
       name={name}
@@ -89,6 +110,9 @@ function Field({ control, name, label, ...other }) {
         <TextField
           {...field}
           fullWidth
+          InputProps={{
+            startAdornment: icon,
+          }}
           label={label}
           error={Boolean(error)}
           helperText={error?.message}

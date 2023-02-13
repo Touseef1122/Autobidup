@@ -164,12 +164,12 @@ function PostItem({ post, order, largePost }) {
         }),
       }}
     >
-      <Image
+      {/* <Image
         src={coverImg}
         alt={title}
         ratio={(largePost && '3/4') || (order && '4/3') || '1/1'}
         sx={{ borderRadius: 2 }}
-      />
+      /> */}
 
       <Stack
         spacing={largePost ? 2 : 1}

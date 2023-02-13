@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import { Link, Stack } from '@mui/material';
 // components
 import { Iconify } from '../../components';
+import MenuBtn from '../../components/menu-btn';
 //
 import NavDesktopMenu from './NavDesktopMenu';
 
@@ -136,7 +137,8 @@ function NavItemDesktop({ item, isScrolling, isTransparent }) {
   if (children) {
     return (
       <>
-        <RootLinkStyle
+        <MenuBtn item={item} />
+        {/* <RootLinkStyle
           onClick={handleOpen}
           open={open}
           scrolling={isScrolling}
@@ -158,7 +160,7 @@ function NavItemDesktop({ item, isScrolling, isTransparent }) {
           isOpen={open}
           onClose={handleClose}
           isScrolling={isScrolling}
-        />
+        /> */}
       </>
     );
   }

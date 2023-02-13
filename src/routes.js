@@ -14,7 +14,7 @@ const Routes = {
   },
   // Travel
   travel: {
-    landing: '/travel',
+    landing: '/travel/travelDuplicateCopy',
     tours: '/travel/tours',
     tour: (id) => `/travel/tours/${id}`,
     checkout: '/travel/checkout',

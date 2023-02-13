@@ -53,7 +53,7 @@ export default function AuthCarousel({ title }) {
     <RootStyle>
       <BgOverlay />
 
-      <Typography
+      {/* <Typography
         variant="h2"
         sx={{
           p: 10,
@@ -64,14 +64,16 @@ export default function AuthCarousel({ title }) {
         }}
       >
         {title}
-      </Typography>
+      </Typography> */}
 
       <Slider {...carouselSettings}>
-        {['auth01', 'auth02'].map((img) => (
-          <Box key={img}>
+        {imgArray.map((img) => (
+          <Box 
+          // key={img}
+          >
             <Image
-              alt={img}
-              src={`https://zone-assets-api.vercel.app/assets/images/auth/${img}.jpg`}
+              // alt={img}
+              src={`${img}`}
               sx={{ width: 1, height: '100vh' }}
             />
           </Box>
@@ -80,3 +82,5 @@ export default function AuthCarousel({ title }) {
     </RootStyle>
   );
 }
+
+const imgArray = ["https://i.pinimg.com/originals/e4/a9/a8/e4a9a8d36f2931f075681cb551458aaa.jpg", "https://c4.wallpaperflare.com/wallpaper/29/1013/318/black-car-car-mercedes-benz-mercedes-wallpaper-preview.jpg"];

@@ -151,7 +151,7 @@ export default function TravelCheckoutPage() {
   }
 
   return (
-    <Page title="Checkout - Travel">
+    <Page title="Checkout">
       <RootStyle>
         <Container
           sx={{

@@ -16,17 +16,20 @@ import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '.
 const SUMMARY = [
   {
     title: 'Safety first',
-    description: 'Travel confidently knowing your safety is our #1 priority. Rigorous health and cleaning standards round out a best-in-class service.',
+    description:
+      'Travel confidently knowing your safety is our #1 priority. Rigorous health and cleaning standards round out a best-in-class service.',
     icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_popularity.svg',
   },
   {
     title: 'Private travel solutions',
-    description: 'Discover your one-stop travel shop: long-distance rides, one way or return, by the hour, airport transfers, and more.',
+    description:
+      'Discover your one-stop travel shop: long-distance rides, one way or return, by the hour, airport transfers, and more.',
     icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_reputation.svg',
   },
   {
     title: 'Sustainable travel',
-    description: 'Breathe easy knowing all rides are 100% carbon neutral, as part of our global carbon offset program — the industry’s first.',
+    description:
+      'Breathe easy knowing all rides are 100% carbon neutral, as part of our global carbon offset program — the industry’s first.',
     icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_secure_payment.svg',
   },
 ];
@@ -34,7 +37,7 @@ const SUMMARY = [
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0),
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(10, 0),
+    padding: theme.spacing(5, 0),
   },
 }));
 
@@ -154,8 +157,15 @@ export default function TravelLandingIntroduce() {
           </Box>
         </Container>
       </RootStyle>
-
       <PlayerWithButton open={openVideo} onClose={handleCloseVideo} videoPath={_mock.video} />
+      {/* <Container sx={{ mt: 3, mb: 5 }}>
+        <Typography variant="h1" sx={{ mt: 3, mb: 2, textAlign: 'center' }}>
+          “New chauffeur-hailing service seeks to challenge Uber, Lyft in city rides”
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
+          The Wall Street Journal
+        </Typography>
+      </Container> */}
     </>
   );
 }

@@ -3,6 +3,13 @@ import { useState } from 'react';
 // icons
 import chevronDown from '@iconify/icons-carbon/chevron-down';
 import chevronRight from '@iconify/icons-carbon/chevron-right';
+import Youtube from '@iconify/icons-carbon/logo-youtube';
+import Facebook from '@iconify/icons-carbon/logo-facebook';
+import Twitter from '@iconify/icons-carbon/logo-twitter';
+import Insta from '@iconify/icons-carbon/logo-instagram';
+import Linkedin from '@iconify/icons-carbon/logo-linkedin';
+import { Icon } from '@iconify/react';
+
 // @mui
 import { styled } from '@mui/material/styles';
 import Masonry from '@mui/lab/Masonry';
@@ -32,12 +39,19 @@ const LinkStyle = styled((props) => <Link target="_blank" rel="noopener" {...pro
   ({ theme }) => ({
     ...theme.typography.body3,
     marginTop: theme.spacing(1),
-    color: theme.palette.text.secondary,
+    color: '#000000',
     '&:hover': {
-      color: theme.palette.text.primary,
+      color: 'white',
     },
   })
 );
+
+const boxSX = {
+  color: '#000000',
+  '&:hover': {
+    color: 'white',
+  },
+};
 
 // ----------------------------------------------------------------------
 
@@ -52,32 +66,54 @@ export default function Footer() {
 
   return (
     <>
-      <Divider />
-      <Container sx={{ py: { xs: 8, md: 10 } }}>
-        <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
-          <Grid item xs={12} md={4}>
-            <Stack spacing={{ xs: 3, md: 5 }}>
-              <Stack alignItems="flex-start" spacing={3}>
+      <Box fluid sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#dec588' }}>
+        <Container>
+          <Grid justifyContent={{ md: 'space-between' }}>
+            <Container>
+              <Grid item xs={12} md={12}>
+                <Stack
+                  direction={{ xs: 'row', md: 'row' }}
+                  // spacing={2.5}
+                  justifyContent="space-between"
+                  sx={{ textAlign: 'center' }}
+                >
+                  <Typography color="black" variant="h4">
+                    ROYAL FLEET
+                  </Typography>
+                  <Link variant="body3" sx={{ color: 'black' }}>
+                    {/* <Iconify icon={Mark} sx={{ fontSize: '22px', color: '#b0b2b7' }} /> */}
+                    <Stack direction="row" justifyContent="space-between" fontSize="17px">
+                      <Box>
+                        <Icon icon="mdi:question-mark-circle" />
+                      </Box>
+                      <Typography sx={{ textDecoration: 'underline' }}>Help</Typography>
+                    </Stack>
+                  </Link>
+                </Stack>
+
+                <Divider />
+                {/* <Stack spacing={{ xs: 3, md: 5 }}> */}
+                {/* <Stack alignItems="flex-start" spacing={3}>
                 <Logo />
                 <Typography variant="body3" sx={{ color: 'text.secondary' }}>
                   The starting point for your next project based on easy-to-customize Material-UI ©
                   helps you build apps faster and better.
                 </Typography>
-              </Stack>
+              </Stack> */}
 
-              <Stack spacing={2}>
+                {/* <Stack spacing={2}>
                 <Typography variant="h6">Social</Typography>
                 <SocialsButton />
-              </Stack>
+              </Stack> */}
 
-              <Stack alignItems="flex-start">
+                {/* <Stack alignItems="flex-start">
                 <Typography variant="h6">Documentation</Typography>
                 <LinkStyle href="#">Documentation</LinkStyle>
                 <LinkStyle href="#">Changelog</LinkStyle>
                 <LinkStyle href="#">Contributing</LinkStyle>
-              </Stack>
+              </Stack> */}
 
-              <Stack spacing={2}>
+                {/* <Stack spacing={2}>
                 <Stack spacing={1}>
                   <Typography variant="h6">Let’s stay in touch</Typography>
                   <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -98,55 +134,97 @@ export default function Footer() {
                     '& .MuiFilledInput-input': { py: '14px' },
                   }}
                 />
-              </Stack>
+              </Stack> */}
 
-              <Stack spacing={2}>
-                <Typography variant="h6">Apps</Typography>
-                <AppStoreButton />
-              </Stack>
-            </Stack>
+                <Stack margin="20px 0">
+                  {/* <Typography variant="h6">Apps</Typography> */}
+                  <AppStoreButton />
+                </Stack>
+                {/* </Stack> */}
+                <Divider />
+                {/* </Grid>
+
+          <Grid item xs={12} md={6}> */}
+                {isDesktop ? (
+                  <Stack
+                    columns={3}
+                    flexDirection="row"
+                    justifyContent="space-between"
+                    margin="30px 0"
+                  >
+                    {renderLists.map((list) => (
+                      <ListDesktop key={list.subheader} list={list} />
+                    ))}
+                  </Stack>
+                ) : (
+                  <Stack margin="30px 0">
+                    {renderLists.map((list) => (
+                      <ListMobile key={list.subheader} list={list} />
+                    ))}
+                  </Stack>
+                )}
+                <Divider />
+
+                {/* <Container> */}
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={2}
+                  justifyContent="space-between"
+                  sx={{ py: 3, textAlign: 'center', fontSize: '16px' }}
+                >
+                  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
+                    <div>
+                      <Typography variant="body3" sx={{ color: 'black' }}>
+                        © 2022 Royal Fleet
+                      </Typography>
+                    </div>
+
+                    <Stack
+                      direction={{ xs: 'column', sm: 'row' }}
+                      spacing={5}
+                      justifyContent={{ sm: 'center' }}
+                      color={'black'}
+                    >
+                      <Link variant="body3" sx={boxSX}>
+                        Terms
+                      </Link>
+                      <Link variant="body3" sx={boxSX}>
+                        Privacy Policy
+                      </Link>
+                      <Link variant="body3" sx={boxSX}>
+                        Legal Notice
+                      </Link>
+                      <Link variant="body3" sx={boxSX}>
+                        Accessibility
+                      </Link>
+                    </Stack>
+                  </Stack>
+
+                  <Stack direction="row" spacing={3} alignSelf={{ xs: 'center', md: 'flex-end' }}>
+                    <Link variant="body3" sx={{ color: 'black' }}>
+                      <Iconify icon={Youtube} sx={{ fontSize: '22px', color: '#000000' }} />
+                    </Link>
+                    <Link variant="body3" sx={{ color: 'text.secondary' }}>
+                      <Iconify icon={Facebook} sx={{ fontSize: '22px', color: '#000000' }} />
+                    </Link>
+                    <Link variant="body3" sx={{ color: 'text.secondary' }}>
+                      <Iconify icon={Twitter} sx={{ fontSize: '22px', color: '#000000' }} />
+                    </Link>
+                    <Link variant="body3" sx={{ color: 'text.secondary' }}>
+                      <Iconify icon={Insta} sx={{ fontSize: '22px', color: '#000000' }} />
+                    </Link>
+                    <Link variant="body3" sx={{ color: 'text.secondary' }}>
+                      <Iconify icon={Linkedin} sx={{ fontSize: '22px', color: '#000000' }} />
+                    </Link>
+                  </Stack>
+                </Stack>
+              </Grid>
+            </Container>
           </Grid>
+        </Container>
+      </Box>
 
-          <Grid item xs={12} md={6}>
-            {isDesktop ? (
-              <Masonry columns={3} spacing={3}>
-                {renderLists.map((list) => (
-                  <ListDesktop key={list.subheader} list={list} />
-                ))}
-              </Masonry>
-            ) : (
-              <Stack spacing={1.5}>
-                {renderLists.map((list) => (
-                  <ListMobile key={list.subheader} list={list} />
-                ))}
-              </Stack>
-            )}
-          </Grid>
-        </Grid>
-      </Container>
-
-      <Divider />
-
-      <Container>
-        <Stack
-          direction={{ xs: 'column', md: 'row' }}
-          spacing={2.5}
-          justifyContent="space-between"
-          sx={{ py: 3, textAlign: 'center' }}
-        >
-          <Typography variant="body3" sx={{ color: 'text.secondary' }}>
-            © 2021. All rights reserved
-          </Typography>
-          <Stack direction="row" spacing={3} justifyContent="center">
-            <Link variant="body3" sx={{ color: 'text.secondary' }}>
-              Help Center
-            </Link>
-            <Link variant="body3" sx={{ color: 'text.secondary' }}>
-              Terms of Service
-            </Link>
-          </Stack>
-        </Stack>
-      </Container>
+      {/* </Container> */}
     </>
   );
 }
@@ -164,10 +242,12 @@ function ListDesktop({ list }) {
   const { subheader, items } = list;
 
   return (
-    <Stack alignItems="flex-start" sx={{ pb: { md: 1 } }}>
-      <Typography variant="h6">{subheader}</Typography>
+    <Stack alignItems="flex-start">
+      <Typography variant="h6" color="black">
+        {subheader}
+      </Typography>
       {items?.map((link) => (
-        <LinkStyle key={link.title} href={link.path}>
+        <LinkStyle key={link.title} href={link.path} color="black">
           {link.title}
         </LinkStyle>
       ))}
@@ -197,35 +277,44 @@ function ListMobile({ list }) {
     <Stack spacing={1.5} alignItems="flex-start">
       <Typography
         variant="h6"
-        onClick={onExpand}
-        sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+        color="black"
+        marginTop="20px"
+        // onClick={onExpand}
+        // sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
       >
         {subheader}
-        <Iconify
+        {/* <Iconify
           icon={expand ? chevronDown : chevronRight}
           sx={{ width: 20, height: 20, ml: 0.5 }}
-        />
+        /> */}
       </Typography>
 
-      <Collapse in={expand} sx={{ width: 1 }}>
-        <Box
-          sx={{
-            display: 'grid',
-            rowGap: 1,
-            columnGap: 3,
-            gridTemplateColumns: {
-              xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
-            },
-          }}
-        >
-          {items?.map((link) => (
-            <LinkStyle key={link.title} href={link.path}>
-              {link.title}
-            </LinkStyle>
-          ))}
-        </Box>
-      </Collapse>
+      {/* <Collapse in={expand} sx={{ width: 1 }}> */}
+      <Box
+        sx={{
+          display: 'grid',
+
+          gridTemplateColumns: {
+            xs: 'repeat(1, 1fr)',
+            sm: 'repeat(1, 1fr)',
+            md: 'repeat(4, 1fr)',
+          },
+        }}
+        md={{
+          display: 'grid',
+
+          gridTemplateColumns: {
+            md: 'repeat(4, 1fr)',
+          },
+        }}
+      >
+        {items?.map((link) => (
+          <LinkStyle key={link.title} href={link.path} color="orange">
+            {link.title}
+          </LinkStyle>
+        ))}
+      </Box>
+      {/* </Collapse> */}
     </Stack>
   );
 }

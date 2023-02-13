@@ -58,7 +58,7 @@ export default function CareerLandingPage({ posts }) {
 
       <CareerLangdingConnections countries={_jobsByCountries} />
 
-      <CareerLangdingForRecruiters />
+      {/* <CareerLangdingForRecruiters /> */}
 
       <TestimonialsCareer testimonials={_testimonials} />
 

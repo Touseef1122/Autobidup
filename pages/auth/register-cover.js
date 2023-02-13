@@ -9,6 +9,7 @@ import Routes from '../../src/routes';
 import { Page } from '../../src/components';
 import { Logo } from '../../src/components';
 import { AuthWithSocial, AuthCarousel, RegisterForm } from '../../src/sections/auth';
+import { Scrollbar } from '../../src/components';
 
 // ----------------------------------------------------------------------
 
@@ -22,10 +23,16 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
+  [theme.breakpoints.up('md')]: {
+    maxWidth: 580,
+  },
+}));
+const ScrollStyle = styled('div')(({ theme }) => ({
+  width: '100%',
   padding: theme.spacing(5, 2.5),
   [theme.breakpoints.up('md')]: {
-    maxWidth: 480,
-    padding: theme.spacing(8, 10),
+    maxWidth: 580,
+    padding: theme.spacing(8, 8),
   },
 }));
 
@@ -36,37 +43,41 @@ export default function RegisterCoverPage() {
     <Page title="Register Cover">
       <RootStyle>
         <ContentStyle>
-          <Logo sx={{ display: { xs: 'block', md: 'inline-block' } }} />
+          <Scrollbar>
+            <ScrollStyle>
+              <Logo sx={{ display: { xs: 'block', md: 'inline-block' } }} />
 
-          <Stack
-            sx={{
-              pb: 5,
-              pt: { xs: 5, md: 10 },
-              textAlign: { xs: 'center', md: 'left' },
-            }}
-          >
-            <Typography variant="h3" paragraph>
-              Get Started
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Already have an account?
-              <NextLink href={Routes.loginCover} passHref>
-                <Link variant="subtitle2" color="primary">
-                  {''} Login
-                </Link>
-              </NextLink>
-            </Typography>
-          </Stack>
+              <Stack
+                sx={{
+                  pb: 5,
+                  pt: 5,
+                  textAlign: { xs: 'center', md: 'left' },
+                }}
+              >
+                <Typography variant="h3" paragraph>
+                  Get Started
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  Already have an account?
+                  <NextLink href={Routes.loginCover} passHref>
+                    <Link variant="subtitle2" color="#c49a52">
+                      {''} Login
+                    </Link>
+                  </NextLink>
+                </Typography>
+              </Stack>
 
-          <AuthWithSocial />
+              {/* <AuthWithSocial />
 
           <Divider sx={{ py: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.disabled' }}>
               OR
             </Typography>
-          </Divider>
+          </Divider> */}
 
-          <RegisterForm />
+              <RegisterForm />
+            </ScrollStyle>
+          </Scrollbar>
         </ContentStyle>
 
         <AuthCarousel title={`Manage The Job \n More Effectively`} />

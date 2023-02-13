@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Controller } from 'react-hook-form';
+import TimeIcon from '@iconify/icons-carbon/time';
+import locationIcon from '@iconify/icons-carbon/location';
 
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -44,6 +46,7 @@ const time = [
   '10 hours',
   '11 hours',
   '12 hours',
+  '13 hours',
 ];
 function getStyles(name, personName, theme) {
   return {
@@ -81,38 +84,18 @@ export default function TravelCheckOutForm({ control, sameBilling, onChangeSameB
     <Stack>
       <section>
         <Stack spacing={2} width={'100%'}>
-          <Field control={control} name="billingAddress.fullAddress2" label="To Address" />
 
-          <FormControl sx={{ m: 1, width: '100%', mt: 3 }}>
-            <InputLabel id="select-outlined-label">Duration</InputLabel>
-            <Select
-              multiple
-              // displayEmpty
-              value={personName}
-              label="Duration"
-              sx={{ textAlign: 'left', backgroundColor: 'rgba(145, 158, 171, 0.08)' }}
-              onChange={handleChange}
-              // input={<OutlinedInput label="Duration" />}
-              renderValue={(selected) => {
-                if (selected.length === 0) {
-                  return '2 hours';
-                }
-
-                return selected.join(', ');
-              }}
-              MenuProps={MenuProps}
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem sx={{ textAlign: 'left !important' }} value="">
-                2 hours
-              </MenuItem>
-              {time.map((name) => (
-                <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Stack sx={{ background: '#f0f2f7', borderRadius: '4px' }}>
+            <Field
+              control={control}
+              name="billingAddress.fullAddress"
+              label="From Address"
+              icon={<Iconify icon={locationIcon} sx={{ fontSize:"22px",marginTop:"15px",color:"#919EAB", marginRight: "10px" }} />}
+            />
+          </Stack>
+          <TField
+           icon={<Iconify icon={TimeIcon} sx={{ fontSize:"22px",marginTop:"15px",color:"#919EAB", marginRight: "10px" }} />} 
+          />        
         </Stack>
       </section>
     </Stack>
@@ -127,7 +110,7 @@ Field.propTypes = {
   name: PropTypes.string,
 };
 
-function Field({ control, name, label, ...other }) {
+function Field({ control, name,icon, label, ...other }) {
   return (
     <Controller
       name={name}
@@ -136,12 +119,37 @@ function Field({ control, name, label, ...other }) {
         <TextField
           {...field}
           fullWidth
+          InputProps={{
+            startAdornment: icon,
+          }}
           label={label}
           error={Boolean(error)}
           helperText={error?.message}
+          sx={{backgroundColor: "#f0f2f7"}}
         />
       )}
       {...other}
     />
   );
 }
+function TField({icon}) {
+    return (
+          <TextField
+          sx={{backgroundColor:"#f0f2f7"}}
+          id="select"
+          label="Duration"
+          value="10"
+          select
+            InputProps={{
+              startAdornment: icon,
+            }}    
+          >
+          <MenuItem value="10">2 hours</MenuItem>
+          {time.map((name) => (
+            <MenuItem key={name} value={name}>
+              {name}
+            </MenuItem>
+          ))}
+          </TextField>
+    );
+  }

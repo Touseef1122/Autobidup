@@ -62,6 +62,8 @@ export const InputStyle = styled((props) => <TextField fullWidth {...props} />)(
       ...theme.typography.subtitle1,
       padding: 0,
       height: 48,
+      fontSize: "0.875rem !important",
+      fontWeight: "400"
     },
     '& .MuiInputAdornment-root': {
       marginTop: '0 !important',
