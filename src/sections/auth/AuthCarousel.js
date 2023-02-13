@@ -6,11 +6,15 @@ import { Box, Typography } from '@mui/material';
 // components
 import { Image, BgOverlay, CarouselDots } from '../../components';
 
+import wallpaper1 from "../../Assets/Images/wallpaper1.jpg"
+import wallpaper2 from "../../Assets/Images/wallpaper2.jpg"
+
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
   display: 'none',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     width: 1,
     flexGrow: 1,
     display: 'block',
@@ -51,7 +55,7 @@ export default function AuthCarousel({ title }) {
 
   return (
     <RootStyle>
-      <BgOverlay />
+      {/* <BgOverlay /> */}
 
       <Typography
         variant="h2"
@@ -67,12 +71,12 @@ export default function AuthCarousel({ title }) {
       </Typography>
 
       <Slider {...carouselSettings}>
-        {['auth01', 'auth02'].map((img) => (
-          <Box key={img}>
+        {[wallpaper1, wallpaper2].map((img) => (
+          <Box key={img} sx={{}}>
             <Image
               alt={img}
-              src={`https://zone-assets-api.vercel.app/assets/images/auth/${img}.jpg`}
-              sx={{ width: 1, height: '100vh' }}
+              src={img.src}
+              sx={{ height:"95vh",mr:3,mt:2, borderRadius:"10px" }}
             />
           </Box>
         ))}

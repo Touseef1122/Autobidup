@@ -25,6 +25,9 @@ const FormSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required('Confirm password is required')
     .oneOf([Yup.ref('password')], "Password's not match"),
+  phone: Yup.string().required('Mobile number is required').min(11, 'Mininum 11 characters')
+  .max(15, 'Maximum 15 characters'),
+
 });
 
 export default function RegisterForm() {
@@ -58,7 +61,7 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={2.5}>
+      <Stack spacing={2}>
         <Controller
           name="fullName"
           control={control}
@@ -132,6 +135,19 @@ export default function RegisterForm() {
             />
           )}
         />
+         <Controller
+          name="phone"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <TextField
+              {...field}
+              fullWidth
+              label="Mobile Number"
+              error={Boolean(error)}
+              helperText={error?.message}
+            />
+          )}
+        />
 
         <LoadingButton
           fullWidth
@@ -139,20 +155,10 @@ export default function RegisterForm() {
           type="submit"
           variant="contained"
           loading={isSubmitting}
+          sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}
         >
           Register
         </LoadingButton>
-
-        <Typography variant="caption" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-          I agree to
-          <Link color="text.primary" href="#">
-            {''} Terms of Service {''}
-          </Link>
-          and
-          <Link color="text.primary" href="#">
-            {''} Privacy Policy.
-          </Link>
-        </Typography>
       </Stack>
     </form>
   );

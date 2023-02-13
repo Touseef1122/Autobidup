@@ -13,7 +13,7 @@ import { AuthWithSocial, AuthCarousel, LoginForm } from '../../src/sections/auth
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     display: 'flex',
     overflow: 'hidden',
     height: '100vh',
@@ -22,11 +22,16 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
-  padding: theme.spacing(5, 2.5),
-  [theme.breakpoints.up('md')]: {
-    maxWidth: 480,
-    padding: theme.spacing(8, 10),
+  padding: theme.spacing(4, 2.5),
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: "50%",
+    padding: theme.spacing(2, 4),
   },
+  [theme.breakpoints.up('md')]: {
+    maxWidth: "50%",
+    padding: theme.spacing(6, 15),
+  },
+ 
 }));
 
 // ----------------------------------------------------------------------
@@ -36,29 +41,30 @@ export default function LoginCoverPage() {
     <Page title="Login Cover">
       <RootStyle>
         <ContentStyle>
-          <Logo sx={{ display: { xs: 'block', md: 'inline-block' } }} />
-
           <Stack
-            sx={{
-              pb: 5,
-              pt: { xs: 5, md: 10 },
-              textAlign: { xs: 'center', md: 'left' },
+            sx={{            
+              pt: { xs: 2, md: 5 },
+              textAlign: { xs: 'center' },
             }}
           >
             <Typography variant="h3" paragraph>
               Login
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Don’t have an account?
-              <NextLink href={Routes.registerCover} passHref>
-                <Link variant="subtitle2" color="primary">
-                  {''} Get started
-                </Link>
-              </NextLink>
-            </Typography>
+            </Typography>         
           </Stack>
 
-          <AuthWithSocial />
+          
+
+          <LoginForm />
+
+          
+          <Typography variant="body2" pt={2} sx={{ color: 'text.secondary' }}>
+              Don’t have an account?
+              <NextLink href={Routes.registerCover} passHref>
+                <Link variant="subtitle2" color="#CE9A00">
+                  {''} SignUp
+                </Link>
+              </NextLink>
+          </Typography>
 
           <Divider sx={{ py: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.disabled' }}>
@@ -66,7 +72,7 @@ export default function LoginCoverPage() {
             </Typography>
           </Divider>
 
-          <LoginForm />
+          <AuthWithSocial />
         </ContentStyle>
 
         <AuthCarousel title="Hi, Welcome Back" />
