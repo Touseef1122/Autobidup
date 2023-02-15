@@ -1,6 +1,6 @@
-export { default as AuthCarousel } from './AuthCarousel';
-export { default as AuthWithSocial } from './AuthWithSocial';
-export { default as LoginForm } from './LoginForm';
-export { default as RegisterForm } from './RegisterForm';
-export { default as ResetPasswordForm } from './ResetPasswordForm';
-export { default as VerifyCodeForm } from './VerifyCodeForm';
+export { default as AuthCarousel } from './authcarousel';
+export { default as AuthWithSocial } from './authwithsocial';
+export { default as LoginForm } from './loginform';
+export { default as RegisterForm } from './registerform';
+export { default as ResetPasswordForm } from './resetpasswordform';
+export { default as VerifyCodeForm } from './verifycodeform';

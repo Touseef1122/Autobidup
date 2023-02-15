@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { Box, Grid, Stack, Divider, Container, Typography, Button, TextField } from '@mui/material';
 // hooks
 import { useRequest } from '../../../src/hooks';
@@ -116,14 +116,14 @@ export default function TravelCheckoutPage() {
               onChangeSameBilling={handleChangeSameBilling}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <TimePicker
+              {/* <TimePicker
                 label="Basic example"
                 value={value}
                 onChange={(newValue) => {
                   setValue(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} fullWidth sx={{marginTop: '16px'}}/>}
-              />
+              /> */}
             </LocalizationProvider>
             <TravelCheckOutSummary
               tour={tour}
