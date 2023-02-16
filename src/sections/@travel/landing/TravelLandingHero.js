@@ -14,7 +14,7 @@ import { Stack, Typography, Button, Avatar, Box, Tabs, Tab, Container } from '@m
 // utils
 import cssStyles from '../../../utils/cssStyles';
 // @utils
-import landing from '../../../assets/images/landingImg.jpg';
+// import landing from '../../../assets/images/landingImg.jpg';
 import { fCurrency } from '../../../utils/formatNumber';
 import CheckoutForm from '../../../../pages/travel/checkout1/index';
 import CheckoutForm2 from '../../../../pages/travel/checkout2/index';

@@ -6,11 +6,15 @@ import { Box, Typography } from '@mui/material';
 // components
 import { Image, BgOverlay, CarouselDots } from '../../components';
 
+import wallpaper1 from "../../Assets/Images/wallpaper1.jpg"
+import wallpaper2 from "../../Assets/Images/wallpaper2.jpg"
+
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
   display: 'none',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
     width: 1,
     flexGrow: 1,
     display: 'block',
@@ -51,7 +55,7 @@ export default function AuthCarousel({ title }) {
 
   return (
     <RootStyle>
-      <BgOverlay />
+      {/* <BgOverlay /> */}
 
       {/* <Typography
         variant="h2"
@@ -67,6 +71,7 @@ export default function AuthCarousel({ title }) {
       </Typography> */}
 
       <Slider {...carouselSettings}>
+<<<<<<< HEAD
         {imgArray.map((img) => (
           <Box 
           // key={img}
@@ -75,6 +80,14 @@ export default function AuthCarousel({ title }) {
               // alt={img}
               src={`${img}`}
               sx={{ width: 1, height: '100vh' }}
+=======
+        {[wallpaper1, wallpaper2].map((img) => (
+          <Box key={img} sx={{}}>
+            <Image
+              alt={img}
+              src={img.src}
+              sx={{ height:"95vh",mr:3,mt:2, borderRadius:"10px" }}
+>>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
             />
           </Box>
         ))}

@@ -4,11 +4,6 @@ export * from './tours';
 export * from './checkout';
 export * from './filters';
 export * from './landing';
-export * from './imageInline';
-export * from './business';
-export * from './service';
-export * from './forchauffeurs';
-export * from './carRental';
-export * from './hailing';
-export * from './landingPage';
-export * from './userProfile';
+export * from './sellbuy';
+
+>>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac

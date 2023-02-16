@@ -2,9 +2,9 @@
 import logoFacebook from '@iconify/icons-carbon/logo-facebook';
 import logoGithub from '@iconify/icons-carbon/logo-github';
 // @mui
-import { Stack, Button } from '@mui/material';
+import { Stack, Button, Typography } from '@mui/material';
 // components
-import { Image, Iconify } from '../../components';
+import { Image } from '../../components';
 
 // ----------------------------------------------------------------------
 
@@ -23,9 +23,10 @@ export default function AuthWithSocial() {
           src="https://zone-assets-api.vercel.app/assets/icons/ic_google.svg"
           sx={{ width: 24, height: 24 }}
         />
+        <Typography fontWeight="bold" color="text.secondary">  Google</Typography>
       </Button>
 
-      <Button
+      {/* <Button
         fullWidth
         size="large"
         color="inherit"
@@ -43,7 +44,7 @@ export default function AuthWithSocial() {
         sx={{ bgcolor: 'grey.5008', '&:hover': { bgcolor: 'grey.50024' } }}
       >
         <Iconify icon={logoGithub} sx={{ color: 'text.primary', width: 24, height: 24 }} />
-      </Button>
+      </Button> */}
     </Stack>
   );
 }

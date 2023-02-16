@@ -36,6 +36,9 @@ const FormSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required('Confirm password is required')
     .oneOf([Yup.ref('password')], "Password's not match"),
+  phone: Yup.string().required('Mobile number is required').min(11, 'Mininum 11 characters')
+  .max(15, 'Maximum 15 characters'),
+
 });
 
 export default function RegisterForm() {
@@ -69,7 +72,11 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+<<<<<<< HEAD
       <Stack spacing={1.5}>
+=======
+      <Stack spacing={2}>
+>>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
         <Controller
           name="fullName"
           control={control}
@@ -206,6 +213,19 @@ export default function RegisterForm() {
             />
           )}
         />
+         <Controller
+          name="phone"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <TextField
+              {...field}
+              fullWidth
+              label="Mobile Number"
+              error={Boolean(error)}
+              helperText={error?.message}
+            />
+          )}
+        />
 
         <FormControlLabel
           sx={{ marginTop: '30px !important' }}
@@ -234,9 +254,11 @@ export default function RegisterForm() {
             marginTop: '30px !important',
           }}
           loading={isSubmitting}
+          sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}
         >
           Sign up
         </LoadingButton>
+<<<<<<< HEAD
 
         {/* <Typography variant="caption" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
           I agree to
@@ -248,6 +270,8 @@ export default function RegisterForm() {
             {''} Privacy Policy.
           </Link>
         </Typography> */}
+=======
+>>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
       </Stack>
     </form>
   );

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 // icons
 import directionStraightRight from '@iconify/icons-carbon/direction-straight-right';
+
 // @mui
 import { useTheme, styled } from '@mui/material/styles';
 import { Box, Stack } from '@mui/material';
@@ -46,7 +47,6 @@ export default function CarouselArrows({
 
   const style = {
     position: 'absolute',
-    mt: -2.5,
     top: '50%',
     zIndex: 9,
   };
@@ -79,23 +79,29 @@ export default function CarouselArrows({
 
 const leftIcon = (customIcon, isRTL) => (
   <Iconify
-    icon={customIcon ? customIcon : directionStraightRight}
+    // icon={customIcon ? customIcon : directionStraightRight}
+    icon="material-symbols:arrow-circle-left-rounded"
     sx={{
-      width: 24,
-      height: 24,
-      transform: ' scaleX(-1)',
-      ...(isRTL && { transform: ' scaleX(1)' }),
+      width: 34,
+      height: 34,
+      color:"black",
+
+      // transform: ' scaleX(-1)',
+      // ...(isRTL && { transform: ' scaleX(1)' }),
     }}
   />
 );
 
 const rightIcon = (customIcon, isRTL) => (
   <Iconify
-    icon={customIcon ? customIcon : directionStraightRight}
+    // icon={customIcon ? customIcon : directionStraightRight}
+    icon="material-symbols:arrow-circle-right-rounded"
     sx={{
-      width: 24,
-      height: 24,
-      ...(isRTL && { transform: ' scaleX(-1)' }),
+      width: 40,
+      height: 40,
+      // ...(isRTL && { transform: ' scaleX(-1)' }),
+      color:"black",
+
     }}
   />
 );

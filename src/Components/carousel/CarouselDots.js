@@ -16,6 +16,7 @@ const RootStyle = styled(Box, {
     height: 18,
     opacity: 0.32,
     cursor: 'pointer',
+    color:"#CE9A00 !important"
   },
   '& li.slick-active': {
     opacity: 1,
@@ -49,7 +50,7 @@ const DotStyle = styled('span')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function CarouselDots(props) {
-  const color = props?.color;
+  // const color = props?.color;
   const rounded = props?.rounded || false;
 
   return {
@@ -65,7 +66,7 @@ export default function CarouselDots(props) {
         <DotStyle
           className="dotActive"
           sx={{
-            bgcolor: color || 'primary.main',
+            bgcolor: "#CE9A00 !important",
           }}
         />
       </DotWrapStyle>
