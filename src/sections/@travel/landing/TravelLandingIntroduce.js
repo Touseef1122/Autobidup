@@ -1,171 +1,151 @@
-import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Icon } from '@iconify/react';
+import {
+  Image,
+  Iconify,
+  PlayerWithButton,
+} from '../../../components';
+
 // icons
-import playIcon from '@iconify/icons-carbon/play';
+import directionStraightRight from '@iconify/icons-carbon/direction-straight-right';
 // @mui
-import { styled } from '@mui/material/styles';
-import { Typography, Container, Stack, Box, Card } from '@mui/material';
-// hooks
-import { useBoundingClientRect, useResponsive } from '../../../hooks';
-// _data
-import _mock from '../../../../_data/mock';
+import { styled, alpha } from '@mui/material/styles';
+import { Typography, Stack, Container, Box, Paper, Button } from '@mui/material';
+// utils
+import cssStyles from '../../../utils/cssStyles';
+
 // components
-import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
+import { TextMaxLine, SvgIconStyle } from '../../../components';
 
 // ----------------------------------------------------------------------
 
-const SUMMARY = [
-  {
-    title: 'Safety first',
-    description:
-      'Travel confidently knowing your safety is our #1 priority. Rigorous health and cleaning standards round out a best-in-class service.',
-    icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_popularity.svg',
-  },
-  {
-    title: 'Private travel solutions',
-    description:
-      'Discover your one-stop travel shop: long-distance rides, one way or return, by the hour, airport transfers, and more.',
-    icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_reputation.svg',
-  },
-  {
-    title: 'Sustainable travel',
-    description:
-      'Breathe easy knowing all rides are 100% carbon neutral, as part of our global carbon offset program — the industry’s first.',
-    icon: 'https://zone-assets-api.vercel.app/assets/icons/ic_secure_payment.svg',
-  },
-];
-
-const RootStyle = styled('div')(({ theme }) => ({
+const RootStyle = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(8, 0),
+  ...cssStyles(theme).bgGradient({
+    direction: 'top',
+    startColor: alpha(theme.palette.grey[500], 0),
+    endColor: alpha(theme.palette.grey[500], 0.12),
+  }),
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(5, 0),
+    padding: theme.spacing(10, 0),
   },
 }));
 
 // ----------------------------------------------------------------------
 
-export default function TravelLandingIntroduce() {
-  const isDesktop = useResponsive('up', 'md');
+CareerLandingHotCategories.propTypes = {
+  categories: PropTypes.array.isRequired,
+};
 
-  const containerRef = useRef(null);
-  const container = useBoundingClientRect(containerRef);
-
-  const [openVideo, setOpenVideo] = useState(false);
-
-  const handleOpenVideo = () => {
-    setOpenVideo(true);
-  };
-
-  const handleCloseVideo = () => {
-    setOpenVideo(false);
-  };
-
-  const offsetLeft = container && container.left + 20;
-
+export default function CareerLandingHotCategories({ categories }) {
   return (
-    <>
-      <RootStyle>
-        {/* <Container ref={containerRef}>
-          <Stack
-            spacing={3}
-            sx={{
-              maxWidth: 480,
-              mx: { xs: 'auto', md: 'unset' },
-              textAlign: { xs: 'center', md: 'unset' },
-            }}
-          >
-            <Typography variant="h2">Explore A Different Way To Travel</Typography>
-            <Typography sx={{ color: 'text.secondary' }}>
-              Cras ultricies mi eu turpis hendrerit fringilla. Nulla consequat massa quis enim.
-            </Typography>
-          </Stack>
-        </Container> */}
+    <RootStyle>
+      <Container>
+        <Typography variant="h3" sx={{ textAlign: 'center' }}>
+          Vehicals Categories
+        </Typography>
 
-        {/* <Box
+        <Box
           sx={{
-            position: 'relative',
             my: { xs: 8, md: 10 },
-            ml: { md: `${offsetLeft}px` },
+            display: 'grid',
+            gap: 4,
+            gridTemplateColumns: {
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(5, 1fr)',
+            },
           }}
         >
-          <Card
-            sx={{
-              p: 5,
-              m: 5,
-              top: 0,
-              left: 0,
-              zIndex: 9,
-              position: 'absolute',
-              maxWidth: { sm: 360 },
-              right: { xs: 0, sm: 'unset' },
-              bottom: { xs: 0, sm: 'unset' },
-              textAlign: { xs: 'center', sm: 'unset' },
-            }}
-          >
-            <Typography variant="overline" sx={{ color: 'text.disabled' }}>
-              Device
-            </Typography>
-            <Typography variant="h3" sx={{ mt: 2, mb: 3 }}>
-              The More Important the Work
-            </Typography>
-            <TextIconLabel
-              icon={<Iconify icon={playIcon} sx={{ width: 24, height: 24, mr: 1 }} />}
-              value="Watch Video"
-              onClick={handleOpenVideo}
-              justifyContent={{ xs: 'center', sm: 'unset' }}
-              sx={{
-                cursor: 'pointer',
-                color: 'primary.main',
-                typography: 'subtitle1',
-                '&:hover': { opacity: 0.72 },
-              }}
-            />
-          </Card> 
-           <Image
-            alt="cover"
-            src={_mock.image.travelLarge(3)}
-            width={1600}
-            height={isDesktop ? 900 : 1600}
-            ratio={isDesktop ? '16/9' : '1/1'}
-          />
-        </Box> */}
+          {categories?.map((category) => (
+            <CategoryItem key={category.id} category={category} />
+          ))}
+        </Box>
 
-        <Container sx={{ textAlign: 'center' }}>
-          <Box
-            sx={{
-              display: 'grid',
-              gap: { xs: 8, md: 3 },
-              gridTemplateColumns: {
-                xs: 'repeat(1, 1fr)',
-                md: 'repeat(3, 1fr)',
-              },
-            }}
+        {/* <Stack alignItems="center">
+          <Button
+            color="inherit"
+            size="large"
+            variant="outlined"
+            endIcon={<Iconify icon={directionStraightRight} sx={{ width: 22, height: 22 }} />}
           >
-            {SUMMARY.map((value) => (
-              <div key={value.title}>
-                <SvgIconStyle
-                  src={value.icon}
-                  sx={{ width: 64, height: 64, mx: 'auto', color: 'primary.main' }}
-                />
-                <Typography variant="h5" sx={{ mt: 3, mb: 2 }}>
-                  {value.title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  {value.description}
-                </Typography>
-              </div>
-            ))}
-          </Box>
-        </Container>
-      </RootStyle>
-      <PlayerWithButton open={openVideo} onClose={handleCloseVideo} videoPath={_mock.video} />
-      {/* <Container sx={{ mt: 3, mb: 5 }}>
-        <Typography variant="h1" sx={{ mt: 3, mb: 2, textAlign: 'center' }}>
-          “New chauffeur-hailing service seeks to challenge Uber, Lyft in city rides”
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-          The Wall Street Journal
-        </Typography>
-      </Container> */}
-    </>
+            View All Categories
+          </Button>
+        </Stack> */}
+      </Container>
+    </RootStyle>
+  );
+}
+
+// ----------------------------------------------------------------------
+
+CategoryItem.propTypes = {
+  category: PropTypes.shape({
+    icon: PropTypes.any,
+    name: PropTypes.string,
+    totalJobs: PropTypes.number,
+  }),
+};
+
+function CategoryItem({ category }) {
+  return (
+    <Paper
+      variant="outlined"
+      sx={{
+        pt: '100%',
+        borderRadius: 2,
+        cursor: 'pointer',
+        textAlign: 'center',
+        position: 'relative',
+        bgcolor: 'transparent',
+        transition: (theme) => theme.transitions.create('all'),
+        '&:hover': {
+          bgcolor: 'background.paper',
+          boxShadow: (theme) => theme.customShadows.z24,
+          '& .icon': {
+            bgcolor: 'primary.main',
+            transition: (theme) => theme.transitions.create('all'),
+            '& > span': {
+              color: 'common.white',
+            },
+          },
+        },
+      }}
+    >
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+        sx={{
+          width: 1,
+          height: 1,
+          top: 0,
+          position: 'absolute',
+        }}
+      >
+        <Box
+          className="icon"
+          sx={{
+            mb: 2.5,
+            width: 72,
+            height: 72,
+            mx: 'auto',
+            display: 'flex',
+            borderRadius: '50%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <SvgIconStyle src={category.icon} sx={{ width: 48, height: 48 }} />
+        </Box>
+
+        <TextMaxLine variant="h6" line={1}>
+          {category.name}
+        </TextMaxLine>
+
+        {/* <Typography variant="body2" sx={{ color: 'text.disabled', mt: 0.5 }}>
+          {category.totalJobs} jobs
+        </Typography> */}
+      </Stack>
+    </Paper>
   );
 }

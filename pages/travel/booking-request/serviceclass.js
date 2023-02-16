@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 // import Container from '@mui/material/Container';
 import Card from '@mui/material/Container';
-import Serviceclassdata from '../../../_data/mock/serviceclassdata.js';
+import Serviceclassdata from '../../../_data/mock/serviceclassdata';
 import { Icon } from '@iconify/react';
 // import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts/getAllPosts';
 

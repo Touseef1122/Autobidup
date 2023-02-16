@@ -2,6 +2,9 @@ import { add } from 'date-fns';
 //
 import _mock from './_mock';
 import { jobContent } from './text';
+import { Icon } from '@iconify/react';
+// import HB from '../../src/assets/images/hatchback.jpg'
+
 
 // ----------------------------------------------------------------------
 
@@ -55,32 +58,31 @@ export const _jobsByCompanies = [...Array(12)].map((_, index) => ({
 // ----------------------------------------------------------------------
 
 const NAMES = [
-  'Accounting / Finance',
-  'Marketing',
-  'Design',
-  'Development',
-  'IT - Hardware',
-  'Customer Service',
-  'Health and Care',
-  'Banking',
+  'HatchBack',
+  'Sedan',
+  'SUV',
+  'CrossOver',
+  'MiniVan',
 ];
 
 const ICONS = [
-  'https://zone-assets-api.vercel.app/assets/icons/ic_money.svg',
+      //  {icon:HB}
+  // 'material-symbols:wifi',
   'https://zone-assets-api.vercel.app/assets/icons/ic_marketing_bullhorn.svg',
   'https://zone-assets-api.vercel.app/assets/icons/ic_creativity.svg',
   'https://zone-assets-api.vercel.app/assets/icons/ic_web_programming.svg',
   'https://zone-assets-api.vercel.app/assets/icons/ic_chip.svg',
-  'https://zone-assets-api.vercel.app/assets/icons/ic_customer_service.svg',
-  'https://zone-assets-api.vercel.app/assets/icons/ic_stethoscope.svg',
-  'https://zone-assets-api.vercel.app/assets/icons/ic_banking.svg',
+  'https://zone-assets-api.vercel.app/assets/icons/ic_chip.svg',
+  // {image: HB,}
+    //  'HB'
+
 ];
 
-export const _jobsByCategories = [...Array(8)].map((_, index) => ({
+export const _jobsByCategories = [...Array(5)].map((_, index) => ({
   id: _mock.id(index),
   name: NAMES[index],
   icon: ICONS[index],
-  totalJobs: 101 + index,
+  // totalJobs: 101 + index,
 }));
 
 // ----------------------------------------------------------------------

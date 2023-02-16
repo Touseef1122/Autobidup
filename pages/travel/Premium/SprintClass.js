@@ -69,6 +69,8 @@ export default function RoyalFleetlicense({ posts }) {
           <BusinessStrategies icons={summary} />
           <TravelLandingfull />
           <BusinessCorporations images={Licenece1} />
+          <TravelLandingCars />
+
           {/* <TravelLandingBrands /> */}
           <DownloadAppCareer />
         {/* </Container> */}

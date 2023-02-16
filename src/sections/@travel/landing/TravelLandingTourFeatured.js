@@ -8,7 +8,9 @@ import { Container, Stack, Button, Typography, Box } from '@mui/material';
 import Routes from '../../../routes';
 //
 import TravelTourItem from '../tours/TravelTourItem';
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // ----------------------------------------------------------------------
 
 

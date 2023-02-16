@@ -81,7 +81,7 @@ export default function Header({ transparent }) {
             }}
           >
             <Stack spacing={4} direction="row">
-              <Box sx={{ lineHeight: 0, position: 'relative' }}>
+              <Box sx={{ lineHeight: 0 }}>
                 <Logo onDark={transparent && !isScrolling} />
 
                 {/* <Link href="https://royal_fleet/src/assets/images/logo.svg" target="_blank" rel="noopener">
@@ -147,9 +147,9 @@ export default function Header({ transparent }) {
                   </Button>
                 </NextLink> */}
 
-              {/* <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
-                  Buy Now
-                </Button> */}
+              <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
+                  Post an Add
+                </Button>
               {/* </Stack> */}
 
               {/* )} */}

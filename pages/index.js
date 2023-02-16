@@ -6,7 +6,8 @@ import { getAllPosts } from '../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../src/hooks';
 // _data
-import { _testimonials } from '../_data/mock';
+import { _testimonials,_jobsByCategories } from '../_data/mock';
+
 // layouts
 import Layout from '../src/layouts';
 import NewsletterCareer from '../src/sections/newsletter/NewsletterCareer';
@@ -29,16 +30,18 @@ import {
   Text
 } from '../src/sections/@travel';
 
+
 import TravelLandingTourFeaturedRoutes from '../src/sections/@travel/landing/TravelLandingTourFeaturedRoutes';
 import TravelLandingIntroduceOurServices from '../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../src/sections/@travel/landing/TravelLandingfull';
 import TravelLandingCars from '../src/sections/@travel/landing/TravelLandingCars';
-import Galviston from '../src/assets/images/Galviston.jpg';
-import Houston from '../src/assets/images/Houston.jpg';
-import Dallas from '../src/assets/images/Dallas.jpg';
-import Austin from '../src/assets/images/Austin.jpg';
+import Galviston from '../src/assets/images/bentley8.jpg';
+import Houston from '../src/assets/images/BMW3Series.jpg';
+import Dallas from '../src/assets/images/FordMustang.jpg';
+import Austin from '../src/assets/images/FordMinivan.jpg';
 import Loader from './travel/Premium/Loader'
 import ChatButton from './travel/ChatButton'
+// import { BlogMarketingLatestPosts } from '../../src/sections/blog';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -68,7 +71,7 @@ export default function TravelLandingPage({ posts }) {
     <Page title="Home">
       <Loader /> 
       <Box sx={{ position: 'relative' }}>
-      <Text tour={text}/>
+      {/* <Text tour={text}/> */}
         <TravelLandingHero tours={tours.slice(0, 5)} />
         <ChatButton/>  
 
@@ -89,11 +92,14 @@ export default function TravelLandingPage({ posts }) {
 
       {/* <TravelLandingFavoriteDestinations tours={tours.slice(0, 4)} /> */}
       <TravelLandingIntroduceOurServices />
+      <TravelLandingIntroduce categories={_jobsByCategories} />
+
       <RootStyle>
-        <TravelLandingTourFeatured tours={bestcities} />
-        <TravelLandingTourFeaturedRoutes tours={bestroutes} />
+        <TravelLandingTourFeatured tours={bestcities}/>
+       
+
+        {/* <TravelLandingTourFeaturedRoutes tours={bestroutes} /> */}
       </RootStyle>
-      <TravelLandingIntroduce />
       <TravelLandingfull />
       <TravelLandingCars />
       {/* <TravelLandingToursByCity tours={tours.slice(0, 8)} /> */}
@@ -114,26 +120,26 @@ export default function TravelLandingPage({ posts }) {
 const bestcities = [
   {
     id: 1,
-    name: 'Houston',
-    dis: '6 routes to/from this city',
+    name: 'Honda City',
+    dis: '2019',
     img: Houston,
   },
   {
     id: 2,
-    name: 'Dallas',
-    dis: '8 routes to/from this city',
+    name: 'Crola Atlas',
+    dis: '2020',
     img: Dallas,
   },
   {
     id: 3,
-    name: 'Austin',
-    dis: '20 routes to/from this city',
+    name: 'Mehran',
+    dis: '2016',
     img: Austin,
   },
   {
     id: 4,
-    name: 'Galveston',
-    dis: '6 routes to/from this city',
+    name: 'Jeep',
+    dis: '2018',
     img: Galviston,
   },
 ];
@@ -154,54 +160,3 @@ export async function getStaticProps() {
   };
 }
 
-//----------------------------------------------------------------------
-const bestroutes = [
-  {
-    id: 1,
-    name1: 'Houston',
-    name2: 'Galveston',
-    dis: '3h 30m 201 mi',
-  },
-  {
-    id: 2,
-    name1: 'Houston',
-    name2: 'Dallas',
-    dis: '4h 10m 270 mi',
-  },
-  {
-    id: 3,
-    name1: 'Houston',
-    name2: 'Forth Worth',
-    dis: '1h 30m 98 mi',
-  },
-  {
-    id: 4,
-    name1: 'Houston',
-    name2: 'Austin ',
-    dis: '5h 45m 582 mi',
-  },
-  {
-    id: 5,
-    name1: 'Houston',
-    name2: 'San Antonio',
-    dis: '1h 15m 80 mi',
-  },
-  {
-    id: 6,
-    name1: 'Houston',
-    name2: 'Corpus Christi',
-    dis: '3h 30m 204 mi',
-  },
-  {
-    id: 7,
-    name1: 'Houston',
-    name2: 'Louisiana',
-    dis: '2h 30m 236 mi',
-  },
-  {
-    id: 8,
-    name1: 'Houston',
-    name2: 'New Orleans',
-    dis: '2h 00m 123 mi',
-  },
-];

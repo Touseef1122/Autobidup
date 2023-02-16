@@ -48,7 +48,7 @@ export default function TravelTourItem({ tour }) {
   };
 
   return (
-    <Card padding-bottom="0px !important">
+    <Card padding-bottom="0px !important" sx={{outline: '0.01px solid black'}}>
       
       <Stack
         direction="row"
@@ -83,14 +83,19 @@ export default function TravelTourItem({ tour }) {
           {fCurrency(price)}
         </Stack> */}
 
-        <FavoriteButton
+        {/* <FavoriteButton
           checked={favorite}
           onChange={handleChangeFavorite}
           sx={{ color: 'common.white' }}
-        />
+        /> */}
       </Stack>
 
-      <Image src={tour.img.src} sx={{ height: '225px !important'}} />
+      <Image src={tour.img.src} 
+      sx={{
+        height: '225px !important', 
+        '&:hover img': {transform: 'scale(0.92)'},
+        transition: 'transform 0.1s ease-out'
+        }} />
 
       <Stack spacing={0.5} sx={{ p: 2.5, height: '100px' }}>
         {/* <Typography variant="body3" sx={{ color: 'text.secondary' }}>

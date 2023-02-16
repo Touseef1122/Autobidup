@@ -78,7 +78,7 @@ export default function Footer() {
                   sx={{ textAlign: 'center' }}
                 >
                   <Typography color="black" variant="h4">
-                    ROYAL FLEET
+                    AutoBidUp
                   </Typography>
                   <Link variant="body3" sx={{ color: 'black' }}>
                     {/* <Iconify icon={Mark} sx={{ fontSize: '22px', color: '#b0b2b7' }} /> */}
@@ -138,10 +138,10 @@ export default function Footer() {
 
                 <Stack margin="20px 0">
                   {/* <Typography variant="h6">Apps</Typography> */}
-                  <AppStoreButton />
+                  {/* <AppStoreButton /> */}
                 </Stack>
                 {/* </Stack> */}
-                <Divider />
+                {/* <Divider /> */}
                 {/* </Grid>
 
           <Grid item xs={12} md={6}> */}
@@ -175,7 +175,7 @@ export default function Footer() {
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
                     <div>
                       <Typography variant="body3" sx={{ color: 'black' }}>
-                        © 2022 Royal Fleet
+                        © 2022 AutoBidUp
                       </Typography>
                     </div>
 
@@ -186,16 +186,16 @@ export default function Footer() {
                       color={'black'}
                     >
                       <Link variant="body3" sx={boxSX}>
-                        Terms
+                        About us
                       </Link>
                       <Link variant="body3" sx={boxSX}>
                         Privacy Policy
                       </Link>
                       <Link variant="body3" sx={boxSX}>
-                        Legal Notice
+                        Faq's
                       </Link>
                       <Link variant="body3" sx={boxSX}>
-                        Accessibility
+                        Contact Us
                       </Link>
                     </Stack>
                   </Stack>

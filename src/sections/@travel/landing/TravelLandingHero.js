@@ -247,7 +247,7 @@ function ContentItem({ tour }) {
             }}
           >
             <Box sx={{}}>
-              <Tabs
+              {/* <Tabs
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
@@ -270,14 +270,14 @@ function ContentItem({ tour }) {
               >
                 <Tab label="One Way" {...a11yProps(0)} />
                 <Tab label="By the hour" {...a11yProps(1)} />
-              </Tabs>
+              </Tabs> */}
             </Box>
-            <TabPanel value={value} index={0} sx={{}}>
+            {/* <TabPanel value={value} index={0} sx={{}}>
               <CheckoutForm />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <CheckoutForm2 />
-            </TabPanel>
+            </TabPanel> */}
           </Box>
         </Container>
       </Stack>
