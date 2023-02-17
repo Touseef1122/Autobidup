@@ -19,7 +19,7 @@ import {
   description,
   jobCategories,
 } from './text';
-
+import landing from '../../src/assets/Images/landing.jpg'
 // ----------------------------------------------------------------------
 
 const _mock = {
