@@ -6,14 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 // @mui
 import { styled } from '@mui/material/styles';
-<<<<<<< HEAD
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-
-=======
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { TimePicker } from '@mui/x-date-pickers/TimePicker';
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
 import { Box, Grid, Stack, Divider, Container, Typography, Button, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
@@ -111,32 +106,7 @@ export default function TravelCheckoutPage() {
   }
 
   return (
-<<<<<<< HEAD
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <TravelCheckOutShippingForm
-          control={control}
-          sameBilling={sameBilling}
-          onChangeSameBilling={handleChangeSameBilling}
-        />
-
-        <TravelCheckOutSummary
-          tour={tour}
-          departureDay={departureDay}
-          setDepartureDay={setDepartureDay}
-          isSubmitting={isSubmitting}
-        />
-        <Stack
-          sx={{
-            textAlign: 'center',
-            color: '#64666b',
-            fontSize: '14px',
-            letterSpacing: '0.15px',
-            marginBottom: '24px',
-          }}
-        >
-          <p>Chauffeur will wait 15 minutes free of charge.</p>
-=======
-    <Page title="Checkout - Travel">
+    // <Page title="Checkout - Travel">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={5}>
           <section>
@@ -162,7 +132,6 @@ export default function TravelCheckoutPage() {
               isSubmitting={isSubmitting}
             />
           </section>
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
         </Stack>
         <LoadingButton
           type="submit"
