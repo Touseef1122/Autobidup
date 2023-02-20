@@ -8,7 +8,7 @@ import Routes from '../../src/routes';
 // components
 import { Page, Logo } from '../../src/components';
 // sections
-import { AuthWithSocial, AuthCarousel, LoginForm } from '../../src/sections/auth';
+import { Authwithsocial, Authcarousel, Loginform } from '../../src/sections/auth';
 
 // ----------------------------------------------------------------------
 
@@ -24,14 +24,13 @@ const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
   padding: theme.spacing(4, 2.5),
   [theme.breakpoints.up('sm')]: {
-    maxWidth: "50%",
+    maxWidth: '50%',
     padding: theme.spacing(2, 4),
   },
   [theme.breakpoints.up('md')]: {
-    maxWidth: "50%",
+    maxWidth: '50%',
     padding: theme.spacing(6, 15),
   },
- 
 }));
 
 // ----------------------------------------------------------------------
@@ -42,40 +41,37 @@ export default function LoginCoverPage() {
       <RootStyle>
         <ContentStyle>
           <Stack
-            sx={{            
+            sx={{
               pt: { xs: 2, md: 5 },
               textAlign: { xs: 'center' },
             }}
           >
             <Typography variant="h3" paragraph>
               Login
-            </Typography>         
+            </Typography>
           </Stack>
 
-          
+          <Loginform />
 
-          <LoginForm />
-
-          
           <Typography variant="body2" pt={2} sx={{ color: 'text.secondary' }}>
-              Don’t have an account?
-              <NextLink href={Routes.registerCover} passHref>
-                <Link variant="subtitle2" color="#CE9A00">
-                  {''} SignUp
-                </Link>
-              </NextLink>
+            Don’t have an account?
+            <NextLink href={Routes.registerCover} passHref>
+              <Link variant="subtitle2" color="#CE9A00">
+                {''} SignUp
+              </Link>
+            </NextLink>
           </Typography>
 
           <Divider sx={{ py: 3 }}>
             <Typography variant="body2" sx={{ color: 'text.disabled' }}>
               OR
             </Typography>
-          </Divider> */}
+          </Divider>
 
-          <AuthWithSocial />
+          <Authwithsocial />
         </ContentStyle>
 
-        <AuthCarousel title="Hi, Welcome Back" />
+        <Authcarousel title="Hi, Welcome Back" />
       </RootStyle>
     </Page>
   );

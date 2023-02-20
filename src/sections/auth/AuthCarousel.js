@@ -71,23 +71,12 @@ export default function AuthCarousel({ title }) {
       </Typography> */}
 
       <Slider {...carouselSettings}>
-<<<<<<< HEAD
-        {imgArray.map((img) => (
-          <Box 
-          // key={img}
-          >
-            <Image
-              // alt={img}
-              src={`${img}`}
-              sx={{ width: 1, height: '100vh' }}
-=======
         {[wallpaper1, wallpaper2].map((img) => (
           <Box key={img} sx={{}}>
             <Image
               alt={img}
               src={img.src}
               sx={{ height:"95vh",mr:3,mt:2, borderRadius:"10px" }}
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
             />
           </Box>
         ))}

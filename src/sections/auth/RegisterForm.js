@@ -15,7 +15,7 @@ import {
   IconButton,
   InputAdornment,
   MenuItem,
-  Grid,
+  Container,
   Checkbox,
   FormControlLabel,
 } from '@mui/material';
@@ -36,14 +36,14 @@ const FormSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required('Confirm password is required')
     .oneOf([Yup.ref('password')], "Password's not match"),
-  phone: Yup.string().required('Mobile number is required').min(11, 'Mininum 11 characters')
-  .max(15, 'Maximum 15 characters'),
-
+  phone: Yup.string()
+    .required('Mobile number is required')
+    .min(11, 'Mininum 11 characters')
+    .max(15, 'Maximum 15 characters'),
 });
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
-
   const {
     reset,
     control,
@@ -72,11 +72,7 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-<<<<<<< HEAD
-      <Stack spacing={1.5}>
-=======
       <Stack spacing={2}>
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
         <Controller
           name="fullName"
           control={control}
@@ -213,7 +209,7 @@ export default function RegisterForm() {
             />
           )}
         />
-         <Controller
+        <Controller
           name="phone"
           control={control}
           render={({ field, fieldState: { error } }) => (
@@ -254,24 +250,10 @@ export default function RegisterForm() {
             marginTop: '30px !important',
           }}
           loading={isSubmitting}
-          sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}
+          // sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}
         >
           Sign up
         </LoadingButton>
-<<<<<<< HEAD
-
-        {/* <Typography variant="caption" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-          I agree to
-          <Link color="text.primary" href="#">
-            {''} Terms of Service {''}
-          </Link>
-          and
-          <Link color="text.primary" href="#">
-            {''} Privacy Policy.
-          </Link>
-        </Typography> */}
-=======
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac
       </Stack>
     </form>
   );

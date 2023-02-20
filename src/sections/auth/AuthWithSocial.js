@@ -8,7 +8,7 @@ import { Image } from '../../components';
 
 // ----------------------------------------------------------------------
 
-export default function AuthWithSocial() {
+export default function Authwithsocial() {
   return (
     <Stack direction="row" spacing={2}>
       <Button
