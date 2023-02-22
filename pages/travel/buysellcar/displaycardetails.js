@@ -13,7 +13,7 @@ import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen } from '../../../src/components';
+import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
@@ -43,7 +43,15 @@ export default function Displaycardetails({ posts }) {
   return (
     <Page title="Selling Form">
       {/* <Loader/> */}
-      <Container sx={{ marginTop: {xs:"33%",sm:'20%'} }}>
+      <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
+        <Breadcrumbs
+          links={[
+            { name: 'Home', href: '/' },
+            { name: 'Components', href: '/components' },
+            { name: 'Breadcrumbs' },
+          ]}
+          sx={{mb:4}}
+        />
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <Carousel />
@@ -55,9 +63,7 @@ export default function Displaycardetails({ posts }) {
             <TravelTourDetails />
           </Grid>
           <Grid item xs={12} sm={5}>
-            <Box>
-            {/* <TravelTourDetails /> */}
-            </Box>
+            <Box>{/* <TravelTourDetails /> */}</Box>
           </Grid>
         </Grid>
         {/* tours={services} icons={summary} services={service}  */}
