@@ -23,18 +23,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 const ContentStyle = styled('div')(({ theme }) => ({
   width: '100%',
-<<<<<<< HEAD:pages/auth/register-cover.js
-  [theme.breakpoints.up('md')]: {
-    maxWidth: 580,
-  },
-}));
-const ScrollStyle = styled('div')(({ theme }) => ({
-  width: '100%',
-  padding: theme.spacing(5, 2.5),
-  [theme.breakpoints.up('md')]: {
-    maxWidth: 580,
-    padding: theme.spacing(8, 8),
-=======
   [theme.breakpoints.up('sm')]: {
     maxWidth: '50%',
     padding: theme.spacing(2, 4),
@@ -49,7 +37,6 @@ const ScrollStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     maxWidth: "100%",
     padding: theme.spacing(2),
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac:pages/auth/registercover.js
   },
 }));
 
@@ -61,41 +48,6 @@ export default function RegisterCoverPage() {
       <RootStyle>
         <ContentStyle>
           <Scrollbar>
-<<<<<<< HEAD:pages/auth/register-cover.js
-            <ScrollStyle>
-              <Logo sx={{ display: { xs: 'block', md: 'inline-block' } }} />
-
-              <Stack
-                sx={{
-                  pb: 5,
-                  pt: 5,
-                  textAlign: { xs: 'center', md: 'left' },
-                }}
-              >
-                <Typography variant="h3" paragraph>
-                  Get Started
-                </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                  Already have an account?
-                  <NextLink href={Routes.loginCover} passHref>
-                    <Link variant="subtitle2" color="#FFBE00">
-                      {''} Login
-                    </Link>
-                  </NextLink>
-                </Typography>
-              </Stack>
-
-              {/* <AuthWithSocial />
-
-          <Divider sx={{ py: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-              OR
-            </Typography>
-          </Divider> */}
-
-              <RegisterForm />
-            </ScrollStyle>
-=======
           <ScrollStyle>
           <Stack
             sx={{
@@ -124,7 +76,6 @@ export default function RegisterCoverPage() {
           <AuthWithSocial />
 
           </ScrollStyle>
->>>>>>> 0b52d0e16742f93eac3f05f71836238495eb15ac:pages/auth/registercover.js
           </Scrollbar>
         </ContentStyle>
 
