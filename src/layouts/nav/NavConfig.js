@@ -30,8 +30,34 @@ export const PageLinks = [
       { title: 'Gadgets', path: '/travel/carRentals/PopularRentalCars' },
     ],
   },
-  
-  
+  {
+    order: '3',
+    subheader: 'Mechanic',
+    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_travel.jpg',
+    items: [
+      { title: 'Service', path: '/travel/Premium/cityToCity' },
+      { title: 'Request', path: '/travel/Premium/cityToCity' },
+      { title: 'Contact', path: '/travel/Premium/cityToCity' },
+      { title: 'Testimonials', path: '/travel/Premium/cityToCity' },
+      { title: 'Location', path: '/travel/Premium/cityToCity' },
+      // { title: 'Blog Posts', path: Routes.travel.posts },
+      // { title: 'Blog Post', path: Routes.travel.post('post-01') },
+      // { title: 'About', path: Routes.travel.about },
+      // { title: 'Contact', path: Routes.travel.contact },
+    ],
+  },
+  {
+    order: '7',
+    subheader: 'Auction',
+    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
+    items: [
+      // { title: 'Overview', path: '/travel/forBusiness/overview' },
+      // { title: 'Corporation', path: '/travel/forBusiness/corporation' },
+      // { title: 'Travel agenices', path: '/travel/forBusiness/travelAgencies' },
+      // { title: 'Event services', path: '/travel/forBusiness/eventServices' },
+      // { title: 'Strategic partnerships', path: '/travel/forBusiness/strategicPartnerships' },
+    ],
+  },
   // {
   //   order: '2',
   //   subheader: 'Royal fleet for Business',
@@ -81,34 +107,8 @@ export const PageLinks = [
   //     // { title: 'Contact', path: Routes.eLearning.contact },
   //   ],
   // },
-  {
-    order: '3',
-    subheader: 'Mechanic',
-    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_travel.jpg',
-    items: [
-      { title: 'Service', path: '/travel/Premium/cityToCity' },
-      { title: 'Request', path: '/travel/Premium/cityToCity' },
-      { title: 'Contact', path: '/travel/Premium/cityToCity' },
-      { title: 'Testimonials', path: '/travel/Premium/cityToCity' },
-      { title: 'Location', path: '/travel/Premium/cityToCity' },
-      // { title: 'Blog Posts', path: Routes.travel.posts },
-      // { title: 'Blog Post', path: Routes.travel.post('post-01') },
-      // { title: 'About', path: Routes.travel.about },
-      // { title: 'Contact', path: Routes.travel.contact },
-    ],
-  },
-  {
-    order: '7',
-    subheader: 'Auction',
-    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
-    items: [
-      // { title: 'Overview', path: '/travel/forBusiness/overview' },
-      // { title: 'Corporation', path: '/travel/forBusiness/corporation' },
-      // { title: 'Travel agenices', path: '/travel/forBusiness/travelAgencies' },
-      // { title: 'Event services', path: '/travel/forBusiness/eventServices' },
-      // { title: 'Strategic partnerships', path: '/travel/forBusiness/strategicPartnerships' },
-    ],
-  },
+  
+  
   // {
   //   order: '6',
   //   subheader: 'Coming Soon',

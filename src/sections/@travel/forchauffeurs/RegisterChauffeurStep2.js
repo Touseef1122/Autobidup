@@ -73,7 +73,7 @@ export default function RegisterChauffeurStep2({ tours, icons, services }) {
             The following are required to register with Blacklane in Adelaide:
           </Typography>
 
-          <Typography variant="h5" color="#c49a52;" pt="10px" pb="8px">
+          <Typography variant="h5" color="#FFBE00;" pt="10px" pb="8px">
             At least one of the following vehicles:
           </Typography>
           <Accordion expanded={expanded === 'panel1'} onChange={handleChange2('panel1')}>
@@ -151,7 +151,7 @@ export default function RegisterChauffeurStep2({ tours, icons, services }) {
             </AccordionDetails>
           </Accordion>
 
-          <Typography variant="h5" color="#c49a52" pt="10px" pb="8px">
+          <Typography variant="h5" color="#FFBE00" pt="10px" pb="8px">
             All of the following documents:
           </Typography>
 
@@ -263,12 +263,12 @@ export default function RegisterChauffeurStep2({ tours, icons, services }) {
             </AccordionDetails>
           </Accordion>
 
-          <Typography variant="h5" color="#c49a52" pt="10px" pb="8px">
+          <Typography variant="h5" color="#FFBE00" pt="10px" pb="8px">
             Language Requirements:
           </Typography>
           <MenuList>Chauffeurs have basic English skills</MenuList>
 
-          <Typography variant="h5" color="#c49a52" pt="10px" pb="8px">
+          <Typography variant="h5" color="#FFBE00" pt="10px" pb="8px">
             Do you understand and meet the above requirements?
           </Typography>
           <FormControl>

@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import Image from 'next/image';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import LogoImage from '../assets/images/rf-logo.png';
+import LogoImage from '../assets/images/LogoAutoBidUp.png';
 import { Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
@@ -28,7 +28,7 @@ function Logo({ onDark = false, isSimple = false, sx }) {
     <NextLink href="/" passHref>
       <Box
         sx={{
-          width: {xs: '70px', md:'100px'},
+          width: {xs: '70px', md:'90px'},
           lineHeight: 0,
           cursor: 'pointer',
           display: 'inline-flex',

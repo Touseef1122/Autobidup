@@ -68,8 +68,8 @@ export const colorPresets = [
     primary: {
       lighter: '#EACCFF',
       light: '#B566FF',
-      main: '#c49a52',
-      dark: '#c49a52',
+      main: '#FFBE00',
+      dark: '#FFBE00',
       darker: '#1F007A',
       contrastText: contrastText.white,
     },

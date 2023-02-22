@@ -14,7 +14,7 @@ export const contrastText = {
 const PRIMARY = {
   lighter: '#FEE9D1',
   light: '#FDAB76',
-  main: '#c49a52',
+  main: '#FFBE00',
   dark: '#215d15',
   darker: '#770508',
   contrastText: contrastText.white,

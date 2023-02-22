@@ -128,7 +128,7 @@ export default function Main({ comp }) {
               <Stack
                 sx={{
                   height: '2em',
-                  color: '#c49a52',
+                  color: '#FFBE00',
                   fontSize: { xs: '40px', sm: '50px' },
                   justifyContent: 'space-between',
                   px: { xs:1,sm:5 },
