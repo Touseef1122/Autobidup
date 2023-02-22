@@ -215,7 +215,7 @@ function LinkItem({ title, href, active }) {
         }
       >
         <SubLinkStyle active={active}>
-          <IconBulletStyle active={active} />
+          {/* <IconBulletStyle active={active} /> */}
           {title}
         </SubLinkStyle>
       </Link>

@@ -142,6 +142,54 @@ const bestcities = [
     dis: '2018',
     img: Galviston,
   },
+  {
+    id: 1,
+    name: 'Honda City',
+    dis: '2019',
+    img: Houston,
+  },
+  {
+    id: 2,
+    name: 'Crola Atlas',
+    dis: '2020',
+    img: Dallas,
+  },
+  {
+    id: 3,
+    name: 'Mehran',
+    dis: '2016',
+    img: Austin,
+  },
+  {
+    id: 4,
+    name: 'Jeep',
+    dis: '2018',
+    img: Galviston,
+  },
+  {
+    id: 1,
+    name: 'Honda City',
+    dis: '2019',
+    img: Houston,
+  },
+  {
+    id: 2,
+    name: 'Crola Atlas',
+    dis: '2020',
+    img: Dallas,
+  },
+  {
+    id: 3,
+    name: 'Mehran',
+    dis: '2016',
+    img: Austin,
+  },
+  {
+    id: 4,
+    name: 'Jeep',
+    dis: '2018',
+    img: Galviston,
+  }
 ];
 
 // ----------------------------------------------------------------------

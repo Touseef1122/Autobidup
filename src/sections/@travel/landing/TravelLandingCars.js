@@ -75,7 +75,7 @@ export default function TravelLandingCars() {
                     // pt: '40px',
                     transform: 'scale(0.92)',
                     transaction: '.3s',
-                    color: '#c49a52',
+                    color: '#FFBE00',
                   },
                   
                 }}>

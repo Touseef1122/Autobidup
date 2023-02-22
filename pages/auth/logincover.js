@@ -70,7 +70,7 @@ export default function LoginCoverPage() {
             <Typography variant="body2" sx={{ color: 'text.disabled' }}>
               OR
             </Typography>
-          </Divider> */}
+          </Divider> 
 
           <AuthWithSocial />
         </ContentStyle>

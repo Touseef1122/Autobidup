@@ -78,7 +78,7 @@ export default function RegisterCoverPage() {
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   Already have an account?
                   <NextLink href={Routes.loginCover} passHref>
-                    <Link variant="subtitle2" color="#c49a52">
+                    <Link variant="subtitle2" color="#FFBE00">
                       {''} Login
                     </Link>
                   </NextLink>
