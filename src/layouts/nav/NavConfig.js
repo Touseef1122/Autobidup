@@ -145,11 +145,11 @@ export const navConfig = [
     children: [PageLinks[2]],
   },
   { title: 'Mechanic', path: '/travel/forChauffeurs' },
-  {
-    title: 'SignIn/SignUp',
-    path: Routes.pages,
-    children: [PageLinks[2]],
-  },
+  // {
+  //   title: 'SignIn/SignUp',
+  //   path: Routes.pages,
+  //   children: [PageLinks[2]],
+  // },
   // { title: 'About Us', path: '/' },
-  // { title: 'Login/Sign In', path: '/auth/login-cover' },
+  { title: 'Login', path: '/auth/logincover' },
 ];

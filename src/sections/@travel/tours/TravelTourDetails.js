@@ -113,7 +113,7 @@ export default function TravelTourDetails({ tour }) {
   // } = tour;
 
   return (
-    <Stack spacing={2} mb={6} mt={4}>
+    <Stack spacing={2} mb={6} mt={6}>
       <Typography variant="h4">
         Overview
       </Typography>
@@ -123,8 +123,7 @@ export default function TravelTourDetails({ tour }) {
           <Box
             sx={{
               boxShadow: '0 1px 10px #64666b',
-              borderRadius: '8px',
-   
+              borderRadius: '8px',  
               p: 3,
               pl: 6,
               display: 'grid',

@@ -17,6 +17,7 @@ import Searchbar from '../Searchbar';
 import LanguagePopover from '../LanguagePopover';
 import { NavMobile, NavDesktop, navConfig } from '../nav';
 import { ToolbarStyle, ToolbarShadowStyle } from './HeaderToolbarStyle';
+import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +33,7 @@ export default function Header({ transparent }) {
   const isLight = theme.palette.mode === 'light';
 
   const isScrolling = useOffSetTop(HEADER_DESKTOP_HEIGHT);
-
+  const router = useRouter();
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
       <ToolbarStyle disableGutters transparent={transparent} scrolling={isScrolling}>
@@ -147,9 +148,9 @@ export default function Header({ transparent }) {
                   </Button>
                 </NextLink> */}
 
-              <Button variant="contained" href={Routes.buyNow} target="_blank" rel="noopener">
+              <Button variant="contained" onClick={() => router.push('/travel/buysellcar/form')} target="_blank" rel="noopener">
                   Post an Add
-                </Button>
+              </Button>
               {/* </Stack> */}
 
               {/* )} */}

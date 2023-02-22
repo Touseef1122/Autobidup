@@ -66,7 +66,7 @@ export default function Footer() {
 
   return (
     <>
-      <Box fluid sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#dec588' }}>
+      <Box fluid sx={{ py: { xs: 8, md: 10 }, backgroundColor: '#FFBE00' }}>
         <Container>
           <Grid justifyContent={{ md: 'space-between' }}>
             <Container>
