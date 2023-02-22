@@ -80,7 +80,7 @@ export default function Imagesstep4({ tours, icons, services }) {
             </Typography>
           </Stack>
           <Stack direction="row" mt="10px" textAlign="center">
-            <LoadingButton sx={{backgroundColor:"#CE9A00"}}variant="contained" component="label" >
+            <LoadingButton sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}} variant="contained" component="label" >
               Upload Images
               <input
                 accept="image/"

@@ -25,7 +25,7 @@ const FormSchema = Yup.object().shape({
     .min(6, 'Password should be of minimum 6 characters length'),
 });
 
-export default function Loginform() {
+export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -55,6 +55,7 @@ export default function Loginform() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2.5} alignItems="flex-end">
+        
         <Controller
           name="email"
           control={control}
@@ -103,9 +104,9 @@ export default function Loginform() {
           fullWidth
           size="large"
           type="submit"
-          variant="contained"
+          variant="contained"         
           loading={isSubmitting}
-          sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#CE9A00' } }}
+          sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#FFBE00' }}}
         >
           Login
         </LoadingButton>
