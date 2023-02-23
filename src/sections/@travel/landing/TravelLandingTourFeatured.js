@@ -13,6 +13,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useRef } from 'react';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
+import ControlLabel from 'src/theme/overrides/ControlLabel';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +33,6 @@ TravelLandingTourFeatured.propTypes = {
 };
 
 export default function TravelLandingTourFeatured({ tours }) {
-
   const carouselRef = useRef(null);
   const theme = useTheme();
 
@@ -45,10 +45,10 @@ export default function TravelLandingTourFeatured({ tours }) {
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots({
-        sx: {
+      sx: {
         //   mt: { xs: 8, md: 10 },
-        color:"#CE9A00"
-        },
+        color: '#CE9A00',
+      },
     }),
   };
 
@@ -60,7 +60,6 @@ export default function TravelLandingTourFeatured({ tours }) {
     carouselRef.current?.slickNext();
   };
 
-
   const settings = {
     dots: true,
     infinite: true,
@@ -70,22 +69,22 @@ export default function TravelLandingTourFeatured({ tours }) {
   };
   return (
     <div>
-    <Container sx={{ marginBottom: '40px' }}>
-      <Stack spacing={3} sx={{ textAlign: 'center' }}>
-        <Typography variant="h3">Intercity routes</Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            color: 'black',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-          }}
-        >
-          {`Top cities`}
-        </Typography>
-      </Stack>
-      {/* <CarouselArrows
+      <Container sx={{ marginBottom: '40px' }}>
+        <Stack spacing={3} sx={{ textAlign: 'center' }}>
+          <Typography variant="h3">Intercity routes</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              color: 'black',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+            }}
+          >
+            {`Top cities`}
+          </Typography>
+        </Stack>
+        {/* <CarouselArrows
             onNext={handleNext}
             onPrevious={handlePrevious}
             sx={{
@@ -97,38 +96,48 @@ export default function TravelLandingTourFeatured({ tours }) {
                 
             }}
           > */}
-            {/* <Slider ref={carouselRef} {...carouselSettings}> */}
+        {/* <Slider ref={carouselRef} {...carouselSettings}> */}
         <Box
           sx={{
             mt: 4,
-            display: 'grid',
-            gap: { xs: 4, md: 3 },
-            gridTemplateColumns: {
-              xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
-              md: 'repeat(4, 1fr)',
-            },
+            // display: 'grid',
+            // gap: { xs: 4, md: 3 },
+            // gridTemplateColumns: {
+            //   xs: 'repeat(1, 1fr)',
+            //   sm: 'repeat(2, 1fr)',
+            //   md: 'repeat(4, 1fr)',
+            // },
+            position:"relative"
           }}
         >
-          
-
-          {tours?.map((tour) => (
-            <TravelTourItem key={tour.id.src} tour={tour} />
-          ))}
-          
+          <CarouselArrows
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+            sx={{
+              '& .arrow': {
+                mt: -5,
+                '&.left': { left: -10 },
+                '&.right': { right: -10 },
+              },
+            }}
+          >
+            <Slider ref={carouselRef} {...carouselSettings}>
+              {tours?.map((tour) => (
+                <TravelTourItem tourr={tour} />
+              ))}
+            </Slider>
+          </CarouselArrows>
         </Box>
         {/* </Slider> */}
-    {/* </CarouselArrows> */}
-     
-      {/* <Box sx={{ textAlign: 'center' }}>
+
+        {/* <Box sx={{ textAlign: 'center' }}>
           <NextLink href={Routes.travel.tours} passHref>
             <Button size="large" variant="contained">
               View All Tours
             </Button>
           </NextLink>
         </Box> */}
-    </Container>
-    
+      </Container>
     </div>
   );
 }
