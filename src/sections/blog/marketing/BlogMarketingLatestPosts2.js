@@ -80,7 +80,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
             textAlign: 'center',
           }}
         >
-          Featured Used Cars for Sale
+          Managed By AutoBidUp
         </Typography>
 
         <Box sx={{ position: 'relative' }}>

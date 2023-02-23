@@ -8,3 +8,4 @@ export { default as TravelLandingFavoriteDestinations } from './TravelLandingFav
 export { default as TravelLandingfull } from './TravelLandingfull';
 export { default as TravelLandingCars } from './TravelLandingCars';
 export { default as TravelLandingBrands } from './TravelLandingBrands';
+export { default as TravelLandingCompanies} from './TravelLandingCompanies';

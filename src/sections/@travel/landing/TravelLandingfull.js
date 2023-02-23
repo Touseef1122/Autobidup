@@ -62,7 +62,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { Stack, Button, Container, Typography, FilledInput, InputAdornment } from '@mui/material';
 // utils
 import cssStyles from '../../../../src/utils/cssStyles';
-
+import Sb from '../../../../src/assets/Images/SBcars.jpg'
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -81,11 +81,11 @@ export default function TravelLandingfull() {
     <RootStyle>
       <Container>
         <Stack spacing={3} alignItems="center" sx={{ color: 'white', textAlign: 'center' }}>
-          <Typography variant="h2">I'M MORE THAN A CHAUFFEUR</Typography>
+          <Typography variant="h2">AutoBidUp</Typography>
           <Typography variant="h3">
-            I'M YOUR SAFE SPACE ON WHEELS
+            The Smarter Way To Sell And Buy Cars.
           </Typography>
-          <Typography variant="h4">Royal Fleet Chauffeur</Typography>
+          {/* <Typography variant="h4">Royal Fleet Chauffeur</Typography> */}
         </Stack>
         
       </Container>

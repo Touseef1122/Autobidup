@@ -49,7 +49,7 @@ export default function TravelLandingCars() {
     <>
       <RootStyle>
         <Typography variant="h3" textAlign="center" alignItems="center">
-          Royal Fleet's Luxury
+          AutoBidUp Accessories Store
         </Typography>
 
         <Container sx={{ textAlign: 'center' }}>
@@ -83,12 +83,12 @@ export default function TravelLandingCars() {
                     src={item.image.src}
                     sx={{
                       width: '100%',
-                      // height: '58%',
+                      //  height: '58%',
                     }}
                   />
                   <Box>
                     <Typography sx={{ mb: -1 }}>{item.title}</Typography>
-                    {/* <Typography>{item.title2}</Typography> */}
+                    <Typography>{item.title2}</Typography>
                   </Box>
                 </Box>
               </div>

@@ -1,70 +1,70 @@
 // import a from '../../../assets/images/A03.jpg';
 
-import a from '../../../assets/images/1.png'
-import b from '../../../assets/images/2.png'
-import c from '../../../assets/images/3.png'
-import d from '../../../assets/images/4.png'
-import e from '../../../assets/images/5.png'
-import f from '../../../assets/images/6.png'
-import g from '../../../assets/images/7.png'
-import h from '../../../assets/images/8.png'
+import a from '../../../assets/images/SI1.JPg'
+import b from '../../../assets/images/SI2.JPg'
+import c from '../../../assets/images/SI3.JPg'
+// import d from '../../../assets/images/SI4.JPg'
+// import e from '../../../assets/images/SI5.JPg'
+// import f from '../../../assets/images/SI6.JPg'
+// import g from '../../../assets/images/SI7.png'
+// import h from '../../../assets/images/SI8.png'
 
 
 const SUMMARY = [
   {
     id: '1',
-    title: 'Rolls-Royce',
-    title2: ' Phantom VIII',
+    title: 'Lighter',
+    title2: ' Rs 7000',
     image: a,
     path:"/travel/1IGS/1IGSRoyalFleet"
   },
   { 
     id: '2',
-    title: 'Bentley',
-    title2: 'Mulsanne EWB',
+    title: 'Charer',
+    title2: 'Rs 2000',
     image: b,
     path:"/travel/1IGS/BentleyMulsanne"
   },
   {
     id: '3',
-    title: 'Bentley',
-    title2: 'Mulsanne',
+    title: 'Car Mobile ',
+    title2: 'Rs 12000',
     image: c,
     path:"/travel/1IGS/BentleySpeed"
   },
   {
     id: '4',
-    title: 'Range Rover ',
-    title2: ' LWB Autobiography',
-    image: d,
+    title: 'Car Mobile ',
+    title2: 'Rs 12000',
+    image: b,
     path:"/travel/1IGS/RangeRover"
   },
   {
     id: '5',
-    title: 'Mercedes Benz ',
-    title2: 'S-Class',
-    image: e,
+    title: 'Car Mobile ',
+    title2: 'Rs 12000',
+    image: c,
     path:"/travel/1IGS/MercedesBenz"
   },
   {
     id: '6',
-    title: 'Jaguar  ',
-    title2: ' XJL',
-    image: f,
+    title: 'Lighter',
+    title2: ' Rs 7000',
+    image: a,
     path:"/travel/1IGS/Jaguar"
   },
   {
     id: '7',
-    title: 'Mercedes Benz ',
-    title2: ' E-Class',
-    image: g,
+    title: 'Car Mobile ',
+    title2: 'Rs 12000',
+    image: c,
     path:"/travel/1IGS/MercedesEClass"
   },
   {
     id: '8',
-    title: 'Mercedes Benz ',
-    title2: ' V-Class',
-    image: h,
+    title: 'Charer',
+    title2: 'Rs 2000',
+    image: b,
     path:"/travel/1IGS/MercedesVClass"
   },
 ];

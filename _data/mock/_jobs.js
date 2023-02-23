@@ -52,7 +52,7 @@ export const _jobsByCompanies = [...Array(12)].map((_, index) => ({
   id: _mock.id(index),
   companyName: _mock.company(index),
   companyLogo: _mock.image.company(index),
-  totalJobs: 101 + index,
+  // totalJobs: 101 + index,
 }));
 
 // ----------------------------------------------------------------------
