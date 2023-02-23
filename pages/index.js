@@ -41,7 +41,7 @@ import Dallas from '../src/assets/images/FordMustang.jpg';
 import Austin from '../src/assets/images/FordMinivan.jpg';
 import Loader from './travel/Premium/Loader'
 import ChatButton from './travel/ChatButton'
-// import { BlogMarketingLatestPosts } from '../../src/sections/blog';
+import { BlogMarketingLatestPosts } from '../src/sections/blog';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -95,7 +95,8 @@ export default function TravelLandingPage({ posts }) {
       <TravelLandingIntroduce categories={_jobsByCategories} />
 
       <RootStyle>
-        <TravelLandingTourFeatured tours={bestcities}/>
+        {/* <TravelLandingTourFeatured tours={bestcities.slice(0,4)}/> */}
+        <BlogMarketingLatestPosts posts={bestcities} />
        
 
         {/* <TravelLandingTourFeaturedRoutes tours={bestroutes} /> */}
@@ -143,49 +144,49 @@ const bestcities = [
     img: Galviston,
   },
   {
-    id: 1,
+    id: 5,
     name: 'Honda City',
     dis: '2019',
     img: Houston,
   },
   {
-    id: 2,
+    id: 6,
     name: 'Crola Atlas',
     dis: '2020',
     img: Dallas,
   },
   {
-    id: 3,
+    id: 7,
     name: 'Mehran',
     dis: '2016',
     img: Austin,
   },
   {
-    id: 4,
+    id: 8,
     name: 'Jeep',
     dis: '2018',
     img: Galviston,
   },
   {
-    id: 1,
+    id: 9,
     name: 'Honda City',
     dis: '2019',
     img: Houston,
   },
   {
-    id: 2,
+    id: 10,
     name: 'Crola Atlas',
     dis: '2020',
     img: Dallas,
   },
   {
-    id: 3,
+    id: 11,
     name: 'Mehran',
     dis: '2016',
     img: Austin,
   },
   {
-    id: 4,
+    id: 12,
     name: 'Jeep',
     dis: '2018',
     img: Galviston,

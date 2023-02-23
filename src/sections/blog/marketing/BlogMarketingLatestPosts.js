@@ -13,7 +13,7 @@ import Routes from '../../../routes';
 import { fDate } from '../../../utils/formatTime';
 // components
 import { varHover, varTranHover } from '../../../components/animate';
-import { Image, BgOverlay, CarouselArrows, CarouselDots } from '../../../components';
+import { Image, BgOverlay, CarouselArrows, CarouselDots,TextMaxLine } from '../../../components';
 
 // ----------------------------------------------------------------------
 
@@ -117,23 +117,26 @@ export default function BlogMarketingLatestPosts({ posts }) {
 
 PostItem.propTypes = {
   post: PropTypes.shape({
-    frontmatter: PropTypes.shape({
-      author: PropTypes.shape({
-        name: PropTypes.string,
-        picture: PropTypes.string,
-      }),
-      coverImg: PropTypes.string,
-      createdAt: PropTypes.string,
-      duration: PropTypes.string,
-      title: PropTypes.string,
-    }),
-    slug: PropTypes.string,
+    // frontmatter: PropTypes.shape({
+    //   author: PropTypes.shape({
+    //     name: PropTypes.string,
+    //     picture: PropTypes.string,
+    //   }),
+    //   coverImg: PropTypes.string,
+    //   createdAt: PropTypes.string,
+    //   duration: PropTypes.string,
+    //   title: PropTypes.string,
+    // }),
+    // slug: PropTypes.string,
+    name: PropTypes.string,
+    img: PropTypes.string,
+    dis: PropTypes.string,
   }),
 };
 
 function PostItem({ post }) {
-  const { slug, frontmatter } = post;
-  const { title, duration, coverImg, author, createdAt } = frontmatter;
+  // const { slug, frontmatter } = post;
+  const { name, img, dis } = post;
 
   return (
     <Stack
@@ -146,11 +149,32 @@ function PostItem({ post }) {
         boxShadow: (theme) => theme.customShadows.z12,
       }}
     >
-      <m.div variants={varHover(1.25)} transition={varTranHover()}>
+      {/* <m.div variants={varHover(1.25)} transition={varTranHover()}>
         <Image src={coverImg} alt={title} ratio="3/4" />
-      </m.div>
-
-      <Stack
+      </m.div> */}
+      <Box sx={{height:"auto"}}>
+      <Image
+        src={img.src}
+        sx={{
+          // maxWidth: '100%',
+          // height: '100%',      
+    
+          '&:hover img': { transform: 'scale(0.92)' },
+          transition: 'transform 0.1s ease-out',
+          position:"relative"
+        }}
+        
+      />
+      </Box>
+      <Stack spacing={0.5} sx={{ p: 2.5, height: '100px' }}>
+        <TextMaxLine variant="h6" asLink persistent>
+          {name}
+        </TextMaxLine>
+        <TextMaxLine sx={{ fontSize: '0.875rem' }} asLink persistent>
+          {dis}
+        </TextMaxLine>
+      </Stack>
+      {/* <Stack
         justifyContent="space-between"
         sx={{
           p: 5,
@@ -204,9 +228,9 @@ function PostItem({ post }) {
           <Avatar src={author.picture} sx={{ mr: 1 }} />
           {author.name}
         </Stack>
-      </Stack>
+      </Stack> */}
 
-      <BgOverlay direction="top" />
+      {/* <BgOverlay direction="top" /> */}
     </Stack>
   );
 }
