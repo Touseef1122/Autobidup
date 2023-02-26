@@ -113,7 +113,6 @@ export default function TravelLandingPage({ posts }) {
       {/* <NewsletterTravel /> */}
       <RootStyle>
         {/* <DownloadAppCareer /> */}
-        <TravelLandingCompanies companies={_jobsByCompanies} />
       </RootStyle>
     </Page>
   );
