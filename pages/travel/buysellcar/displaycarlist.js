@@ -69,6 +69,17 @@ const items = [
     type: 'Manual',
     price: '20 lac',
   },
+  {
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },
 ];
 
 export default function Displaycarlist({ posts }) {
@@ -90,7 +101,7 @@ export default function Displaycarlist({ posts }) {
   return (
     <Page title="Buy/Sell Used Cars List">
       {/* <Loader/> */}
-      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb:6 }}>
+      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb:6, overflowX:"hidden" }}>
         <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
@@ -107,7 +118,7 @@ export default function Displaycarlist({ posts }) {
             <Caritemlist item={items} />
           </Grid>
         </Grid> */}
-         <Button
+         {/* <Button
               color="inherit"
               variant="contained"
               startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
@@ -117,15 +128,15 @@ export default function Displaycarlist({ posts }) {
               }}
             >
               Filters
-        </Button>
-        <Stack direction={{ xs: 'column', md: 'row' }}>
-          <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
+        </Button> */}
+        <Stack direction={{ xs: 'column', sm: 'row' }}>
+          {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 
           <Box
             sx={{
               flexGrow: 1,
-              pl: { md: 8 },
-              width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+              // pl: { md: 8 },
+              // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
             }}
           >
             <Caritemlist item={items} />

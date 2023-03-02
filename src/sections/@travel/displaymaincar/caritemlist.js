@@ -45,13 +45,14 @@ export default function Caritemlist({item}) {
         gridTemplateColumns: {
           xs: 'repeat(1, 1fr)',
           sm: 'repeat(2, 1fr)',
+          md: 'repeat(3, 1fr)',
         },
         // py: 5,
-        pl: { md: 2 },
-        pr: { md: 2 },
+        pl: { sm: 2 },
+        pr: { sm: 2 },
       }}>
       {item.map((value) => (
-        <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666b', borderRadius: '8px', m: 2 }}>
+        <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666b', borderRadius: '8px',mb:1 }}>
           {/* <Grid container spacing={4} justifyContent="center" >
             <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
               <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} />
