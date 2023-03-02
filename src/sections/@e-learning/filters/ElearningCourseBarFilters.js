@@ -167,7 +167,7 @@ export default function ElearningCourseBarFilters({ mobileOpen, onMobileClose })
 
       {/* -- Mobile -- */}
       <Drawer
-        anchor="right"
+        anchor="left"
         open={mobileOpen}
         onClose={onMobileClose}
         ModalProps={{ keepMounted: true }}

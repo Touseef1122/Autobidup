@@ -41,7 +41,7 @@ export default function Displaycardetails({ posts }) {
   }
 
   return (
-    <Page title="Selling Form">
+    <Page title="Buy/Sell Used Cars">
       {/* <Loader/> */}
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Breadcrumbs
