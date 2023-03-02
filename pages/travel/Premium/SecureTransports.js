@@ -59,6 +59,7 @@ export default function RoyalFleetlicense({ posts }) {
 
   return (
     <Page title="Corporations">
+      
       <Loader/>
       <ChatButton/>
       <Box sx={{ position: 'relative' }}>
