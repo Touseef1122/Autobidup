@@ -111,9 +111,7 @@ export default function TravelLandingPage({ posts }) {
       {/* <TestimonialsTravel testimonials={_testimonials} /> */}
 
       {/* <NewsletterTravel /> */}
-      <RootStyle>
-        {/* <DownloadAppCareer /> */}
-      </RootStyle>
+     
     </Page>
   );
 }

@@ -1,21 +1,13 @@
 import PropTypes from 'prop-types';
 
-import {
-  Licenece,
-  summary,
-  image,
-  Licenece1,
-
-} from '../../../_data/mock/Licenece';
+import { text, bestcities, bestroutes, summary, images } from '../../../_data/mock/cityToCity';
 
 // @mui
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-import { DownloadAppCareer } from '../../../src/sections/download-app';
-import TravelLandingBrands from '../../../src/sections/@travel/landing/TravelLandingBrands';
 // _data
 import { _testimonials } from '../../../_data/mock';
 // layouts
@@ -23,17 +15,22 @@ import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen } from '../../../src/components';
 // sections
+import { DownloadAppCareer } from '../../../src/sections/download-app';
 import { styled } from '@mui/material/styles';
 import {
-  BusinessCorporations,
-  BusinessOverview,
+  TravelLandingHero,
+  TravelLandingTourFeatured,
+  TravelCityToCity,
+  Text,
   BusinessStrategies,
-  Text
 } from '../../../src/sections/@travel';
-import TravelTourItemButton from '../../../src/sections/@travel/tours/TravelTourItemButton';
-import Loader from './Loader';
+
+import TravelLandingTourFeaturedRoutes from '../../../src/sections/@travel/landing/TravelLandingTourFeaturedRoutes';
+import TravelLandingIntroduceOurServices from '../../../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../../../src/sections/@travel/landing/TravelLandingfull';
-import ChatButton from '../ChatButton'
+import ChatButton from '../ChatButton';
+
+import Loader from './Loader';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -45,11 +42,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-RoyalFleetlicense.propTypes = {
+Sedan.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-export default function RoyalFleetlicense({ posts }) {
+export default function Sedan({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
   if (error) {
@@ -57,30 +54,18 @@ export default function RoyalFleetlicense({ posts }) {
   }
 
   return (
-    <Page title="Corporations">
-      <Loader/>
-      <ChatButton/>
-      <Box sx={{ position: 'relative' }}>
-      <Text/>
-        <BusinessOverview image={image} />
-        <BusinessCorporations images={Licenece} />
-        {/* <Container> */}
-          <BusinessStrategies icons={summary} />
-          <BusinessCorporations images={Licenece1} />
-          <TravelLandingBrands />
-          <DownloadAppCareer />
-        {/* </Container> */}
-      </Box>
+    <Page title="Sedan" sx={{ overflowX: 'hidden' }}>
+      <Loader />
+      <ChatButton />
     </Page>
   );
 }
 
 //-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
-RoyalFleetlicense.getLayout = function getLayout(page) {
-  return <Layout >{page}</Layout>;
+Sedan.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------

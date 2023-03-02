@@ -11,11 +11,11 @@ export const PageLinks = [
     subheader: 'Used Cars',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
     items: [
-      { title: 'HatchBack', path: '/travel/1IGS/BentleyMulsanne' }, 
-      { title: 'Sedan', path: '/travel/Premium/cityToCity' },  
-      { title: 'SUV', path: '/travel/Premium/RoyalFleetlicense/' },
-      { title: 'CrossOver', path: '/travel/Premium/RoyalChauffeurs/' },
-      { title: 'MiniVan', path: '/travel/Premium/airportTransfer/' },
+      { title: 'HatchBack', path: '/travel/Premium/HatchBack' }, 
+      { title: 'Sedan', path: '/travel/Premium/Sedan' },  
+      { title: 'SUV', path: '/travel/Premium/Suv/' },
+      { title: 'CrossOver', path: '/travel/Premium/CrossOver/' },
+      { title: 'MiniVan', path: '/travel/Premium/MiniVan/' },
     ],
   },
   {

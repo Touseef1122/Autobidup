@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-
-import {text,bestcities,bestroutes,summary,images } from '../../../_data/mock/cityToCity';
+import { text, images } from '../../../_data/mock/airportTransfer';
 
 // @mui
 import { Box } from '@mui/material';
@@ -15,22 +14,12 @@ import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen } from '../../../src/components';
 // sections
-import { DownloadAppCareer } from '../../../src/sections/download-app';
 import { styled } from '@mui/material/styles';
-import {
-  TravelLandingHero,
-  TravelLandingTourFeatured,
-  TravelCityToCity,
-  Text,
-  BusinessStrategies
-} from '../../../src/sections/@travel';
-
-import TravelLandingTourFeaturedRoutes from '../../../src/sections/@travel/landing/TravelLandingTourFeaturedRoutes';
+import { TravelLandingHero, TravelCityToCity, Text } from '../../../src/sections/@travel';
+import Loader from './Loader';
 import TravelLandingIntroduceOurServices from '../../../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../../../src/sections/@travel/landing/TravelLandingfull';
-import ChatButton from '../ChatButton'
-
-import Loader from './Loader';
+import ChatButton from '../ChatButton';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -42,11 +31,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-TravelLandingPage.propTypes = {
+MiniVan.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-export default function TravelLandingPage({ posts }) {
+export default function MiniVan({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
   if (error) {
@@ -54,32 +43,17 @@ export default function TravelLandingPage({ posts }) {
   }
 
   return (
-    <Page title="InterCity Rides - Travel" sx={{overflowX: "hidden"}}>
-      <Loader/>
-      <ChatButton/>
-      <Box sx={{ position: 'relative' }}>
-      <Text tour={text}/>
-        <TravelLandingHero tours={tours.slice(0, 5)} />
-      </Box>
-      <RootStyle>
-        <TravelLandingIntroduceOurServices />
-        {/* <BusinessStrategies icons={summary} /> */}
-        <TravelLandingTourFeatured tours={bestcities} />
-        <TravelLandingTourFeaturedRoutes tours={bestroutes} />
-      </RootStyle>
-      <TravelLandingfull />
-      <TravelCityToCity tours={images}/>
-      <RootStyle>
-        <DownloadAppCareer />
-      </RootStyle>
+    <Page title="MiniVan">
+      <Loader />
+      <ChatButton />
+      
     </Page>
   );
 }
 
-//-------------------------------------------------------------------------------
 // ----------------------------------------------------------------------
 
-TravelLandingPage.getLayout = function getLayout(page) {
+MiniVan.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 

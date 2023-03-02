@@ -47,11 +47,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-RoyalFleetlicense.propTypes = {
+CrossOver.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-export default function RoyalFleetlicense({ posts }) {
+export default function CrossOver({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
   if (error) {
@@ -62,18 +62,7 @@ export default function RoyalFleetlicense({ posts }) {
     <Page title="Corporations">
       <Loader/>
       <ChatButton/>
-      <Box sx={{ position: 'relative' }}>
-      <Text/>
-        <BusinessOverview image={image} />
-        <BusinessCorporations images={Licenece} />
-        {/* <Container> */}
-        <TravelLandingIntroduceOurServices />
-          <BusinessStrategies icons={summary} />
-          <BusinessCorporations images={Licenece1} />
-          <TravelLandingBrands />
-          <DownloadAppCareer />
-        {/* </Container> */}
-      </Box>
+      
     </Page>
   );
 }
@@ -82,7 +71,7 @@ export default function RoyalFleetlicense({ posts }) {
 
 // ----------------------------------------------------------------------
 
-RoyalFleetlicense.getLayout = function getLayout(page) {
+CrossOver.getLayout = function getLayout(page) {
   return <Layout >{page}</Layout>;
 };
 
