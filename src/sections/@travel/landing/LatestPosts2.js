@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { m } from 'framer-motion';
 import Slider from 'react-slick';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 // next
 import NextLink from 'next/link';
 // @mui
@@ -57,6 +58,8 @@ const items = [
 
 export default function BlogMarketingLatestPosts({ posts }) {
   const theme = useTheme();
+  const router = useRouter();
+
   const carouselRef = useRef(null);
 
   const carouselSettings = {
@@ -87,46 +90,86 @@ export default function BlogMarketingLatestPosts({ posts }) {
   };
 
   return (
-    <RootStyle>
-      <Container >
-        <Typography
-          variant="h3"
+    // <RootStyle>
+    <Container>
+      <Typography
+        variant="h3"
+        sx={{
+          textAlign: 'center',
+        }}
+      >
+        Feacher Cars{' '}
+      </Typography>
+
+      <Box
+        onClick={() => router.push('/travel/buysellcar/displaycardetails')}
+        sx={{ position: 'relative' }}
+      >
+        <CarouselArrows
+          onNext={handleNext}
+          onPrevious={handlePrevious}
           sx={{
-            textAlign: 'center',
+            '& .arrow': {
+              '&.left': { left: -20 },
+              '&.right': { right: -20 },
+            },
           }}
         >
-          Managed By AutoBidUp
-        </Typography>
-
-        <Box sx={{ position: 'relative' }}>
-          <CarouselArrows
-            onNext={handleNext}
-            onPrevious={handlePrevious}
-            sx={{
-              '& .arrow': {
-                '&.left': { left: -20 },
-                '&.right': { right: -20 },
-              },
-            }}
-          >
-            <Slider ref={carouselRef} {...carouselSettings}>
-              {posts.map((post) => (
-                <Box
-                  key={post.slug}
-                  sx={{
-                    px: 2,
-                    py: { xs: 8, md: 10 },
-                  }}
-                >
-                  <CarsCard item={items} />
+          <Slider ref={carouselRef} {...carouselSettings}>
+            {posts.map((post) => (
+              <Box
+                sx={{
+                  px: 2,
+                  py: { xs: 8, md: 10 },
+                }}
+              >
+                {/* <CarsCard item={items} /> */}
+                <Box>
+                  {items.map((value) => (
+                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
+                      {/* <Grid container spacing={4} justifyContent="center" >
+          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
+                      <Image
+                        alt={value.title}
+                        src={value.image.src}
+                        sx={{ width: '100%', height: 'auto' }}
+                      />
+                      {/* </Grid>
+          <Grid item xs={12} sm={8}> */}
+                      <Typography variant="h4">{value.heading}</Typography>
+                      <Typography variant="h6">{value.city}</Typography>
+                      <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.year}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.distance}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.fuel}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.cc}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.type}{' '}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="h4" color="#CE9A00">
+                        {' '}
+                        PKR {value.price}
+                      </Typography>
+                      {/* </Grid>
+        </Grid> */}
+                    </Box>
+                  ))}
                 </Box>
-              ))}
-            </Slider>
-          </CarouselArrows>
-        </Box>
-      </Container>
-    </RootStyle>
+              </Box>
+            ))}
+          </Slider>
+        </CarouselArrows>
+      </Box>
+    </Container>
+    // </RootStyle>
   );
 }
-
-

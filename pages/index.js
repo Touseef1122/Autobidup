@@ -99,7 +99,7 @@ export default function TravelLandingPage({ posts }) {
 
       <RootStyle>
         {/* <TravelLandingTourFeatured tours={bestcities.slice(0,4)}/> */}
-        <LatestPosts2 posts={bestcities} />
+        <LatestPosts posts={bestcities} />
         <TravelLandingfull />
 
         <LatestPosts2 posts={bestcities} />

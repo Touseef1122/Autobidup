@@ -452,14 +452,14 @@ export default function Displaycarlist({ posts }) {
     <Page title="Buy/Sell Used Cars List">
       {/* <Loader/> */}
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb:6, overflowX:"hidden" }}>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
             { name: 'Components', href: '/components' },
             { name: 'Breadcrumbs' },
           ]}
           sx={{ mb: 4 }}
-        />
+        /> */}
         {/* <Grid container justifyContent="center">
           <Grid item xs={12} sm={3}>
             

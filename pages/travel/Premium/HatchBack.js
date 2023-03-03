@@ -268,6 +268,7 @@ export default function Displaycarlist({ posts }) {
             <Box
               sx={{
                 flexGrow: 1,
+                
                 // pl: { md: 8 },
                 // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}

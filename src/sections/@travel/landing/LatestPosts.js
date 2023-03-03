@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { m } from 'framer-motion';
 import Slider from 'react-slick';
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 // next
 import NextLink from 'next/link';
 // @mui
@@ -15,6 +16,8 @@ import { fDate } from '../../../utils/formatTime';
 import { varHover, varTranHover } from '../../../components/animate';
 import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../components';
 import { price } from '_data/mock/number';
+import CarsCard from '../../@travel/displaymaincar/caritemlist';
+import img1 from '../../../../src/Assets/Images/FordMinivan.jpg';
 
 // ----------------------------------------------------------------------
 
@@ -39,9 +42,24 @@ const DotStyle = styled('span')(({ theme }) => ({
 BlogMarketingLatestPosts.propTypes = {
   posts: PropTypes.array.isRequired,
 };
+const items = [
+  {
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },
+];
 
 export default function BlogMarketingLatestPosts({ posts }) {
   const theme = useTheme();
+  const router = useRouter();
+
   const carouselRef = useRef(null);
 
   const carouselSettings = {
@@ -72,171 +90,86 @@ export default function BlogMarketingLatestPosts({ posts }) {
   };
 
   return (
-    <RootStyle>
-      <Container >
-        <Typography
-          variant="h3"
-          sx={{
-            textAlign: 'center',
-          }}
-        >
-          Featured Used Cars for Sale
-        </Typography>
-
-        <Box sx={{ position: 'relative' }}>
-          <CarouselArrows
-            onNext={handleNext}
-            onPrevious={handlePrevious}
-            sx={{
-              '& .arrow': {
-                '&.left': { left: -20 },
-                '&.right': { right: -20 },
-              },
-            }}
-          >
-            <Slider ref={carouselRef} {...carouselSettings}>
-              {posts.map((post) => (
-                <Box
-                  key={post.slug}
-                  sx={{
-                    px: 2,
-                    py: { xs: 8, md: 10 },
-                  }}
-                >
-                  <PostItem post={post} />
-                </Box>
-              ))}
-            </Slider>
-          </CarouselArrows>
-        </Box>
-      </Container>
-    </RootStyle>
-  );
-}
-
-// ----------------------------------------------------------------------
-
-PostItem.propTypes = {
-  post: PropTypes.shape({
-    // frontmatter: PropTypes.shape({
-    //   author: PropTypes.shape({
-    //     name: PropTypes.string,
-    //     picture: PropTypes.string,
-    //   }),
-    //   coverImg: PropTypes.string,
-    //   createdAt: PropTypes.string,
-    //   duration: PropTypes.string,
-    //   title: PropTypes.string,
-    // }),
-    // slug: PropTypes.string,
-    name: PropTypes.string,
-    img: PropTypes.string,
-    dis: PropTypes.string,
-  }),
-};
-
-function PostItem({ post }) {
-  // const { slug, frontmatter } = post;
-  const { name, img, dis,price } = post;
-
-  return (
-    <Stack
-      component={m.div}
-      whileHover="hover"
-      sx={{
-        borderRadius: 2,
-        borderColor:"black",
-        borderStyle:"ridge",
-        overflow: 'hidden',
-        position: 'relative',
-        boxShadow: (theme) => theme.customShadows.z12,
-      }}
-    >
-      {/* <m.div variants={varHover(1.25)} transition={varTranHover()}>
-        <Image src={coverImg} alt={title} ratio="3/4" />
-      </m.div> */}
-      <Box sx={{ height: '200px' }}>
-        <Image
-          src={img.src}
-          sx={{
-            // maxWidth: '100%',
-            // height: '100%',
-
-            '&:hover img': { transform: 'scale(1.1)' },
-            transition: 'transform 0.1s ease-out',
-            position: 'relative',
-            height: '200px',
-          }}
-        />
-      </Box>
-      <Stack spacing={0.5} sx={{ p: 1, height: '100px' }}>
-        <TextMaxLine variant="h6" asLink persistent>
-          {name}
-        </TextMaxLine>
-        <TextMaxLine sx={{ fontSize: '0.875rem' }} asLink persistent>
-          {price}
-        </TextMaxLine>
-        <TextMaxLine sx={{ fontSize: '0.875rem' }} asLink persistent>
-          {dis}
-        </TextMaxLine>
-      </Stack>
-      {/* <Stack
-        justifyContent="space-between"
+    // <RootStyle>
+    <Container>
+      <Typography
+        variant="h3"
         sx={{
-          p: 5,
-          width: 1,
-          height: 1,
-          zIndex: 9,
-          position: 'absolute',
-          bgcolor: 'background.paper',
-          transition: (theme) =>
-            theme.transitions.create('background-color', {
-              easing: theme.transitions.easing.easeIn,
-              duration: theme.transitions.duration.enteringScreen,
-            }),
-          '&:hover': {
-            color: 'common.white',
-            bgcolor: 'transparent',
-            '& .timeInfo': {
-              opacity: 0.72,
-              color: 'inherit',
-            },
-          },
+          textAlign: 'center',
         }}
       >
-        <Stack spacing={2}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            className="timeInfo"
-            sx={{
-              typography: 'caption',
-              color: 'text.disabled',
-            }}
-          >
-            {fDate(createdAt)}
-            <DotStyle />
-            {duration}
-          </Stack>
+        Popular Cars{' '}
+      </Typography>
 
-          <NextLink
-            passHref
-            as={Routes.marketing.post(slug)}
-            href={Routes.marketing.post('[slug]')}
-          >
-            <Link variant="h4" color="inherit">
-              {title}
-            </Link>
-          </NextLink>
-        </Stack>
-
-        <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Avatar src={author.picture} sx={{ mr: 1 }} />
-          {author.name}
-        </Stack>
-      </Stack> */}
-
-      {/* <BgOverlay direction="top" /> */}
-    </Stack>
+      <Box
+        onClick={() => router.push('/travel/buysellcar/displaycardetails')}
+        sx={{ position: 'relative' }}
+      >
+        <CarouselArrows
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+          sx={{
+            '& .arrow': {
+              '&.left': { left: -20 },
+              '&.right': { right: -20 },
+            },
+          }}
+        >
+          <Slider ref={carouselRef} {...carouselSettings}>
+            {posts.map((post) => (
+              <Box
+                sx={{
+                  px: 2,
+                  py: { xs: 8, md: 10 },
+                }}
+              >
+                {/* <CarsCard item={items} /> */}
+                <Box>
+                  {items.map((value) => (
+                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
+                      {/* <Grid container spacing={4} justifyContent="center" >
+          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
+                      <Image
+                        alt={value.title}
+                        src={value.image.src}
+                        sx={{ width: '100%', height: 'auto' }}
+                      />
+                      {/* </Grid>
+          <Grid item xs={12} sm={8}> */}
+                      <Typography variant="h4">{value.heading}</Typography>
+                      <Typography variant="h6">{value.city}</Typography>
+                      <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.year}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.distance}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.fuel}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.cc}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.type}{' '}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="h4" color="#CE9A00">
+                        {' '}
+                        PKR {value.price}
+                      </Typography>
+                      {/* </Grid>
+        </Grid> */}
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            ))}
+          </Slider>
+        </CarouselArrows>
+      </Box>
+    </Container>
+    // </RootStyle>
   );
 }
