@@ -61,11 +61,11 @@ export default function Caritemlist({item}) {
               <Typography variant="h4">{value.heading}</Typography>
               <Typography variant="h6">{value.city}</Typography>
               <Stack direction="row" justifyContent='space-between'>
-                <Typography variant="body3">{value.year}</Typography>
-                <Typography variant="body3">{value.distance}</Typography>
-                <Typography variant="body3">{value.fuel}</Typography>
-                <Typography variant="body3">{value.cc}</Typography>
-                <Typography variant="body3">{value.type} </Typography>
+                <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.year}</Typography>
+                <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.distance}</Typography>
+                <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.fuel}</Typography>
+                <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.cc}</Typography>
+                <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.type} </Typography>
               </Stack>
               <Typography variant="h4" color="#CE9A00"> PKR {value.price}</Typography>
             {/* </Grid>
