@@ -56,6 +56,7 @@ export default function Displaycardetails({ posts }) {
         <Grid justifyContent="center">
           <Grid item xs={10}>
           {/* <Spinningcar/> */}
+          jkwhsjkwhsq
             {/* <Carousel /> */}
             {/* <TravelTourDetails/> */}
           </Grid>
