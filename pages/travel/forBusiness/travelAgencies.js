@@ -16,7 +16,7 @@ import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
 // _data
-import Loader from '../Premium/Loader'
+import Loader from '../UsedCars/Loader'
 import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';

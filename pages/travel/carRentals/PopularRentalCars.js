@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { summary4 } from '../../../_data/mock/carRental';
-import Loader from '../Premium/Loader';
+import Loader from '../UsedCars/Loader';
 // @mui
 import { Box, Container } from '@mui/material';
 // utils

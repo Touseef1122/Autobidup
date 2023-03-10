@@ -64,7 +64,7 @@ export const summary = [
 
 export const buttons = [
   {
-    question: 'Have questions about becoming a Royal Fleet client?',
+    question: 'Have questions about becoming a AutoBidup client?',
     paragraph: 'Get in touch with us to learn more!',
     button: 'Contact Us',
   },

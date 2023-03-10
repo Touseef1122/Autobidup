@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Loader from './Premium/Loader';
+import Loader from './UsedCars/Loader';
 import { services, summary, service,title } from '../../_data/mock/forChauffeursData';
 
 // @mui

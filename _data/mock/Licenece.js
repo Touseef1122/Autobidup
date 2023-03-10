@@ -15,8 +15,8 @@ export const image = [
 
 export const Licenece = [
   {
-    title: '1IGS Royal Fleet',
-    description: '1IGS Royal Fleet is licensed, insured, and a bonded armed Security Chauffeur transportation provider. We provide best in class trained close protection personal security drivers and it is our responsibility to ensure all risks are mitigated to ensure the safety of our VIP’S. We employ the best and compliant security.',
+    title: 'AutoBidup AutoBidup',
+    description: 'AutoBidup AutoBidup is licensed, insured, and a bonded armed Security Chauffeur transportation provider. We provide best in class trained close protection personal security drivers and it is our responsibility to ensure all risks are mitigated to ensure the safety of our VIP’S. We employ the best and compliant security.',
     image: corporation1,
     direction: 'left',
   },
@@ -44,13 +44,13 @@ export const summary = [
 
 export const Licenece1 = [
     {
-      title: '1IGS Royal Fleet',
+      title: 'AutoBidup AutoBidup',
       description: 'You will be transported by a seasoned armed Security personnel who will ensure your safety and well-being. In addition to being protected, the chauffeur will open the door for you, provide you with beverages, open an umbrella, place package/luggage into the trunk for you, etc.',
       image: corporation1,
       direction: 'left',
     },
     {
-        title: '1IGS Royal Fleet',
+        title: 'AutoBidup AutoBidup',
         description: 'Our armed Security Drivers can be hired short term, long term, or can be your full-time personal security driver.',
         image: corporation1,
         direction: 'right',

@@ -40,7 +40,7 @@ import Galviston from '../src/assets/images/bentley8.jpg';
 import Houston from '../src/assets/images/BMW3Series.jpg';
 import Dallas from '../src/assets/images/FordMustang.jpg';
 import Austin from '../src/assets/images/FordMinivan.jpg';
-import Loader from './travel/Premium/Loader'
+import Loader from './travel/UsedCars/Loader'
 import ChatButton from './travel/ChatButton'
 import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
 import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';

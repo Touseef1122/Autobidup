@@ -32,7 +32,7 @@
     //       <Typography>
     //         I'M YOUR SAFE SPACE ON WHEELS
     //       </Typography>
-    //       <h3>Royal Fleet Chauffeur</h3>
+    //       <h3>AutoBidup Chauffeur</h3>
     //     </Stack>
         
     //   </Container>
@@ -85,7 +85,7 @@ export default function TravelLandingfull() {
           <Typography variant="h3">
             The Smarter Way To Sell And Buy Cars.
           </Typography>
-          {/* <Typography variant="h4">Royal Fleet Chauffeur</Typography> */}
+          {/* <Typography variant="h4">AutoBidup Chauffeur</Typography> */}
         </Stack>
         
       </Container>

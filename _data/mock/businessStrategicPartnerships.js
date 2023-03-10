@@ -17,7 +17,7 @@ export const title = [{ title: 'Partnership opportunities with Blacklane' }];
 export const image = [
   {
     bg: overview,
-    title: 'Become a Royal Fleet partner',
+    title: 'Become a AutoBidup partner',
   },
 ];
 
@@ -72,7 +72,7 @@ export const summary = [
   {
     title: 'Compliance and safety',
     description:
-      'Travel confidently in clean, premium vehicles driven by licensed and insured professionals.',
+      'Travel confidently in clean, UsedCars vehicles driven by licensed and insured professionals.',
     icon: icon2,
   },
   {
@@ -109,7 +109,7 @@ export const buttons = [
 export const text = [
   {
     title: 'Testimonials',
-    desc: `"Emirates is committed to extend its premium quality and high service to passengers’ front doors as an essential part of the Emirates experience. We offer our complimentary Chauffeur-drive service to our First and Business Class customers in over 75 cities worldwide and thanks to Blacklane’s global presence, this promise can now be delivered in more destinations."`,
+    desc: `"Emirates is committed to extend its UsedCars quality and high service to passengers’ front doors as an essential part of the Emirates experience. We offer our complimentary Chauffeur-drive service to our First and Business Class customers in over 75 cities worldwide and thanks to Blacklane’s global presence, this promise can now be delivered in more destinations."`,
     point:
       'Bill McPherson, Emirates Airlines, Former Vice President, Airport Services (Outstations)',
   },

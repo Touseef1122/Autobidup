@@ -34,7 +34,7 @@ export default function NewsletterMarketing() {
             
             <div>
               <Typography variant="h3" gutterBottom>
-                Your have sucessfully registerd Royal fleet Chauffeur.
+                Your have sucessfully registerd AutoBidup Chauffeur.
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 Thankyou for your business and your trust. 

@@ -7,7 +7,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Loader from '../Premium/Loader'
+import Loader from '../UsedCars/Loader'
 // @mui
 import { styled } from '@mui/material/styles';
 import { Container } from '@mui/material';

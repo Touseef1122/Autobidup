@@ -24,7 +24,7 @@ export default function NewsletterCareer() {
         <Stack spacing={3} alignItems="center" sx={{ color: 'common.white', textAlign: 'center' }}>
           <Typography variant="h2">I'M MORE THAN A CHAUFFEUR</Typography>
           <Typography>I'M YOUR SAFE SPACE ON WHEELS</Typography>
-          <h3>Royal Fleet Chauffeur</h3>
+          <h3>AutoBidup Chauffeur</h3>
           {/* <FilledInput
             placeholder="Enter your email"
             endAdornment={

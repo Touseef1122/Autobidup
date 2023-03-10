@@ -26,7 +26,7 @@ import { Page, ErrorScreen } from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import ChatButton from '../ChatButton'
 
-import Loader from '../Premium/Loader'
+import Loader from '../UsedCars/Loader'
 import {
   BusinessCorporations,
   BusinessOverview,

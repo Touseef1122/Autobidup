@@ -15,7 +15,7 @@ export const title = [{ title: 'The global chauffeur solution for travel agencie
 export const image = [
   {
     bg: overview,
-    title: 'What Royal Fleet can do for your business',
+    title: 'What AutoBidup can do for your business',
   },
 ];
 
@@ -23,7 +23,7 @@ export const services = [
   {
     title: 'High-quality service you can trust',
     description:
-      'Why do over 5,000 travel agencies and management companies worldwide trust Royal Fleet’s award-winning chauffeur service?',
+      'Why do over 5,000 travel agencies and management companies worldwide trust AutoBidup’s award-winning chauffeur service?',
     list1:
       'Available in 50+ countries with a global supply of locally licensed and insured chauffeurs',
     list2: 'Duty of care and safety-driven practices are our top priority',

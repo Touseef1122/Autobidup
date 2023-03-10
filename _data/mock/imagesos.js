@@ -11,7 +11,7 @@ const Imagesos = [
         'Your stress-free solution for selling and purchasing vehicals, with AutoBidUp across the City.',
       image: a,
       // link: 'Learn More',
-      path:"/travel/Premium/cityToCity"
+      path:"/travel/UsedCars/cityToCity"
     },
     {
       title: 'Auction',
@@ -33,7 +33,7 @@ const Imagesos = [
       description:'You can easily call an car expert or you can request a car mechanic.',
       image: d,
         // link: 'Learn More',
-      path:"/travel/Premium/airportTransfer"
+      path:"/travel/UsedCars/airportTransfer"
     },
   ];
   export default Imagesos;
