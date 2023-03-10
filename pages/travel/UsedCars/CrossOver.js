@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-// import Loader from './Premium/Loader';
+// import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useState } from 'react';
 // icons
@@ -227,13 +227,13 @@ export default function Displaycarlist({ posts }) {
     return <ErrorScreen />;
   }
   return (
-    <Page title="Sedan">
+    <Page title="CrossOver">
       <RootStyle>
         <Loader />
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
           <Typography variant="h2" mb="20px" textAlign={'center'}>
-            Sedan{' '}
+          CrossOver{' '}
           </Typography>
           {/* <Breadcrumbs
           links={[

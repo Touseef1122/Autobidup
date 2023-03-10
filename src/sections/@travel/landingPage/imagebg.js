@@ -35,7 +35,7 @@ export default function Imagebg() {
             transform: 'translate(-50%, -50%);',
           }}
         >
-          Royal Fleet | The Global Traveller
+          AutoBidup | The Global Traveller
         </Typography>
       </Box>
     </Box>

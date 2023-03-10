@@ -11,7 +11,7 @@ import {
 
 // @mui
 import { Box, Container } from '@mui/material';
-import Loader from '../Premium/Loader'
+import Loader from '../UsedCars/Loader'
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks

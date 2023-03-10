@@ -23,7 +23,7 @@ export const services = [
   {
     title: 'Setting the standard for exceptional service and sustainability',
     description:
-      'Our dedicated events team can provide premium chauffeur services for any occasion — global or local, big or small, personalized or standardized, we’ve got you covered:',
+      'Our dedicated events team can provide UsedCars chauffeur services for any occasion — global or local, big or small, personalized or standardized, we’ve got you covered:',
     list1: 'Award ceremonies or gala dinners',
     list2: 'Meetings and conferences',
     list3: 'Roadshows',

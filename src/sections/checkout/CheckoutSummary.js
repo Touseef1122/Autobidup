@@ -32,7 +32,7 @@ export default function CheckoutSummary() {
             Subscription
           </Typography>
           <Label color="error" variant="filled">
-            PREMIUM
+            UsedCars
           </Label>
         </Stack>
 

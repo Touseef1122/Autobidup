@@ -69,7 +69,7 @@ export const _pricingMarketing = [
     ],
   },
   {
-    license: 'Premium',
+    license: 'UsedCars',
     price: '99',
     icon: 'https://zone-assets-api.vercel.app/assets/icons/pricing/ic_plan_premium03.svg',
     caption: 'Maecenas nec odio et ante tincidunt tempus.',
@@ -109,7 +109,7 @@ export const _pricing01 = [
     ],
   },
   {
-    license: 'Premium',
+    license: 'UsedCars',
     price: '9.99',
     icon: 'https://zone-assets-api.vercel.app/assets/icons/pricing/ic_plan_premium01.svg',
     options: [
