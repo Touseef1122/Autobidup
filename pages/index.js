@@ -42,7 +42,9 @@ import Dallas from '../src/assets/images/FordMustang.jpg';
 import Austin from '../src/assets/images/FordMinivan.jpg';
 import Loader from './travel/Premium/Loader'
 import ChatButton from './travel/ChatButton'
-import { BlogMarketingLatestPosts,BlogMarketingLatestPosts2 } from '../src/sections/blog';
+import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
+import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
+
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -97,10 +99,10 @@ export default function TravelLandingPage({ posts }) {
 
       <RootStyle>
         {/* <TravelLandingTourFeatured tours={bestcities.slice(0,4)}/> */}
-        <BlogMarketingLatestPosts posts={bestcities} />
+        <LatestPosts posts={bestcities} />
         <TravelLandingfull />
 
-        <BlogMarketingLatestPosts2 posts={bestcities} />
+        <LatestPosts2 posts={bestcities} />
         {/* <TravelLandingTourFeaturedRoutes tours={bestroutes} /> */}
       </RootStyle>
       <TravelLandingCars />
@@ -111,9 +113,7 @@ export default function TravelLandingPage({ posts }) {
       {/* <TestimonialsTravel testimonials={_testimonials} /> */}
 
       {/* <NewsletterTravel /> */}
-      <RootStyle>
-        {/* <DownloadAppCareer /> */}
-      </RootStyle>
+     
     </Page>
   );
 }

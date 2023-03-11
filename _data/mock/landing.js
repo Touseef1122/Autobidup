@@ -1,4 +1,4 @@
-import overview from '../../src/assets/images/landingImg.jpg';
+// import overview from '../../src/assets/images/landingImg.jpg';
 import RollBg from '../../src/assets/images/rolls-royce.jpg'
 import Bentley from '../../src/assets/images/mulsanne.jpg'
 import Speed from '../../src/assets/images/bentley-banner.jpg'
