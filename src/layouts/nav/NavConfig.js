@@ -136,7 +136,7 @@ export const navConfig = [
   },
   {
     title: 'Auction',
-    path: '/travel/Auction',
+    path: '/travel/Auction/Auction',
   },
   {
     title: 'Store',
