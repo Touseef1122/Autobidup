@@ -11,12 +11,24 @@ export const PageLinks = [
     subheader: 'Used Cars',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
     items: [
-      { title: 'HatchBack', path: '/travel/Premium/HatchBack' }, 
-      { title: 'Sedan', path: '/travel/Premium/Sedan' },  
-      { title: 'SUV', path: '/travel/Premium/Suv/' },
-      { title: 'CrossOver', path: '/travel/Premium/CrossOver/' },
-      { title: 'MiniVan', path: '/travel/Premium/MiniVan/' },
+      { title: 'HatchBack', path: '/travel/UsedCars/HatchBack' },
+      { title: 'Sedan', path: '/travel/UsedCars/Sedan' },
+      { title: 'SUV', path: '/travel/UsedCars/Suv/' },
+      { title: 'CrossOver', path: '/travel/UsedCars/CrossOver/' },
+      { title: 'MiniVan', path: '/travel/UsedCars/MiniVan/' },
     ],
+  },
+  {
+    order: '7',
+    subheader: 'Auction',
+    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
+    // items: [
+    //   // { title: 'Overview', path: '/travel/forBusiness/overview' },
+    //   // { title: 'Corporation', path: '/travel/forBusiness/corporation' },
+    //   // { title: 'Travel agenices', path: '/travel/forBusiness/travelAgencies' },
+    //   // { title: 'Event services', path: '/travel/forBusiness/eventServices' },
+    //   // { title: 'Strategic partnerships', path: '/travel/forBusiness/strategicPartnerships' },
+    // ],
   },
   {
     order: '8',
@@ -35,32 +47,21 @@ export const PageLinks = [
     subheader: 'Mechanic',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_travel.jpg',
     items: [
-      { title: 'Service', path: '/travel/Premium/cityToCity' },
-      { title: 'Request', path: '/travel/Premium/cityToCity' },
-      { title: 'Contact', path: '/travel/Premium/cityToCity' },
-      { title: 'Testimonials', path: '/travel/Premium/cityToCity' },
-      { title: 'Location', path: '/travel/Premium/cityToCity' },
+      { title: 'Request a Mechanic', path: '/travel/UsedCars/cityToCity' },
+      { title: 'Call an Expert', path: '/travel/UsedCars/cityToCity' },
+      // { title: 'Contact', path: '/travel/UsedCars/cityToCity' },
+      // { title: 'Testimonials', path: '/travel/UsedCars/cityToCity' },
+      // { title: 'Location', path: '/travel/UsedCars/cityToCity' },
       // { title: 'Blog Posts', path: Routes.travel.posts },
       // { title: 'Blog Post', path: Routes.travel.post('post-01') },
       // { title: 'About', path: Routes.travel.about },
       // { title: 'Contact', path: Routes.travel.contact },
     ],
   },
-  {
-    order: '7',
-    subheader: 'Auction',
-    cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
-    items: [
-      // { title: 'Overview', path: '/travel/forBusiness/overview' },
-      // { title: 'Corporation', path: '/travel/forBusiness/corporation' },
-      // { title: 'Travel agenices', path: '/travel/forBusiness/travelAgencies' },
-      // { title: 'Event services', path: '/travel/forBusiness/eventServices' },
-      // { title: 'Strategic partnerships', path: '/travel/forBusiness/strategicPartnerships' },
-    ],
-  },
+
   // {
   //   order: '2',
-  //   subheader: 'Royal fleet for Business',
+  //   subheader: 'AutoBidup for Business',
   //   cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_career.jpg',
   //   items: [
   //     { title: 'Overview', path: Routes.career.landing },
@@ -107,8 +108,7 @@ export const PageLinks = [
   //     // { title: 'Contact', path: Routes.eLearning.contact },
   //   ],
   // },
-  
-  
+
   // {
   //   order: '6',
   //   subheader: 'Coming Soon',
@@ -136,15 +136,16 @@ export const navConfig = [
   },
   {
     title: 'Auction',
-    path: Routes.pages,
-    children: [PageLinks[1]],
+    path: '/travel/Auction/Auction',
   },
   {
     title: 'Store',
     path: Routes.pages,
     children: [PageLinks[2]],
   },
-  { title: 'Mechanic', path: '/travel/forChauffeurs' },
+  { title: 'Mechanic', 
+    path: Routes.pages, 
+    children: [PageLinks[3]] },
   // {
   //   title: 'SignIn/SignUp',
   //   path: Routes.pages,

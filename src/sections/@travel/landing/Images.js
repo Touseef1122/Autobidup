@@ -16,56 +16,56 @@ const SUMMARY = [
     title: 'Lighter',
     title2: ' Rs 7000',
     image: a,
-    path:"/travel/1IGS/1IGSRoyalFleet"
+    path:"/travel/AutoBidup/1IGSRoyalFleet"
   },
   { 
     id: '2',
     title: 'Charer',
     title2: 'Rs 2000',
     image: b,
-    path:"/travel/1IGS/BentleyMulsanne"
+    path:"/travel/AutoBidup/BentleyMulsanne"
   },
   {
     id: '3',
     title: 'Car Mobile ',
     title2: 'Rs 12000',
     image: c,
-    path:"/travel/1IGS/BentleySpeed"
+    path:"/travel/AutoBidup/BentleySpeed"
   },
   {
     id: '4',
     title: 'Car Mobile ',
     title2: 'Rs 12000',
     image: b,
-    path:"/travel/1IGS/RangeRover"
+    path:"/travel/AutoBidup/RangeRover"
   },
   {
     id: '5',
     title: 'Car Mobile ',
     title2: 'Rs 12000',
     image: c,
-    path:"/travel/1IGS/MercedesBenz"
+    path:"/travel/AutoBidup/MercedesBenz"
   },
   {
     id: '6',
     title: 'Lighter',
     title2: ' Rs 7000',
     image: a,
-    path:"/travel/1IGS/Jaguar"
+    path:"/travel/AutoBidup/Jaguar"
   },
   {
     id: '7',
     title: 'Car Mobile ',
     title2: 'Rs 12000',
     image: c,
-    path:"/travel/1IGS/MercedesEClass"
+    path:"/travel/AutoBidup/MercedesEClass"
   },
   {
     id: '8',
     title: 'Charer',
     title2: 'Rs 2000',
     image: b,
-    path:"/travel/1IGS/MercedesVClass"
+    path:"/travel/AutoBidup/MercedesVClass"
   },
 ];
 export default SUMMARY;

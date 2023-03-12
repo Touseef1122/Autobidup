@@ -16,7 +16,7 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import Loader from '../Premium/Loader'
+import Loader from '../UsedCars/Loader'
 import {
   BusinessOverview,
   BusinessStrategies,
@@ -57,7 +57,7 @@ export default function Overview({ posts }) {
         <BusinessTravelAgencies tours={services} />
         <Container>
           <Typography color="black" fontSize="50px" fontWeight="bold" textAlign="center" alignItems="center" pb="25px">
-            Top reasons to choose Royal Fleet as your new transportation partner
+            Top reasons to choose AutoBidup as your new transportation partner
           </Typography>
         </Container>
         <BusinessStrategies icons={summary} />

@@ -20,7 +20,7 @@ export default function PricingPlan01Card({ plan }) {
 
   const basicLicense = license === 'Basic';
   const starterLicense = license === 'Starter';
-  const premiumLicense = license === 'Premium';
+  const premiumLicense = license === 'UsedCars';
 
   return (
     <Card
@@ -79,7 +79,7 @@ export default function PricingPlan01Card({ plan }) {
         >
           {basicLicense && 'Current Plan'}
           {starterLicense && 'Choose Starter'}
-          {premiumLicense && 'Choose Premium'}
+          {premiumLicense && 'Choose UsedCars'}
         </Button>
       </Stack>
     </Card>

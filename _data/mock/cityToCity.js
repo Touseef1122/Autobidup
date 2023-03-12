@@ -119,7 +119,7 @@ export const images = [
     image: city,
     heading: 'Maximize your Time',
     direction: 'left',
-    paragraph: `With Royal Fleet’s intercity rides, the ease of long-distance travel is more comfortable
+    paragraph: `With AutoBidup’s intercity rides, the ease of long-distance travel is more comfortable
       than ever. You’ll save time by skipping the airports and train stations, and can
       instead use the travel time how you’d like — private phone calls, last-minute
       presentation prep, or even catching up on sleep. Our chauffeurs are bound by
@@ -142,7 +142,7 @@ export const images = [
     direction: 'left',
     paragraph: `Rates are guaranteed in advance, and our fixed pricing between your pickup and dropoff cities 
       means no hidden costs. Plans change? Change or cancel your ride for free up until 24 hours before pickup.
-       Anticipate a stop or two along the way? Royal Fleet chauffeurs have you covered. For small groups, our 
+       Anticipate a stop or two along the way? AutoBidup chauffeurs have you covered. For small groups, our 
        Business Van or SUV service class means additional workspace without sacrificing comfort or style.`,
   },
 ];

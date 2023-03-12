@@ -23,7 +23,7 @@ export default function PricingMarketingCard({ plan }) {
 
   const basicLicense = license === 'Basic';
   const starterLicense = license === 'Starter';
-  const premiumLicense = license === 'Premium';
+  const premiumLicense = license === 'UsedCars';
 
   return (
     <Card

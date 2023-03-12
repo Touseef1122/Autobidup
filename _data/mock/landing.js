@@ -71,7 +71,7 @@ export const image2 = [
   {
     bg: Bentley,
     para: 'true',
-    imageTitle1: 'Premium Jet Class The Ultimate Jet-Liner Experience',
+    imageTitle1: 'UsedCars Jet Class The Ultimate Jet-Liner Experience',
     imageTitle2: 'Bentley Mulsanne EWB',
   },
 ];
@@ -103,7 +103,7 @@ export const image3 = [
   {
     bg: Speed,
     para: 'true',
-    imageTitle1: 'Premium Class The Enigmatic Premium Chauffeur',
+    imageTitle1: 'UsedCars Class The Enigmatic UsedCars Chauffeur',
     imageTitle2: 'Bentley Mulsanne Speed',
   },
 ];
@@ -132,7 +132,7 @@ export const image4 = [
   {
     bg: Range,
     para: 'true',
-    imageTitle1: 'Luxury Class Powerful Refined Premium Vehicle',
+    imageTitle1: 'Luxury Class Powerful Refined UsedCars Vehicle',
     imageTitle2: 'Range Rover LWB Autography ',
   },
 ];
@@ -167,7 +167,7 @@ export const image5 = [
 export const corp5 = [
   {
     title: 'The Mercedes Benz S-Class the embodiment of a modern luxury saloon',
-    description: `The S-Class is an exlusive first-class mobile office akin to a business jet. Extensive innovations to the new S-Class cements its place as the undisputed leader in the premium segment taking the next steps forward. All Kelly’s S-Class are the LWB model offering vast amounts of legroom, rear executive seat packages with both heat and cooling function.    `,
+    description: `The S-Class is an exlusive first-class mobile office akin to a business jet. Extensive innovations to the new S-Class cements its place as the undisputed leader in the UsedCars segment taking the next steps forward. All Kelly’s S-Class are the LWB model offering vast amounts of legroom, rear executive seat packages with both heat and cooling function.    `,
     title2: 'The Mercedes Benz S-Class is the ultimate limousine    ',
     description3:'Suitable for any engagement, business, pleasure, travel or transfer. The S-Class will never leave you feeling dissapointed being the car by which all others are judged.    ',
     image: igs13,

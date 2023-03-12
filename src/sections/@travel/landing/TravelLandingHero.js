@@ -302,7 +302,7 @@ function ContentItem({ tour }) {
           alt="hero"
           src={landing.src}
           sx={{
-            height: { xs: 1 },
+            height: { xs: 1,md: '600px' },
             bgcolor: 'transparent',
           }}
         />

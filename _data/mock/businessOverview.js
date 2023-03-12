@@ -27,7 +27,7 @@ export const services = [
   {
     title: 'Corporations',
     description:
-      'Premium, safe, and reliable transportation for all of your corporate travel needs.',
+      'UsedCars, safe, and reliable transportation for all of your corporate travel needs.',
     image: service1,
     link: 'Learn More',
     path: '/travel/forBusiness/corporation',
@@ -50,7 +50,7 @@ export const services = [
   {
     title: 'Strategic partnerships',
     description:
-      'Deliver top of the line, reliable chauffeured rides to your most valuable customers, guests, and premium level members.',
+      'Deliver top of the line, reliable chauffeured rides to your most valuable customers, guests, and UsedCars level members.',
     image: service4,
     link: 'Learn More',
     path: '/travel/forBusiness/strategicPartnerships',
@@ -67,7 +67,7 @@ export const summary = [
   {
     title: 'Trusted professionals',
     description:
-      'We consistently offer a reliable, safe, comfortable, and premium chauffeured experience. Every chauffeur is background checked and all prospective partners are reviewed for eligibility to ensure top quality service up to our highest standards.',
+      'We consistently offer a reliable, safe, comfortable, and UsedCars chauffeured experience. Every chauffeur is background checked and all prospective partners are reviewed for eligibility to ensure top quality service up to our highest standards.',
     icon: icon2,
   },
   {
@@ -103,7 +103,7 @@ export const summary = [
   },
   {
     title: 'Sustainability',
-    description: `Royal Fleet is leading the way in growing our electric class vehicle offerings, currently available for booking in select cities. Even if you don’t ride in an electric car, you can breathe easy knowing that all of our rides are 100% carbon neutral.`,
+    description: `AutoBidup is leading the way in growing our electric class vehicle offerings, currently available for booking in select cities. Even if you don’t ride in an electric car, you can breathe easy knowing that all of our rides are 100% carbon neutral.`,
     icon: icon8,
     // icon: "ri:leaf-line",
   },

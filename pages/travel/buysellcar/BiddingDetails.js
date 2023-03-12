@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-// import Loader from './Premium/Loader';
+// import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useState } from 'react';
 // icons
@@ -7,7 +7,7 @@ import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
 
 // @mui
-import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
+import { Container, Grid, Box,Stack,Button } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
@@ -17,16 +17,14 @@ import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
+import { Page, ErrorScreen, Breadcrumbs,Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
-import Loader from './Loader';
-import ChatButton from '../ChatButton';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
+import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -48,8 +46,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -59,8 +56,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -70,8 +66,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -81,8 +76,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -92,8 +86,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -103,8 +96,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -114,8 +106,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -125,8 +116,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -136,8 +126,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -147,8 +136,7 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -158,8 +146,247 @@ const items = [
     cc: '1200cc',
     type: 'Manual',
     price: '20 lac',
-  },
-  {
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
     image: img1,
     heading: 'Honda',
     city: 'Lahore',
@@ -205,14 +432,9 @@ const items = [
   },
 ];
 
-import Pagination from '@mui/material/Pagination';
-
 export default function Displaycarlist({ posts }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [page, setPage] = useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
+
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
 
   const handleMobileOpen = () => {
@@ -227,15 +449,10 @@ export default function Displaycarlist({ posts }) {
     return <ErrorScreen />;
   }
   return (
-    <Page title="HatchBack">
-      <RootStyle>
-        <Loader />
-        <ChatButton />
-        <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
-          <Typography variant="h2" mb="20px" textAlign={'center'}>
-            HatchBack{' '}
-          </Typography>
-          {/* <Breadcrumbs
+    <Page title="Buy/Sell Used Cars List">
+      {/* <Loader/> */}
+      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb:6, overflowX:"hidden" }}>
+        {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
             { name: 'Components', href: '/components' },
@@ -243,7 +460,7 @@ export default function Displaycarlist({ posts }) {
           ]}
           sx={{ mb: 4 }}
         /> */}
-          {/* <Grid container justifyContent="center">
+        {/* <Grid container justifyContent="center">
           <Grid item xs={12} sm={3}>
             
           </Grid>
@@ -251,7 +468,7 @@ export default function Displaycarlist({ posts }) {
             <Caritemlist item={items} />
           </Grid>
         </Grid> */}
-          {/* <Button
+         {/* <Button
               color="inherit"
               variant="contained"
               startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
@@ -262,41 +479,21 @@ export default function Displaycarlist({ posts }) {
             >
               Filters
         </Button> */}
-          <Stack direction={{ xs: 'column', sm: 'row' }}>
-            {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
+        <Stack direction={{ xs: 'column', sm: 'row' }}>
+          {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 
-            <Box
-              sx={{
-                flexGrow: 1,
-                // pl: { md: 8 },
-                // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
-              }}
-            >
-              <Caritemlist item={items} />
-            </Box>
-          </Stack>
-          {/* tours={services} icons={summary} services={service}  */}
-        </Container>
-        <Stack spacing={2} justifyContent={'center'} alignItems={'center'}>
-          {/* <Typography >Page: {page}</Typography> */}
-          <Pagination
+          <Box
             sx={{
-              fontSize: '4.5rem',
-              fontWeight: 'bold',
-              '& .MuiPaginationItem-root': {
-                padding: '12px',
-              },
-              '& .MuiButtonBase-root': {
-                minWidth: '50px',
-                minHeight: '50px',
-              },
+              flexGrow: 1,
+              // pl: { md: 8 },
+              // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
             }}
-            count={10}
-            page={page}
-            onChange={handleChange}
-          />
+          >
+            <Caritemlist item={items} />
+          </Box>
         </Stack>
-      </RootStyle>
+        {/* tours={services} icons={summary} services={service}  */}
+      </Container>
     </Page>
   );
 }
