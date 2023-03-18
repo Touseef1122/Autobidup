@@ -18,41 +18,7 @@ import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import Car360View from '../../../src/sections/@travel/displaymaincar/Auction';
-import image1 from '../../../src/assets/Images/FordMinivan.jpg';
-import image2 from '../../../src/assets/Images/FordMinivan.jpg';
-import image3 from '../../../src/assets/Images/FordMinivan.jpg';
-import image4 from '../../../src/assets/Images/FordMinivan.jpg';
-import image5 from '../../../src/assets/Images/FordMinivan.jpg';
-import image6 from '../../../src/assets/Images/FordMinivan.jpg';
 
-
-//--------------------------------------------------------------
-
-const images = [
-  {
-    image: image1,
-    title: 'Ford Minivan',
-  },
-  {
-    image: image2,
-    title: 'Ford Minivan',
-  },
-  {
-    image: image3,
-    title: 'Ford Minivan',
-  },
-  {
-    image: image4,
-    title: 'Ford Minivan',
-  },{
-    image: image5,
-    title: 'Ford Minivan',
-  },{
-    image: image6,
-    title: 'Ford Minivan',
-  },
-];
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -75,10 +41,33 @@ export default function Displaycardetails({ posts }) {
   }
 
   return (
-    <Page title="Auction">
-      <div style={{ width: '500px', height: '300px' }}>
-      <Car360View images={images} />
-    </div>
+    <Page title="Buy/Sell Used Cars">
+      {/* <Loader/> */}
+      <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
+        <Breadcrumbs
+          links={[
+            { name: 'Home', href: '/' },
+            { name: 'Components', href: '/components' },
+            { name: 'Breadcrumbs' },
+          ]}
+          sx={{mb:4}}
+        />
+        <Grid justifyContent="center">
+          <Grid item xs={10}>
+            <Carousel />
+            {/* <TravelTourDetails/> */}
+          </Grid>
+        </Grid>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} sm={7} mb={2}>
+            <TravelTourDetails />
+          </Grid>
+          <Grid item xs={12} sm={5}>
+            <Box>{/* <TravelTourDetails /> */}</Box>
+          </Grid>
+        </Grid>
+        {/* tours={services} icons={summary} services={service}  */}
+      </Container>
     </Page>
   );
 }
