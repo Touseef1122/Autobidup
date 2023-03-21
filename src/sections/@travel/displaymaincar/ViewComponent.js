@@ -14,7 +14,7 @@ export default function ViewComponent() {
         }
 
         const images = fileNames.map((imageName) =>
-            require(`../Car-Images/${imageName}`)
+            require(` ../../../Assets/Car-Images/${imageName}`)
         );
 
         setImages(images);

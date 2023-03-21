@@ -19,6 +19,8 @@ import { styled } from '@mui/material/styles';
 import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 
+
+
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,

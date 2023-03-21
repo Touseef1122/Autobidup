@@ -148,29 +148,25 @@ import { useState, useEffect } from 'react';
 
 //--------------------------------------------------------------
 
-import image1 from '../../../Assets/Car-Images/car-1.png';
-import image2 from '../../../Assets/Car-Images/car-2.png';
-import image3 from '../../../Assets/Car-Images/car-3.png';
-import image4 from '../../../Assets/Car-Images/car-4.png';
 
-const images = [
-    {
-        image: image1,
-        title: 'Ford Minivan',
-    },
-    {
-        image: image2,
-        title: 'Ford Mustang',
-    },
-    {
-        image: image3,
-        title: 'Ford Transit',
-    },
-    {
-        image: image4,
-        title: 'Jeep Wrangler',
-    },
-];
+// const images = [
+//     {
+//         image: image1,
+//         title: 'Ford Minivan',
+//     },
+//     {
+//         image: image2,
+//         title: 'Ford Mustang',
+//     },
+//     {
+//         image: image3,
+//         title: 'Ford Transit',
+//     },
+//     {
+//         image: image4,
+//         title: 'Jeep Wrangler',
+//     },
+// ];
 
 
 const RootStyle = styled('div')(({ theme }) => ({
