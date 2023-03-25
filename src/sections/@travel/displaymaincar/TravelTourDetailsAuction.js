@@ -113,7 +113,7 @@ export default function TravelTourDetails({ tour }) {
   // } = tour;
 
   return (
-    <Stack spacing={2} mb={6}  mt={-50}>
+    <Stack spacing={2} mb={6}   >
       <Typography variant="h4">
         Overview
       </Typography>

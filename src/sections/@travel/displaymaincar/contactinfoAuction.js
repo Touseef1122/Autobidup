@@ -47,6 +47,7 @@ export default function Contactinfo() {
         </Stack>
       </Box>
       <Sellerinfo />
+      
       <SellerinfoAuction />
 
       {/* <Container

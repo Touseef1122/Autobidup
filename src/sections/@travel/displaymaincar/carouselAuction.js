@@ -114,7 +114,7 @@ export default function CarouselAuction() {
           </Box>
         {/* </Container> */}
       </Grid>
-      <Grid item xs={12} sm={7} >
+      <Grid item xs={12} sm={5} >
         <ContactinfoAuction />
       </Grid>
     </Grid>

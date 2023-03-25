@@ -46,6 +46,8 @@ export default function Contactinfo() {
             <Icon icon="ri:facebook-fill" width="30"/>
          </Box>
       </Stack>
+
+      
     </Box>
   );
 }

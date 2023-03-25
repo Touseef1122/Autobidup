@@ -16,7 +16,11 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { CarouselAuction, Contactinfo,TravelTourDetailsAuction } from '../../../src/sections/@travel/displaymaincar';
+import {
+  CarouselAuction,
+  Contactinfo,
+  TravelTourDetailsAuction,
+} from '../../../src/sections/@travel/displaymaincar';
 // import {  } from '../../../src/sections/@travel';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -59,7 +63,20 @@ export default function Displaycardetails({ posts }) {
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
-          <Grid item xs={12} sm={7} mb={2}>
+          <Grid
+            item
+            xs={12}
+            sm={7}
+            sx={{
+              mt: 1 /* Default margin-top value */,
+              '@media (min-width: 600px)': {
+                mt: -50 /* For small screens */,
+              },
+              '@media (min-width: 960px)': {
+                mt: -35 /* For medium and large screens */,
+              },
+            }}
+          >
             <TravelTourDetailsAuction />
           </Grid>
           <Grid item xs={12} sm={5}>

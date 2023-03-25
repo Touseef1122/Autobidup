@@ -96,6 +96,7 @@ export default function Contactinfo() {
       }}
     >
       {/* <Typography variant="h4" fontWeight="bold">Seller Information</Typography> */}
+      <Typography variant="h4">Bidders List</Typography>
       <OverviewAuction overviewAuction={comments} />
 
       <Divider />
