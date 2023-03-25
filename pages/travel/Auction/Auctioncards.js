@@ -14,10 +14,10 @@ import { Box, Link, Stack, Avatar, Container, Typography } from '@mui/material';
 // import { fDate } from '../../../utils/formatTime';
 // components
 // import { varHover, varTranHover } from '../../../components/animate';
-import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../components';
+import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../src/components';
 import { price } from '_data/mock/number';
-import CarsCard from './AuctionCarList';
-import img1 from '../../../../src/Assets/Images/FordMinivan.jpg';
+// import CarsCard from './AuctionCarList';
+import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 
 // ----------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
           textAlign: 'center',
         }}
       >
-        Popular Cars{' '}
+        Cars Available for Auction{' '}
       </Typography>
 
       <Box
@@ -123,7 +123,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
                   px: 2,
                   py: { xs: 8, md: 10 },
                 }}
-                onClick={() => router.push('/travel/buysellcar/BiddingDetails')}
+                onClick={() => router.push('/travel/Auction/BiddingDetails/')}
               >
                 {/* <CarsCard item={items} /> */}
                 <Box>

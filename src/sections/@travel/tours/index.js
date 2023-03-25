@@ -6,3 +6,4 @@ export { default as TravelTourReserveForm } from './TravelTourReserveForm';
 export { default as TravelTourSimilar } from './TravelTourSimilar';
 export { default as TravelTourGuideInfo } from './TravelTourGuideInfo';
 export { default as Overview } from './overview';
+export { default as OverviewAuction } from './overviewAuction';
