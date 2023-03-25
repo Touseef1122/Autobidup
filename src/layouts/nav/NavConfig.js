@@ -35,7 +35,7 @@ export const PageLinks = [
     subheader: 'Store',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
     items: [
-      { title: 'Car Care', path: '/travel/carRentals/MakeReservation' },
+      { title: 'Car Care', path: '/travel/carRentals/carcare' },
       { title: 'Led/Lighting Items', path: '/travel/carRentals/viewModifyCancel' },
       { title: 'Interior', path: '/travel/carRentals/getReciept' },
       { title: 'Performance', path: '/travel/carRentals/preCheck' },

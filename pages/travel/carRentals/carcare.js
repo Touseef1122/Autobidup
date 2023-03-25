@@ -23,8 +23,8 @@ import { styled } from '@mui/material/styles';
 import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
-import Loader from '../UsedCars/Loader';
-import ChatButton from '../ChatButton';
+import Loader from '../../travel/UsedCars/Loader';
+import ChatButton from '../../travel/ChatButton';
 
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
