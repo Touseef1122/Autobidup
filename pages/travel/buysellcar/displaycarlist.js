@@ -20,7 +20,8 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs,Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
+import { Caritemlist,  Contactinfo } from '../../../src/sections/@travel/displaymaincar';
+// import { Carousel } from '../../../src/sections/@travel/displaymaincar/carousel';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 
