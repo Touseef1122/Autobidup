@@ -36,10 +36,10 @@ export const PageLinks = [
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_marketing.jpg',
     items: [
       { title: 'Car Care', path: '/travel/carRentals/carcare' },
-      { title: 'Led/Lighting Items', path: '/travel/carRentals/viewModifyCancel' },
-      { title: 'Interior', path: '/travel/carRentals/getReciept' },
-      { title: 'Performance', path: '/travel/carRentals/preCheck' },
-      { title: 'Gadgets', path: '/travel/carRentals/PopularRentalCars' },
+      { title: 'Led/Lighting Items', path: '/travel/carRentals/Led/LightingItems' },
+      { title: 'Interior', path: '/travel/carRentals/Interior' },
+      { title: 'Performance', path: '/travel/carRentals/Performance' },
+      { title: 'Gadgets', path: '/travel/carRentals/Gadgets' },
     ],
   },
   {

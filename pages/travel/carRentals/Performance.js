@@ -233,7 +233,7 @@ export default function Displaycarlist({ posts }) {
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
           <Typography variant="h2" mb="20px" textAlign={'center'}>
-            Car Care Items
+          Performance
           </Typography>
 
           <Stack direction={{ xs: 'column', sm: 'row' }}>
