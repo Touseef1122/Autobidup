@@ -30,7 +30,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
   },
   [theme.breakpoints.up('md')]: {
     maxWidth: '50%',
-    padding: theme.spacing(3, 10),
+    padding: theme.spacing(1, 10),
   },
 }));
 const ScrollStyle = styled('div')(({ theme }) => ({
@@ -54,12 +54,12 @@ export default function RegisterCoverPage() {
                   textAlign: { xs: 'center' },
                 }}
               >
-                <Typography variant="h3" paragraph>
+                <Typography variant="h3" paragraph >
                   Sign Up
                 </Typography>
               </Stack>
               <Registerform />
-              <Typography variant="body2" mt={1} sx={{ color: 'text.secondary' }}>
+              <Typography variant="body2" mt={0.5} sx={{ color: 'text.secondary' }}>
                 Already have an account?
                 <NextLink href={Routes.loginCover} passHref>
                   <Link variant="subtitle2" color="#CE9A00">
