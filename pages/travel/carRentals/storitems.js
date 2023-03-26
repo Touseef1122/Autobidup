@@ -72,8 +72,6 @@ export default function Caritemlist({ item }) {
               <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.type} </Typography>
             </Stack>
             <Typography variant="h4" color="#CE9A00"> PKR {value.price}</Typography>
-          {/* </Grid>
-        </Grid> */}
       </Box>
     ))}
   </Box>
