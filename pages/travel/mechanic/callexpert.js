@@ -37,12 +37,14 @@ var items = [
     heading: 'Lisa Zen',
     city: 'Lahore',
     years: '2',
+    path: '/travel/mechanic/profile'
   },
   {
     image: img2,
     heading: 'Lisa Zen',
     city: 'Lahore',
     years: '2',
+    path: '/travel/mechanic/profile'
   }
 ];
 export default function Callexpert({ posts }) {

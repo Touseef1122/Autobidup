@@ -47,15 +47,10 @@ export const PageLinks = [
     subheader: 'Mechanic',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_travel.jpg',
     items: [
-      { title: 'Request a Mechanic', path: '/travel/UsedCars/cityToCity' },
-      { title: 'Call an Expert', path: '/travel/UsedCars/cityToCity' },
-      // { title: 'Contact', path: '/travel/UsedCars/cityToCity' },
+      { title: 'Request a Mechanic', path: '/travel/mechanic/requestmechanic' },
+      { title: 'Call an Expert', path: '/travel/mechanic/callexpert' },
+      { title: 'Mechanic', path: '/travel/UsedCars/cityToCity' },
       // { title: 'Testimonials', path: '/travel/UsedCars/cityToCity' },
-      // { title: 'Location', path: '/travel/UsedCars/cityToCity' },
-      // { title: 'Blog Posts', path: Routes.travel.posts },
-      // { title: 'Blog Post', path: Routes.travel.post('post-01') },
-      // { title: 'About', path: Routes.travel.about },
-      // { title: 'Contact', path: Routes.travel.contact },
     ],
   },
 
