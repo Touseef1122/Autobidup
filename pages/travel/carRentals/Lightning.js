@@ -20,9 +20,11 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
+import { Caritem, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import a from '../../../src/assets/images/SI1.JPg'
+import b from '../../../src/assets/images/SI2.JPg'
+import c from '../../../src/assets/images/SI3.JPg'
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 
@@ -39,170 +41,134 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 const items = [
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
   },
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
   },
+  {
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
+  },
+  {
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
+  },
+  {
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
+  },
+  {
+    image: a,
+    heading: 'LG',
+    city: 'Lighter',
+    price: '200 RS',
+  },
+  {
+    image: b,
+    heading: 'LG',
+    city: 'Charger',
+    price: '800 RS',
+  },
+  {
+    image: c,
+    heading: 'LG',
+    city: 'Mobile Holder',
+    price: '300 RS',
+  },
+  
+  
+  
 ];
 
 import Pagination from '@mui/material/Pagination';
@@ -233,7 +199,7 @@ export default function Displaycarlist({ posts }) {
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
           <Typography variant="h2" mb="20px" textAlign={'center'}>
-          Led/Lighting Items
+           Led/Lightning Items
           </Typography>
 
           <Stack direction={{ xs: 'column', sm: 'row' }}>
@@ -242,12 +208,12 @@ export default function Displaycarlist({ posts }) {
             <Box
               sx={{
                 flexGrow: 1,
-                
+
                 // pl: { md: 8 },
                 // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}
             >
-              <Caritemlist item={items} />
+              <Caritem item={items} />
             </Box>
           </Stack>
           {/* tours={services} icons={summary} services={service}  */}
