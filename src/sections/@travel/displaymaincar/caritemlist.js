@@ -41,7 +41,7 @@ export default function Caritemlist({ item }) {
   const router = useRouter();
 
   return (
-    <Box   onClick={() => router.push('/travel/buysellcar/displaycardetails')}
+    <Box  mt={2} onClick={() => router.push('/travel/buysellcar/displaycardetails')}
      sx={{
       // textAlign: 'center',
       display: 'grid',

@@ -89,37 +89,59 @@ export default function Finishstep5({ tours, icons, services }) {
             mr: { md: '5%' },
           }}
         >
-          <Typography variant="h3" textAlign="left" pb="5px">
-            Title for Bid
-          </Typography>
           <Controller
-                name="phone"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div>
-                     <Typography fontSize="14px" fontWeight="bold">
-                      Title *
-                    </Typography>
-                    <TextField
-                      {...field}
-                      fullWidth
-                      placeholder="Enter Title"
-                      error={Boolean(error)}
-                      helperText={error?.message}
-                      sx={{ width: { xs: '100%', sm: '50%' } }}
-                    />
-                    <Typography variant="body3" fontWeight="bold">
-                      Enter a proper title for bidding of your car 
-                    </Typography>
-                  </div>
-                )}
+            name="phone"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <div>
+                <Typography variant='h3' fontWeight="bold">
+                  Title *
+                </Typography>
+                <TextField
+                  {...field}
+                  fullWidth
+                  placeholder="Enter Title"
+                  error={Boolean(error)}
+                  helperText={error?.message}
+                  sx={{ width: { xs: '100%', sm: '60%' } }}
+                />
+                <Typography variant="body3" fontWeight="bold">
+                  Enter a proper title for bidding of your car
+                </Typography>
+              </div>
+            )}
+          />
+          <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
+            <div>
+              <Typography variant='h4' fontWeight="bold">
+                Price *
+              </Typography>
+              <TextField
+                fullWidth
+                placeholder="Enter Price"
+                sx={{ width: '100%' }}
               />
-          <Typography variant="h3" textAlign="left" pb="5px" mt={2}>
-            Vehicle Description
-          </Typography>
+              <Typography variant="body3" fontWeight="bold">
+                Enter a starting bid price for your car
+              </Typography>
+            </div>
+            <div>
+              <Typography variant='h4' fontWeight="bold">
+                Date *
+              </Typography>
+              <TextField
+                fullWidth
+                placeholder="Enter Date"
+                sx={{ width: { xs: '100%'} }}
+              />
+              <Typography variant="body3" fontWeight="bold">
+                Enter date for live bidding of your car
+              </Typography>
+            </div>
+          </Stack>
 
           <Box>
-            <Typography fontSize="14px" fontWeight="bold">
+            <Typography variant='h3' fontWeight="bold">
               Description
             </Typography>
             <TextField
@@ -133,7 +155,7 @@ export default function Finishstep5({ tours, icons, services }) {
             <Typography variant="body3" textAlign="right" fontWeight="bold">
               Word limit is 1000
             </Typography>
-          </Box>        
+          </Box>
         </Box>
         {/* </form> */}
       </Container>
