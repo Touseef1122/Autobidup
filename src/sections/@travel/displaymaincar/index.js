@@ -7,3 +7,4 @@ export { default as SellerinfoAuction } from './sellerinfoAuction';
 export { default as Caritemlist } from './caritemlist';
 export { default as TravelTourDetailsAuction} from './TravelTourDetailsAuction'
 export { default as ContactinfoAuction } from './contactinfoAuction';
+export { default as Caritem } from './caritems';

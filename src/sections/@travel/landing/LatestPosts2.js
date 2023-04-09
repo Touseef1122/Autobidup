@@ -101,10 +101,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
         Feacher Cars{' '}
       </Typography>
 
-      <Box
-        onClick={() => router.push('/travel/buysellcar/displaycardetails')}
-        sx={{ position: 'relative' }}
-      >
+      <Box sx={{ position: 'relative' }}>
         <CarouselArrows
           onNext={handleNext}
           onPrevious={handlePrevious}
@@ -126,7 +123,10 @@ export default function BlogMarketingLatestPosts({ posts }) {
                 {/* <CarsCard item={items} /> */}
                 <Box>
                   {items.map((value) => (
-                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
+                    <Box
+                      onClick={() => router.push('/travel/buysellcar/displaycardetails')}
+                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                    >
                       {/* <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
                       <Image

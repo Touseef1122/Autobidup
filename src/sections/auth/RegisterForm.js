@@ -25,7 +25,7 @@ import { Iconify } from '../../components';
 // ----------------------------------------------------------------------
 
 const FormSchema = Yup.object().shape({
-  fullName: Yup.string()
+  fullname: Yup.string()
     .required('Full name is required')
     .min(6, 'Mininum 6 characters')
     .max(15, 'Maximum 15 characters'),
@@ -33,7 +33,7 @@ const FormSchema = Yup.object().shape({
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password should be of minimum 6 characters length'),
-  confirmPassword: Yup.string()
+  confirmpassword: Yup.string()
     .required('Confirm password is required')
     .oneOf([Yup.ref('password')], "Password's not match"),
   phone: Yup.string()
@@ -72,65 +72,30 @@ export default function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={2}>
-        <Controller
-          name="fullName"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextField
-              {...field}
-              label="Company name"
-              error={Boolean(error)}
-              helperText={error?.message}
-              sx={{ padding: '0px' }}
-            />
-          )}
-        />
-        <Country
-          control={control}
-          name="billingAddress.fullAddress"
-          label="Country"
-          sx={{ backgroundColor: '#f0f2f7' }}
-          id="select"
-          select
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextField
-              {...field}
-              fullWidth
-              label="Company Street Address"
-              error={Boolean(error)}
-              helperText={error?.message}
-            />
-          )}
-        />
-
+      <Stack spacing={1}>
+       
         <Stack direction="row" spacing={2}>
           <Controller
-            name="email"
+            name="fullname"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
                 fullWidth
-                label="First name"
+                label="First Name"
                 error={Boolean(error)}
                 helperText={error?.message}
               />
             )}
           />
           <Controller
-            name="email"
+            name="lastname"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
                 fullWidth
-                label="Last name"
+                label="Last Name"
                 error={Boolean(error)}
                 helperText={error?.message}
               />
@@ -139,25 +104,25 @@ export default function RegisterForm() {
         </Stack>
 
         <Controller
-          name="email"
+          name="phone"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
               {...field}
               fullWidth
-              label="Mobile number"
+              label="Mobile Number"
               error={Boolean(error)}
               helperText={error?.message}
             />
           )}
         />
         <Controller
-          name="fullName"
+          name="email"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
               {...field}
-              label="Work email"
+              label="Email"
               error={Boolean(error)}
               helperText={error?.message}
             />
@@ -188,7 +153,7 @@ export default function RegisterForm() {
         />
 
         <Controller
-          name="confirmPassword"
+          name="confirmpassword"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
@@ -209,22 +174,10 @@ export default function RegisterForm() {
             />
           )}
         />
-        <Controller
-          name="phone"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <TextField
-              {...field}
-              fullWidth
-              label="Mobile Number"
-              error={Boolean(error)}
-              helperText={error?.message}
-            />
-          )}
-        />
+        
 
         <FormControlLabel
-          sx={{ marginTop: '30px !important' }}
+          sx={{ marginTop: '10px !important' }}
           control={<Checkbox size="small" />}
           label={
             <Typography variant="caption" align="center" sx={{ color: 'text.secondary' }}>
@@ -247,7 +200,7 @@ export default function RegisterForm() {
           type="submit"
           variant="contained"
           sx={{
-            marginTop: '30px !important',
+            marginTop: '5px !important',
           }}
           loading={isSubmitting}
           // sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}

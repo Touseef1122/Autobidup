@@ -53,6 +53,14 @@ const SUMMARY = [
     image: a,
     path:"/travel/AutoBidup/Jaguar"
   },
+  
+  {
+    id: '6',
+    title: 'Lighter',
+    title2: ' Rs 7000',
+    image: a,
+    path:"/travel/AutoBidup/Jaguar"
+  },
   {
     id: '7',
     title: 'Car Mobile ',
@@ -60,12 +68,10 @@ const SUMMARY = [
     image: c,
     path:"/travel/AutoBidup/MercedesEClass"
   },
-  {
-    id: '8',
-    title: 'Charer',
-    title2: 'Rs 2000',
-    image: b,
-    path:"/travel/AutoBidup/MercedesVClass"
-  },
 ];
 export default SUMMARY;
+
+
+
+
+

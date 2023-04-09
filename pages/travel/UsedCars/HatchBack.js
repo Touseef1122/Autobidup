@@ -235,33 +235,7 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             HatchBack{' '}
           </Typography>
-          {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{ mb: 4 }}
-        /> */}
-          {/* <Grid container justifyContent="center">
-          <Grid item xs={12} sm={3}>
-            
-          </Grid>
-          <Grid item xs={12} sm={9}>
-            <Caritemlist item={items} />
-          </Grid>
-        </Grid> */}
-          {/* <Button
-              color="inherit"
-              variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-              onClick={handleMobileOpen}
-              sx={{
-                display: { md: 'none' },
-              }}
-            >
-              Filters
-        </Button> */}
+
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 

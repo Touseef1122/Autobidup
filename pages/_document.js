@@ -32,8 +32,8 @@ export default class MyDocument extends Document {
           <meta name="author" content="ZONE UI Kit" />
 
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon/rf-logo.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/rf-logo.png" />
+          <link rel="icon" type="image/png"  href="/favicon/LogoAutoBidUp.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/.png" />
 
           {/* Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
