@@ -27,6 +27,7 @@ import b from '../../../src/assets/images/SI2.JPg'
 import c from '../../../src/assets/images/SI3.JPg'
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
+import Filter from './ItemFilter.js';
 
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
@@ -201,7 +202,7 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             Car Care Items
           </Typography>
-
+           <Filter/>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 

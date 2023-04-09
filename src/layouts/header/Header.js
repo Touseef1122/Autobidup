@@ -104,7 +104,7 @@ export default function Header({ transparent }) {
             </Link> */}
               </Box>
             </Stack>
-            <Stack spacing={4} direction="row">
+            <Stack spacing={4} direction="row" sx={{ display: 'flex', alignItems: 'center' }}>
               {isDesktop && (
                 <>
                   <NavDesktop

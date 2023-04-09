@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useState } from 'react';
+import Filter from './ItemFilter.js';
+
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
@@ -22,9 +24,9 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 import { styled } from '@mui/material/styles';
 import { Caritem, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import a from '../../../src/assets/images/SI1.JPg'
-import b from '../../../src/assets/images/SI2.JPg'
-import c from '../../../src/assets/images/SI3.JPg'
+import a from '../../../src/assets/images/SI1.JPg';
+import b from '../../../src/assets/images/SI2.JPg';
+import c from '../../../src/assets/images/SI3.JPg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 
@@ -202,8 +204,6 @@ const items = [
     city: 'Mobile Holder',
     price: '300 RS',
   },
-  
-  
 ];
 
 import Pagination from '@mui/material/Pagination';
@@ -234,16 +234,16 @@ export default function Displaycarlist({ posts }) {
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
           <Typography variant="h2" mb="20px" textAlign={'center'}>
-          Gadgets
+            Gadgets
           </Typography>
-
+          <Filter />
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 
             <Box
               sx={{
                 flexGrow: 1,
-                
+
                 // pl: { md: 8 },
                 // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}

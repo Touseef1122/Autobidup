@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
+
 import {
   Image,
   Iconify,
@@ -38,7 +39,9 @@ CareerLandingHotCategories.propTypes = {
 };
 
 export default function CareerLandingHotCategories({ categories }) {
+  
   return (
+    
     <RootStyle>
       <Container>
         <Typography variant="h3" sx={{ textAlign: 'center' }}>
@@ -58,7 +61,7 @@ export default function CareerLandingHotCategories({ categories }) {
           }}
         >
           {categories?.map((category) => (
-            <CategoryItem key={category.id} category={category} />
+            <CategoryItem key={category.id}  category={category} onClick={category.onClick}  />
           ))}
         </Box>
 
@@ -88,6 +91,7 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+
   return (
     <Paper
       variant="outlined"
@@ -135,7 +139,7 @@ function CategoryItem({ category }) {
             justifyContent: 'center',
           }}
         >
-          <SvgIconStyle src={category.icon} sx={{ width: 48, height: 48 }} />
+          <Image src={category.img.src} sx={{ width: 58, height: 48 ,filter: 'grayscale(100%)'}} />
         </Box>
 
         <TextMaxLine variant="h6" line={1}>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
-
+import Filter from './ItemFilter.js';
 // @mui
 import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 // utils
@@ -22,9 +22,9 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 import { styled } from '@mui/material/styles';
 import { Caritem, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import a from '../../../src/assets/images/SI1.JPg'
-import b from '../../../src/assets/images/SI2.JPg'
-import c from '../../../src/assets/images/SI3.JPg'
+import a from '../../../src/assets/images/SI1.JPg';
+import b from '../../../src/assets/images/SI2.JPg';
+import c from '../../../src/assets/images/SI3.JPg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 
@@ -202,8 +202,6 @@ const items = [
     city: 'Mobile Holder',
     price: '300 RS',
   },
-  
-  
 ];
 
 import Pagination from '@mui/material/Pagination';
@@ -234,16 +232,16 @@ export default function Displaycarlist({ posts }) {
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '6%' }, mb: 6, overflowX: 'hidden' }}>
           <Typography variant="h2" mb="20px" textAlign={'center'}>
-          Performance
+            Performance
           </Typography>
-
+          <Filter />
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 
             <Box
               sx={{
                 flexGrow: 1,
-                
+
                 // pl: { md: 8 },
                 // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}

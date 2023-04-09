@@ -46,8 +46,7 @@ export const navConfig = [
   },
   {
     title: 'Mechanic',
-    path: Routes.pages,
-    children: [PageLinks[2]],
+    path: '/travel/mechanic/mechaniclanding',
   },
   {
     title: 'Auction',

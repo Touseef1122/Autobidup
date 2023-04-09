@@ -25,7 +25,7 @@ const RootLinkStyle = styled(Link, {
     '&:before': {
       top: 0,
       width: 6,
-      height: 6,
+      height: 3,
       bottom: 0,
       left: -14,
       content: '""',

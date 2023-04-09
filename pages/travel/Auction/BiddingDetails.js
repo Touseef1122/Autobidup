@@ -12,6 +12,7 @@ import { useRequest } from '../../../src/hooks';
 import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
+import Loader from '../UsedCars/Loader.js';
 // components
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
@@ -46,7 +47,7 @@ export default function Displaycardetails({ posts }) {
 
   return (
     <Page title="Auction">
-      {/* <Loader/> */}
+      <Loader/>
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         {/* <Breadcrumbs
           links={[

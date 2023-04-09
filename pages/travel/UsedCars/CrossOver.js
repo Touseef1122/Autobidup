@@ -206,6 +206,7 @@ const items = [
 ];
 
 import Pagination from '@mui/material/Pagination';
+import Filter from './Filter.js';
 
 export default function Displaycarlist({ posts }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -235,6 +236,8 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
           CrossOver{' '}
           </Typography>
+          <Filter/>
+
           {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },

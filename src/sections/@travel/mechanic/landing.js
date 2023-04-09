@@ -32,33 +32,69 @@ export default function Landing() {
 
   return (
     <>
-      <Image
-        alt="hero"
-        src={landing.src}
-        marginTop={{xs:"10%"}}
-      />
+      <Image alt="hero" src={landing.src} marginTop={{ xs: '10%' }} />
       <Grid container spacing={2} justifyContent="center" mt={3} mb={6}>
-        <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center" >
-          <Box ml={{xs:2,sm:4}} mr={{xs:2,sm:4}} sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 1, textAlign:"center", width:"100%", height:"100%" }}>
+        <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
+          <Box
+            ml={{ xs: 2, sm: 4 }}
+            mr={{ xs: 2, sm: 4 }}
+            sx={{
+              p: 3,
+              boxShadow: '0 1px 10px #64666B',
+              borderRadius: '8px',
+              m: 1,
+              textAlign: 'center',
+              width: '100%',
+              height: '100%',
+            }}
+          >
             {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
-            <Typography variant="h4" pb={2}>Mechanic</Typography>
-            <Typography variant="body1" pb={4}>Request a mechnaic by filling out the form.</Typography>
+            <Typography variant="h4" pb={2}>
+              Mechanic
+            </Typography>
+            <Typography variant="body1" pb={4}>
+              Request a mechnaic by filling out the form.
+            </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/buysellcar/displaycardetails')}
-              sx={{ border:"1px solid #FFBE00 ",color:"#FFBE00", '&:hover': { backgroundColor: '#FFBE00', color:"white" } }}
+              onClick={() => router.push('/travel/mechanic/requestmechanic')}
+              sx={{
+                border: '1px solid #FFBE00 ',
+                color: '#FFBE00',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+              }}
             >
               Request
             </LoadingButton>
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
-          <Box ml={{xs:2,sm:4}} mr={{xs:2,sm:4}} sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 1,textAlign:"center",width:"100%",height:"100%"  }}>
+          <Box
+            ml={{ xs: 2, sm: 4 }}
+            mr={{ xs: 2, sm: 4 }}
+            sx={{
+              p: 3,
+              boxShadow: '0 1px 10px #64666B',
+              borderRadius: '8px',
+              m: 1,
+              textAlign: 'center',
+              width: '100%',
+              height: '100%',
+            }}
+          >
             {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
-            <Typography variant="h4" pb={2}>Expert</Typography>
-            <Typography variant="body1" pb={4}>Contact with an expert for getting any car information.</Typography>
+            <Typography variant="h4" pb={2}>
+              Expert
+            </Typography>
+            <Typography variant="body1" pb={4}>
+              Contact with an expert for getting any car information.
+            </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/buysellcar/displaycardetails')}
-              sx={{ border:"1px solid #FFBE00 ",color:"#FFBE00", '&:hover': { backgroundColor: '#FFBE00', color:"white" } }}
+              onClick={() => router.push('/travel/mechanic/callexpert')}
+              sx={{
+                border: '1px solid #FFBE00 ',
+                color: '#FFBE00',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+              }}
             >
               Contact
             </LoadingButton>
