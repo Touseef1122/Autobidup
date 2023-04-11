@@ -115,39 +115,6 @@ export default function Header({ transparent }) {
                 </>
               )}
 
-              {/* <Box sx={{ flexGrow: 1 }} /> */}
-
-              {/* <Searchbar
-              sx={{
-                ...(isScrolling && { color: 'text.primary' }),
-              }}
-            /> */}
-
-              {/* <LanguagePopover
-                sx={{
-                  ...(isScrolling && { color: 'text.primary' }),
-                }}
-              /> */}
-
-              {/* <Divider orientation="vertical" sx={{ height: 24 }} /> */}
-
-              {/* {isDesktop && ( */}
-              {/* <Stack direction="row" spacing={1} > */}
-              {/* <NextLink href={Routes.registerIllustration} prefetch={false} passHref>
-                  <Button
-                    color="inherit"
-                    variant="outlined"
-                    sx={{
-                      ...(transparent && {
-                        color: 'common.white',
-                      }),
-                      ...(isScrolling && isLight && { color: 'text.primary' }),
-                    }}
-                  >
-                    Join Us
-                  </Button>
-                </NextLink> */}
-
               <Button variant="contained" onClick={() => router.push('/travel/buysellcar/form')} target="_blank" rel="noopener">
                   Post an Add
               </Button>
