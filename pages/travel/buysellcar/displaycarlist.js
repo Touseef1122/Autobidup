@@ -170,6 +170,7 @@ export default function Displaycarlist({ posts }) {
               Filters
         </Button> */}
         <Stack spacing={6} direction={{ xs: 'column', sm: 'row' }}>
+
           <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
 
           <Box
@@ -182,7 +183,6 @@ export default function Displaycarlist({ posts }) {
             <Caritemlist item={items} />
           </Box>
         </Stack>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );
