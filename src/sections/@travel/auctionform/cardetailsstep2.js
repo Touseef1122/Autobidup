@@ -137,25 +137,6 @@ export default function Enterpricestep2({ tours, icons, services }) {
               )}
             />
           </Stack>
-          <Controller
-            name="Request"
-            control={control}
-            render={({ field, fieldState: { error } }) => (
-              <TextField
-                id="outlined-select-currency"
-                select
-                label="Year"
-                sx={{ width: { xs: '100%' }, mt: 3 }}
-                size="small"
-              >
-                {currencie.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            )}
-          />
           <Stack spacing={2} mt={3} direction={{ xs: 'column', sm: 'row' }}>
             <Controller
               name="Request"
@@ -254,15 +235,15 @@ export default function Enterpricestep2({ tours, icons, services }) {
               <FormControlLabel value="modified" control={<Radio />} label="Modified" />
             </RadioGroup>
             <Typography fontSize="16px" fontWeight="bold">
-              Are there any significant mechanical or cosmetic flaws that we should know about?
+              Does your car fall under vintage or modified?
             </Typography>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="yes"
               name="radio-buttons-group"
             >
-              <FormControlLabel value="yes" control={<Radio />} label="Yes " />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
+              <FormControlLabel value="modified" control={<Radio />} label="Modified " />
+              <FormControlLabel value="vintage" control={<Radio />} label="Vintage" />
             </RadioGroup>
 
             <Typography fontSize="16px" fontWeight="bold">

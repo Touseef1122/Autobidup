@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 // @mui
-import { Stack, Drawer, Box, Typography } from '@mui/material';
+import filterIcon from '@iconify/icons-carbon/filter';
+import { Iconify } from '../../../components';
+
+import { Stack, Drawer, Box, Typography ,Button} from '@mui/material';
 // config
 import { DRAWER_WIDTH, HEADER_DESKTOP_HEIGHT } from '../../../config';
 //
@@ -62,28 +65,19 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
           Make
         </Typography>
-        <Carfiltermake
-          filtermake={filters.filtermake}
-          onchangemake={handlechangemake}
-        />
+        <Carfiltermake filtermake={filters.filtermake} onchangemake={handlechangemake} />
       </section>
       <section>
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
           Price
         </Typography>
-        <Carfilterprice
-          filterprice={filters.filterprice}
-          onchangeprice={handlechangeprice}
-        />
+        <Carfilterprice filterprice={filters.filterprice} onchangeprice={handlechangeprice} />
       </section>
       <section>
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
           Year
         </Typography>
-        <Carfilteryear
-          filteryear={filters.filteryear}
-          onchangeyear={handlechangeyear}
-        />
+        <Carfilteryear filteryear={filters.filteryear} onchangeyear={handlechangeyear} />
       </section>
       <section>
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
@@ -94,6 +88,17 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
           onchangemileage={handlechangemileage}
         />
       </section>
+      <Button
+        color="inherit"
+        variant="contained"
+        // startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+        // // onClick={handleMobileOpen}
+        // sx={{
+        //   display: { md: 'none' },
+        // }}
+      >
+        Filters
+      </Button>
     </Stack>
   );
 

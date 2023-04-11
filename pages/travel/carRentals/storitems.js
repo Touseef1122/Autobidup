@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
-import { TextIconLabel, Iconify, Image } from '../../../components';
+import { Page,ErrorScreen } from '../../../src/components';
 import { Icon } from '@iconify/react';
 
 import {
@@ -18,62 +18,100 @@ import {
   Typography,
 } from '@mui/material';
 import { Overview } from '../tours';
+import { Caritemlist } from '../../../src/sections/@travel/displaymaincar';
+import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
+import Layout from '../../../src/layouts';
 
 //--------------------------------------------------------------
-const comments = [
+const items = [
   {
-    name: 'Ali Khan',
-    text: 'Does AC works?',
-    icon: userIcon,
-  },
-  {
-    name: 'Saim Asim',
-    text: 'Nice',
-    icon: userIcon,
-  },
-];
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },{
+    image: img1,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  }
+]
 
-Caritemlist.propTypes = {
-  item: PropTypes.array.isRequired,
-};
-
-export default function Caritemlist({ item }) {
+export default function Storeitem() {
   const router = useRouter();
 
   return (
-    <Box   onClick={() => router.push('/travel/buysellcar/displaycardetails')}
-     sx={{
-      // textAlign: 'center',
-      display: 'grid',
-      gap: { xs: 8, md: 3 },
-      gridTemplateColumns: {
-        xs: 'repeat(1, 1fr)',
-        sm: 'repeat(2, 1fr)',
-        md: 'repeat(3, 1fr)',
-      },
-      // py: 5,
-      pl: { sm: 2 },
-      pr: { sm: 2 },
-    }}>
-    {item.map((value) => (
-      <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px',mb:1 }}>
-     
-            <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} />
+    <Page title="Acessories Store Items">
+      {/* <Loader/> */}
+      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb: 6, overflowX: 'hidden' }}>
+        {/* <Breadcrumbs
+        links={[
+          { name: 'Home', href: '/' },
+          { name: 'Components', href: '/components' },
+          { name: 'Breadcrumbs' },
+        ]}
+        sx={{ mb: 4 }}
+      /> */}
+        {/* <Grid container justifyContent="center">
+        <Grid item xs={12} sm={3}>
           
-            <Typography variant="h4">{value.heading}</Typography>
-            <Typography variant="h6">{value.city}</Typography>
-            <Stack direction="row" justifyContent='space-between'>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.year}</Typography>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.distance}</Typography>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.fuel}</Typography>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.cc}</Typography>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.type} </Typography>
-            </Stack>
-            <Typography variant="h4" color="#CE9A00"> PKR {value.price}</Typography>
-      </Box>
-    ))}
-  </Box>
+        </Grid>
+        <Grid item xs={12} sm={9}>
+          <Caritemlist item={items} />
+        </Grid>
+      </Grid> */}
+        {/* <Button
+            color="inherit"
+            variant="contained"
+            startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+            onClick={handleMobileOpen}
+            sx={{
+              display: { md: 'none' },
+            }}
+          >
+            Filters
+      </Button> */}
+        <Stack direction={{ xs: 'column', sm: 'row' }}>
+          {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              // pl: { md: 8 },
+              // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+            }}
+          >
+            <Caritemlist item={items} />
+          </Box>
+        </Stack>
+        {/* tours={services} icons={summary} services={service}  */}
+      </Container>
+    </Page>
   );
+}
+Storeitem.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
+
+// ----------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      posts: getAllPosts(),
+    },
+  };
 }
 
 // ----------------------------------------------------------------------
