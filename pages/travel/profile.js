@@ -52,7 +52,8 @@ export default function Profile() {
               }}
             >
               <Grid xs={12} md={3}>
-                <Main />
+                {/* <Main /> */}
+                
               </Grid>
               <Grid xs={12} md={9}>
                 <Details />

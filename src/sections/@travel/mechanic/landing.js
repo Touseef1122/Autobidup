@@ -35,7 +35,7 @@ export default function Landing() {
       <Image
         alt="hero"
         src={landing.src}
-        marginTop={{xs:"10%"}}
+        marginTop={{xs:"10%",sm:"0"}}
       />
       <Grid container spacing={2} justifyContent="center" mt={3} mb={6}>
         <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center" >

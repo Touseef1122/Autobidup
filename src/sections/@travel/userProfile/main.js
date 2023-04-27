@@ -22,14 +22,14 @@ export default function Main() {
           <ListItem sx={{ backgroundColor: '#ff4c00', color: 'white'}}>
             {/* <Link href="#first-section"> */}
               <ListItemButton component="a" href="#first-section">
-                <ListItemText primary="Contact Details" />
+                <ListItemText primary="Profile" />
               </ListItemButton>
             {/* </Link> */}
           </ListItem>
           <ListItem sx={boxSX}>
             {/* <Link href="#second-section"> */}
               <ListItemButton component="a" href="#second-section">
-                <ListItemText primary="Change Password" />
+                <ListItemText primary="My Ads" />
               </ListItemButton>
             {/* </Link> */}
           </ListItem>
@@ -37,14 +37,14 @@ export default function Main() {
           <ListItem sx={boxSX}>
             {/* <Link href="#third-section"> */}
               <ListItemButton component="a" href="#third-section">
-                <ListItemText primary="Payment" />
+                <ListItemText primary="My Bids" />
               </ListItemButton>
             {/* </Link> */}
           </ListItem>
           <ListItem sx={boxSX}>
             {/* <Link href="#fourth-section"> */}
               <ListItemButton component="a" href='#fourth-section'>
-                <ListItemText primary="Notifications" />
+                <ListItemText primary="My Messages" />
               </ListItemButton>
             {/* </Link> */}
           </ListItem>
