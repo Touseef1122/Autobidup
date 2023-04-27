@@ -25,7 +25,7 @@ import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
-
+import Filter from './Filter.js';
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -235,6 +235,8 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             MiniVan{' '}
           </Typography>
+          <Filter/>
+
           {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },

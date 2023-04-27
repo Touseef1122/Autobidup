@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Button, Grid, Box, Container, Stepper, Step, StepButton } from '@mui/material';
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { useRef,useState,useEffect } from 'react';
 // import { CarouselDots, CarouselArrows } from '../../../src/components';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
@@ -13,26 +13,28 @@ import image4 from '../../../Assets/Images/JeepWrangler.jpg';
 import { display } from '@mui/system';
 import ContactinfoAuction from './contactinfoAuction';
 
+
+
 //--------------------------------------------------------------
 
-const images = [
-  {
-    image: image1,
-    title: 'Ford Minivan',
-  },
-  {
-    image: image2,
-    title: 'Ford Mustang',
-  },
-  {
-    image: image3,
-    title: 'Ford Transit',
-  },
-  {
-    image: image4,
-    title: 'Jeep Wrangler',
-  },
-];
+// const images = [
+//   {
+//     image: image1,
+//     title: 'Ford Minivan',
+//   },
+//   {
+//     image: image2,
+//     title: 'Ford Mustang',
+//   },
+//   {
+//     image: image3,
+//     title: 'Ford Transit',
+//   },
+//   {
+//     image: image4,
+//     title: 'Jeep Wrangler',
+//   },
+// ];
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -42,82 +44,69 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function CarouselAuction() {
-  const carouselRef = useRef(null);
-  const theme = useTheme();
+export default function Carousel() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [images, setImages] = useState([]);
 
-  const carouselSettings = {
-    dots: true,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    rtl: Boolean(theme.direction === 'rtl'),
-    ...CarouselDots({
-      sx: {
-        mt: 6,
-        color: '#CE9A00',
-        
-      },
-    }),
-  };
+  useEffect(() => {
+      const imageNames = [];
+      for (let i = 1; i <= 36; i++) {
+          const imageName = `car-${i}.PNG`;
+          imageNames.push(imageName);
+      }
+      const importedImages = imageNames.map(async (imageName) => {
+          const {default: image} = await import(`/public/car-images/${imageName}`);
+          return image;
+      });
 
-  const handlePrevious = () => {
-    carouselRef.current?.slickPrev();
-  };
+      Promise.all(importedImages).then((images) => setImages(images));
+  }, []);
 
-  const handleNext = () => {
-    carouselRef.current?.slickNext();
-  };
+  useEffect(() => {
+      console.clear()
+      console.log(images)
+
+      const interval = setInterval(() => {
+          setCurrentImageIndex((prevIndex) =>
+              prevIndex === images.length - 1 ? 0 : prevIndex + 1
+          );
+      }, 300);
+      return () => clearInterval(interval);
+  }, [images]);
 
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} sm={7}>
-        {/* <Container sx={{ position: 'relative' }}> */}
-          <Box
+      <Grid container spacing={8} >
+          <Grid item xs={12} sm={7}>
+        <div style={{}}>
+        {images && images.length !== 0 &&
+                  <div className={"animate-card"}>
+                      <img
+                          key={currentImageIndex}
+                          src={images[currentImageIndex]?.src}
+                          alt={`Image ${currentImageIndex}`}
+                          style={{
+                              opacity: currentImageIndex === 0 ? 1 : 0,
+                          }}
+                      />
+                      <img
+                          key={currentImageIndex + 1}
+                          src={images[(currentImageIndex + 1) % images.length].src}
+                          alt={`Image ${(currentImageIndex + 1) % images.length}`}
+                          style={{
+                              opacity: currentImageIndex === 0 ? 0 : 1,
+                          }}
+                      />
+                  </div>
+              }
+          
+        </div>
+        
             
-            position= 'relative'
-            justifyContent="center"
-            sx={{
-              boxShadow: '0 12px 28px #64666b',
-              borderRadius: '8px',
-              // marginTop: '20%',
-              width: '100%',
-              // height: '50vh',
-              
-            }}
-          >
-            <CarouselArrows
-              onNext={handleNext}
-              onPrevious={handlePrevious}
-              sx={{
-                '& .arrow': {
-                  mt: -5,
-                  // '&.left': { left: 10 },
-                  // '&.right': { right: 20 },
-                },
-              }}
-            >
-              <Slider ref={carouselRef} {...carouselSettings}>
-                {images.map((img) => (
-                  <Box key={img} mt={2}>
-                    <Image
-                      alt={img.title}
-                      src={img.image.src}
-                      sx={{ width: '100%', height: '100%' }}
-                    />
-                  </Box>
-                ))}
-              </Slider>
-            </CarouselArrows>
-          </Box>
-        {/* </Container> */}
+          </Grid>
+          <Grid item xs={12} sm={5}>
+              <ContactinfoAuction/>
+          </Grid>
       </Grid>
-      <Grid item xs={12} sm={5} >
-        <ContactinfoAuction />
-      </Grid>
-    </Grid>
   );
 }
 

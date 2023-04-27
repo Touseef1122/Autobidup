@@ -34,7 +34,7 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-
+import Filter from './Filter.js';
 // ----------------------------------------------------------------------
 
 const items = [
@@ -235,7 +235,7 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             HatchBack{' '}
           </Typography>
-
+          <Filter/>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-
+import Loader from '../UsedCars/Loader.js';
 // @mui
 import { Container, Grid, Box, Stack, Button } from '@mui/material';
 // utils
@@ -65,7 +65,7 @@ export default function Callexpert({ posts }) {
   //   }
   return (
     <Page title="Call Expert | AutoBidUp">
-      {/* <Loader/> */}
+      <Loader/>
       <Box sx={{ mt: '10%', overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[

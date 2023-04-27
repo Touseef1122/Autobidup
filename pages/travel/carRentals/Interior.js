@@ -5,6 +5,7 @@ import { useState } from 'react';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
+import Filter from './ItemFilter.js';
 
 // @mui
 import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
@@ -236,7 +237,7 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
           Interior Items
           </Typography>
-
+<Filter/>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
 

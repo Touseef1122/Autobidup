@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
+import Loader from '../UsedCars/Loader.js';
 
 // @mui
 import { Container, Grid, Box,Stack,Button } from '@mui/material';
@@ -47,7 +48,7 @@ export default function Requestmechanic({ posts }) {
 //   }
   return (
     <Page title="Request Mechanic | AutoBidUp">
-      {/* <Loader/> */}
+      <Loader/>
       <Box sx={{ mt:"10%", overflowX:"hidden" }}>
         {/* <Breadcrumbs
           links={[

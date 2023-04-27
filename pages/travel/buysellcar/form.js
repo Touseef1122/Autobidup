@@ -14,6 +14,8 @@ import { _testimonials } from '../../../_data/mock';
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen } from '../../../src/components';
+import Loader from '../UsedCars/Loader.js';
+
 // sections
 import { styled } from '@mui/material/styles';
 import Formsellbuy from '../../../src/sections/@travel/sellbuy/formsellbuy';
@@ -41,7 +43,7 @@ export default function Form({ posts }) {
 
   return (
     <Page title="Selling Form">
-      {/* <Loader/> */}
+      <Loader/>
       <Box sx={{ position: 'relative',marginTop:"5%" }}>
         <Formsellbuy />
         {/* tours={services} icons={summary} services={service}  */}

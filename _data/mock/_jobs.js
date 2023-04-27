@@ -66,7 +66,7 @@ const NAMES = [
 ];
 
 const ICONS = [
-      //  {icon:HB}
+  //  {icon:HB}
   // 'material-symbols:wifi',
   'https://zone-assets-api.vercel.app/assets/icons/ic_marketing_bullhorn.svg',
   'https://zone-assets-api.vercel.app/assets/icons/ic_creativity.svg',
@@ -74,8 +74,8 @@ const ICONS = [
   'https://zone-assets-api.vercel.app/assets/icons/ic_chip.svg',
   'https://zone-assets-api.vercel.app/assets/icons/ic_chip.svg',
   // {image: HB,}
-    //  'HB'
-
+  //  'HB'
+ 
 ];
 
 export const _jobsByCategories = [...Array(5)].map((_, index) => ({

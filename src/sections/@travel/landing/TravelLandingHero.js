@@ -174,6 +174,8 @@ function ContentItem({ tour }) {
         position: 'relative',
         color: 'common.white',
         justifyContent: 'flex-end',
+        position: 'relative',
+        zIndex: '1',
       }}
     >
       {/* Content */}
@@ -183,7 +185,7 @@ function ContentItem({ tour }) {
           zIndex: 9,
           py: 0,
           position: { md: 'absolute' },
-          width: '100%'
+          width: '100%',
         }}
       >
         {/* <Typography variant="overline" sx={{ color: 'secondary.main', mb: 5 }}>
@@ -235,7 +237,7 @@ function ContentItem({ tour }) {
             sx={{
               textAlign: 'left',
               width: { xs: '100%', sm: '440px' },
-              marginLeft: {sm:'auto'},
+              marginLeft: { sm: 'auto' },
               marginTop: { xs: '30%', sm: '-50px' },
               height: 'auto',
               backgroundColor: 'white',
@@ -302,8 +304,10 @@ function ContentItem({ tour }) {
           alt="hero"
           src={landing.src}
           sx={{
-            height: { xs: 1,md: '600px' },
+            height: { xs: 1, md: '600px' },
             bgcolor: 'transparent',
+            maxWidth: 'none',
+            maxHeight: 'none',
           }}
         />
       </Box>

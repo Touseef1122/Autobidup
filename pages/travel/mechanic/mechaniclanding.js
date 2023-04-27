@@ -17,7 +17,7 @@ import { styled } from '@mui/material/styles';
 import Landing from '../../../src/sections/@travel/mechanic/landing';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
-
+import Loader from '../UsedCars/Loader.js';
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -47,7 +47,7 @@ export default function Mechaniclanding({ posts }) {
 //   }
   return (
     <Page title="Mechanic Module | AutoBidUp">
-      {/* <Loader/> */}
+      <Loader/>
       <Box sx={{ mb:6, overflowX:"hidden" }}>
         {/* <Breadcrumbs
           links={[
