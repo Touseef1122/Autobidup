@@ -7,30 +7,14 @@ import { getAllPosts } from '../src/utils/get-mardown/travel/posts';
 import { useRequest } from '../src/hooks';
 // _data
 import { _testimonials, _jobsByCategories, _jobsByCompanies } from '../_data/mock';
-
 // layouts
 import Layout from '../src/layouts';
-import NewsletterCareer from '../src/sections/newsletter/NewsletterCareer';
 // components
 import { Page, ErrorScreen } from '../src/components';
 
 // sections
-import { NewsletterTravel } from '../src/sections/newsletter';
-import { TestimonialsTravel } from '../src/sections/testimonials';
-import { BlogTravelLandingLatestPosts } from '../src/sections/blog';
-import { DownloadAppCareer } from '../src/sections/download-app';
 import { styled } from '@mui/material/styles';
-import {
-  TravelLandingHero,
-  TravelLandingCompanies,
-  TravelLandingSummary,
-  TravelTourBarFilters,
-  TravelLandingIntroduce,
-  TravelLandingToursByCity,
-  TravelLandingTourFeatured,
-  TravelLandingFavoriteDestinations,
-  Text,
-} from '../src/sections/@travel';
+import { TravelLandingHero, TravelLandingIntroduce } from '../src/sections/@travel';
 
 import TravelLandingTourFeaturedRoutes from '../src/sections/@travel/landing/TravelLandingTourFeaturedRoutes';
 import TravelLandingIntroduceOurServices from '../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
@@ -51,7 +35,6 @@ import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
 import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
 import { useRouter } from 'next/router';
 
-
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -59,11 +42,7 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-
 // ----------------------------------------------------------------------
-const text = [{ title: 'Your global chauffeur service' }];
-
-
 TravelLandingPage.propTypes = {
   posts: PropTypes.array.isRequired,
 };
@@ -94,47 +73,17 @@ export default function TravelLandingPage({ posts }) {
     <Page title="Home">
       <Loader />
       <Box sx={{ position: 'relative' }}>
-        {/* <Text tour={text}/> */}
         <TravelLandingHero tours={tours.slice(0, 5)} />
         <ChatButton />
-
-        {/* <Container
-          sx={{
-            left: 0,
-            right: 0,
-            bottom: 0,
-            mx: 'auto',
-            position: { md: 'absolute' },
-          }}
-        >
-          <TravelTourBarFilters onDark sx={{ py: { xs: 3, md: 8 } }} />
-        </Container> */}
       </Box>
-
-      {/* <TravelLandingSummary /> */}
-
-      {/* <TravelLandingFavoriteDestinations tours={tours.slice(0, 4)} /> */}
       <TravelLandingIntroduceOurServices />
       <TravelLandingIntroduce categories={vehicalType} />
-
-      {/* <RootStyle> */}
-      {/* <TravelLandingTourFeatured tours={bestcities.slice(0,4)}/> */}
       <LatestPosts posts={bestcities} />
       <TravelLandingfull />
 
       <LatestPosts2 posts={bestcities} />
-      {/* <TravelLandingTourFeaturedRoutes tours={bestroutes} /> */}
-      {/* </RootStyle> */}
       <TravelLandingCars />
-      {/* <TravelLandingToursByCity tours={tours.slice(0, 8)} /> */}
-
-      {/* <BlogTravelLandingLatestPosts posts={posts.slice(0, 4)} /> */}
-
-      {/* <TestimonialsTravel testimonials={_testimonials} /> */}
-
-      {/* <NewsletterTravel /> */}
     </Page>
-
   );
 }
 
@@ -231,31 +180,31 @@ const vehicalType = [
     id: 1,
     name: 'HatchBack',
     img: HBI,
-    onClick: () => router.push('/travel/UsedCars/HatchBack')
+    onClick: () => router.push('/travel/UsedCars/HatchBack'),
   },
   {
     id: 2,
     name: 'Sedan',
     img: SEI,
-    onClick: () => router.push('/travel/UsedCars/Sedan')
+    onClick: () => router.push('/travel/UsedCars/Sedan'),
   },
   {
     id: 3,
     name: 'SUV',
     img: SUVI,
-    onClick: () => router.push('/travel/UsedCars/Suv/')
+    onClick: () => router.push('/travel/UsedCars/Suv/'),
   },
   {
     id: 4,
     name: 'CrossOver',
     img: COI,
-    onClick: () => router.push('/travel/UsedCars/CrossOver/')
+    onClick: () => router.push('/travel/UsedCars/CrossOver/'),
   },
   {
     id: 5,
     name: 'MiniVan',
     img: MVI,
-    onClick: () => router.push('/travel/UsedCars/MiniVan/')
+    onClick: () => router.push('/travel/UsedCars/MiniVan/'),
   },
 ];
 // ----------------------------------------------------------------------
