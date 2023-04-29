@@ -12,6 +12,7 @@ import Step4 from '../sellbuy/imagesstep4';
 import Step5 from '../sellbuy/finishstep5';
 
 //--------------------------------------------------------------
+
 const steps = [
   'Car Information',
   'Enter Price',
@@ -71,8 +72,20 @@ export default function Formsellbuy() {
   };
 
   return (
-    <Container>
-      <Box sx={{ width: '100%', mt: 15 }}>
+    <Container sx={{ padding: '5%' }}>
+      <Box
+        sx={{
+          width: '100%',
+          p: { sm: 4 },
+          pt: { xs: 2 },
+          pb: { xs: 2 },
+          borderRadius: '20px',
+          background: 'rgba(254,254,254,0.93)',
+        }}
+      >
+        <Typography variant="h2" textAlign="center" mb={4}>
+         Sell Used Car Form
+        </Typography>
         <Stepper
           alternativeLabel
           activeStep={activeStep}
@@ -98,8 +111,9 @@ export default function Formsellbuy() {
                 '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
                   fill: 'white', // circle's number (ACTIVE)
                 },
-            }}
-              completed={completed[index]}>
+              }}
+              completed={completed[index]}
+            >
               <StepButton color="yellow">{label}</StepButton>
             </Step>
           ))}

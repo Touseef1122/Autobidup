@@ -19,6 +19,8 @@ import Loader from '../UsedCars/Loader.js';
 // sections
 import { styled } from '@mui/material/styles';
 import Formsellbuy from '../../../src/sections/@travel/sellbuy/formsellbuy';
+import sell from '../../../src/Assets/Images/sellBg.webp';
+
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -29,7 +31,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
+const styling={
+  backgroundImage: `url(${sell.src})`,
+  width: '100%',
+  height: '100%',
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}
 // Registerchauffeur.propTypes = {
 //   posts: PropTypes.array.isRequired,
 // };
@@ -44,7 +52,7 @@ export default function Form({ posts }) {
   return (
     <Page title="Selling Form">
       <Loader/>
-      <Box sx={{ position: 'relative',marginTop:"5%" }}>
+      <Box sx={{ position: 'relative',marginTop:{xs: '18%', sm: '10%',md:"8%"},overflowX: 'hidden' }} style={styling}>
         <Formsellbuy />
         {/* tours={services} icons={summary} services={service}  */}
       </Box>

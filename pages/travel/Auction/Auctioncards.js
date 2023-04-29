@@ -3,27 +3,18 @@ import { m } from 'framer-motion';
 import Slider from 'react-slick';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import {
-  Box,
-  Link,
-  Stack,
-  Avatar,
-  Container,
-  Typography,
-  Modal,
-  FormControl,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  TextField,
-  Button,
-  DatePicker,
-} from '@mui/material';
-import { useState } from 'react';
+import { Box, Link, Stack, Avatar, Container, Typography ,Modal, FormControl,TextField, Button} from '@mui/material';
+// routes
+// import Routes from '../../../routes';
+// utils
+// import { fDate } from '../../../utils/formatTime';
+// components
+// import { varHover, varTranHover } from '../../../components/animate';
 import {
   Image,
   BgOverlay,
@@ -152,10 +143,9 @@ export default function BlogMarketingLatestPosts({ posts }) {
               >
                 <Box>
                   {items.map((value) => (
-                    <Box
-                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
-                      onClick={handleOpen}
-                    >
+                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
+                      {/* <Grid container spacing={4} justifyContent="center" >
+          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
                       <Typography variant="h4" color={'red'}>
                         {value.time}
                       </Typography>

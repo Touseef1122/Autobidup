@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { Item, Order } from '../accessories';
 import img1 from '../../../Assets/Images/FordMinivan.jpg';
+import { Icon } from '@iconify/react';
 
 import {
   FormControlLabel,
@@ -23,7 +24,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
 } from '@mui/material';
 // ----------------------------------------------------------------------
 
@@ -65,18 +66,18 @@ export default function Shippinginfo() {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', textAlign: 'left' }}>
-        <Typography variant="h3" mb={3}>
+        <Typography variant="h3" mb={3} mt={6}>
           Payment
         </Typography>
-        <Grid container justifyContent="center">
-          <Grid item xs={12} sm={6}>
+        <Grid spacing={2} container justifyContent="center">
+          <Grid item xs={12} md={6}>
             <Typography variant="h4">Select Payment Method</Typography>
             <FormControl>
               {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
-              <FormControlLabel value="cash" control={<Radio />} label="Cash on Delivery" />
+              <FormControlLabel value="cash" control={<Radio checked />} label="Cash on Delivery" />
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <Typography variant="h4">Cart</Typography>
             <Item item={items} />
             <Typography variant="h4">Order Summary</Typography>
@@ -101,9 +102,11 @@ export default function Shippinginfo() {
             </Stack>
             <Button
               sx={{
+                width: '100%',
                 float: 'right',
                 backgroundColor: '#212B36',
                 color: 'white',
+                mb: 4,
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
               onClick={handleClickOpen}
@@ -115,16 +118,32 @@ export default function Shippinginfo() {
               onClose={handleClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
-              sx={{textAlign:"center"}}
+              sx={{ textAlign: 'center' }}
             >
-              <DialogTitle id="alert-dialog-title">{"Your Order has been placed."}</DialogTitle>
+              <DialogTitle id="alert-dialog-title" variant="h2" color="#CE9A00">
+                {' '}
+                <Icon icon="il:heart" />
+              </DialogTitle>
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText variant="h3" id="alert-dialog-description" color="black">
                   Thank You!
+                </DialogContentText>
+                <DialogContentText variant="h5" id="alert-dialog-description" color="black" mt={2}>
+                  Your Order has been placed.
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose}>Close</Button>
+                <Button
+                  textAlign="center"
+                  onClick={handleClose}
+                  sx={{
+                    backgroundColor: '#212B36',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                  }}
+                >
+                  Close
+                </Button>
               </DialogActions>
             </Dialog>
           </Grid>

@@ -130,6 +130,7 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
           sx: {
             pt: 5,
             px: 3,
+            pb:5,
             width: DRAWER_WIDTH,
           },
         }}

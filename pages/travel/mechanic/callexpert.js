@@ -6,22 +6,23 @@ import { useState } from 'react';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import Loader from '../UsedCars/Loader.js';
 // @mui
-import { Container, Grid, Box, Stack, Button } from '@mui/material';
+import { Typography, Grid, Box, Stack, Card, CardMedia } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
+import { Page, Breadcrumbs, Image } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import Expertcall from '../../../src/sections/@travel/mechanic/expertcall';
 import Call from '../../../src/sections/@travel/mechanic/callno';
-import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/expert1.jpg';
 import img2 from '../../../src/Assets/Images/expert2.jpg';
-import img3 from '../../../src/Assets/Images/expert3.jpg';
+import expert from '../../../src/Assets/Images/expert.jpg';
+import Pagination from '@mui/material/Pagination';
+import ChatButton from '../ChatButton';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
+import { BusinessOverview } from '../../../src/sections/@travel';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -37,36 +38,39 @@ var items = [
     heading: 'Lisa Zen',
     city: 'Lahore',
     years: '2',
-    path: '/travel/mechanic/profile'
+    path: '/travel/mechanic/profile',
   },
   {
     image: img2,
     heading: 'Lisa Zen',
     city: 'Lahore',
     years: '2',
-    path: '/travel/mechanic/profile'
-  }
+    path: '/travel/mechanic/profile',
+  },
 ];
 export default function Callexpert({ posts }) {
-  //   const [mobileOpen, setMobileOpen] = useState(false);
-
-  //   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-  //   const handleMobileOpen = () => {
-  //     setMobileOpen(true);
-  //   };
-
-  //   const handleMobileClose = () => {
-  //     setMobileOpen(false);
-  //   };
-
-  //   if (error) {
-  //     return <ErrorScreen />;
-  //   }
+  const [page, setPage] = useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
   return (
     <Page title="Call Expert | AutoBidUp">
-      <Loader/>
-      <Box sx={{ mt: '10%', overflowX: 'hidden' }}>
+      <Loader />
+      <Box sx={{ overflowX: 'hidden' }}>
+        <Box pt="8%" sx={{ maxWidth: '100%', position: 'relative', textAlign: 'center' }}>
+          <Image src={expert.src} sx={{ height: '60vh' }} />
+          <Typography
+           fontSize="40px" fontWeight="bold" p="25px" color="black"
+            sx={{
+              position: 'absolute',
+              top: '80%',
+              left: ' 50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            Our Experts at your Service
+          </Typography>
+        </Box>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
@@ -77,11 +81,30 @@ export default function Callexpert({ posts }) {
         /> */}
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={4}>
-            <Call/>
+            <Call />
           </Grid>
           <Grid item xs={12} sm={8}>
             <Expertcall item={items} />
           </Grid>
+          <Stack spacing={2} justifyContent={'center'} alignItems={'center'}>
+              {/* <Typography >Page: {page}</Typography> */}
+              <Pagination
+                sx={{
+                  fontSize: '4.5rem',
+                  fontWeight: 'bold',
+                  '& .MuiPaginationItem-root': {
+                    padding: '12px',
+                  },
+                  '& .MuiButtonBase-root': {
+                    minWidth: '50px',
+                    minHeight: '50px',
+                  },
+                }}
+                count={5}
+                page={page}
+                onChange={handleChange}
+              />
+            </Stack>
         </Grid>
       </Box>
     </Page>

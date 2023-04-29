@@ -33,7 +33,7 @@ export const PageLinks = [
     items: [
       { title: 'Request a Mechanic', path: '/travel/mechanic/requestmechanic' },
       { title: 'Call an Expert', path: '/travel/mechanic/callexpert' },
-      { title: 'Mechanic', path: '/travel/UsedCars/cityToCity' },
+      // { title: 'Mechanic', path: '/travel/mechanic/mechaniclanding' },
       // { title: 'Testimonials', path: '/travel/UsedCars/cityToCity' },
     ],
   },
@@ -52,7 +52,7 @@ export const navConfig = [
   },
   {
     title: 'Auction',
-    path: '/travel/Auction/Auction',
+    path: '/travel/auction/Auction',
   },
   { title: 'Login', path: '/auth/logincover' },
 ];

@@ -158,7 +158,7 @@ export default function Displaycarlist({ posts }) {
           <Grid item xs={12} sm={9}>
             <Caritemlist item={items} />
           </Grid>
-        </Grid>
+        </Grid> */}
          <Button
               color="inherit"
               variant="contained"
@@ -169,7 +169,7 @@ export default function Displaycarlist({ posts }) {
               }}
             >
               Filters
-        </Button> */}
+        </Button>
         <Stack spacing={6} direction={{ xs: 'column', sm: 'row' }}>
 
           <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />

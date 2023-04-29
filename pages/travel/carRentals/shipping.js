@@ -7,7 +7,7 @@ import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
 
 // @mui
-import { Container, Grid, Box, Stack, Button } from '@mui/material';
+import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
@@ -23,7 +23,7 @@ import { styled } from '@mui/material/styles';
 // import { Cartt } from '../../../src/sections/@travel/accessories/cartitem';
 import Shippinginfo from '../../../src/sections/@travel/accessories/shippinginfo';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import sell from '../../../src/Assets/Images/shipping.jpg';
 
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
@@ -33,14 +33,20 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-
+const styling={
+  backgroundImage: `url(${sell.src})`,
+  width: '100%',
+  height: {xs:"150vh",sm:'100vh'},
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}
 // ----------------------------------------------------------------------
 
 export default function Shipping() {
   return (
-    <Page title="Shipping Address | Accessories">
+    <Page title="Shipping Address | Accessories" style={styling}>
       {/* <Loader/> */}
-      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb: 6, overflowX: 'hidden' }}>
+      <Container sx={{ marginTop: { xs: '18%', sm: '13%',md:"10%" }, overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
@@ -49,7 +55,7 @@ export default function Shipping() {
           ]}
           sx={{ mb: 4 }}
         /> */}
-
+        <Typography variant='h2' color="black" pt="3%">Shipping Information</Typography>
         <Shippinginfo/>
         {/* tours={services} icons={summary} services={service}  */}
       </Container>

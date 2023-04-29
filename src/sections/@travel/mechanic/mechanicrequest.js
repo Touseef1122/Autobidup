@@ -7,6 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 
 import { useRouter } from 'next/router';
+import { styled } from '@mui/material/styles';
+
 // icons
 // import Image from 'next/image';
 // @mui
@@ -25,11 +27,18 @@ import {
 } from '@mui/material';
 // utils
 // @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
+import mechanic from '../../../assets/images/mechanicBg.jpg';
 // // components
 // import { Image, TextMaxLine } from '../../../components';
 // import { TravelLandingfull } from '../landing';
 // import { LoadingButton } from '@mui/lab';
+const styling={
+  backgroundImage: `url(${mechanic.src})`,
+  width: '100%',
+  height: '100%',
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}
 // ----------------------------------------------------------------------
 const currencie = [
   {
@@ -87,6 +96,8 @@ const check = [
     label: 'Power door locks',
   },
 ];
+
+
 Mechanicrequest.propTypes = {
   services: PropTypes.array.isRequired,
   icons: PropTypes.array.isRequired,
@@ -125,157 +136,131 @@ export default function Mechanicrequest({ tours, icons, services }) {
   };
   const [show, setShow] = useState(false);
   return (
-    <Box sx={{ width: '100%', overflowX: 'hidden' }}>
-      <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Box
-            sx={{
-              ml: { md: '5%' },
-              mr: { md: '35%' },
-            }}
-          >
-            <Typography variant="h3" textAlign="left" pb="5px">
-              Request A Mechanic Form
-            </Typography>
-            <Typography variant="h6" textAlign="left" mb={6}>
-              Fill out the form to request a mechanic
-            </Typography>
-            <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Name *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    sx={{ width: { xs: '100%' }, mb: 2 }}
-                  />
-                )}
-              />
-              <Controller
-                name="phone"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Phone *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    sx={{ width: { xs: '100%' }, mb: 2 }}
-                  />
-                )}
-              />
-            </Stack>
-            <Controller
-              name="address "
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Address *"
-                  error={Boolean(error)}
-                  helperText={error?.message}
-                  sx={{ width: { xs: '100%' }, mb: 2 }}
-                />
-              )}
-            />
-            <Stack spacing={2} mt={1} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="location"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Location *"
-                    sx={{ width: '100%' }}
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-
-              <Controller
-                name="Request"
-                sx={{ width: '100%' }}
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Mileage(KM) *"
-                    sx={{ width: '100%' }}
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-            </Stack>
-            <Typography variant="h6" textAlign="left" mb={1} mt={5}>
-              Services
-            </Typography>
+      <Box sx={{ width: '100%', overflowX: 'hidden' }} style={styling}>
+        <Container
+          sx={{
+            width: '100%',
+            padding: '20px',
+            textAlign: 'left',
+            
+          }}
+        >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               sx={{
-                display: 'grid',
-                gap: { xs: 1, md: 1 },
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  sm: 'repeat(2, 1fr)',
-                  md: 'repeat(5, 1fr)',
-                },
-                justifyContent: 'space-evenly',
+                // ml: { md: '1%' },
+                // mr: { md: '45%' },
+                p:{xs:"5%",sm:'7%'},
+                pb: {xs: '20%',sm:"7%"},
+                borderRadius: '20px',
+                background: 'rgba(254,254,254,0.93)', 
               }}
             >
-              {check.map((option) => (
-                <FormControlLabel
-                  sx={{}}
-                  control={<Checkbox name={option.label} sx={{}} />}
-                  label={option.label}
+              <Typography variant="h3" textAlign="center" pb="5px">
+                Request A Mechanic Form
+              </Typography>
+              <Typography variant="h6" textAlign="left" mb={6}>
+                Fill out the form to request a mechanic
+              </Typography>
+              <Stack spacing={2} mb={2} direction={{ xs: 'column', sm: 'row' }}>
+                <Controller
+                  name="name"                 
+                  control={control}   
+                  
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      variant="filled"
+                      label="Name *"
+                      error={Boolean(error)}
+                      helperText={error?.message}
+                      sx={{ width: { xs: '100%' }}}
+                    />
+                    
+                  )}
                 />
-              ))}
+                <Controller
+                  name="phone"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      {...field}
+                      fullWidth
+                      label="Phone *"
+                      error={Boolean(error)}
+                      helperText={error?.message}
+                      sx={{ width: { xs: '100%' }, mb: 2 }}
+                    />
+                  )}
+                />
+              </Stack>
+              <Controller
+                name="address "
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Address *"
+                    error={Boolean(error)}
+                    helperText={error?.message}
+                    sx={{ width: { xs: '100%' }, mb: 2 }}
+                  />
+                )}
+              />
+              <Stack spacing={2} mt={1} direction={{ xs: 'column', sm: 'row' }}>
+                <Controller
+                  name="location"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <TextField
+                      id="outlined-select-currency"
+                      select
+                      label="Location *"
+                      sx={{ width: '100%' }}
+                    >
+                      {currencie.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  )}
+                />
+
+              
+              </Stack>
+              
+              <Typography variant="h6" textAlign="left" mt={5}>
+                Description
+              </Typography>
+              <TextField
+                id="filled-multiline-static"
+                sx={{ width: '100%', mt: 2 }}
+                multiline
+                rows={4}
+                placeholder="Describe your problem..."
+                variant="filled"
+              />
+              <LoadingButton
+                sx={{
+                  mt: 1,
+                  // mb: 4,
+                  float: 'right',
+                  width: '20%',
+                  // border: '1px solid #FFBE00 ',
+                  backgroundColor: 'black',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                }}
+              >
+                Submit
+              </LoadingButton>
             </Box>
-            <Typography variant="h6" textAlign="left" mt={5}>
-              Description
-            </Typography>
-            <TextField
-              id="filled-multiline-static"
-              sx={{ width: '100%', mt: 2 }}
-              multiline
-              rows={4}
-              placeholder="Describe your problem..."
-              variant="filled"
-            />
-            <LoadingButton
-              sx={{
-                mt: 4,
-                mb: 4,
-                float: 'right',
-                width:"20%",
-                // border: '1px solid #FFBE00 ',
-                backgroundColor: 'black',
-                color: 'white',
-                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-              }}
-            >
-              Submit
-            </LoadingButton>
-          </Box>
-        </form>
-      </Container>
-    </Box>
+          </form>
+        </Container>
+      </Box>
   );
 }
 

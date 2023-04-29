@@ -23,7 +23,7 @@ import { styled } from '@mui/material/styles';
 // import { Cartt } from '../../../src/sections/@travel/accessories/cartitem';
 import Amount from '../../../src/sections/@travel/accessories/amount';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import sell from '../../../src/Assets/Images/payment.jpg';
 
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
@@ -33,14 +33,20 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-
+const styling={
+  backgroundImage: `url(${sell.src})`,
+  width: '100%',
+  height: {xs:'200vh'},
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+}
 // ----------------------------------------------------------------------
 
 export default function Payment() {
   return (
-    <Page title="Shipping Address | Accessories">
+    <Page title="Shipping Address | Accessories" style={styling} >
       {/* <Loader/> */}
-      <Container sx={{ marginTop: { xs: '33%', sm: '15%' }, mb: 6, overflowX: 'hidden' }}>
+      <Container sx={{ marginTop: {  xs: '18%', sm: '10%',md:"8%" }, overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
