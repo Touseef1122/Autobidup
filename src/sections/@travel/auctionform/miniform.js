@@ -15,9 +15,9 @@ import Step5 from '../sellbuy/finishstep5';
 const steps = [
   'Consignor Information',
   'Car Details',
-//   'Features & Specifications',
-//   'Upload Images',
-//   'Finish',
+  //   'Features & Specifications',
+  //   'Upload Images',
+  //   'Finish',
 ];
 
 export default function Miniform() {
@@ -71,14 +71,27 @@ export default function Miniform() {
   };
 
   return (
-    <Container>
-      <Box sx={{ width: '100%', mt: 15 }}>
+    <Container sx={{ padding: '5%' }}>
+      <Box
+        sx={{
+          width: '100%',
+          mt: 5,
+          p: { sm: 4 },
+          pt: { xs: 2 },
+          pb: { xs: 2 },
+          borderRadius: '20px',
+          background: 'rgba(254,254,254,0.93)',
+        }}
+      >
+        <Typography variant="h2" textAlign="center" mb={4}>
+          Consignor Form
+        </Typography>
         <Stepper
           alternativeLabel
           activeStep={activeStep}
           sx={{
             display: {
-              xs: 'none',
+              xs: 'flex',
               sm: 'flex',
               md: 'flex',
             },
@@ -98,8 +111,9 @@ export default function Miniform() {
                 '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
                   fill: 'white', // circle's number (ACTIVE)
                 },
-            }}
-              completed={completed[index]}>
+              }}
+              completed={completed[index]}
+            >
               <StepButton color="yellow">{label}</StepButton>
             </Step>
           ))}

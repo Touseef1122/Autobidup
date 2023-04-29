@@ -21,40 +21,10 @@ import { TextIconLabel, Iconify } from '../../../components';
 
 // ----------------------------------------------------------------------
 
-// TravelTourDetails.propTypes = {
-//   tour: PropTypes.shape({
-//     availableEnd: PropTypes.string,
-//     availableStart: PropTypes.string,
-//     description: PropTypes.string,
-//     duration: PropTypes.string,
-//     highlights: PropTypes.array,
-//     includes: PropTypes.array,
-//     languages: PropTypes.array,
-//     location: PropTypes.string,
-//     program: PropTypes.array,
-//     tourGuide: PropTypes.shape({
-//       name: PropTypes.string,
-//       phoneNumber: PropTypes.string,
-//     }),
-//   }),
-// };
 OverviewAuction.propTypes = {
   overviewAuction: PropTypes.array.isRequired,
 };
 export default function OverviewAuction({ overviewAuction }) {
-  // const {
-  //   program,
-  //   includes,
-  //   location,
-  //   duration,
-  //   tourGuide,
-  //   languages,
-  //   highlights,
-  //   description,
-  //   availableEnd,
-  //   availableStart,
-  // } = tour;
-
   return (
     <section>
       {overviewAuction?.map((value) => (      

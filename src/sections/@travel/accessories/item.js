@@ -39,16 +39,10 @@ export default function Item({ item }) {
   // const displayCounter = this.state.counter > 0;
 
   return (
-    <Box
-      mt={2}
-      // sx={{
-      //   pl: { sm: 2 },
-      //   pr: { sm: 2 },
-      // }}
-    >
+    <Box mt={2} mb={2} sx={{ boxShadow: '0 1px 10px #64666B', overflowY: 'scroll', height: '420px' }}>
       {item?.map((value) => (
-        <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
-          <Grid container spacing={4} justifyContent="center">
+        <Box sx={{ p: 3, borderRadius: '8px', mb: 1, background: 'white' }}>
+          <Grid container spacing={4} mb={2} justifyContent="center">
             <Grid item xs={12} sm={4} display="flex" alignItems="center">
               <Image
                 alt={value.title}
@@ -64,9 +58,7 @@ export default function Item({ item }) {
                   PKR {value.price}
                 </Typography>
               </Stack>
-              <Typography variant="h6">
-                Shipping PKR 100
-              </Typography>
+              <Typography variant="h6">Shipping PKR 100</Typography>
               <Stack spacing={2} mt={2} direction="row">
                 <Typography variant="h6">Quantity:</Typography>
 
@@ -108,18 +100,20 @@ export default function Item({ item }) {
                 </ButtonGroup>
               </Stack>
               <Button
-                  sx={{
-                    float: "right",
-                    backgroundColor:"#212B36",
-                    color: 'white',
-                    '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-                  }}
-                  onClick={() => router.push({})}
-                >
-                  Remove
-                </Button>
+                sx={{
+                  float: 'right',
+                  backgroundColor: '#212B36',
+                  color: 'white',
+                  mt:3,
+                  '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                }}
+                onClick={() => router.push({})}
+              >
+                Remove
+              </Button>
             </Grid>
           </Grid>
+          <Divider sx={{ backgroundColor: 'darkgrey' }} />
         </Box>
       ))}
     </Box>

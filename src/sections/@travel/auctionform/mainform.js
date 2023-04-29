@@ -13,8 +13,8 @@ import Step5 from '../auctionform/finishstep5';
 
 //--------------------------------------------------------------
 const steps = [
-//   'Car Information',
-//   'Enter Price',
+  //   'Car Information',
+  //   'Enter Price',
   'Features & Specifications',
   'Upload Images',
   'Finish',
@@ -71,14 +71,27 @@ export default function Mainform() {
   };
 
   return (
-    <Container>
-      <Box sx={{ width: '100%', mt: 15 }}>
+    <Container sx={{ padding: '5%' }}>
+      <Box
+        sx={{
+          width: '100%',
+          mt: 4,
+          p: { sm: 4 },
+          pt: { xs: 2 },
+          pb: { xs: 2 },
+          borderRadius: '20px',
+          background: 'rgba(254,254,254,0.93)',
+        }}
+      >
+        <Typography variant="h2" textAlign="center" mb={4}>
+          Car Information Form
+        </Typography>
         <Stepper
           alternativeLabel
           activeStep={activeStep}
           sx={{
             display: {
-              xs: 'none',
+              xs: 'flex',
               sm: 'flex',
               md: 'flex',
             },
@@ -98,8 +111,9 @@ export default function Mainform() {
                 '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
                   fill: 'white', // circle's number (ACTIVE)
                 },
-            }}
-              completed={completed[index]}>
+              }}
+              completed={completed[index]}
+            >
               <StepButton color="yellow">{label}</StepButton>
             </Step>
           ))}

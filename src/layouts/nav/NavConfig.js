@@ -30,7 +30,6 @@ export const PageLinks = [
     order: '4',
     subheader: 'Mechanic',
     cover: 'https://zone-assets-api.vercel.app/assets/images/menu/menu_travel.jpg',
-    path: '/travel/mechanic/mechaniclanding',
     items: [
       { title: 'Request a Mechanic', path: '/travel/mechanic/requestmechanic' },
       { title: 'Call an Expert', path: '/travel/mechanic/callexpert' },
@@ -53,7 +52,7 @@ export const navConfig = [
   },
   {
     title: 'Auction',
-    path: '/travel/Auction/Auction',
+    path: '/travel/auction/Auction',
   },
   { title: 'Login', path: '/auth/logincover' },
 ];

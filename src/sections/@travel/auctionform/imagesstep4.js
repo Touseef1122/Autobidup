@@ -71,7 +71,7 @@ export default function Imagesstep4({ tours, icons, services }) {
             mr: { md: '5%' },
           }}
         >
-          <Stack direction="row">
+          <Stack direction={{xs:"column",sm:"row"}}>
             <Typography variant="h3" textAlign="left" pb="5px">
               Upload Image *
             </Typography>
@@ -79,7 +79,7 @@ export default function Imagesstep4({ tours, icons, services }) {
               (max limit is 50MB per image)
             </Typography>
           </Stack>
-          <Stack direction="row" mt="10px" textAlign="center">
+          <Stack direction={{xs:"column",sm:"row"}} mt="10px" textAlign="center">
             <LoadingButton sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}} variant="contained" component="label" >
               Upload Images
               <input

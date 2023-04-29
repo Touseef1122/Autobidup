@@ -19,18 +19,6 @@ import {
 import { SellerinfoAuction, Sellerinfo } from './';
 
 //--------------------------------------------------------------
-// const comments = [
-//   {
-//     name: 'Ali Khan',
-//     text: 'Does AC works?',
-//     icon: userIcon,
-//   },
-//   {
-//     name: 'Saim Asim',
-//     text: 'Nice',
-//     icon: userIcon,
-//   },
-// ];
 
 export default function Contactinfo() {
   return (
@@ -50,57 +38,8 @@ export default function Contactinfo() {
       
       <SellerinfoAuction />
 
-      {/* <Container
-        sx={{
-          boxShadow: '0 1px 10px #64666b',
-          borderRadius: '8px',
-          width: 'auto',
-          justifyContent: 'center',
-          mt: 1,
-          p: 3,
-        }}
-      >
-        {comments?.map((content) => (
-          <Stack spacing={1} display="flex" alignItems="left">
-            <OverviewItem
-              key={content.name}
-              icon={<Iconify icon={content.icon} />}
-              name={content.name}
-              text={content.text}
-            />
-            <Divider />
-          </Stack>
-        ))}
-      </Container> */}
-
     </Box>
   );
 }
 
 // ----------------------------------------------------------------------
-// OverviewItem.propTypes = {
-//   icon: PropTypes.any,
-//   name: PropTypes.string,
-//   text: PropTypes.string,
-// };
-
-// function OverviewItem({ icon, name, text = '-' }) {
-//   return (
-//     <TextIconLabel
-//       spacing={2}
-//       alignItems="center"
-//       icon={icon}
-//       color="#CE9A00"
-//       vAlign="middle"
-//       value={
-//         <Stack>
-//           <Typography variant="h6" color="black" pt={1}>
-//             {name}
-//           </Typography>
-//           <Typography sx={{ color: 'text.secondary' }}>{text}</Typography>
-//         </Stack>
-//       }
-//       sx={{ '& svg': { width: 24, height: 30 } }}
-//     />
-//   );
-// }

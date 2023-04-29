@@ -49,7 +49,7 @@ export default function Requestmechanic({ posts }) {
   return (
     <Page title="Request Mechanic | AutoBidUp">
       <Loader/>
-      <Box sx={{ mt:"10%", overflowX:"hidden" }}>
+      <Box sx={{ mt:{xs:"20%", sm:"12%",lg:"8%"}, overflowX:"hidden" }}>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },

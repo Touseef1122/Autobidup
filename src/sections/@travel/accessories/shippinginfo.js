@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 import {
   FormControlLabel,
-  Checkbox,
+  Button,
   Typography,
   Stack,
   Box,
@@ -58,16 +58,27 @@ export default function Shippinginfo() {
   };
   const [show, setShow] = useState(false);
   return (
-    <Box sx={{ width: '100%', overflowX: 'hidden' }}>
-      <Container sx={{ width: '100%', textAlign: 'left' }}>
+    <Box sx={{ width: '100%', overflowX: 'hidden', padding: { xs: '2%', md: '4%' } }}>
+      <Container
+        sx={{
+          width: '100%',
+          textAlign: 'left',
+          p: { xs: 1, md: 4 },
+          pl: { sm: 4 },
+          pr: { sm: 4 },
+          borderRadius: '20px',
+          background: 'rgba(254,254,254,0.93)',
+        }}
+      >
         {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
             mr: { md: '5%' },
+            mb: '10px',
           }}
         >
-          <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
+          <Stack spacing={3} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
             <div>
               <Typography variant="h4" fontWeight="bold">
                 First Name *
@@ -75,7 +86,7 @@ export default function Shippinginfo() {
               <TextField
                 fullWidth
                 placeholder="Enter first name"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
             <div>
@@ -85,12 +96,12 @@ export default function Shippinginfo() {
               <TextField
                 fullWidth
                 placeholder="Enter last name"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
           </Stack>
 
-          <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
+          <Stack spacing={3} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
             <div>
               <Typography variant="h4" fontWeight="bold">
                 Address *
@@ -98,7 +109,7 @@ export default function Shippinginfo() {
               <TextField
                 fullWidth
                 placeholder="Enter address"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
             <div>
@@ -109,12 +120,12 @@ export default function Shippinginfo() {
                 fullWidth
                 disabled
                 value="Lahore"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
           </Stack>
 
-          <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
+          <Stack spacing={3} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
             <div>
               <Typography variant="h4" fontWeight="bold">
                 ZipCode
@@ -122,7 +133,7 @@ export default function Shippinginfo() {
               <TextField
                 fullWidth
                 placeholder="Enter zip code"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
             <div>
@@ -132,7 +143,7 @@ export default function Shippinginfo() {
               <TextField
                 fullWidth
                 placeholder="Enter phone number"
-                sx={{ width: { xs: '100%', sm: '20vw' } }}
+                sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
               />
             </div>
           </Stack>
@@ -143,8 +154,23 @@ export default function Shippinginfo() {
           <TextField
             fullWidth
             placeholder="Enter email"
-            sx={{ width: { xs: '100%', sm: '20vw' } }}
+            sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
           />
+          <br />
+          <Box sx={{display:"flex", alignItems:"center",justifyContent:"end"}}>
+            <Button
+              sx={{
+                size:"15px",
+                mt: 3,
+                backgroundColor: '#212B36',
+                color: 'white',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+              }}
+              onClick={() => router.push('/travel/carRentals/payment')}
+            >
+              Proceed to Payment
+            </Button>
+          </Box>
         </Box>
         {/* </form> */}
       </Container>

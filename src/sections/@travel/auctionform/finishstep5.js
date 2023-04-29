@@ -51,11 +51,8 @@ Finishstep5.propTypes = {
   tours: PropTypes.array.isRequired,
 };
 const FormSchema = Yup.object().shape({
-  phone: Yup.array()
-    .required()
-    .min(11, 'Phone number should of 11 digits')
-    .max(11, 'Phone number should of 11 digits'),
-  name: Yup.string().required('Name is required'),
+  title: Yup.string().required('Title is required'),
+  price: Yup.string().required('Price is required'),
 });
 
 export default function Finishstep5({ tours, icons, services }) {
@@ -90,20 +87,21 @@ export default function Finishstep5({ tours, icons, services }) {
           }}
         >
           <Controller
-            name="phone"
+            name="title"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <div>
-                <Typography variant='h3' fontWeight="bold">
+                {/* <Typography variant='h3' fontWeight="bold">
                   Title *
-                </Typography>
+                </Typography> */}
                 <TextField
                   {...field}
                   fullWidth
-                  placeholder="Enter Title"
+                  variant="filled"
+                  label="Title *"
                   error={Boolean(error)}
                   helperText={error?.message}
-                  sx={{ width: { xs: '100%', sm: '60%' } }}
+                  sx={{ width: { xs: '100%', sm: '80%' } }}
                 />
                 <Typography variant="body3" fontWeight="bold">
                   Enter a proper title for bidding of your car
@@ -113,35 +111,73 @@ export default function Finishstep5({ tours, icons, services }) {
           />
           <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
             <div>
-              <Typography variant='h4' fontWeight="bold">
+              {/* <Typography variant="h4" fontWeight="bold">
                 Price *
-              </Typography>
-              <TextField
-                fullWidth
-                placeholder="Enter Price"
-                sx={{ width: '100%' }}
+              </Typography> */}
+              <Controller
+                name="price"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <div>
+                    {/* <Typography variant='h3' fontWeight="bold">
+                  Title *
+                </Typography> */}
+                    <TextField
+                      {...field}
+                      fullWidth
+                      variant="filled"
+                      label="Price *"
+                      error={Boolean(error)}
+                      helperText={error?.message}
+                      sx={{ width: { xs: '100%', sm: '50vh' } }}
+                    />
+                    <Typography variant="body3" fontWeight="bold">
+                      Enter a starting bid price for your car
+                    </Typography>
+                  </div>
+                )}
               />
-              <Typography variant="body3" fontWeight="bold">
+              {/* <TextField fullWidth variant="filled" label="Price *" sx={{ width: '100%' }} /> */}
+              {/* <Typography variant="body3" fontWeight="bold">
                 Enter a starting bid price for your car
-              </Typography>
+              </Typography> */}
             </div>
             <div>
-              <Typography variant='h4' fontWeight="bold">
+              {/* <Typography variant="h4" fontWeight="bold">
                 Date *
-              </Typography>
-              <TextField
-                fullWidth
-                placeholder="Enter Date"
-                sx={{ width: { xs: '100%'} }}
+              </Typography> */}
+              <Controller
+                name="date"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <div>
+                    {/* <Typography variant='h3' fontWeight="bold">
+                  Title *
+                </Typography> */}
+                    <TextField
+                      {...field}
+                      fullWidth
+                      variant="filled"
+                      label="Date *"
+                      error={Boolean(error)}
+                      helperText={error?.message}
+                      sx={{ width: { xs: '100%', sm: '50vh' } }}
+                    />
+                    <Typography variant="body3" fontWeight="bold">
+                      Enter date for live bidding of your car
+                    </Typography>
+                  </div>
+                )}
               />
+              {/* <TextField fullWidth variant="filled" label="Date *" sx={{ width: '100%' }} />
               <Typography variant="body3" fontWeight="bold">
                 Enter date for live bidding of your car
-              </Typography>
+              </Typography> */}
             </div>
           </Stack>
 
           <Box>
-            <Typography variant='h3' fontWeight="bold">
+            <Typography variant="h3" fontWeight="bold">
               Description
             </Typography>
             <TextField

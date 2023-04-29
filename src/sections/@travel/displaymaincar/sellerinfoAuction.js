@@ -95,23 +95,10 @@ export default function Contactinfo() {
         height:'350px',
       }}
     >
-      {/* <Typography variant="h4" fontWeight="bold">Seller Information</Typography> */}
       <Typography variant="h4">Bidders List</Typography>
       <OverviewAuction overviewAuction={comments} />
 
       <Divider />
-      {/* <Stack direction="row" spacing={5} mt={2} display="flex" alignItems="center" justifyContent="center" color="#CE9A00"> */}
-      {/* <Box sx={{ p:1 , boxShadow: '0 1px 10px #64666b', borderRadius: '3px', display:"flex", alignItems:"center"}}>
-            <Icon icon="material-symbols:add-call" width="30"/>
-         </Box>
-         <Typography> : 03030000000 </Typography> */}
-      {/* <Box sx={{p:1 , boxShadow: '0 1px 10px #64666b', borderRadius: '3px', display:"flex", alignItems:"center"}}>
-            <Icon icon="mdi:envelope" width="30"/>
-         </Box>
-         <Box sx={{p:1 , boxShadow: '0 1px 10px #64666b', borderRadius: '3px', display:"flex", alignItems:"center"}}>
-            <Icon icon="ri:facebook-fill" width="30"/>
-         </Box> */}
-      {/* </Stack> */}
     </Box>
   );
 }

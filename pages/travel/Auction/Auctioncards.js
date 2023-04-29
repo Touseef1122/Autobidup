@@ -14,7 +14,13 @@ import { Box, Link, Stack, Avatar, Container, Typography } from '@mui/material';
 // import { fDate } from '../../../utils/formatTime';
 // components
 // import { varHover, varTranHover } from '../../../components/animate';
-import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../src/components';
+import {
+  Image,
+  BgOverlay,
+  CarouselArrows,
+  CarouselDots,
+  TextMaxLine,
+} from '../../../src/components';
 import { price } from '_data/mock/number';
 // import CarsCard from './AuctionCarList';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
@@ -92,7 +98,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
 
   return (
     // <RootStyle>
-    <Container >
+    <Container>
       <Typography
         variant="h3"
         paddingTop={'100px'}
@@ -103,9 +109,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
         Cars Available for Auction{' '}
       </Typography>
 
-      <Box
-        sx={{ position: 'relative' }}
-      >
+      <Box sx={{ position: 'relative' }}>
         <CarouselArrows
           onNext={handleNext}
           onPrevious={handlePrevious}
@@ -131,7 +135,9 @@ export default function BlogMarketingLatestPosts({ posts }) {
                     <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
                       {/* <Grid container spacing={4} justifyContent="center" >
           <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
-                                <Typography variant="h4" color={'red'}>{value.time}</Typography>
+                      <Typography variant="h4" color={'red'}>
+                        {value.time}
+                      </Typography>
                       <Image
                         alt={value.title}
                         src={value.image.src}
