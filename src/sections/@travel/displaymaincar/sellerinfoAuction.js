@@ -3,6 +3,8 @@ import * as React from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { TextIconLabel, Iconify, Scrollbar } from '../../../components';
 import { Icon } from '@iconify/react';
+import { styled } from '@mui/material/styles';
+
 
 import {
   Table,
@@ -19,6 +21,12 @@ import {
 import { OverviewAuction } from '../../../../src/sections/@travel/tours';
 
 //--------------------------------------------------------------
+const ScrollStyle = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('sm')]: {
+    maxWidth: '100%',
+    padding: theme.spacing(1.5),
+  },
+}));
 const comments = [
   {
     name: 'Asad Khan',
@@ -91,14 +99,18 @@ export default function Contactinfo() {
         borderRadius: '8px',
         mt: 2,
         // height: '300px',
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
         height:'350px',
       }}
     >
+      <Scrollbar>
+        <ScrollStyle>
       <Typography variant="h4">Bidders List</Typography>
       <OverviewAuction overviewAuction={comments} />
 
       <Divider />
+      </ScrollStyle>
+      </Scrollbar>
     </Box>
   );
 }
