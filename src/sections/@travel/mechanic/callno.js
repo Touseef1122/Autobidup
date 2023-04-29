@@ -57,13 +57,10 @@ export default function Expertcall({ item }) {
   return (
     <Box
       sx={{
-        // textAlign: 'center',
-        // py: 5,
         pl: { sm: 2 },
         pr: { sm: 2 },
       }}
     >
-      {/* {item.map((value) => ( */}
       <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 6 }}>
         <Typography variant="h4">Your Available Calls:</Typography>
         <Typography variant="h6">0</Typography>
@@ -148,6 +145,18 @@ export default function Expertcall({ item }) {
             >
               {' '}
               Buy{' '}
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: 'black',
+                color: 'white',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                width: '100%',
+                mt: 1,
+              }}
+              onClick={handleClose}
+            >
+              Close 
             </Button>
           </Box>
         </Modal>

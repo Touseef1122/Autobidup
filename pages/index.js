@@ -134,6 +134,7 @@ export default function TravelLandingPage({ posts }) {
 
       {/* <NewsletterTravel /> */}
     </Page>
+
   );
 }
 

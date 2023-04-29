@@ -27,7 +27,7 @@ export default function cssStyles(theme) {
     },
     bgGradient: (props) => {
       const direction = getDirection(props?.direction);
-      const startColor = props?.startColor || `${alpha('#000000', 0)} 0%`;
+      const startColor = props?.startColor || `${alpha('black', 0)} 0%`;
       const endColor = props?.endColor || '#000000 75%';
 
       return {

@@ -1,11 +1,4 @@
-import PropTypes from 'prop-types';
-// import Loader from './UsedCars/Loader';
-// import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useState } from 'react';
-// icons
-import filterIcon from '@iconify/icons-carbon/filter';
-import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
-
 // @mui
 import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 // utils
@@ -20,13 +13,13 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
+import { Caritemlist} from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
-
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
+import filterIcon from '@iconify/icons-carbon/filter';
+import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -34,7 +27,6 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-import Filter from './Filter.js';
 // ----------------------------------------------------------------------
 
 const items = [
@@ -235,25 +227,30 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             HatchBack{' '}
           </Typography>
-          <Filter/>
+          <Button
+              color="inherit"
+              variant="contained"
+              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+              onClick={handleMobileOpen}
+              sx={{
+                display: { md: 'none' },
+              }}
+            >
+              Filters
+        </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-            {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
+            <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
 
             <Box
               sx={{
                 flexGrow: 1,
-                
-                // pl: { md: 8 },
-                // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}
             >
               <Caritemlist item={items} />
             </Box>
           </Stack>
-          {/* tours={services} icons={summary} services={service}  */}
         </Container>
         <Stack spacing={2} justifyContent={'center'} alignItems={'center'}>
-          {/* <Typography >Page: {page}</Typography> */}
           <Pagination
             sx={{
               fontSize: '4.5rem',

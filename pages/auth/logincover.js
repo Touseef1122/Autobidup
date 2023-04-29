@@ -9,6 +9,7 @@ import Routes from '../../src/routes';
 import { Page, Logo } from '../../src/components';
 // sections
 import { Authwithsocial, Authcarousel, Loginform } from '../../src/sections/auth';
+import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +37,8 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LoginCoverPage() {
+  const router = useRouter();
+
   return (
     <Page title="Login Cover">
       <RootStyle>
@@ -55,9 +58,9 @@ export default function LoginCoverPage() {
 
           <Typography variant="body2" pt={2} sx={{ color: 'text.secondary' }}>
             Don’t have an account?
-            <NextLink href={Routes.registerCover} passHref>
-              <Link variant="subtitle2" color="#CE9A00">
-                {''} SignUp
+            <NextLink href="/auth/registercover" passHref>
+              <Link   variant="subtitle2" color="#CE9A00">
+                 SignUp
               </Link>
             </NextLink>
           </Typography>

@@ -7,18 +7,33 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Link, Stack, Avatar, Container, Typography } from '@mui/material';
-// routes
-// import Routes from '../../../routes';
-// utils
-// import { fDate } from '../../../utils/formatTime';
-// components
-// import { varHover, varTranHover } from '../../../components/animate';
-import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../src/components';
+import {
+  Box,
+  Link,
+  Stack,
+  Avatar,
+  Container,
+  Typography,
+  Modal,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  TextField,
+  Button,
+  DatePicker,
+} from '@mui/material';
+import { useState } from 'react';
+import {
+  Image,
+  BgOverlay,
+  CarouselArrows,
+  CarouselDots,
+  TextMaxLine,
+} from '../../../src/components';
 import { price } from '_data/mock/number';
 // import CarsCard from './AuctionCarList';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
-
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -28,6 +43,16 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(1, 0),
   },
 }));
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'white',
+  borderRadius: '10px',
+  p: 6,
+};
 
 const DotStyle = styled('span')(({ theme }) => ({
   width: 4,
@@ -62,6 +87,9 @@ export default function BlogMarketingLatestPosts({ posts }) {
   const router = useRouter();
 
   const carouselRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const carouselSettings = {
     dots: true,
@@ -92,7 +120,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
 
   return (
     // <RootStyle>
-    <Container >
+    <Container>
       <Typography
         variant="h3"
         paddingTop={'100px'}
@@ -103,9 +131,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
         Cars Available for Auction{' '}
       </Typography>
 
-      <Box
-        sx={{ position: 'relative' }}
-      >
+      <Box sx={{ position: 'relative' }}>
         <CarouselArrows
           onNext={handleNext}
           onPrevious={handlePrevious}
@@ -123,22 +149,21 @@ export default function BlogMarketingLatestPosts({ posts }) {
                   px: 2,
                   py: { xs: 8, md: 10 },
                 }}
-                onClick={() => router.push('/travel/Auction/BiddingDetails/')}
               >
-                {/* <CarsCard item={items} /> */}
                 <Box>
                   {items.map((value) => (
-                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
-                      {/* <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
-                                <Typography variant="h4" color={'red'}>{value.time}</Typography>
+                    <Box
+                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                      onClick={handleOpen}
+                    >
+                      <Typography variant="h4" color={'red'}>
+                        {value.time}
+                      </Typography>
                       <Image
                         alt={value.title}
                         src={value.image.src}
                         sx={{ width: '100%', height: 'auto' }}
                       />
-                      {/* </Grid>
-          <Grid item xs={12} sm={8}> */}
                       <Typography variant="h4">{value.heading}</Typography>
                       <Typography variant="h6">{value.city}</Typography>
                       <Stack direction="row" justifyContent="space-between">
@@ -162,10 +187,78 @@ export default function BlogMarketingLatestPosts({ posts }) {
                         {' '}
                         PKR {value.price}
                       </Typography>
-                      {/* </Grid>
-        </Grid> */}
+                      
                     </Box>
                   ))}
+                  <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                        // BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
+                      >
+                        <Box sx={style}>
+                          <Typography id="modal-modal-title" variant="h3" component="h2">
+                            Auction room Entry Fee
+                          </Typography>
+                          <FormControl>
+                            <TextField
+                              id="cardholder-name"
+                              label="Cardholder Name"
+                              variant="outlined"
+                            />
+                            <br />
+                            <TextField
+                              id="card-number"
+                              label="Card Number"
+                              variant="outlined"
+                              inputProps={{
+                                maxLength: 19,
+                                pattern: '^[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}$',
+                                placeholder: '#### #### #### ####',
+                                autoComplete: 'cc-number',
+                              }}
+                            />
+                            <br />
+                            <TextField
+                              id="phone-number"
+                              label="Mobile Number"
+                              variant="outlined"
+                              inputProps={{
+                                maxLength: 11,
+                                pattern: '^[0-9]{4}\\" "\\s?[0-9]{7}$',
+                                placeholder: '#### #######',
+                                autoComplete: 'cc-number',
+                              }}
+                            />
+                          </FormControl>
+                          <Button
+                            sx={{
+                              backgroundColor: 'black',
+                              color: 'white',
+                              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                              width: '100%',
+                              mt: 4,
+                            }}
+                            onClick={() => router.push('/travel/Auction/BiddingDetails/')}
+                          >
+                            {' '}
+                            Buy{' '}
+                          </Button>
+                          <Button
+                            sx={{
+                              backgroundColor: 'black',
+                              color: 'white',
+                              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                              width: '100%',
+                              mt: 1,
+                            }}
+                            onClick={handleClose}
+                          >
+                            Close
+                          </Button>
+                        </Box>
+                      </Modal>
                 </Box>
               </Box>
             ))}

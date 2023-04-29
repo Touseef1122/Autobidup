@@ -35,45 +35,9 @@ export default function Header({ transparent }) {
   const isScrolling = useOffSetTop(HEADER_DESKTOP_HEIGHT);
   const router = useRouter();
   return (
-    <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
+    <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent',color:'Black' }}>
       <ToolbarStyle disableGutters transparent={transparent} scrolling={isScrolling}>
         <Container sx={{ px: 0 }}>
-          {/* <Container
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-            }}
-          >
-            <Stack spacing={4} direction="row">
-              <Box sx={{ lineHeight: 0, position: 'relative' }}>
-                <Logo onDark={transparent && !isScrolling} />
-
-                <Link
-                  href="https://royal_fleet/src/assets/images/logo.svg"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <Label
-                    color="info"
-                    sx={{
-                      ml: 0.5,
-                      px: 0.5,
-                      top: -14,
-                      left: 64,
-                      height: 20,
-                      fontSize: 11,
-                      cursor: 'pointer',
-                      position: 'absolute',
-                    }}
-                  >
-                    v1.4
-                  </Label>
-                </Link>
-              </Box>
-            </Stack>
-          </Container> */}
-
           <Container
             sx={{
               display: 'flex',
@@ -84,24 +48,6 @@ export default function Header({ transparent }) {
             <Stack spacing={4} direction="row">
               <Box sx={{ lineHeight: 0 }}>
                 <Logo onDark={transparent && !isScrolling} />
-
-                {/* <Link href="https://royal_fleet/src/assets/images/logo.svg" target="_blank" rel="noopener">
-              <Label
-                color="info"
-                sx={{
-                  ml: 0.5,
-                  px: 0.5,
-                  top: -14,
-                  left: 64,
-                  height: 20,
-                  fontSize: 11,
-                  cursor: 'pointer',
-                  position: 'absolute',
-                }}
-              >
-                v1.4
-              </Label>
-            </Link> */}
               </Box>
             </Stack>
             <Stack spacing={4} direction="row" sx={{ display: 'flex', alignItems: 'center' }}>

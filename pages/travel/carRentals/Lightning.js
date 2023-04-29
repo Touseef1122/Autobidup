@@ -28,8 +28,7 @@ import b from '../../../src/assets/images/SI2.JPg';
 import c from '../../../src/assets/images/SI3.JPg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
-
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
+import Storefilterbar from '../../../src/sections/@travel/filters/storefilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -199,25 +198,29 @@ export default function Displaycarlist({ posts }) {
           <Typography variant="h2" mb="20px" textAlign={'center'}>
             Led/Lightning Items
           </Typography>
-          <Filter />
+          <Button
+              color="inherit"
+              variant="contained"
+              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+              onClick={handleMobileOpen}
+              sx={{
+                display: { md: 'none' },
+              }}
+            >
+              Filters
+        </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-            {/* <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} /> */}
-
+          <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose}/>
             <Box
               sx={{
                 flexGrow: 1,
-
-                // pl: { md: 8 },
-                // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
               }}
             >
               <Caritem item={items} />
             </Box>
           </Stack>
-          {/* tours={services} icons={summary} services={service}  */}
         </Container>
         <Stack spacing={2} justifyContent={'center'} alignItems={'center'}>
-          {/* <Typography >Page: {page}</Typography> */}
           <Pagination
             sx={{
               fontSize: '4.5rem',
