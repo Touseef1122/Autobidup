@@ -73,7 +73,7 @@ export default function TravelLandingPage({ posts }) {
     <Page title="Home">
       <Loader />
       <Box sx={{ position: 'relative' }}>
-        <TravelLandingHero tours={tours.slice(0, 5)} />
+        <TravelLandingHero  />
         <ChatButton />
       </Box>
       <TravelLandingIntroduceOurServices />

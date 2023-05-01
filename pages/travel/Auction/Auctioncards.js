@@ -8,22 +8,21 @@ import { useState } from 'react';
 import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Link, Stack, Avatar, Container, Typography ,Modal, FormControl,TextField, Button} from '@mui/material';
-// routes
-// import Routes from '../../../routes';
-// utils
-// import { fDate } from '../../../utils/formatTime';
-// components
-// import { varHover, varTranHover } from '../../../components/animate';
 import {
-  Image,
-  BgOverlay,
-  CarouselArrows,
-  CarouselDots,
-  TextMaxLine,
-} from '../../../src/components';
-import { price } from '_data/mock/number';
-// import CarsCard from './AuctionCarList';
+  Grid,
+  Box,
+  LoadingButton,
+  Stack,
+  Container,
+  Typography,
+  Modal,
+  FormControl,
+  TextField,
+  Button,
+} from '@mui/material';
+
+import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
+
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 // ----------------------------------------------------------------------
 
@@ -41,6 +40,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'white',
+  border: '2px solid #000',
   borderRadius: '10px',
   p: 6,
 };
@@ -110,152 +110,154 @@ export default function BlogMarketingLatestPosts({ posts }) {
   };
 
   return (
-    // <RootStyle>
-    <Container>
-      <Typography
-        variant="h3"
-        paddingTop={'100px'}
-        sx={{
-          textAlign: 'center',
-        }}
-      >
-        Cars Available for Auction{' '}
-      </Typography>
-
-      <Box sx={{ position: 'relative' }}>
-        <CarouselArrows
-          onNext={handleNext}
-          onPrevious={handlePrevious}
+    <RootStyle>
+      <Container>
+        <Typography
+          variant="h3"
+          paddingTop={'100px'}
           sx={{
-            '& .arrow': {
-              '&.left': { left: -20 },
-              '&.right': { right: -20 },
-            },
+            textAlign: 'center',
           }}
         >
-          <Slider ref={carouselRef} {...carouselSettings}>
-            {posts?.map((post) => (
-              <Box
-                sx={{
-                  px: 2,
-                  py: { xs: 8, md: 10 },
-                }}
-              >
-                <Box>
-                  {items.map((value) => (
-                    <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}>
-                      {/* <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
-                      <Typography variant="h4" color={'red'}>
-                        {value.time}
-                      </Typography>
-                      <Image
-                        alt={value.title}
-                        src={value.image.src}
-                        sx={{ width: '100%', height: 'auto' }}
-                      />
-                      <Typography variant="h4">{value.heading}</Typography>
-                      <Typography variant="h6">{value.city}</Typography>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.year}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.distance}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.fuel}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.cc}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.type}{' '}
-                        </Typography>
-                      </Stack>
-                      <Typography variant="h4" color="#CE9A00">
-                        {' '}
-                        PKR {value.price}
-                      </Typography>
-                      
-                    </Box>
-                  ))}
-                  <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                        // BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}
+          Cars Available for Auction{' '}
+        </Typography>
+
+        <Box sx={{ position: 'relative' }}>
+          <CarouselArrows
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+            sx={{
+              '& .arrow': {
+                '&.left': { left: -20 },
+                '&.right': { right: -20 },
+              },
+            }}
+          >
+            <Slider ref={carouselRef} {...carouselSettings}>
+              {posts?.map((post) => (
+                <Box
+                  sx={{
+                    px: 2,
+                    py: { xs: 8, md: 10 },
+                  }}
+                >
+                  <Box>
+                    {items.map((value) => (
+                      <Box
+                        onClick={handleOpen}
+                        sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                       >
-                        <Box sx={style}>
-                          <Typography id="modal-modal-title" variant="h3" component="h2">
-                            Auction room Entry Fee
+                        <Typography variant="h4" color={'red'}>
+                          {value.time}
+                        </Typography>
+                        <Image
+                          alt={value.title}
+                          src={value.image.src}
+                          sx={{ width: '100%', height: 'auto' }}
+                        />
+                        <Typography variant="h4">{value.heading}</Typography>
+                        <Typography variant="h6">{value.city}</Typography>
+                        <Stack direction="row" justifyContent="space-between">
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.year}
                           </Typography>
-                          <FormControl>
-                            <TextField
-                              id="cardholder-name"
-                              label="Cardholder Name"
-                              variant="outlined"
-                            />
-                            <br />
-                            <TextField
-                              id="card-number"
-                              label="Card Number"
-                              variant="outlined"
-                              inputProps={{
-                                maxLength: 19,
-                                pattern: '^[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}$',
-                                placeholder: '#### #### #### ####',
-                                autoComplete: 'cc-number',
-                              }}
-                            />
-                            <br />
-                            <TextField
-                              id="phone-number"
-                              label="Mobile Number"
-                              variant="outlined"
-                              inputProps={{
-                                maxLength: 11,
-                                pattern: '^[0-9]{4}\\" "\\s?[0-9]{7}$',
-                                placeholder: '#### #######',
-                                autoComplete: 'cc-number',
-                              }}
-                            />
-                          </FormControl>
-                          <Button
-                            sx={{
-                              backgroundColor: 'black',
-                              color: 'white',
-                              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-                              width: '100%',
-                              mt: 4,
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.distance}
+                          </Typography>
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.fuel}
+                          </Typography>
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.cc}
+                          </Typography>
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.type}{' '}
+                          </Typography>
+                        </Stack>
+                        <Typography variant="h4" color="#CE9A00">
+                          {' '}
+                          PKR {value.price}
+                        </Typography>
+                      </Box>
+                    ))}
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                      sx={{
+                        position: 'unset !important',
+                      }}
+                    >
+                      <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h4" component="h2">
+                          Auction room Entry Fee
+                        </Typography>
+                        <FormControl>
+                          <TextField
+                            id="cardholder-name"
+                            label="Cardholder Name"
+                            variant="outlined"
+                          />
+                          <br />
+                          <TextField
+                            id="card-number"
+                            label="Card Number"
+                            variant="outlined"
+                            inputProps={{
+                              maxLength: 19,
+                              pattern: '^[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}\\s?[0-9]{4}$',
+                              placeholder: '#### #### #### ####',
+                              autoComplete: 'cc-number',
                             }}
-                            onClick={() => router.push('/travel/Auction/BiddingDetails/')}
-                          >
-                            {' '}
-                            Buy{' '}
-                          </Button>
-                          <Button
-                            sx={{
-                              backgroundColor: 'black',
-                              color: 'white',
-                              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-                              width: '100%',
-                              mt: 1,
+                          />
+                          <br />
+                          <TextField
+                            id="phone-number"
+                            label="Mobile Number"
+                            variant="outlined"
+                            inputProps={{
+                              maxLength: 11,
+                              pattern: '^[0-9]{4}\\" "\\s?[0-9]{7}$',
+                              placeholder: '#### #######',
+                              autoComplete: 'cc-number',
                             }}
-                            onClick={handleClose}
-                          >
-                            Close
-                          </Button>
-                        </Box>
-                      </Modal>
+                          />
+                        </FormControl>
+                        <Button
+                          sx={{
+                            backgroundColor: 'black',
+                            color: 'white',
+                            '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                            width: '100%',
+                            mt: 2,
+                          }}
+                          onClick={() => router.push('/travel/Auction/BiddingDetails/')}
+                        >
+                          {' '}
+                          Buy{' '}
+                        </Button>
+                        <Button
+                          sx={{
+                            backgroundColor: 'black',
+                            color: 'white',
+                            '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                            width: '100%',
+                            mt: 1,
+                          }}
+                          onClick={handleClose}
+                        >
+                          Close
+                        </Button>
+                      </Box>
+                    </Modal>
+                  </Box>
                 </Box>
-              </Box>
-            ))}
-          </Slider>
-        </CarouselArrows>
-      </Box>
-    </Container>
-    // </RootStyle>
+              ))}
+            </Slider>
+          </CarouselArrows>
+        </Box>
+      </Container>
+    </RootStyle>
   );
 }

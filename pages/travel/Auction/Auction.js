@@ -22,6 +22,8 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 import { styled } from '@mui/material/styles';
 import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelLandingHero } from '../../../src/sections/@travel';
+
+import Formcompo from '../Auction/formcompo.js'
 import AuctionCards from './Auctioncards'
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
@@ -70,6 +72,7 @@ export default function Displaycarlist({ posts }) {
         <Loader />
         <ChatButton />
         <TravelLandingHero/>
+        <Formcompo />
         <AuctionCards  posts={bestcities}/>
        
       </RootStyle>

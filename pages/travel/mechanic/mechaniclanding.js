@@ -30,33 +30,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Mechaniclanding({ posts }) {
-//   const [mobileOpen, setMobileOpen] = useState(false);
 
-//   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-//   const handleMobileOpen = () => {
-//     setMobileOpen(true);
-//   };
-
-//   const handleMobileClose = () => {
-//     setMobileOpen(false);
-//   };
-
-//   if (error) {
-//     return <ErrorScreen />;
-//   }
   return (
     <Page title="Mechanic Module | AutoBidUp">
       <Loader/>
       <Box sx={{ mb:6, overflowX:"hidden" }}>
-        {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{ mb: 4 }}
-        /> */}
        <Landing/>
       </Box>
     </Page>

@@ -13,8 +13,6 @@ import { HEADER_DESKTOP_HEIGHT } from '../../config';
 // components
 import { Logo, Label } from '../../components';
 //
-import Searchbar from '../Searchbar';
-import LanguagePopover from '../LanguagePopover';
 import { NavMobile, NavDesktop, navConfig } from '../nav';
 import { ToolbarStyle, ToolbarShadowStyle } from './HeaderToolbarStyle';
 import { useRouter } from 'next/router';
