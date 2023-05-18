@@ -24,8 +24,9 @@ import { styled } from '@mui/material/styles';
 import Shippinginfo from '../../../src/sections/@travel/accessories/shippinginfo';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import sell from '../../../src/Assets/Images/shipping.jpg';
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -45,7 +46,8 @@ const styling={
 export default function Shipping() {
   return (
     <Page title="Shipping Address | Accessories" style={styling}>
-      {/* <Loader/> */}
+      <Loader/>
+      <ChatButton/>
       <Container sx={{ marginTop: { xs: '18%', sm: '13%',md:"10%" }, overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[
@@ -57,7 +59,6 @@ export default function Shipping() {
         /> */}
         <Typography variant='h2' color="black" pt="3%">Shipping Information</Typography>
         <Shippinginfo/>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );

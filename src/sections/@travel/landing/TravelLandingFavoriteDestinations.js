@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 // icons
 import locationIcon from '@iconify/icons-carbon/location';
+import cssStyles from '../../../utils/cssStyles';
+
 // @mui
-import { styled } from '@mui/material/styles';
+import {alpha, styled } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Box } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';
@@ -12,22 +14,25 @@ import { Image, BgOverlay, Iconify, TextMaxLine, TextIconLabel } from '../../../
 // ----------------------------------------------------------------------
 
 const LINES = [
-  'First Class Flights',
-  '5 Star Accommodations',
-  'Inclusive Packages',
-  'Latest Model Vehicles',
-  'Handpicked Hotels',
-  'Accesibility managment',
+  'First Class',
+  '5 Star',
+  'COD all over Lahore',
+  'Latest Products for Cars',
+  'Trendy items ',
 ];
 
-const RootStyle = styled('div')(({ theme }) => ({
+// ----------------------------------------------------------------------
+const RootStyle = styled(Stack)(({ theme }) => ({
   padding: theme.spacing(8, 0),
+  ...cssStyles(theme).bgGradient({
+    direction: 'top',
+    startColor: alpha(theme.palette.grey[500], 0),
+    endColor: alpha(theme.palette.grey[500], 0.12),
+  }),
   [theme.breakpoints.up('md')]: {
     padding: theme.spacing(10, 0),
   },
 }));
-
-// ----------------------------------------------------------------------
 
 TravelLandingFavoriteDestinations.propTypes = {
   tours: PropTypes.array,
@@ -44,10 +49,9 @@ export default function TravelLandingFavoriteDestinations({ tours }) {
           justifyContent={{ md: 'space-between' }}
         >
           <Grid item xs={12} md={4}>
-            <Typography variant="h2">Our Favorite Destinations</Typography>
+            <Typography variant="h2">Our Store Products</Typography>
             <Typography sx={{ my: 3, color: 'text.secondary' }}>
-              Since wire-frame renderings are relatively simple and fast to calculate, they are
-              often used in cases
+              Best accessories of cars available provided through our reliable services
             </Typography>
 
             <Stack spacing={2}>
@@ -74,7 +78,7 @@ export default function TravelLandingFavoriteDestinations({ tours }) {
 
           <Grid item xs={12} md={6}>
             <Grid container spacing={{ xs: 4, md: 3 }}>
-              {tours.map((tour, index) => (
+              {tours?.map((tour, index) => (
                 <Grid
                   key={tour.id}
                   item
@@ -103,16 +107,16 @@ export default function TravelLandingFavoriteDestinations({ tours }) {
 DestinationItem.propTypes = {
   order: PropTypes.number,
   tour: PropTypes.shape({
-    continent: PropTypes.string,
-    coverImg: PropTypes.string,
-    location: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    img: PropTypes.string,
+    path: PropTypes.string,
+    button: PropTypes.string,
   }),
 };
 
 function DestinationItem({ tour, order }) {
   const isDesktop = useResponsive('up', 'md');
-
-  const { location, continent, coverImg } = tour;
 
   return (
     <Box
@@ -121,12 +125,13 @@ function DestinationItem({ tour, order }) {
         borderRadius: 2,
         position: 'relative',
         overflow: 'hidden',
+        background: 'linear-gradient(to top, rgba(0, 0, 0, 6), transparent)',
       }}
     >
-      <BgOverlay />
+      {/* <BgOverlay /> */}
       <Image
-        alt={location}
-        src={coverImg}
+        // alt={location}
+        src={tour.img.src}
         ratio={(!isDesktop && '1/1') || (order && '1/1') || '4/6'}
       />
 
@@ -142,21 +147,8 @@ function DestinationItem({ tour, order }) {
         }}
       >
         <TextMaxLine variant="h4" line={1}>
-          {location}
+          {tour.name}
         </TextMaxLine>
-        <TextIconLabel
-          icon={
-            <Iconify
-              icon={locationIcon}
-              sx={{ width: 20, height: 20, mr: 1, color: 'primary.main' }}
-            />
-          }
-          value={
-            <TextMaxLine variant="body2" line={1} sx={{ opacity: 0.72 }}>
-              {continent}
-            </TextMaxLine>
-          }
-        />
       </Stack>
     </Box>
   );

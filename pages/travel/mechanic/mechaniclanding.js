@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-// import Loader from './Premium/Loader';
-// import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
+
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
+import { useRequest } from '../../../src/hooks';
+import Serviceclassdata from '../../../_data/mock/servicesmechanic';
+
 
 // @mui
 import { Container, Grid, Box,Stack,Button } from '@mui/material';
@@ -15,10 +16,13 @@ import { Page, ErrorScreen, Breadcrumbs,Iconify } from '../../../src/components'
 // sections
 import { styled } from '@mui/material/styles';
 import Landing from '../../../src/sections/@travel/mechanic/landing';
+import Trustmechanic from '../../../src/sections/@travel/mechanic/trustmechanic';
+import TravelLandingIntroduceOurServices from '../../../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from '../UsedCars/Loader.js';
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
+import ChatButton from '../ChatButton';
+
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -30,12 +34,19 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Mechaniclanding({ posts }) {
+  const { data: tours = [], error } = useRequest('/api/travel/tours');
 
+  if (error) {
+    return <ErrorScreen />;
+  }
   return (
     <Page title="Mechanic Module | AutoBidUp">
       <Loader/>
-      <Box sx={{ mb:6, overflowX:"hidden" }}>
+      <ChatButton />
+      <Box sx={{position: 'relative', mb:6, overflowX:"hidden" }}>
        <Landing/>
+       <Trustmechanic/>
+       <TravelLandingIntroduceOurServices data={Serviceclassdata}/>
       </Box>
     </Page>
   );

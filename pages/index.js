@@ -34,6 +34,7 @@ import ChatButton from './travel/ChatButton';
 import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
 import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
 import { useRouter } from 'next/router';
+import Serviceclassdata from '../_data/mock/imagesos';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -72,16 +73,16 @@ export default function TravelLandingPage({ posts }) {
   return (
     <Page title="Home">
       <Loader />
-      <Box sx={{ position: 'relative' }}>
-        <TravelLandingHero  />
+      <Box sx={{ position: 'relative', overflowX: 'hidden' }}>
+        <TravelLandingHero />
         <ChatButton />
       </Box>
-      <TravelLandingIntroduceOurServices />
-      <TravelLandingIntroduce categories={vehicalType} />
+      <TravelLandingIntroduceOurServices data={Serviceclassdata} />
+      <TravelLandingIntroduce categories={vehicalType} type={categoryType} />
       <LatestPosts posts={bestcities} />
       <TravelLandingfull />
 
-      <LatestPosts2 posts={bestcities} />
+      {/* <LatestPosts2 posts={bestcities} /> */}
       <TravelLandingCars />
     </Page>
   );
@@ -180,31 +181,41 @@ const vehicalType = [
     id: 1,
     name: 'HatchBack',
     img: HBI,
-    onClick: () => router.push('/travel/UsedCars/HatchBack'),
+    path: '/travel/UsedCars/HatchBack',
+    button: 'Shop Now',
   },
   {
     id: 2,
     name: 'Sedan',
     img: SEI,
-    onClick: () => router.push('/travel/UsedCars/Sedan'),
+    path: '/travel/UsedCars/Sedan',
+    button: 'Shop Now',
   },
   {
     id: 3,
     name: 'SUV',
     img: SUVI,
-    onClick: () => router.push('/travel/UsedCars/Suv/'),
+    path: '/travel/UsedCars/Suv/',
+    button: 'Shop Now',
   },
   {
     id: 4,
     name: 'CrossOver',
     img: COI,
-    onClick: () => router.push('/travel/UsedCars/CrossOver/'),
+    path: '/travel/UsedCars/CrossOver/',
+    button: 'Shop Now',
   },
   {
     id: 5,
     name: 'MiniVan',
     img: MVI,
-    onClick: () => router.push('/travel/UsedCars/MiniVan/'),
+    path: '/travel/UsedCars/MiniVan/',
+    button: 'Shop Now',
+  },
+];
+const categoryType = [
+  {
+    title: 'Vehicle',
   },
 ];
 // ----------------------------------------------------------------------

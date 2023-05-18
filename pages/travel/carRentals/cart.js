@@ -26,8 +26,9 @@ import Item from '../../../src/sections/@travel/accessories/item';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import sell from '../../../src/Assets/Images/cart.jpg';
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -101,8 +102,8 @@ export default function Cart() {
   }
   return (
     <Page title="Cart | Accessories">
-
-      {/* <Loader/> */}
+      <Loader/>
+      <ChatButton/>
       <Box
         sx={{
           marginTop: { xs: '18%', sm: '13%',md:"12%" },

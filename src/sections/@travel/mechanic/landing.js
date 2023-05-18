@@ -4,7 +4,9 @@ import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
 import { TextIconLabel, Iconify, Image } from '../../../components';
 import { Icon } from '@iconify/react';
-import landing from '../../../Assets/Images/landing.jpg';
+import landing from '../../../Assets/Images/mechanicbg.jpg';
+import Pageimage from '../../../sections/@travel/landing/pageimage';
+
 
 import {
   Grid,
@@ -22,7 +24,12 @@ import { Overview } from '../tours';
 import { LoadingButton } from '@mui/lab';
 
 //--------------------------------------------------------------
-
+const usedimage=[
+  {
+    image: landing,
+    text: "Best Mechanics and Experts "
+  }
+]
 // Landing.propTypes = {
 //   item: PropTypes.array.isRequired,
 // };
@@ -32,11 +39,7 @@ export default function Landing() {
 
   return (
     <>
-      <Image
-        alt="hero"
-        src={landing.src}
-        marginTop={{xs:"10%",sm:"0"}}
-      />
+      <Pageimage images={usedimage}/>
       <Grid container spacing={2} justifyContent="center" mt={3} mb={6}>
         <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
           <Box
@@ -108,5 +111,6 @@ export default function Landing() {
     </>
   );
 }
+
 
 // ----------------------------------------------------------------------

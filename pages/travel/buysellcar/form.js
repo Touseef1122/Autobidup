@@ -14,12 +14,13 @@ import { _testimonials } from '../../../_data/mock';
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen } from '../../../src/components';
-import Loader from '../UsedCars/Loader.js';
-
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 // sections
 import { styled } from '@mui/material/styles';
 import Formsellbuy from '../../../src/sections/@travel/sellbuy/formsellbuy';
 import sell from '../../../src/Assets/Images/sellBg.webp';
+import { CHARSET } from 'stylis';
 
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -52,6 +53,7 @@ export default function Form({ posts }) {
   return (
     <Page title="Selling Form">
       <Loader/>
+      <ChatButton/>
       <Box sx={{ position: 'relative',marginTop:{xs: '18%', sm: '10%',md:"8%"},overflowX: 'hidden' }} style={styling}>
         <Formsellbuy />
         {/* tours={services} icons={summary} services={service}  */}

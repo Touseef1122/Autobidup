@@ -1,4 +1,6 @@
 import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+
 // icons
 import playIcon from '@iconify/icons-carbon/play';
 // @mui
@@ -9,7 +11,6 @@ import { useBoundingClientRect, useResponsive } from '../../../hooks';
 // _data
 // import SUMMARY from '../../../../_data/mock/imagesos'; 
 // import Imagesos from '../../../../_data/mock/imagesos';
-import Serviceclassdata from '../../../../_data/mock/imagesos';
 
 
 // components
@@ -35,8 +36,10 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
-export default function TravelLandingIntroduceOurServices() {
+TravelLandingIntroduceOurServices.propTypes = {
+  data: PropTypes.array.isRequired,
+};
+export default function TravelLandingIntroduceOurServices({data}) {
   const isDesktop = useResponsive('up', 'md');
   const router = useRouter();
 
@@ -73,7 +76,7 @@ export default function TravelLandingIntroduceOurServices() {
               },
             }}
           >
-            {Serviceclassdata?.map((value) => (
+            {data?.map((value) => (
               <div key={value.title}>
                 <Image
                   src={value.image.src}

@@ -2,29 +2,29 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box, Typography, Container } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import Apply from '../../../src/assets/Images/apply.jpg';
 import Applying from '../../../src/assets/Images/applying.jpg';
 
 export default function Landing() {
   const router = useRouter();
-
   return (
     <>
       <Grid container spacing={2} justifyContent="center" mt={3}>
         <Grid item xs={12} display="flex" justifyContent="center" alignItems="center">
           <Box textAlign="center">
             <Typography variant="h2">Auction</Typography>
-            <Typography variant="h4">Join the Excitement: Bid on Cars.</Typography>
-            <Typography margin="0 150px 0 150px">
-              Enter your details below to join the excitement and bid on classic/vintage cars. Don't
-              miss out on the chance to bid on cars – fill out the form below
-              to get started. Ready to participate in the bidding action? Simply complete the form
-              below and start bidding on cars. Take part in
-              our auction and bid on some of the finest vehicals in country. Complete the entry form
-              below to join the excitement.
-            </Typography>
+            <Typography variant="h4">Join the Excitement: Bid on Cars</Typography>
+            <Box pl="10%" pr="10%">
+              <Typography>
+                Enter your details below to join the excitement and bid on classic/vintage cars.
+                Don't miss out on the chance to bid on cars – fill out the form below to get
+                started. Ready to participate in the bidding action? Simply complete the form below
+                and start bidding on cars. Take part in our auction and bid on some of the finest
+                vehicals in country. Complete the entry form below to join the excitement.
+              </Typography>
+            </Box>
           </Box>
         </Grid>
 
@@ -46,7 +46,7 @@ export default function Landing() {
             }}
           >
             <Typography variant="h3" pb={2}>
-              Varification Form
+              Verification Form
             </Typography>
             <Typography variant="h4" pb={6}>
               Verification form for vehicle verification.

@@ -22,10 +22,10 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 import { styled } from '@mui/material/styles';
 // import { Cartt } from '../../../src/sections/@travel/accessories/cartitem';
 import Amount from '../../../src/sections/@travel/accessories/amount';
-import { TravelTourDetails } from '../../../src/sections/@travel';
 import sell from '../../../src/Assets/Images/payment.jpg';
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -33,20 +33,21 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-const styling={
+const styling = {
   backgroundImage: `url(${sell.src})`,
   width: '100%',
-  height: {xs:'200vh'},
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-}
+  height: { xs: '200vh' },
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+};
 // ----------------------------------------------------------------------
 
 export default function Payment() {
   return (
-    <Page title="Shipping Address | Accessories" style={styling} >
-      {/* <Loader/> */}
-      <Container sx={{ marginTop: {  xs: '18%', sm: '10%',md:"8%" }, overflowX: 'hidden' }}>
+    <Page title="Shipping Address | Accessories" style={styling}>
+      <Loader />
+      <ChatButton />
+      <Container sx={{ marginTop: { xs: '18%', sm: '10%', md: '8%' }, overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
@@ -55,17 +56,13 @@ export default function Payment() {
           ]}
           sx={{ mb: 4 }}
         /> */}
-
-        <Amount/>
-        {/* tours={services} icons={summary} services={service}  */}
+        <Amount />
       </Container>
     </Page>
   );
 }
 
 //-------------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
 
 Payment.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;

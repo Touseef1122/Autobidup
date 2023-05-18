@@ -27,7 +27,7 @@ import {
 } from '@mui/material';
 // utils
 // @utils
-import mechanic from '../../../assets/images/mechanicBg.jpg';
+import mechanic from '../../../assets/images/mechanicform.jpg';
 // // components
 // import { Image, TextMaxLine } from '../../../components';
 // import { TravelLandingfull } from '../landing';
@@ -141,8 +141,7 @@ export default function Mechanicrequest({ tours, icons, services }) {
           sx={{
             width: '100%',
             padding: '20px',
-            textAlign: 'left',
-            
+            textAlign: 'left',           
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)}>

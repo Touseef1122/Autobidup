@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 
 // @mui
-import { Box, Typography} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
@@ -18,7 +18,8 @@ import { Page, ErrorScreen } from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import Mainform from '../../../src/sections/@travel/auctionform/mainform';
 import sell from '../../../src/Assets/Images/mainBg.jpg';
-
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -29,13 +30,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-const styling={
+const styling = {
   backgroundImage: `url(${sell.src})`,
   width: '100%',
   height: '100%',
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-}
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+};
 // Registerchauffeur.propTypes = {
 //   posts: PropTypes.array.isRequired,
 // };
@@ -49,8 +50,16 @@ export default function Formmain({ posts }) {
 
   return (
     <Page title="Consignor Main Form">
-      {/* <Loader/> */}
-      <Box sx={{ position: 'relative',marginTop:{xs: '18%', sm: '10%',md:"8%"},overflowX: 'hidden' }} style={styling}>
+      <Loader />
+      <ChatButton />
+      <Box
+        sx={{
+          position: 'relative',
+          marginTop: { xs: '18%', sm: '10%', md: '8%' },
+          overflowX: 'hidden',
+        }}
+        style={styling}
+      >
         <Mainform />
         {/* tours={services} icons={summary} services={service}  */}
       </Box>
@@ -63,7 +72,7 @@ export default function Formmain({ posts }) {
 // ----------------------------------------------------------------------
 
 Formmain.getLayout = function getLayout(page) {
-  return <Layout >{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------

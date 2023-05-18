@@ -5,13 +5,15 @@ import { useState } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import Loader from '../UsedCars/Loader.js';
+import ChatButton from '../ChatButton';
+
 // @mui
 import { Container, Grid, Box, Stack, Button } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
+import { Page, Image, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import Expertcall from '../../../src/sections/@travel/mechanic/expertcall';
@@ -20,6 +22,9 @@ import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/expert1.jpg';
 import img2 from '../../../src/Assets/Images/expert2.jpg';
 import img3 from '../../../src/Assets/Images/expert3.jpg';
+import landing from '../../../src/Assets/Images/expertCard.jpg';
+import Pageimage from '../../../src/sections/@travel/landing/pageimage';
+
 
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
@@ -48,25 +53,12 @@ var items = [
   }
 ];
 export default function Callexpert({ posts }) {
-  //   const [mobileOpen, setMobileOpen] = useState(false);
-
-  //   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-  //   const handleMobileOpen = () => {
-  //     setMobileOpen(true);
-  //   };
-
-  //   const handleMobileClose = () => {
-  //     setMobileOpen(false);
-  //   };
-
-  //   if (error) {
-  //     return <ErrorScreen />;
-  //   }
   return (
     <Page title="Call Expert | AutoBidUp">
       <Loader/>
-      <Box sx={{ mt: '10%', overflowX: 'hidden' }}>
+      <ChatButton />
+      <Box sx={{ overflowX: 'hidden' }}>
+       <Pageimage images={usedimage}/>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={4}>
             <Call/>
@@ -79,6 +71,11 @@ export default function Callexpert({ posts }) {
     </Page>
   );
 }
+const usedimage=[
+  {
+    image: landing
+  }
+]
 
 //-------------------------------------------------------------------------------
 

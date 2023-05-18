@@ -98,7 +98,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
           textAlign: 'center',
         }}
       >
-        Feacher Cars{' '}
+        Feature Cars{' '}
       </Typography>
 
       <Box sx={{ position: 'relative' }}>

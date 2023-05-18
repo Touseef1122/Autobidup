@@ -11,7 +11,7 @@ import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen} from '../../../src/components';
+import { Page, ErrorScreen, Iconify} from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import { Caritem} from '../../../src/sections/@travel/displaymaincar';
@@ -182,7 +182,7 @@ export default function Displaycarlist({ posts }) {
     return <ErrorScreen />;
   }
   return (
-    <Page title="HatchBack">
+    <Page title="Car Care | Store">
       <RootStyle>
         <Loader />
         <ChatButton />
@@ -193,7 +193,7 @@ export default function Displaycarlist({ posts }) {
           <Button
               color="inherit"
               variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+              // startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
               onClick={handleMobileOpen}
               sx={{
                 display: { md: 'none' },

@@ -55,7 +55,7 @@ export default function Expertcall({ item }) {
             <Typography variant="h6"  color="#CE9A00"> + {value.years} years</Typography>
             </Stack>
             <Stack direction="row" spacing={2} justifyContent='end'>
-              <Button sx={{border:"1px solid #FFBE00", color:"#FFBE00",'&:hover': { backgroundColor: '#FFBE00', color:"white" },width:"20%"}} onClick={() => router.push({})}>View Profile</Button>
+              <Button sx={{border:"1px solid #FFBE00", color:"#FFBE00",'&:hover': { backgroundColor: '#FFBE00', color:"white" },width:"20%"}} onClick={() => router.push(value.path)}>View Profile</Button>
               <Button sx={{backgroundColor:"black", color:"white",'&:hover': { backgroundColor: '#FFBE00', color:"white" },width:"20%"}}>Call</Button>
             </Stack>
           </Grid>

@@ -7,6 +7,8 @@ import viewIcon from '@iconify/icons-carbon/view';
 import viewOff from '@iconify/icons-carbon/view-off';
 // next
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+
 // @mui
 import { LoadingButton } from '@mui/lab';
 import { Stack, Link, TextField, IconButton, InputAdornment } from '@mui/material';
@@ -27,7 +29,7 @@ const FormSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const router = useRouter();
   const {
     reset,
     control,
@@ -107,6 +109,7 @@ export default function LoginForm() {
           variant="contained"         
           loading={isSubmitting}
           sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#FFBE00' }}}
+          onClick={() => router.push('/')}
         >
           Login
         </LoadingButton>

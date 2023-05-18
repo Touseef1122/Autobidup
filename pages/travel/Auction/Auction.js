@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useState } from 'react';
 // icons
-import filterIcon from '@iconify/icons-carbon/filter';
 // import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../src/config';
 
 // @mui
-import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
@@ -20,10 +18,9 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelLandingHero } from '../../../src/sections/@travel';
 
-import Formcompo from '../Auction/formcompo.js'
+import Formcompo from '../auction/formcompo'
 import AuctionCards from './Auctioncards'
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
@@ -32,7 +29,6 @@ import Houston from '../../../src/assets/images/BMW3Series.jpg';
 import Dallas from '../../../src/assets/images/FordMustang.jpg';
 import Austin from '../../../src/assets/images/FordMinivan.jpg';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -42,39 +38,15 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
-
-
-import Pagination from '@mui/material/Pagination';
-
 export default function Displaycarlist({ posts }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [page, setPage] = useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-  const handleMobileOpen = () => {
-    setMobileOpen(true);
-  };
-
-  const handleMobileClose = () => {
-    setMobileOpen(false);
-  };
-
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
-    <Page title="Auction">
+    <Page title="Auction | AutoBidUp">
       <RootStyle>
         <Loader />
         <ChatButton />
         <TravelLandingHero/>
         <Formcompo />
-        <AuctionCards  posts={bestcities}/>
-       
+        <AuctionCards posts={bestcities}/>      
       </RootStyle>
     </Page>
   );

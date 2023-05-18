@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
-// import Loader from './Premium/Loader';
-// import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import Loader from '../UsedCars/Loader.js';
+import ChatButton from '../ChatButton';
+
 
 // @mui
 import { Container, Grid, Box,Stack,Button } from '@mui/material';
@@ -16,10 +14,7 @@ import { Page, ErrorScreen, Breadcrumbs,Iconify } from '../../../src/components'
 // sections
 import { styled } from '@mui/material/styles';
 import Mechanicrequest from '../../../src/sections/@travel/mechanic/mechanicrequest';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -31,25 +26,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Requestmechanic({ posts }) {
-//   const [mobileOpen, setMobileOpen] = useState(false);
-
-//   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-//   const handleMobileOpen = () => {
-//     setMobileOpen(true);
-//   };
-
-//   const handleMobileClose = () => {
-//     setMobileOpen(false);
-//   };
-
-//   if (error) {
-//     return <ErrorScreen />;
-//   }
   return (
     <Page title="Request Mechanic | AutoBidUp">
       <Loader/>
-      <Box sx={{ mt:{xs:"20%", sm:"12%",lg:"8%"}, overflowX:"hidden" }}>
+      <ChatButton/>
+      <Box sx={{ mt:{xs:"20%", sm:"10%",lg:"6%"}, overflowX:"hidden" }}>
         {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },

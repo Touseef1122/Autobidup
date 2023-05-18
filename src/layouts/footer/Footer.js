@@ -92,49 +92,7 @@ export default function Footer() {
                 </Stack>
 
                 <Divider />
-                {/* <Stack spacing={{ xs: 3, md: 5 }}> */}
-                {/* <Stack alignItems="flex-start" spacing={3}>
-                <Logo />
-                <Typography variant="body3" sx={{ color: 'text.secondary' }}>
-                  The starting point for your next project based on easy-to-customize Material-UI ©
-                  helps you build apps faster and better.
-                </Typography>
-              </Stack> */}
 
-                {/* <Stack spacing={2}>
-                <Typography variant="h6">Social</Typography>
-                <SocialsButton />
-              </Stack> */}
-
-                {/* <Stack alignItems="flex-start">
-                <Typography variant="h6">Documentation</Typography>
-                <LinkStyle href="#">Documentation</LinkStyle>
-                <LinkStyle href="#">Changelog</LinkStyle>
-                <LinkStyle href="#">Contributing</LinkStyle>
-              </Stack> */}
-
-                {/* <Stack spacing={2}>
-                <Stack spacing={1}>
-                  <Typography variant="h6">Let’s stay in touch</Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                    Ubscribe to our newsletter to receive latest articles to your inbox weekly.
-                  </Typography>
-                </Stack>
-                <FilledInput
-                  placeholder="Email address"
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <Button variant="contained" size="small" sx={{ py: '9px' }}>
-                        Subscribe
-                      </Button>
-                    </InputAdornment>
-                  }
-                  sx={{
-                    pr: 0.5,
-                    '& .MuiFilledInput-input': { py: '14px' },
-                  }}
-                />
-              </Stack> */}
 
                 <Stack margin="20px 0">
                   {/* <Typography variant="h6">Apps</Typography> */}
@@ -175,7 +133,7 @@ export default function Footer() {
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
                     <div>
                       <Typography variant="body3" sx={{ color: 'black' }}>
-                        © 2022 AutoBidUp
+                        © 2023 AutoBidUp
                       </Typography>
                     </div>
 

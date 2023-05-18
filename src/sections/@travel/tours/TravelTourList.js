@@ -33,7 +33,7 @@ export default function TravelTourList({ tours, loading }) {
         )}
       </Box>
 
-      <Pagination
+      {/* <Pagination
         count={10}
         color="primary"
         size="large"
@@ -44,7 +44,7 @@ export default function TravelTourList({ tours, loading }) {
             justifyContent: 'center',
           },
         }}
-      />
+      /> */}
     </>
   );
 }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-// import Loader from './UsedCars/Loader';
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 
 // @mui
@@ -42,7 +43,8 @@ export default function Displaycardetails({ posts }) {
 
   return (
     <Page title="Buy/Sell Used Cars">
-      {/* <Loader/> */}
+      <Loader/>
+      <ChatButton/>
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Breadcrumbs
           links={[

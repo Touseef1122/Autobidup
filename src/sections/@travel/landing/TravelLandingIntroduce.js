@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
+import { useRouter } from 'next/router';
 
-import {
-  Image,
-  Iconify,
-  PlayerWithButton,
-} from '../../../components';
+import { Image, Iconify, PlayerWithButton } from '../../../components';
 
 // icons
 import directionStraightRight from '@iconify/icons-carbon/direction-straight-right';
@@ -36,21 +33,22 @@ const RootStyle = styled(Stack)(({ theme }) => ({
 
 CareerLandingHotCategories.propTypes = {
   categories: PropTypes.array.isRequired,
+  type: PropTypes.array.isRequired,
 };
 
-export default function CareerLandingHotCategories({ categories }) {
-  
+export default function CareerLandingHotCategories({ categories,type }) {
   return (
-    
     <RootStyle>
       <Container>
-        <Typography variant="h3" sx={{ textAlign: 'center' }}>
-          Vehicals Categories
-        </Typography>
+        {type?.map((value) => (
+          <Typography variant="h3" sx={{ textAlign: 'center' }}>
+            {value.title} Categories
+          </Typography>
+        ))}
 
         <Box
           sx={{
-            my: { xs: 8, md: 10 },
+            my: { xs: 8, md: 5 },
             display: 'grid',
             gap: 4,
             gridTemplateColumns: {
@@ -61,20 +59,9 @@ export default function CareerLandingHotCategories({ categories }) {
           }}
         >
           {categories?.map((category) => (
-            <CategoryItem key={category.id}  category={category} onClick={category.onClick}  />
+            <CategoryItem key={category.id} category={category} />
           ))}
         </Box>
-
-        {/* <Stack alignItems="center">
-          <Button
-            color="inherit"
-            size="large"
-            variant="outlined"
-            endIcon={<Iconify icon={directionStraightRight} sx={{ width: 22, height: 22 }} />}
-          >
-            View All Categories
-          </Button>
-        </Stack> */}
       </Container>
     </RootStyle>
   );
@@ -91,6 +78,7 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+  const router = useRouter();
 
   return (
     <Paper
@@ -105,14 +93,14 @@ function CategoryItem({ category }) {
         transition: (theme) => theme.transitions.create('all'),
         '&:hover': {
           bgcolor: 'background.paper',
-          boxShadow: (theme) => theme.customShadows.z24,
-          '& .icon': {
-            bgcolor: 'primary.main',
-            transition: (theme) => theme.transitions.create('all'),
-            '& > span': {
-              color: 'common.white',
-            },
-          },
+          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px;',
+          // '& .icon': {
+          //   bgcolor: 'primary.main',
+          //   transition: (theme) => theme.transitions.create('all'),
+          //   '& > span': {
+          //     color: 'common.white',
+          //   },
+          // },
         },
       }}
     >
@@ -129,9 +117,9 @@ function CategoryItem({ category }) {
         <Box
           className="icon"
           sx={{
-            mb: 2.5,
-            width: 72,
-            height: 72,
+            // mb: 2.5,
+            // width: 72,
+            // height: 72,
             mx: 'auto',
             display: 'flex',
             borderRadius: '50%',
@@ -139,13 +127,23 @@ function CategoryItem({ category }) {
             justifyContent: 'center',
           }}
         >
-          <Image src={category.img.src} sx={{ width: 58, height: 48 ,filter: 'grayscale(100%)'}} />
+          <Image src={category.img.src} sx={{ width: "100%", height: "100%" }} />
         </Box>
 
         <TextMaxLine variant="h6" line={1}>
           {category.name}
         </TextMaxLine>
-
+        <Button
+              onClick={() => router.push(category.path)}
+              sx={{
+                mt:3,
+                border: '1px solid #FFBE00 ',
+                color: '#FFBE00',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+              }}
+            >
+            {category.button}
+        </Button>
         {/* <Typography variant="body2" sx={{ color: 'text.disabled', mt: 0.5 }}>
           {category.totalJobs} jobs
         </Typography> */}

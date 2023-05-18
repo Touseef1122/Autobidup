@@ -11,3 +11,4 @@ export { default as TravelLandingBrands } from './TravelLandingBrands';
 export { default as TravelLandingCompanies} from './TravelLandingCompanies';
 export { default as LatestPosts } from './LatestPosts.js';
 export { default as LatestPosts2 } from './LatestPosts2.js';
+export { default as Pageimage } from './pageimage.js';

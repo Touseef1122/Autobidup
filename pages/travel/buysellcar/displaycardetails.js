@@ -18,7 +18,8 @@ import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
-
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -44,7 +45,8 @@ export default function Displaycardetails({ posts }) {
 
   return (
     <Page title="Buy/Sell Used Cars">
-      {/* <Loader/> */}
+      <Loader/>
+      <ChatButton/>
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Breadcrumbs
           links={[

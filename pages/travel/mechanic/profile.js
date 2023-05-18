@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 
 // @mui
-import { Container, Grid, Box, Stack, Button } from '@mui/material';
+import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
@@ -20,6 +20,8 @@ import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/expert1.jpg';
 import img2 from '../../../src/Assets/Images/expert2.jpg';
 import img3 from '../../../src/Assets/Images/expert3.jpg';
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -45,24 +47,10 @@ var items = [
   }
 ];
 export default function Profile({ posts }) {
-  //   const [mobileOpen, setMobileOpen] = useState(false);
-
-  //   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
-  //   const handleMobileOpen = () => {
-  //     setMobileOpen(true);
-  //   };
-
-  //   const handleMobileClose = () => {
-  //     setMobileOpen(false);
-  //   };
-
-  //   if (error) {
-  //     return <ErrorScreen />;
-  //   }
   return (
     <Page title="Expert Profile | AutoBidUp">
-      {/* <Loader/> */}
+      <Loader/>
+      <ChatButton />
       <Container sx={{ mt: '10%', overflowX: 'hidden' }}>
         {/* <Breadcrumbs
           links={[
@@ -72,6 +60,7 @@ export default function Profile({ posts }) {
           ]}
           sx={{ mb: 4 }}
         /> */}
+
         <Expertprofile/>
       </Container>
     </Page>

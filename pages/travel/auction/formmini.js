@@ -18,7 +18,8 @@ import { Page, ErrorScreen } from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import Miniform from '../../../src/sections/@travel/auctionform/miniform';
 import sell from '../../../src/Assets/Images/auctionBg.jpeg';
-
+import Loader from '../UsedCars/Loader';
+import ChatButton from '../ChatButton';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -29,13 +30,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-const styling={
+const styling = {
   backgroundImage: `url(${sell.src})`,
   width: '100%',
   height: '100%',
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-}
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+};
 // Registerchauffeur.propTypes = {
 //   posts: PropTypes.array.isRequired,
 // };
@@ -49,8 +50,16 @@ export default function Formmini({ posts }) {
 
   return (
     <Page title="Consignor Mini Form">
-      {/* <Loader/> */}
-      <Box sx={{ position: 'relative',marginTop:{xs: '18%', sm: '10%',md:"8%"},overflowX: 'hidden'}} style={styling}>
+      <Loader />
+      <ChatButton />
+      <Box
+        sx={{
+          position: 'relative',
+          marginTop: { xs: '18%', sm: '10%', md: '8%' },
+          overflowX: 'hidden',
+        }}
+        style={styling}
+      >
         <Miniform />
         {/* tours={services} icons={summary} services={service}  */}
       </Box>
@@ -63,7 +72,7 @@ export default function Formmini({ posts }) {
 // ----------------------------------------------------------------------
 
 Formmini.getLayout = function getLayout(page) {
-  return <Layout >{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
