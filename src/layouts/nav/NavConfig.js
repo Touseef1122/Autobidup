@@ -40,11 +40,12 @@ export const PageLinks = [
 ];
 
 export const navConfig = [
-  { title: 'Used Cars', path: Routes.pages, children: [PageLinks[0]] },
+  { title: 'Used Cars', 
+  path: '/travel/buysellcar/usedcars',
+  },
   {
     title: 'Store',
-    path: Routes.pages,
-    children: [PageLinks[1]],
+    path: '/travel/carRentals/storelanding',
   },
   {
     title: 'Mechanic',

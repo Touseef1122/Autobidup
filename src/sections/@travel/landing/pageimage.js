@@ -23,7 +23,7 @@ export default function Pageimage({ images }) {
           <Box
             sx={{
               position: 'absolute',
-              bottom: '20%',
+              bottom: '30%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               // background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)',

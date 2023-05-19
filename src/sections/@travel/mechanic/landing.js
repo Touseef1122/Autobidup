@@ -2,21 +2,13 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
-import { TextIconLabel, Iconify, Image } from '../../../components';
-import { Icon } from '@iconify/react';
 import landing from '../../../Assets/Images/mechanicbg.jpg';
 import Pageimage from '../../../sections/@travel/landing/pageimage';
-
+import Apply from '../../../assets/Images/space.jpg';
+import Applying from '../../../assets/Images/wood_.jpg';
 
 import {
   Grid,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
-  Button,
-  Stack,
-  Container,
   Box,
   Typography,
 } from '@mui/material';
@@ -30,9 +22,6 @@ const usedimage=[
     text: "Best Mechanics and Experts "
   }
 ]
-// Landing.propTypes = {
-//   item: PropTypes.array.isRequired,
-// };
 
 export default function Landing() {
   const router = useRouter();
@@ -53,9 +42,13 @@ export default function Landing() {
               textAlign: 'center',
               width: '100%',
               height: '100%',
+              backgroundImage: `url(${Apply.src})`,
+              backgroundSize: '40%',
+              backgroundPosition: 'left',
+              backgroundRepeat: 'no-repeat',
             }}
           >
-            {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
+
             <Typography variant="h4" pb={2}>
               Mechanic
             </Typography>
@@ -86,13 +79,17 @@ export default function Landing() {
               textAlign: 'center',
               width: '100%',
               height: '100%',
+              backgroundImage: `url(${Applying.src})`,
+              backgroundSize: '40%',
+              backgroundPosition: 'right',
+              backgroundRepeat: 'no-repeat',
+
             }}
           >
-            {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
             <Typography variant="h4" pb={2}>
               Expert
             </Typography>
-            <Typography variant="body1" pb={4}>
+            <Typography variant="body1" pb={4} >
               Contact with an expert for getting any car information.
             </Typography>
             <LoadingButton
