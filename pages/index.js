@@ -44,9 +44,9 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 // ----------------------------------------------------------------------
-TravelLandingPage.propTypes = {
-  posts: PropTypes.array.isRequired,
-};
+// TravelLandingPage.propTypes = {
+//   posts: PropTypes.array.isRequired,
+// };
 
 export default function TravelLandingPage({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
@@ -78,7 +78,7 @@ export default function TravelLandingPage({ posts }) {
         <ChatButton />
       </Box>
       <TravelLandingIntroduceOurServices data={Serviceclassdata} />
-      <TravelLandingIntroduce categories={vehicalType} type={categoryType} />
+      <TravelLandingIntroduce categories={vehicalType} />
       <LatestPosts posts={bestcities} />
       <TravelLandingfull />
 
@@ -87,7 +87,6 @@ export default function TravelLandingPage({ posts }) {
     </Page>
   );
 }
-
 //-------------------------------------------------------------------------------
 const bestcities = [
   {
@@ -213,19 +212,12 @@ const vehicalType = [
     button: 'Shop Now',
   },
 ];
-const categoryType = [
-  {
-    title: 'Vehicle',
-  },
-];
 // ----------------------------------------------------------------------
-
 TravelLandingPage.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
-
 export async function getStaticProps() {
   return {
     props: {

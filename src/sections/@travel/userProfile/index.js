@@ -1,4 +1,4 @@
-export { default as Main } from './main';
+export { default as Sidebar } from './side';
 export { default as Details } from './details';
 export { default as Password } from './password';
 export { default as Payment } from './payment';

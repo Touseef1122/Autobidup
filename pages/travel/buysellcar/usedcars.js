@@ -55,7 +55,7 @@ export default function Usedcars({ posts }) {
       <Pageimage images={usedimage} />
       {/* <TravelLandingIntroduceOurServices /> */}
 
-      <TravelLandingIntroduce categories={vehicalType} type={categoryType} />
+      <TravelLandingIntroduce categories={vehicalType}/>
       <TravelLandingfull />
 
       <LatestPosts2 posts={bestcities} />
@@ -193,11 +193,7 @@ const usedimage = [
     image: used,
   },
 ];
-const categoryType = [
-  {
-    title: 'Vehicle',
-  },
-];
+
 // ----------------------------------------------------------------------
 
 Usedcars.getLayout = function getLayout(page) {
