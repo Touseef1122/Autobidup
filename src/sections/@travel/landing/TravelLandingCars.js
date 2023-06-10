@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+
 // icons
 import playIcon from '@iconify/icons-carbon/play';
 // @mui
@@ -16,6 +18,7 @@ import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '.
 // ----------------------------------------------------------------------
 import SUMMARY from './Images';
 import { addScaleCorrector } from 'framer-motion';
+import data from '../../../'
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -44,6 +47,22 @@ export default function TravelLandingCars() {
   };
 
   const offsetLeft = container && container.left + 20;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('');
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>

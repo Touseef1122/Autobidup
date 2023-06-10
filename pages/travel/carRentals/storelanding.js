@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // _data
@@ -45,9 +46,11 @@ const RootStyle = styled('div')(({ theme }) => ({
 // };
 
 export default function Storelanding() {
+
   return (
     <Page title="Store | AutoBidUp">
       <Loader />
+
       <ChatButton />
       <Pageimage images={usedimage}/>
       {/* <TravelLandingIntroduceOurServices /> */}
