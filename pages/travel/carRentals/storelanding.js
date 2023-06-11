@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // _data
@@ -13,6 +14,7 @@ import { BusinessStrategies, TravelLandingFavoriteDestinations, TravelLandingHer
 //images
 import Pageimage from '../../../src/sections/@travel/landing/pageimage';
 import TravelLandingCars from '../../../src/sections/@travel/landing/TravelLandingCars';
+import Categories from '../../../src/sections/@travel/accessories/categories';
 import Galviston from '../../../src/assets/images/bentley8.jpg';
 import Houston from '../../../src/assets/images/BMW3Series.jpg';
 import Dallas from '../../../src/assets/images/FordMustang.jpg';
@@ -44,15 +46,19 @@ const RootStyle = styled('div')(({ theme }) => ({
 // };
 
 export default function Storelanding() {
+
   return (
     <Page title="Store | AutoBidUp">
       <Loader />
+
       <ChatButton />
       <Pageimage images={usedimage}/>
       {/* <TravelLandingIntroduceOurServices /> */}
-      <TravelLandingIntroduce categories={vehicalType} type={categoryType}/>
+      <Categories categories={vehicalType}/>
       <BusinessStrategies icons={summary} />
+
       <TravelLandingCars />
+      
       <TravelLandingFavoriteDestinations tours={car.slice(0,4)}/>
 
     </Page>
@@ -210,11 +216,6 @@ const usedimage = [
     image: used,
   },
 ];
-const categoryType=[
-  {
-    title:"Store"
-  }
-]
 const summary = [
   {
     title: 'Successful Shipping',

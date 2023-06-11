@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+
 // icons
 import playIcon from '@iconify/icons-carbon/play';
 // @mui
@@ -15,7 +17,10 @@ import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '.
 
 // ----------------------------------------------------------------------
 import SUMMARY from './Images';
+// import SUMMARY from '../../../../_data/mock/data';
 import { addScaleCorrector } from 'framer-motion';
+import { summary } from '_data/mock/forChauffeursData';
+// import data from '../accessories/'
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -45,6 +50,23 @@ export default function TravelLandingCars() {
 
   const offsetLeft = container && container.left + 20;
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/store/all_products/');
+        const jsonData = await response.json();
+        setData(jsonData);
+        console.log("created")
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <RootStyle>
@@ -63,10 +85,11 @@ export default function TravelLandingCars() {
               },
             }}
           >
-            {SUMMARY.map((item) => (
-              <div key={item.id}>
+            {data.map((item) => (
+              <div key={item.pid}>
+                {/* if (item.ptype == 1) */}
                 <Box 
-                onClick={() => router.push(item.path)}
+                // onClick={() => router.push()}
                 sx={{
                   transition: 'all 0.3s',
                   cursor:"pointer",
@@ -80,15 +103,15 @@ export default function TravelLandingCars() {
                   
                 }}>
                   <Image
-                    src={item.image.src}
+                    src={item.images.src}
                     sx={{
                       width: '100%',
                       //  height: '58%',
                     }}
                   />
                   <Box>
-                    <Typography sx={{ mb: -1 }}>{item.title}</Typography>
-                    <Typography>{item.title2}</Typography>
+                    <Typography sx={{ mb: -1 }}>{item.pname}</Typography>
+                    <Typography>{item.price}</Typography>
                   </Box>
                 </Box>
               </div>

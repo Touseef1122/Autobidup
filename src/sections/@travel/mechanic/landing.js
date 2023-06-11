@@ -1,34 +1,31 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
+//images
 import landing from '../../../Assets/Images/mechanicbg.jpg';
+//sections
 import Pageimage from '../../../sections/@travel/landing/pageimage';
-import Apply from '../../../assets/Images/space.jpg';
-import Applying from '../../../assets/Images/wood_.jpg';
-
-import {
-  Grid,
-  Box,
-  Typography,
-} from '@mui/material';
-import { Overview } from '../tours';
+//mui
+import { Grid, Box, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 
 //--------------------------------------------------------------
-const usedimage=[
+const usedimage = [
   {
     image: landing,
-    text: "Best Mechanics and Experts "
-  }
-]
+    text: 'Best Mechanics and Experts ',
+  },
+];
+// Landing.propTypes = {
+//   item: PropTypes.array.isRequired,
+// };
 
 export default function Landing() {
   const router = useRouter();
 
   return (
     <>
-      <Pageimage images={usedimage}/>
+      <Pageimage images={usedimage} />
       <Grid container spacing={2} justifyContent="center" mt={3} mb={6}>
         <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
           <Box
@@ -108,6 +105,5 @@ export default function Landing() {
     </>
   );
 }
-
 
 // ----------------------------------------------------------------------
