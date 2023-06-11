@@ -8,21 +8,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import viewIcon from '@iconify/icons-carbon/view';
 import viewOff from '@iconify/icons-carbon/view-off';
 // next
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Stack, Link, TextField, IconButton, InputAdornment,Button } from '@mui/material';
+import { Stack, Link, TextField, IconButton, InputAdornment, Button } from '@mui/material';
 // routes
-import Routes from '../../routes';
+import Routes from '../../../src/routes';
 // components
-import { Iconify } from '../../components';
+import { Iconify } from '../../../src/components';
 
 // ----------------------------------------------------------------------
 
 const FormSchema = Yup.object().shape({
-  email: Yup.string().required('Email is required').email('That is not an email'),
+  username: Yup.string().required('Email is required').email('That is not an email'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password should be of minimum 6 characters length'),
@@ -31,9 +31,8 @@ const FormSchema = Yup.object().shape({
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  console.log("blaggggggggggggggggggggggg")
+  console.log('blaggggggggggggggggggggggg');
   const {
-
     reset,
     control,
     handleSubmit,
@@ -42,7 +41,7 @@ export default function LoginForm() {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -52,9 +51,9 @@ export default function LoginForm() {
   };
 
   const onSubmit = async (data) => {
-    console.log(" working")
+    console.log(' working');
     try {
-      console.log("checking login")
+      console.log('checking login');
       const response = await fetch('https://autobidup.pythonanywhere.com/user/login', {
         method: 'POST',
         headers: {
@@ -62,18 +61,20 @@ export default function LoginForm() {
         },
         body: JSON.stringify(data),
         xhrFields: {
-          withCredentials: true
-      },
+          withCredentials: true,
+        },
       });
-  
+
       if (response.ok) {
         // API call successful
         const responseData = await response.json();
         // Handle the response data as needed
-        console.log(responseData)
+        localStorage.setItem('firstname', responseData.firstName);
+
+        // Store JWT token in document cookie
+        document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log(responseData);
         router.push('/');
-
-
       } else {
         // API call failed
         const errorData = await response.json();
@@ -87,14 +88,15 @@ export default function LoginForm() {
   };
 
   return (
-    // <form >
+    //  <form >
+    <div>
       <Stack spacing={2.5} alignItems="flex-end">
         <Controller
-          name="email"
+          name="username"
           control={control}
           render={({ field }) => (
             <TextField
-              type='text'
+              type="text"
               {...field}
               fullWidth
               label="Email address"
@@ -130,11 +132,11 @@ export default function LoginForm() {
         />
         {/* {errors.password && <p>{errors.password.message}</p>} */}
 
-        <NextLink href={Routes.resetPassword} passHref>
+        {/* <NextLink href={Routes.resetPassword} passHref>
           <Link variant="body3" underline="always" color="text.secondary">
             Forgot password?
           </Link>
-        </NextLink>
+        </NextLink> */}
 
         <LoadingButton
           fullWidth
@@ -143,12 +145,12 @@ export default function LoginForm() {
           variant="contained"
           loading={isSubmitting}
           sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
-          onSubmit={handleSubmit(onSubmit)}
-          >
-          
+          onClick={handleSubmit(onSubmit)}
+        >
           Login
         </LoadingButton>
       </Stack>
+    </div>
     // </form>
   );
 }
