@@ -56,7 +56,9 @@ export default function Storelanding() {
       {/* <TravelLandingIntroduceOurServices /> */}
       <Categories categories={vehicalType}/>
       <BusinessStrategies icons={summary} />
+
       <TravelLandingCars />
+      
       <TravelLandingFavoriteDestinations tours={car.slice(0,4)}/>
 
     </Page>

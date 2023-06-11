@@ -8,7 +8,10 @@ import Routes from '../../src/routes';
 // components
 import { Page, Logo } from '../../src/components';
 // sections
-import { Authwithsocial, Authcarousel, Loginform } from '../../src/sections/auth';
+import { Authwithsocial, Authcarousel } from '../../src/sections/auth';
+
+import {Loginform} from '../../src/sections/auth';
+
 import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
@@ -51,7 +54,7 @@ export default function LoginCoverPage() {
           >
             <Typography variant="h3" paragraph>
               Login
-            </Typography>
+            </Typography> 
           </Stack>
 
           <Loginform />
