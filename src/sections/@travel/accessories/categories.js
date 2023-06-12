@@ -10,6 +10,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { Typography, Stack, Container, Box, Paper, Button } from '@mui/material';
 // utils
 import cssStyles from '../../../utils/cssStyles';
+import { useRouter } from 'next/router';
+
 
 // components
 import { TextMaxLine, SvgIconStyle } from '../../../components';
@@ -35,6 +37,7 @@ Categories.propTypes = {
 };
 
 export default function Categories({ categories }) {
+
   return (
     <RootStyle>
       <Container>
@@ -56,7 +59,7 @@ export default function Categories({ categories }) {
               }}
             >
               {categories?.map((category) => (
-              <CategoryItem key={category.id} category={category} onClick={category.onClick} />
+              <CategoryItem key={category.id} category={category}  />
               ))}
             </Box>       
       </Container>
@@ -75,6 +78,8 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+  const router = useRouter();
+
   return (
     <Paper
       variant="outlined"
@@ -128,6 +133,13 @@ function CategoryItem({ category }) {
         <TextMaxLine variant="h6" line={1}>
           {category.name}
         </TextMaxLine>
+        <Button
+        color="inherit"
+        variant="contained"
+        onClick={() => router.push(category.path)}
+      >
+        {category.button}
+      </Button>
 
         {/* <Typography variant="body2" sx={{ color: 'text.disabled', mt: 0.5 }}>
           {category.totalJobs} jobs

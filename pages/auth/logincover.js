@@ -46,7 +46,6 @@ export default function LoginCoverPage() {
     <Page title="Login Cover">
       {/* <RootStyle>
         <ContentStyle> */}
-        
           <Stack
             sx={{
               pt: { xs: 2, md: 5 },

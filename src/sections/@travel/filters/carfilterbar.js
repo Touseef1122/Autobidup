@@ -12,7 +12,8 @@ import { SearchInput } from '../../../components';
 import Carfiltermake from './carfiltermake';
 import Carfilterprice from './carfilterprice';
 import Carfilteryear from './carfilteryear';
-import Carfiltermileage from './carfiltermileage';
+import Carfiltermileage from './carfiltervariant';
+import Carfiltervariant from './carfiltervariant';
 
 // ----------------------------------------------------------------------
 
@@ -81,9 +82,9 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
       </section>
       <section>
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
-          Mileage
+          Variant
         </Typography>
-        <Carfiltermileage
+        <Carfiltervariant
           filtermileage={filters.filtermileage}
           onchangemileage={handlechangemileage}
         />

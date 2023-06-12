@@ -33,12 +33,12 @@ const mileage=[
 
 
 
-Carfiltermileage.propTypes = {
+Carfiltervariant.propTypes = {
   filtermileage: PropTypes.array,
   onchangemileage: PropTypes.func,
 };
 
-export default function Carfiltermileage({ filtermileage, onchangemileage}) {
+export default function Carfiltervariant({ filtermileage, onchangemileage}) {
   return (
     <RootStyle>
       <Autocomplete
@@ -53,7 +53,7 @@ export default function Carfiltermileage({ filtermileage, onchangemileage}) {
           <TextField
             {...params}
             variant="filled"
-            placeholder="Choose Mileage"
+            placeholder="Choose Variant"
             InputProps={{
               ...params.InputProps,
               autoComplete: 'search',
