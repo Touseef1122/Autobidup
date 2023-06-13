@@ -105,16 +105,16 @@ export default function Displaycarlist({ posts }) {
             Gadgets
           </Typography>
           <Button
-            color="inherit"
-            variant="contained"
-            startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-            onClick={handleMobileOpen}
-            sx={{
-              display: { md: 'none' },
-            }}
-          >
-            Filters
-          </Button>
+              color="inherit"
+              variant="contained"
+              // startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+              onClick={handleMobileOpen}
+              sx={{
+                display: { md: 'none' },
+              }}
+            >
+              Filters
+        </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
             <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose}  onFilterClick={handleFilterClick}/>
 

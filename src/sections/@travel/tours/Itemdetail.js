@@ -66,9 +66,7 @@ const data = [
   },
 ];
 const includes = [
-  // {
-  //   label:'ABS'
-  // },
+
   {
     label: 'AM/FM radio',
   },
@@ -80,33 +78,17 @@ const includes = [
   },
 ];
 
-// TravelTourDetails.propTypes = {
-//   tour: PropTypes.shape({
-//     availableEnd: PropTypes.string,
-//     availableStart: PropTypes.string,
-//     description: PropTypes.string,
-//     duration: PropTypes.string,
-//     highlights: PropTypes.array,
-//     includes: PropTypes.array,
-//     languages: PropTypes.array,
-//     location: PropTypes.string,
-//     program: PropTypes.array,
-//     tourGuide: PropTypes.shape({
-//       name: PropTypes.string,
-//       phoneNumber: PropTypes.string,
-//     }),
-//   }),
-// };
+
 
 export default function TravelTourDetails({ tour }) {
 
   return (
     <Stack spacing={2} mb={6} mt={6}>
-      <Typography variant="h4">
+      {/* <Typography variant="h4">
         Overview
-      </Typography>
+      </Typography> */}
       <Box sx={{}}>
-        <section>
+        {/* <section>
           <Box
             sx={{
               boxShadow: '0 1px 10px #64666b',
@@ -130,7 +112,7 @@ export default function TravelTourDetails({ tour }) {
               />
             ))}
           </Box>
-        </section>
+        </section> */}
 
         <section>
           <Typography variant="h4" paragraph mt={6}>
@@ -141,46 +123,6 @@ export default function TravelTourDetails({ tour }) {
           ))}
         </section>
 
-        <section>
-          <Stack>
-            <Typography variant="h4">Car Features</Typography>
-            <Box
-              sx={{
-                boxShadow: '0 1px 10px #64666b',
-                borderRadius: '8px',
-                mt:1,
-                p: 3,
-                pl: 6,
-                display: 'grid',
-                rowGap: 2,
-                columnGap: 3,
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  sm: 'repeat(2, 1fr)',
-                },
-              }}
-            >
-              {includes.map((option) => (
-                <TextIconLabel
-                  key={option.label}
-                  icon={
-                    <Iconify
-                      icon={checkmarkIcon}
-                      sx={{
-                        mr: 2,
-                        width: 20,
-                        height: 20,
-                        ...(!option.enabled && { color: '#CE9A00' }),
-                      }}
-                    />
-                  }
-                  value={option.label}
-                />
-              ))}
-            </Box>
-          </Stack>
-        </section>
-        <Comments />
       </Box>
     </Stack>
   );

@@ -17,8 +17,9 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
-import { TravelTourDetails } from '../../../src/sections/@travel';
+import { Itemcarasol, Iteminfo } from '../../../src/sections/@travel/displaymaincar';
+// import { TravelTourDetails } from '../../../src/sections/@travel';
+import { Itemdetail } from '../../../src/sections/@travel';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -56,19 +57,17 @@ export default function Displaycardetails({ posts }) {
         />
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <Carousel />
+            <Itemcarasol/>
             {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <TravelTourDetails />
+            <Itemdetail />
           </Grid>
           <Grid item xs={12} sm={5}>
-            <Box>{/* <TravelTourDetails /> */}</Box>
           </Grid>
         </Grid>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );

@@ -94,8 +94,6 @@ export default function Carousel() {
               sx={{
                 '& .arrow': {
                   mt: -5,
-                  // '&.left': { left: 10 },
-                  // '&.right': { right: 20 },
                 },
               }}
             >

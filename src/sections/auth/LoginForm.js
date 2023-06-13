@@ -90,66 +90,70 @@ export default function LoginForm() {
   return (
     //  <form >
     <div>
-      <Stack spacing={2.5} alignItems="flex-end">
-        <Controller
-          name="username"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              type="text"
-              {...field}
-              fullWidth
-              label="Email address"
-              // error={Boolean(error)}
-              // helperText={error?.message}
+      
+          <Stack spacing={2.5} alignItems="flex-end">
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  type="text"
+                  {...field}
+                  fullWidth
+                  label="Email address"
+                  // error={Boolean(error)}
+                  // helperText={error?.message}
+                />
+              )}
             />
-          )}
-        />
-        {/* {errors.email && <p>{errors.email.message}</p>} */}
+            {/* {errors.email && <p>{errors.email.message}</p>} */}
 
-        <Controller
-          name="password"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              fullWidth
-              label="Password"
-              type={showPassword ? 'text' : 'password'}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={handleShowPassword} edge="end">
-                      <Iconify icon={showPassword ? viewIcon : viewOff} />
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              // error={Boolean(error)}
-              // helperText={error?.message}
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  fullWidth
+                  label="Password"
+                  type={showPassword ? 'text' : 'password'}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton onClick={handleShowPassword} edge="end">
+                          <Iconify icon={showPassword ? viewIcon : viewOff} />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  // error={Boolean(error)}
+                  // helperText={error?.message}
+                />
+              )}
             />
-          )}
-        />
-        {/* {errors.password && <p>{errors.password.message}</p>} */}
+            {/* {errors.password && <p>{errors.password.message}</p>} */}
 
-        {/* <NextLink href={Routes.resetPassword} passHref>
+            {/* <NextLink href={Routes.resetPassword} passHref>
           <Link variant="body3" underline="always" color="text.secondary">
             Forgot password?
           </Link>
-        </NextLink> */}
+           </NextLink> */}
 
-        <LoadingButton
-          fullWidth
-          size="large"
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-          sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
-          onClick={handleSubmit(onSubmit)}
-        >
-          Login
-        </LoadingButton>
-      </Stack>
+            <LoadingButton
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+              sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
+              onClick={handleSubmit(onSubmit)}
+            >
+              Login
+            </LoadingButton>
+          </Stack>
+         
+           
+
     </div>
     // </form>
   );

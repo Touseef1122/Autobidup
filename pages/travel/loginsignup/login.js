@@ -104,8 +104,8 @@ export default function LoginForm() {
   return (
     //  <form >
     <div>
-      <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={12} sm={6} p={6}>
+      <Grid container spacing={2} justifyContent="center" >
+        <Grid item xs={12} sm={6} p={6} padding="20%" >
           <Stack
             sx={{
               pt: { xs: 2, md: 5 },
