@@ -1,16 +1,7 @@
-import PropTypes from 'prop-types';
-// import Loader from './UsedCars/Loader';
-// import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
-// icons
-// import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../src/config';
-
-// @mui
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// hooks
-import { useRequest } from '../../../src/hooks';
 // _data
+// import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
@@ -24,6 +15,7 @@ import Formcompo from '../auction/formcompo'
 import AuctionCards from './Auctioncards'
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
+//images
 import Galviston from '../../../src/assets/images/bentley8.jpg';
 import Houston from '../../../src/assets/images/BMW3Series.jpg';
 import Dallas from '../../../src/assets/images/FordMustang.jpg';
@@ -53,22 +45,6 @@ export default function Displaycarlist({ posts }) {
 }
 
 //-------------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
-
-Displaycarlist.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
-};
-
-// ----------------------------------------------------------------------
-
-export async function getStaticProps() {
-  return {
-    props: {
-      posts: getAllPosts(),
-    },
-  };
-}
 const bestcities = [
   {
     id: 1,
@@ -156,3 +132,19 @@ const bestcities = [
     img: Galviston,
   }
 ];
+// ----------------------------------------------------------------------
+
+Displaycarlist.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
+
+// ----------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      posts: getAllPosts(),
+    },
+  };
+}
+

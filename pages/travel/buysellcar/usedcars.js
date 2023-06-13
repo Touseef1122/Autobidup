@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import React, { useRef, useEffect, useState } from 'react';
+
 // @mui
 import { Box, Container } from '@mui/material';
 // utils
@@ -48,6 +50,22 @@ Usedcars.propTypes = {
 };
 
 export default function Usedcars({ posts }) {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/all_cars/');
+        const jsonData = await response.json();
+        setData(jsonData);
+        console.log("created")
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Page title="Used Cars | AutoBidUp">
       <Loader />
@@ -55,10 +73,10 @@ export default function Usedcars({ posts }) {
       <Pageimage images={usedimage} />
       {/* <TravelLandingIntroduceOurServices /> */}
 
-      <TravelLandingIntroduce categories={vehicalType} type={categoryType} />
+      <TravelLandingIntroduce categories={vehicalType}/>
       <TravelLandingfull />
 
-      <LatestPosts2 posts={bestcities} />
+      <LatestPosts2 posts={data} />
     </Page>
   );
 }
@@ -67,88 +85,39 @@ export default function Usedcars({ posts }) {
 const bestcities = [
   {
     id: 1,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
+    image: MVI,
+    heading: 'Honda',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
   },
   {
     id: 2,
-    name: 'Crola Atlas',
-    dis: '2020',
-    price: 'Rs 3,000,000',
-    img: Dallas,
+    image: MVI,
+    heading: 'Civic',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '5 lac',
   },
   {
     id: 3,
-    name: 'Mehran',
-    dis: '2016',
-    price: 'Rs 3,000,000',
-
-    img: Austin,
-  },
-  {
-    id: 4,
-    price: 'Rs 3,000,000',
-    name: 'Jeep',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 5,
-    price: 'Rs 3,000,000',
-    name: 'Honda City',
-    dis: '2019',
-    img: Houston,
-  },
-  {
-    id: 6,
-    price: 'Rs 3,000,000',
-    name: 'Crola Atlas',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 7,
-    name: 'Mehran',
-    price: 'Rs 3,000,000',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 8,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 9,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
-  },
-  {
-    id: 10,
-    name: 'Crola Atlas',
-    price: 'Rs 3,000,000',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 11,
-    price: 'Rs 3,000,000',
-    name: 'Mehran',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 12,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
+    image: MVI,
+    heading: 'Mehran',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
   },
 ];
 const vehicalType = [
@@ -193,11 +162,7 @@ const usedimage = [
     image: used,
   },
 ];
-const categoryType = [
-  {
-    title: 'Vehicle',
-  },
-];
+
 // ----------------------------------------------------------------------
 
 Usedcars.getLayout = function getLayout(page) {

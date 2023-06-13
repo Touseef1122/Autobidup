@@ -16,23 +16,25 @@ import Carfilterprice from './carfilterprice';
 // ----------------------------------------------------------------------
 
 const defaultValues = {
-
   filterprice: [],
   filtermake: [],
 };
 
-Carfilterbar.propTypes = {
+Storefilterbar.propTypes = {
   mobileOpen: PropTypes.bool,
   onMobileClose: PropTypes.func,
+  setSearchValue : PropTypes.string,
+  onFilterClick: PropTypes.func,
+
 };
 
-export default function Carfilterbar({ mobileOpen, onMobileClose }) {
+export default function Storefilterbar({ mobileOpen, onMobileClose,setSearchValue,onFilterClick }) {
   const [filters, setFilters] = useState(defaultValues);
 
-  const handlechangemake = (keyword) => {
+  const handlechangesearch = (keyword) => {
     setFilters({
       ...filters,
-      filtermake: keyword,
+      filtersearch: keyword,
     });
   };
 
@@ -42,17 +44,9 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
       filterprice: keyword,
     });
   };
-  const handlechangeyear = (keyword) => {
-    setFilters({
-      ...filters,
-      filteryear: keyword,
-    });
-  };
-  const handlechangemileage = (keyword) => {
-    setFilters({
-      ...filters,
-      filtermileage: keyword,
-    });
+  const handleFilterClick = () => {
+    console.log("filtersearch", filters.filtersearch)
+    onFilterClick(filters.filtersearch); // Pass the search value to the parent component
   };
 
   const renderFilters = (
@@ -61,7 +55,8 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
           Item Name
         </Typography>
-        <Carfiltermake filtermake={filters.filtermake} onchangemake={handlechangemake} />
+        {/* <Carfiltermake filtermake={filters.filtermake} onchangemake={handlechangemake} /> */}
+        <SearchInput filtersearch={filters.filtersearch} onchangesearch={handlechangesearch}/>
       </section>
       <section>
         <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
@@ -72,6 +67,7 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
       <Button
         color="inherit"
         variant="contained"
+        onClick={handleFilterClick}
       >
         Filters
       </Button>

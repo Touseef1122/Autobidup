@@ -8,7 +8,10 @@ import Routes from '../../src/routes';
 // components
 import { Page, Logo } from '../../src/components';
 // sections
-import { Authwithsocial, Authcarousel, Loginform } from '../../src/sections/auth';
+import { Authwithsocial, Authcarousel } from '../../src/sections/auth';
+
+import {Loginform} from '../../src/sections/auth';
+
 import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
@@ -41,8 +44,8 @@ export default function LoginCoverPage() {
 
   return (
     <Page title="Login Cover">
-      <RootStyle>
-        <ContentStyle>
+      {/* <RootStyle>
+        <ContentStyle> */}
           <Stack
             sx={{
               pt: { xs: 2, md: 5 },
@@ -51,7 +54,7 @@ export default function LoginCoverPage() {
           >
             <Typography variant="h3" paragraph>
               Login
-            </Typography>
+            </Typography> 
           </Stack>
 
           <Loginform />
@@ -72,10 +75,10 @@ export default function LoginCoverPage() {
           </Divider>
 
           <Authwithsocial />
-        </ContentStyle>
+        {/* </ContentStyle> */}
 
         <Authcarousel title="Hi, Welcome Back" />
-      </RootStyle>
+      {/* </RootStyle> */}
     </Page>
   );
 }

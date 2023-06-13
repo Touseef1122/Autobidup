@@ -10,6 +10,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { Typography, Stack, Container, Box, Paper, Button } from '@mui/material';
 // utils
 import cssStyles from '../../../utils/cssStyles';
+import { useRouter } from 'next/router';
+
 
 // components
 import { TextMaxLine, SvgIconStyle } from '../../../components';
@@ -30,17 +32,18 @@ const RootStyle = styled(Stack)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-CareerLandingHotCategories.propTypes = {
+Categories.propTypes = {
   categories: PropTypes.array.isRequired,
 };
 
-export default function CareerLandingHotCategories({ categories }) {
+export default function Categories({ categories }) {
+
   return (
     <RootStyle>
       <Container>
         
             <Typography variant="h3" sx={{ textAlign: 'center' }}>
-             Vehicle Categories
+             Store Categories
             </Typography>
 
             <Box
@@ -56,7 +59,7 @@ export default function CareerLandingHotCategories({ categories }) {
               }}
             >
               {categories?.map((category) => (
-              <CategoryItem key={category.id} category={category} onClick={category.onClick} />
+              <CategoryItem key={category.id} category={category}  />
               ))}
             </Box>       
       </Container>
@@ -75,6 +78,8 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+  const router = useRouter();
+
   return (
     <Paper
       variant="outlined"
@@ -88,14 +93,14 @@ function CategoryItem({ category }) {
         transition: (theme) => theme.transitions.create('all'),
         '&:hover': {
           bgcolor: 'background.paper',
-          boxShadow: (theme) => theme.customShadows.z24,
-          '& .icon': {
-            bgcolor: 'primary.main',
-            transition: (theme) => theme.transitions.create('all'),
-            '& > span': {
-              color: 'common.white',
-            },
-          },
+          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
+        //   '& .icon': {
+        //     bgcolor: 'primary.main',
+        //     transition: (theme) => theme.transitions.create('all'),
+        //     '& > span': {
+        //       color: 'common.white',
+        //     },
+        //   },
         },
       }}
     >
@@ -112,9 +117,9 @@ function CategoryItem({ category }) {
         <Box
           className="icon"
           sx={{
-            mb: 2.5,
-            width: 72,
-            height: 72,
+            // mb: 2.5,
+            // width: 72,
+            // height: 72,
             mx: 'auto',
             display: 'flex',
             borderRadius: '50%',
@@ -122,12 +127,19 @@ function CategoryItem({ category }) {
             justifyContent: 'center',
           }}
         >
-          <Image src={category.img.src} sx={{ width: 58, height: 48, filter: 'grayscale(100%)' }} />
+          <Image src={category.img.src} sx={{ width: '100%', height: '100%' }} />
         </Box>
 
         <TextMaxLine variant="h6" line={1}>
           {category.name}
         </TextMaxLine>
+        <Button
+        color="inherit"
+        variant="contained"
+        onClick={() => router.push(category.path)}
+      >
+        {category.button}
+      </Button>
 
         {/* <Typography variant="body2" sx={{ color: 'text.disabled', mt: 0.5 }}>
           {category.totalJobs} jobs

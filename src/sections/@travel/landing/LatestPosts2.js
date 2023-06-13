@@ -42,20 +42,6 @@ const DotStyle = styled('span')(({ theme }) => ({
 BlogMarketingLatestPosts.propTypes = {
   posts: PropTypes.array.isRequired,
 };
-const items = [
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
-
 export default function BlogMarketingLatestPosts({ posts }) {
   const theme = useTheme();
   const router = useRouter();
@@ -113,7 +99,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
           }}
         >
           <Slider ref={carouselRef} {...carouselSettings}>
-            {posts.map((post) => (
+            {posts.map((value) => (
               <Box
                 sx={{
                   px: 2,
@@ -122,7 +108,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
               >
                 {/* <CarsCard item={items} /> */}
                 <Box>
-                  {items.map((value) => (
+                  {/* {items.map((value) => ( */}
                     <Box
                       onClick={() => router.push('/travel/buysellcar/displaycardetails')}
                       sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
@@ -162,7 +148,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
                       {/* </Grid>
         </Grid> */}
                     </Box>
-                  ))}
+                  {/* ))} */}
                 </Box>
               </Box>
             ))}

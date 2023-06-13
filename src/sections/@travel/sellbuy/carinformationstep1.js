@@ -264,6 +264,26 @@ export default function Carinformationstep1({ tours, icons, services }) {
               )}
             />
           </Stack>
+          <Controller
+              name="Request"
+              sx={{ width: '100%' }}
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Body Type"
+                  sx={{width:{xs:"100%",md:"20%"}, mt:"12px"}}
+                  size="small"
+                >
+                  {currencie.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )}
+            />
         </Box>
         {/* </form> */}
       </Container>

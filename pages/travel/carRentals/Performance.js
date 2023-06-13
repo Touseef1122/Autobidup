@@ -212,6 +212,12 @@ export default function Displaycarlist({ posts }) {
     setPage(value);
   };
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
+  const [searchValues, setSearchValues] = useState('');
+
+  const handleFilterClick = (searchValue) => {
+    console.log('Search Value:', searchValue);    
+    setSearchValues(searchValue)
+  };
 
   const handleMobileOpen = () => {
     setMobileOpen(true);
@@ -225,7 +231,7 @@ export default function Displaycarlist({ posts }) {
     return <ErrorScreen />;
   }
   return (
-    <Page title="HatchBack">
+    <Page title="Performance : Store">
       <RootStyle>
         <Loader />
         <ChatButton />
@@ -245,13 +251,13 @@ export default function Displaycarlist({ posts }) {
               Filters
         </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-          <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose}/>
+          <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} onFilterClick={handleFilterClick}/>
             <Box
               sx={{
                 flexGrow: 1
               }}
             >
-              <Caritem item={items} />
+              <Caritem search={searchValues} value={4} />
             </Box>
           </Stack>
         </Container>

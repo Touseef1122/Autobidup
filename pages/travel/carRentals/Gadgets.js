@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Filter from './ItemFilter.js';
 
 // icons
@@ -19,7 +19,7 @@ import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen} from '../../../src/components';
+import { Page, ErrorScreen, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import { Caritem, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
@@ -29,6 +29,8 @@ import b from '../../../src/assets/images/SI2.JPg';
 import c from '../../../src/assets/images/SI3.JPg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
+
+
 
 import Storefilterbar from '../../../src/sections/@travel/filters/storefilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
@@ -64,144 +66,6 @@ const items = [
     city: 'Lighter',
     price: '200 RS',
   },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
 ];
 
 import Pagination from '@mui/material/Pagination';
@@ -213,6 +77,12 @@ export default function Displaycarlist({ posts }) {
     setPage(value);
   };
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
+  const [searchValues, setSearchValues] = useState('');
+
+  const handleFilterClick = (searchValue) => {
+    console.log('Search Value:', searchValue);    
+    setSearchValues(searchValue)
+  };
 
   const handleMobileOpen = () => {
     setMobileOpen(true);
@@ -226,7 +96,7 @@ export default function Displaycarlist({ posts }) {
     return <ErrorScreen />;
   }
   return (
-    <Page title="HatchBack">
+    <Page title="Gadgets | Store">
       <RootStyle>
         <Loader />
         <ChatButton />
@@ -235,25 +105,25 @@ export default function Displaycarlist({ posts }) {
             Gadgets
           </Typography>
           <Button
-              color="inherit"
-              variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-              onClick={handleMobileOpen}
-              sx={{
-                display: { md: 'none' },
-              }}
-            >
-              Filters
-        </Button>
+            color="inherit"
+            variant="contained"
+            startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+            onClick={handleMobileOpen}
+            sx={{
+              display: { md: 'none' },
+            }}
+          >
+            Filters
+          </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-          <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose}/>
+            <Storefilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose}  onFilterClick={handleFilterClick}/>
 
             <Box
               sx={{
-                flexGrow: 1
+                flexGrow: 1,
               }}
             >
-              <Caritem item={items} />
+              <Caritem search={searchValues} value={5}  />
             </Box>
           </Stack>
           {/* tours={services} icons={summary} services={service}  */}

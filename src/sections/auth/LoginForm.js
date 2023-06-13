@@ -1,27 +1,28 @@
+//react
+import React, { useState } from 'react';
+//form
 import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
 // icons
 import viewIcon from '@iconify/icons-carbon/view';
 import viewOff from '@iconify/icons-carbon/view-off';
 // next
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 // @mui
 import { LoadingButton } from '@mui/lab';
-import { Stack, Link, TextField, IconButton, InputAdornment } from '@mui/material';
+import { Stack, Link, TextField, IconButton, InputAdornment, Button } from '@mui/material';
 // routes
-import Routes from '../../routes';
+import Routes from '../../../src/routes';
 // components
-import { Iconify } from '../../components';
-import Typography from 'src/theme/overrides/Typography';
+import { Iconify } from '../../../src/components';
 
 // ----------------------------------------------------------------------
 
 const FormSchema = Yup.object().shape({
-  email: Yup.string().required('Email is required').email('That is not an email'),
+  username: Yup.string().required('Email is required').email('That is not an email'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password should be of minimum 6 characters length'),
@@ -30,6 +31,7 @@ const FormSchema = Yup.object().shape({
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  console.log('blaggggggggggggggggggggggg');
   const {
     reset,
     control,
@@ -39,7 +41,7 @@ export default function LoginForm() {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -49,33 +51,66 @@ export default function LoginForm() {
   };
 
   const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
+    console.log(' working');
+    try {
+      console.log('checking login');
+      const response = await fetch('https://autobidup.pythonanywhere.com/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        xhrFields: {
+          withCredentials: true,
+        },
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        // Handle the response data as needed
+        localStorage.setItem('firstname', responseData.firstName);
+
+        // Store JWT token in document cookie
+        document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log(responseData);
+        router.push('/');
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    //  <form >
+    <div>
       <Stack spacing={2.5} alignItems="flex-end">
-        
         <Controller
-          name="email"
+          name="username"
           control={control}
-          render={({ field, fieldState: { error } }) => (
+          render={({ field }) => (
             <TextField
+              type="text"
               {...field}
               fullWidth
               label="Email address"
-              error={Boolean(error)}
-              helperText={error?.message}
+              // error={Boolean(error)}
+              // helperText={error?.message}
             />
           )}
         />
+        {/* {errors.email && <p>{errors.email.message}</p>} */}
 
         <Controller
           name="password"
           control={control}
-          render={({ field, fieldState: { error } }) => (
+          render={({ field }) => (
             <TextField
               {...field}
               fullWidth
@@ -90,30 +125,32 @@ export default function LoginForm() {
                   </InputAdornment>
                 ),
               }}
-              error={Boolean(error)}
-              helperText={error?.message}
+              // error={Boolean(error)}
+              // helperText={error?.message}
             />
           )}
         />
+        {/* {errors.password && <p>{errors.password.message}</p>} */}
 
-        <NextLink href={Routes.resetPassword} passHref>
+        {/* <NextLink href={Routes.resetPassword} passHref>
           <Link variant="body3" underline="always" color="text.secondary">
             Forgot password?
           </Link>
-        </NextLink>
+        </NextLink> */}
 
         <LoadingButton
           fullWidth
           size="large"
           type="submit"
-          variant="contained"         
+          variant="contained"
           loading={isSubmitting}
-          sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#FFBE00' }}}
-          onClick={() => router.push('/')}
+          sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
+          onClick={handleSubmit(onSubmit)}
         >
           Login
         </LoadingButton>
       </Stack>
-    </form>
+    </div>
+    // </form>
   );
 }

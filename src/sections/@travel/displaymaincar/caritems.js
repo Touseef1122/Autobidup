@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import React, { useRef, useEffect, useState } from 'react';
 // icons
 import playIcon from '@iconify/icons-carbon/play';
 // @mui
@@ -9,6 +11,7 @@ import { useBoundingClientRect, useResponsive } from '../../../hooks';
 // _data
 import _mock from '../../../../_data/mock';
 import { useRouter } from 'next/router';
+import page from '../accessories/item'
 
 // components
 import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
@@ -26,7 +29,21 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function TravelLandingCars() {
+Caritems.propTypes = {
+  value: PropTypes.array.isRequired,
+  search: PropTypes.array.isRequired,
+};
+export default function Caritems(props) {
+  console.log(props.value)
+  console.log(props.search)
+  // if (props.search == false){
+
+  //   console.log(false)
+  // }
+  // else{
+  //   console.log(true)
+
+  // }
   const isDesktop = useResponsive('up', 'md');
   const router = useRouter();
 
@@ -44,6 +61,40 @@ export default function TravelLandingCars() {
   };
 
   const offsetLeft = container && container.left + 20;
+
+  const [data, setData] = useState([]);
+  const [path, setPath] = useState([]);
+  
+  useEffect(() => {
+    console.log('useeee')
+    const fetchData = async () => {
+      try {
+        const response = '';
+        if (props.search != ''){
+          console.log('true')
+          response = await fetch(`https://autobidup.pythonanywhere.com/store/search/?search=${props.search}`);
+        }
+        else{
+          setData([])
+        console.log("worked")
+        response = await fetch(`https://autobidup.pythonanywhere.com/store/product_type/?search=${props.value}`);
+        }
+        const jsonData = await response.json();
+        const filteredData = jsonData.filter((item) => item.ptype === String(props.value));
+        if(props.value == 1){
+          setPath(page)
+        }
+        setData(filteredData);
+        // console.log(jsonData)  
+        // setData(jsonData);
+        console.log("created");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  },[props.search, props.value]);
 
   return (
     <>
@@ -63,10 +114,10 @@ export default function TravelLandingCars() {
               },
             }}
           >
-            {SUMMARY1.map((item) => (
-              <div key={item.id}>
+            {data.map((item) => (
+              <div key={item.pid}>
                 <Box 
-                onClick={() => router.push(item.path)}
+                onClick={() => router.push('../accessories/item')}
                 sx={{
                   transition: 'all 0.3s',
                   cursor:"pointer",
@@ -80,15 +131,15 @@ export default function TravelLandingCars() {
                   
                 }}>
                   <Image
-                    src={item.image.src}
+                    src={item.images}
                     sx={{
                       width: '100%',
-                      //  height: '58%',
+                      height: '20%',
                     }}
                   />
                   <Box>
-                    <Typography sx={{ mb: -1 }}>{item.title}</Typography>
-                    <Typography>{item.title2}</Typography>
+                    <Typography sx={{ mb: -1 }}>{item.pname}</Typography>
+                    <Typography>{item.price}</Typography>
                   </Box>
                 </Box>
               </div>
