@@ -43,7 +43,7 @@ export default function Mechaniclanding({ posts }) {
     <Page title="Mechanic Module | AutoBidUp">
       <Loader/>
       <ChatButton />
-      <Box sx={{position: 'relative', mb:6, overflowX:"hidden" }}>
+      <Box sx={{position: ' relative', mb:6, overflowX:"hidden" }}>
        <Landing/>
        <Trustmechanic/>
        <TravelLandingIntroduceOurServices data={Serviceclassdata}/>
