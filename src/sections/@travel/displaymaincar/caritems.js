@@ -11,6 +11,7 @@ import { useBoundingClientRect, useResponsive } from '../../../hooks';
 // _data
 import _mock from '../../../../_data/mock';
 import { useRouter } from 'next/router';
+import page from '../accessories/item'
 
 // components
 import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
@@ -81,7 +82,7 @@ export default function Caritems(props) {
         const jsonData = await response.json();
         const filteredData = jsonData.filter((item) => item.ptype === String(props.value));
         if(props.value == 1){
-          setPath()
+          setPath(page)
         }
         setData(filteredData);
         // console.log(jsonData)  
@@ -116,7 +117,7 @@ export default function Caritems(props) {
             {data.map((item) => (
               <div key={item.pid}>
                 <Box 
-                // onClick={() => router.push(item.path)}
+                onClick={() => router.push('../accessories/item')}
                 sx={{
                   transition: 'all 0.3s',
                   cursor:"pointer",
