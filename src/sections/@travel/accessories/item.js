@@ -24,7 +24,8 @@ import { Overview } from '../tours';
 
 //--------------------------------------------------------------
 Item.propTypes = {
-  item: PropTypes.array.isRequired,
+  item: PropTypes.array,
+  onRemoveItem: PropTypes.array,
 };
 const ScrollStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('sm')]: {
@@ -33,9 +34,11 @@ const ScrollStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Item({ item }) {
+export default function Item( props ) {
   const router = useRouter();
   const [counter, setCounter] = useState(1);
+  console.log( "data reached", props.item)
+
 
   // const handleIncrement = () => {
   //   this.setState((state) => ({ counter: state.counter + 1 }));
@@ -50,19 +53,19 @@ export default function Item({ item }) {
     <Box mt={2} mb={2} sx={{background:"white", boxShadow: '0 1px 10px #64666B' }} height="400px">
       <Scrollbar>
         <ScrollStyle>
-          {item?.map((value) => (
-            <Box sx={{ p: 3 }}>
-              <Grid container spacing={4} mb={2} justifyContent="center">
+          {props.item?.map((value) => (
+            <Box sx={{ p: 3 }} >
+              {value ? (
+              <Grid container spacing={4} mb={2} justifyContent="center" key={value.pid}>
                 <Grid item xs={12} sm={4} display="flex" alignItems="center">
                   <Image
-                    alt={value.title}
-                    src={value.image.src}
+                    src={value.images}
                     sx={{ width: '100%', height: 'auto' }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={8}>
                   <Stack direction="row" justifyContent="space-between">
-                    <Typography variant="h4">{value.heading}</Typography>
+                    <Typography variant="h4">{value.pname}</Typography>
                     <Typography variant="h4" color="#CE9A00">
                       {' '}
                       PKR {value.price}
@@ -117,12 +120,13 @@ export default function Item({ item }) {
                       mt: 3,
                       '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
                     }}
-                    onClick={() => router.push({})}
+                    onClick={() => props.onRemoveItem(item.pid)}
                   >
                     Remove
                   </Button>
                 </Grid>
               </Grid>
+               ) : null}
               <Divider sx={{ backgroundColor: 'darkgrey' }} />
             </Box>
           ))}

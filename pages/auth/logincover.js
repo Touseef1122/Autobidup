@@ -76,7 +76,7 @@ export default function LoginCoverPage() {
           </Divider>
 
           <Authwithsocial />
-        {/* </ContentStyle> */}
+        </ContentStyle>
 
         <Authcarousel title="Hi, Welcome Back" />
        </RootStyle> 

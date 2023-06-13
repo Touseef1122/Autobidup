@@ -10,6 +10,8 @@ import { styled, alpha } from '@mui/material/styles';
 import { Typography, Stack, Container, Box, Paper, Button } from '@mui/material';
 // utils
 import cssStyles from '../../../utils/cssStyles';
+import { useRouter } from 'next/router';
+
 
 // components
 import { TextMaxLine, SvgIconStyle } from '../../../components';
@@ -35,6 +37,7 @@ Categories.propTypes = {
 };
 
 export default function Categories({ categories }) {
+
   return (
     <RootStyle>
       <Container>
@@ -75,6 +78,8 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+  const router = useRouter();
+
   return (
     <Paper
       variant="outlined"

@@ -20,10 +20,13 @@ import {
 import { Overview } from '../tours';
 
 //--------------------------------------------------------------
-
-export default function Order() {
+Order.propTypes = {
+  totalPrice: PropTypes.array,
+};
+export default function Order({totalPrice}) {
   const router = useRouter();
-
+  const convertedTotalPrice = parseFloat(totalPrice);
+  const finalPrice = convertedTotalPrice + 100;
   return (
     <Box
       sx={{
@@ -41,7 +44,7 @@ export default function Order() {
       <Stack direction="row" style={{ justifyContent: 'space-between' }}>
         <Typography variant="h6">Subtotal</Typography>
         <Typography variant="h4" color="#CE9A00">
-          PKR 100
+         PKR  {totalPrice}
         </Typography>
       </Stack>
       <Stack direction="row" style={{ justifyContent: 'space-between' }}>
@@ -54,7 +57,7 @@ export default function Order() {
       <Stack direction="row" style={{ justifyContent: 'space-between' }}>
         <Typography variant="h6">Total</Typography>
         <Typography variant="h4" color="#CE9A00">
-          PKR 100
+          PKR {finalPrice}
         </Typography>
       </Stack>
       <Button

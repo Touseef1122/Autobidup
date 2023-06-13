@@ -18,6 +18,8 @@ import { _testimonials } from '../../../_data/mock';
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
+import { useRouter } from 'next/router';
+
 // sections
 import { styled } from '@mui/material/styles';
 // import { Cartt } from '../../../src/sections/@travel/accessories/cartitem';
@@ -46,60 +48,44 @@ const styling = {
   backgroundSize: 'cover',
 };
 const items = [
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
+  
 ];
 
 export default function Cart() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [page, setPage] = useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
+  // const [mobileOpen, setMobileOpen] = useState(false);
+  // const [page, setPage] = useState(1);
+  // const handleChange = (event, value) => {
+  //   setPage(value);
+  // };
+  // const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
 
-  const handleMobileOpen = () => {
-    setMobileOpen(true);
-  };
+  // const handleMobileOpen = () => {
+  //   setMobileOpen(true);
+  // };
 
-  const handleMobileClose = () => {
-    setMobileOpen(false);
-  };
+  // const handleMobileClose = () => {
+  //   setMobileOpen(false);
+  // };
 
-  if (error) {
-    return <ErrorScreen />;
-  }
+  // if (error) {
+  //   return <ErrorScreen />;
+  // }
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log("item data",item)
+  items.push(item)
+  console.log("Items",items)
+  const handleRemoveItem = (productId) => {
+    const updatedItems = items.filter((item) => item.pid !== productId);
+    setItems(updatedItems);
+  };
+  const totalPrice = items.reduce((total, item) => {return total + (parseFloat(item?.price) || 0)}, 0);
+  // const totalPrice = (items) => items
+  // .map((item) => item.price)
+  // .reduce((acc, value) => acc + value, 0)
+  console.log(totalPrice)
+
   return (
     <Page title="Cart | Accessories">
       <Loader/>
@@ -116,11 +102,12 @@ export default function Cart() {
       >
         <Typography variant="h2"> Shopping Cart </Typography>
         <Grid spacing={2} container justifyContent="center">
-          <Grid item xs={12} sm={8} md={9}>
-            <Item item={items} />
+          <Grid item xs={12} sm={7} md={8}>
+            
+          {items.length > 0 && <Item item={items} onRemoveItem={handleRemoveItem}/>}
           </Grid>
-          <Grid item xs={12} sm={4} md={3}>
-            <Order />
+          <Grid item xs={12} sm={5} md={4}>
+            <Order totalPrice={totalPrice} />
           </Grid>
         </Grid>
       </Box>
