@@ -8,6 +8,10 @@ import Pageimage from '../../../sections/@travel/landing/pageimage';
 //mui
 import { Grid, Box, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+// import { Applying} from '../../../Assets/Images/tools.jpg'
+// import { Apply} from '../../../Assets/Images/tools.jpg'
+import Apply from '../../../Assets/Images/space.jpg';
+import Applying from '../../../Assets/Images/wood_.jpg';
 
 //--------------------------------------------------------------
 const usedimage = [
@@ -39,9 +43,13 @@ export default function Landing() {
               textAlign: 'center',
               width: '100%',
               height: '100%',
+               backgroundImage: `url(${Apply?.src})`,
+              backgroundSize: '40%',
+              backgroundPosition: 'left',
+              backgroundRepeat: 'no-repeat',
             }}
           >
-            {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
+
             <Typography variant="h4" pb={2}>
               Mechanic
             </Typography>
@@ -72,13 +80,17 @@ export default function Landing() {
               textAlign: 'center',
               width: '100%',
               height: '100%',
+              backgroundImage: `url(${Applying.src})`,
+              backgroundSize: '40%',
+              backgroundPosition: 'right',
+              backgroundRepeat: 'no-repeat',
+
             }}
           >
-            {/* <Image alt={value.title} src={value.image.src} sx={{ width: '100%', height: 'auto' }} /> */}
             <Typography variant="h4" pb={2}>
               Expert
             </Typography>
-            <Typography variant="body1" pb={4}>
+            <Typography variant="body1" pb={4} >
               Contact with an expert for getting any car information.
             </Typography>
             <LoadingButton

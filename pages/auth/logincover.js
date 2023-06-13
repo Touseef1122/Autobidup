@@ -44,8 +44,9 @@ export default function LoginCoverPage() {
 
   return (
     <Page title="Login Cover">
-      {/* <RootStyle>
-        <ContentStyle> */}
+       <RootStyle>
+        <ContentStyle> 
+        
           <Stack
             sx={{
               pt: { xs: 2, md: 5 },
@@ -75,10 +76,10 @@ export default function LoginCoverPage() {
           </Divider>
 
           <Authwithsocial />
-        {/* </ContentStyle> */}
+        </ContentStyle>
 
         <Authcarousel title="Hi, Welcome Back" />
-      {/* </RootStyle> */}
+       </RootStyle> 
     </Page>
   );
 }

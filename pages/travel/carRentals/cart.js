@@ -111,20 +111,10 @@ export default function Cart() {
           overflowX: 'hidden',
           pl: '5%',
           pr: '5%',
-          // pt: '2%',
-          // pb: '2%',
-          // background: '#e3e8e6',
+          
         }}
       >
         <Typography variant="h2"> Shopping Cart </Typography>
-        {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{ mb: 4 }}
-        /> */}
         <Grid spacing={2} container justifyContent="center">
           <Grid item xs={12} sm={8} md={9}>
             <Item item={items} />
@@ -133,31 +123,6 @@ export default function Cart() {
             <Order />
           </Grid>
         </Grid>
-        {/* <Button
-              color="inherit"
-              variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-              onClick={handleMobileOpen}
-              sx={{
-                display: { md: 'none' },
-              }}
-            >
-              Filters
-        </Button>  */}
-        {/* <Stack spacing={6} direction={{ xs: 'column', sm: 'row' }}>
-          <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
-
-          <Box
-            sx={{
-              flexGrow: 1,
-              // pl: { md: 8 },
-              // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
-            }}
-          >
-            <Caritemlist item={items} />
-          </Box>
-        </Stack> */}
-        {/* tours={services} icons={summary} services={service}  */}
       </Box>
     </Page>
   );
