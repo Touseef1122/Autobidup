@@ -94,13 +94,6 @@ function CategoryItem({ category }) {
         '&:hover': {
           bgcolor: 'background.paper',
           boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
-        //   '& .icon': {
-        //     bgcolor: 'primary.main',
-        //     transition: (theme) => theme.transitions.create('all'),
-        //     '& > span': {
-        //       color: 'common.white',
-        //     },
-        //   },
         },
       }}
     >

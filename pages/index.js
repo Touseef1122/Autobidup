@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 
 // @mui
 import { Box, Container } from '@mui/material';

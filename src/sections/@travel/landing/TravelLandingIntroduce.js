@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 
 import { Image, Iconify, PlayerWithButton } from '../../../components';
-
+import { useRouter } from 'next/router';
 // icons
 import directionStraightRight from '@iconify/icons-carbon/direction-straight-right';
 // @mui
@@ -35,30 +35,34 @@ CareerLandingHotCategories.propTypes = {
 };
 
 export default function CareerLandingHotCategories({ categories }) {
+
   return (
     <RootStyle>
       <Container>
-        
-            <Typography variant="h3" sx={{ textAlign: 'center' }}>
-             Vehicle Categories
-            </Typography>
+        <Typography variant="h3" sx={{ textAlign: 'center' }}>
+          Vehicle Categories
+        </Typography>
 
-            <Box
-              sx={{
-                my: { xs: 8, md: 10 },
-                display: 'grid',
-                gap: 4,
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  sm: 'repeat(2, 1fr)',
-                  md: 'repeat(5, 1fr)',
-                },
-              }}
-            >
-              {categories?.map((category) => (
-              <CategoryItem key={category.id} category={category} onClick={category.onClick} />
-              ))}
-            </Box>       
+        <Box
+          sx={{
+            my: { xs: 8, md: 10 },
+            display: 'grid',
+            gap: 4,
+            gridTemplateColumns: {
+              xs: 'repeat(1, 1fr)',
+              sm: 'repeat(2, 1fr)',
+              md: 'repeat(5, 1fr)',
+            },
+          }}
+        >
+          {categories?.map((category) => (
+            <CategoryItem
+              key={category.id}
+              category={category}
+              // onClick={() => router.push(category.path)}
+            />
+          ))}
+        </Box>
       </Container>
     </RootStyle>
   );
@@ -75,6 +79,8 @@ CategoryItem.propTypes = {
 };
 
 function CategoryItem({ category }) {
+  const router = useRouter();
+
   return (
     <Paper
       variant="outlined"
@@ -125,10 +131,12 @@ function CategoryItem({ category }) {
           <Image src={category.img.src} sx={{ width: 58, height: 48, filter: 'grayscale(100%)' }} />
         </Box>
 
-        <TextMaxLine variant="h6" line={1}>
+        {/* <TextMaxLine variant="h6" line={1}>
           {category.name}
-        </TextMaxLine>
-
+        </TextMaxLine> */}
+        <Button color="inherit" variant="contained" onClick={() => router.push(category.path)}>
+        {category.name}
+        </Button>
         {/* <Typography variant="body2" sx={{ color: 'text.disabled', mt: 0.5 }}>
           {category.totalJobs} jobs
         </Typography> */}
