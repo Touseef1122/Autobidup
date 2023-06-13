@@ -237,7 +237,7 @@ export default function Displaycarlist({ posts }) {
           <Button
               color="inherit"
               variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+              // startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
               onClick={handleMobileOpen}
               sx={{
                 display: { md: 'none' },
