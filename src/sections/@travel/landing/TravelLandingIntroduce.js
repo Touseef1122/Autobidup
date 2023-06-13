@@ -12,7 +12,7 @@ import { Typography, Stack, Container, Box, Paper, Button } from '@mui/material'
 import cssStyles from '../../../utils/cssStyles';
 
 // components
-import { TextMaxLine, SvgIconStyle } from '../../../components';
+import { TextMaxLine } from '../../../components';
 
 // ----------------------------------------------------------------------
 

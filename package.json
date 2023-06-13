@@ -46,6 +46,7 @@
     "react-intersection-observer": "^9.3.4",
     "react-lazy-load-image-component": "^1.5.4",
     "react-player": "^2.10.1",
+    "react-router-dom": "^6.12.1",
     "react-slick": "^0.29.0",
     "sax": "^1.2.4",
     "simplebar-react": "^2.4.1",
