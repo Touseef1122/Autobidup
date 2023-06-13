@@ -66,7 +66,6 @@ const data = [
   },
 ];
 const includes = [
-
   {
     label: 'AM/FM radio',
   },
@@ -78,9 +77,12 @@ const includes = [
   },
 ];
 
+Itemdetail.propTypes = {
+  posts: PropTypes.array.isRequired,
+  description: PropTypes.array,
+};
 
-
-export default function TravelTourDetails({ tour }) {
+export default function Itemdetail({ posts, description }) {
 
   return (
     <Stack spacing={2} mb={6} mt={6}>
@@ -88,41 +90,17 @@ export default function TravelTourDetails({ tour }) {
         Overview
       </Typography> */}
       <Box sx={{}}>
-        {/* <section>
-          <Box
-            sx={{
-              boxShadow: '0 1px 10px #64666b',
-              borderRadius: '8px',  
-              p: 3,
-              pl: 6,
-              display: 'grid',
-              rowGap: 2,
-              columnGap: 1,
-              gridTemplateColumns: {
-                xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
-              },
-            }}
-          >
-            {images1.map((value) => (
-              <OverviewItem
-                icon={<Iconify icon={value.icon} />}
-                label={value.title}
-                text={value.val}
-              />
-            ))}
-          </Box>
-        </section> */}
-
         <section>
           <Typography variant="h4" paragraph mt={6}>
             Description
           </Typography>
-          {data.map((value) => (
-            <Typography mt={1}>{value.description}</Typography>
-          ))}
+          {/* {posts.map((description, pid) => ( */}
+            <Typography  mt={1}>
+              {/* {posts.description} */}
+              {description}
+            </Typography>
+          {/* ))} */}
         </section>
-
       </Box>
     </Stack>
   );
@@ -130,25 +108,25 @@ export default function TravelTourDetails({ tour }) {
 
 // ----------------------------------------------------------------------
 
-OverviewItem.propTypes = {
-  icon: PropTypes.any,
-  label: PropTypes.string,
-  text: PropTypes.string,
-};
+// OverviewItem.propTypes = {
+//   icon: PropTypes.any,
+//   label: PropTypes.string,
+//   text: PropTypes.string,
+// };
 
-function OverviewItem({ icon, label, text = '-' }) {
-  return (
-    <TextIconLabel
-      spacing={1.5}
-      alignItems="flex-start"
-      icon={icon}
-      value={
-        <Stack>
-          <Typography variant="h6">{label}</Typography>
-          <Typography sx={{ color: 'text.secondary' }}>{text}</Typography>
-        </Stack>
-      }
-      sx={{ '& svg': { width: 24, height: 24 } }}
-    />
-  );
-}
+// function OverviewItem({ icon, label, text = '-' }) {
+//   return (
+//     <TextIconLabel
+//       spacing={1.5}
+//       alignItems="flex-start"
+//       icon={icon}
+//       value={
+//         <Stack>
+//           <Typography variant="h6">{label}</Typography>
+//           <Typography sx={{ color: 'text.secondary' }}>{text}</Typography>
+//         </Stack>
+//       }
+//       sx={{ '& svg': { width: 24, height: 24 } }}
+//     />
+//   );
+// }

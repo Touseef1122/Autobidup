@@ -11,7 +11,6 @@ import { useBoundingClientRect, useResponsive } from '../../../hooks';
 // _data
 import _mock from '../../../../_data/mock';
 import { useRouter } from 'next/router';
-import page from '../accessories/item'
 
 // components
 import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
@@ -63,7 +62,6 @@ export default function Caritems(props) {
   const offsetLeft = container && container.left + 20;
 
   const [data, setData] = useState([]);
-  const [path, setPath] = useState([]);
   
   useEffect(() => {
     console.log('useeee')
@@ -81,9 +79,6 @@ export default function Caritems(props) {
         }
         const jsonData = await response.json();
         const filteredData = jsonData.filter((item) => item.ptype === String(props.value));
-        if(props.value == 1){
-          setPath(page)
-        }
         setData(filteredData);
         // console.log(jsonData)  
         // setData(jsonData);
@@ -117,7 +112,11 @@ export default function Caritems(props) {
             {data.map((item) => (
               <div key={item.pid}>
                 <Box 
-                onClick={() => router.push('../accessories/item')}
+                // onClick={() => router.push('/travel/buysellcar/displaystoreItems')}
+                onClick={() => router.push({
+                  pathname: '/travel/buysellcar/displaystoreItems',
+                  query: { data: JSON.stringify(item) }
+                })}
                 sx={{
                   transition: 'all 0.3s',
                   cursor:"pointer",

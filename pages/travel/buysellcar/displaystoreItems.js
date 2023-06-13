@@ -17,9 +17,11 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Itemcarasol, Iteminfo } from '../../../src/sections/@travel/displaymaincar';
+import  Itemcarasol  from '../../../src/sections/@travel/displaymaincar/Itemcarasol';
 // import { TravelTourDetails } from '../../../src/sections/@travel';
-import { Itemdetail } from '../../../src/sections/@travel';
+import Itemdetail from '../../../src/sections/@travel/tours/Itemdetail';
+import { useRouter } from 'next/router';
+
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -41,6 +43,9 @@ export default function Displaycardetails({ posts }) {
   if (error) {
     return <ErrorScreen />;
   }
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
 
   return (
     <Page title="Buy/Sell Used Cars">
@@ -57,13 +62,13 @@ export default function Displaycardetails({ posts }) {
         />
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <Itemcarasol/>
+            <Itemcarasol post={item} name={item?.pname || ''} price={item?.price || ''} images={item?.images || ''}/>
             {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <Itemdetail />
+            <Itemdetail posts={item} description={item?.description || ''}/>
           </Grid>
           <Grid item xs={12} sm={5}>
           </Grid>

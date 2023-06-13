@@ -1,4 +1,6 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Button,
   Grid,
@@ -47,7 +49,15 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Carousel() {
+Itemcarasol.propTypes = {
+  post: PropTypes.array.isRequired,
+  name: PropTypes.array,
+  price: PropTypes.array,
+  images: PropTypes.array,
+
+};
+export default function Itemcarasol({ post,name,price,images }) {
+  console.log("post data",post)
   const carouselRef = useRef(null);
   const theme = useTheme();
   const router = useRouter();
@@ -98,29 +108,29 @@ export default function Carousel() {
             }}
           >
             <Slider ref={carouselRef} {...carouselSettings}>
-              {images.map((img) => (
-                <Box key={img} mt={2}>
+              {/* {images.map((img) => ( */}
+                <Box p={5} mt={2}>
                   <Image
-                    alt={img.title}
-                    src={img.image.src}
+                    // alt={img.title}
+                    src={images}
                     sx={{ width: '100%', height: '100%' }}
                   />
                 </Box>
-              ))}
+              {/* ))} */}
             </Slider>
           </CarouselArrows>
         </Box>
       </Grid>
       <Grid item xs={12} sm={5}>
         <Box>
-          <Typography variant="h3">Honda N Wgn G 2013</Typography>
+          <Typography variant="h3">{name}</Typography>
           <Typography variant="h4" color="#CE9A00">
-            PKR 210
+          PKR {price}
           </Typography>
 
-          <Stack direction="row" spacing={1} display="flex" alignItems="center">
+          <Stack direction="row" spacing={1} mt={3} display="flex" alignItems="center">
             {/* <Icon icon={location} width="1.5vw" vAlign="middle" color="#CE9A00" /> */}
-            <Typography fontWeight="bold">Quantitty </Typography>
+            <Typography fontWeight="bold">Quantity </Typography>
 
             <ButtonGroup
               size="small"
@@ -158,7 +168,9 @@ export default function Carousel() {
                 +
               </Button>
             </ButtonGroup>
+          </Stack>
             <Button
+            fullWidth
               sx={{
                 float: 'right',
                 backgroundColor: '#212B36',
@@ -166,11 +178,13 @@ export default function Carousel() {
                 mt: 3,
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() => router.push({})}
+              onClick={() => router.push({
+                pathname: '/travel/carRentals/cart/',
+                query: { data: JSON.stringify(post) }
+              })}
             >
-              Order
+              Add to Cart
             </Button>
-          </Stack>
         </Box>
       </Grid>
     </Grid>
