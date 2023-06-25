@@ -80,25 +80,13 @@ const includes = [
   },
 ];
 
-// TravelTourDetails.propTypes = {
-//   tour: PropTypes.shape({
-//     availableEnd: PropTypes.string,
-//     availableStart: PropTypes.string,
-//     description: PropTypes.string,
-//     duration: PropTypes.string,
-//     highlights: PropTypes.array,
-//     includes: PropTypes.array,
-//     languages: PropTypes.array,
-//     location: PropTypes.string,
-//     program: PropTypes.array,
-//     tourGuide: PropTypes.shape({
-//       name: PropTypes.string,
-//       phoneNumber: PropTypes.string,
-//     }),
-//   }),
-// };
+TravelTourDetails.propTypes = {
+  post: PropTypes.array.isRequired,
+};
 
-export default function TravelTourDetails({ tour }) {
+export default function TravelTourDetails({ post }) {
+  console.log(post.airbags)
+  images1.push()
 
   return (
     <Stack spacing={2} mb={6} mt={6}>
@@ -124,7 +112,7 @@ export default function TravelTourDetails({ tour }) {
           >
             {images1.map((value) => (
               <OverviewItem
-                icon={<Iconify icon={value.icon} />}
+                icon={<Iconify icon="ic:round-star" />}
                 label={value.title}
                 text={value.val}
               />

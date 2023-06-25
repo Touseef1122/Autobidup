@@ -24,11 +24,14 @@ const comments = [
     title:"Seller Information",
     name: 'Ali Khan',
     text: 'Member Since Sep 11, 2022',
+    phone: '',
     icon: userIcon,
   }
 ];
-
-export default function Contactinfo() {
+Contactinfo.propTypes = {
+  post: PropTypes.array.isRequired,
+};
+export default function Contactinfo({post}) {
   return (
     <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666b', borderRadius: '8px',mt:2 }}>
       {/* <Typography variant="h4" fontWeight="bold">Seller Information</Typography> */}

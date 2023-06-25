@@ -57,7 +57,9 @@ export default function Usedcars({ posts }) {
       try {
         const response = await fetch('https://autobidup.pythonanywhere.com/cars/all_cars/');
         const jsonData = await response.json();
+        console.log(jsonData)
         setData(jsonData);
+        console.log(data)
         console.log("created")
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -66,6 +68,8 @@ export default function Usedcars({ posts }) {
 
     fetchData();
   }, []);
+  console.log(data)
+  var list = data
   return (
     <Page title="Used Cars | AutoBidUp">
       <Loader />
@@ -76,7 +80,7 @@ export default function Usedcars({ posts }) {
       <TravelLandingIntroduce categories={vehicalType}/>
       <TravelLandingfull />
 
-      <LatestPosts2 posts={data} />
+      <LatestPosts2 data={data} />
     </Page>
   );
 }
@@ -109,6 +113,18 @@ const bestcities = [
   },
   {
     id: 3,
+    image: MVI,
+    heading: 'Mehran',
+    city: 'Lahore',
+    year: '2022',
+    distance: '2000km',
+    fuel: 'Petrol',
+    cc: '1200cc',
+    type: 'Manual',
+    price: '20 lac',
+  },
+  {
+    id: 4,
     image: MVI,
     heading: 'Mehran',
     city: 'Lahore',

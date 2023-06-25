@@ -41,8 +41,11 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(15, 0),
   },
 }));
-
-export default function Carousel() {
+Carousel.propTypes = {
+  post: PropTypes.array.isRequired,
+  images: PropTypes.array,
+};
+export default function Carousel({post,name,price,images}) {
   const carouselRef = useRef(null);
   const theme = useTheme();
 
@@ -71,6 +74,7 @@ export default function Carousel() {
     carouselRef.current?.slickNext();
   };
 
+
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={7}>
@@ -98,22 +102,22 @@ export default function Carousel() {
               }}
             >
               <Slider ref={carouselRef} {...carouselSettings}>
-                {images.map((img) => (
-                  <Box key={img} mt={2}>
+                {/* {images.map((img) => ( */}
+                  <Box  mt={2}>
                     <Image
-                      alt={img.title}
-                      src={img.image.src}
-                      sx={{ width: '100%', height: '100%' }}
+                      // alt={img.title}
+                      src={images}
+                      sx={{ width: '100%', height: '400px', p:4 }}
                     />
                   </Box>
-                ))}
+                {/* ))} */}
               </Slider>
             </CarouselArrows>
           </Box>
         {/* </Container> */}
       </Grid>
       <Grid item xs={12} sm={5}>
-        <Contactinfo />
+        <Contactinfo post={post} make={post?.make || ''} variant={post?.variant || ''} price={post?.price || ''} />
       </Grid>
     </Grid>
   );

@@ -46,7 +46,8 @@ const RootStyle = styled('div')(({ theme }) => ({
 // };
 
 export default function Storelanding() {
-
+  // const [data, setData] = useState("");
+  // setData('https://autobidup.pythonanywhere.com/store/all_products/')
   return (
     <Page title="Store | AutoBidUp">
       <Loader />

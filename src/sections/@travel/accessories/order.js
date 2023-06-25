@@ -21,12 +21,15 @@ import { Overview } from '../tours';
 
 //--------------------------------------------------------------
 Order.propTypes = {
+  post:PropTypes.array,
   totalPrice: PropTypes.array,
 };
-export default function Order({totalPrice}) {
+export default function Order({post, totalPrice}) {
   const router = useRouter();
   const convertedTotalPrice = parseFloat(totalPrice);
   const finalPrice = convertedTotalPrice + 100;
+
+  console.log(post)
   return (
     <Box
       sx={{
@@ -68,7 +71,17 @@ export default function Order({totalPrice}) {
           color: 'white',
           '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
         }}
-        onClick={() => router.push('/travel/carRentals/shipping')}
+        onClick={() => {
+          const updatedPost = {
+            ...post,
+            price: totalPrice,
+          };
+      
+          router.push({
+            pathname: '/travel/carRentals/shipping',
+            query: { data: JSON.stringify(updatedPost) },
+          });
+        }}
       >
         Checkout
       </Button>

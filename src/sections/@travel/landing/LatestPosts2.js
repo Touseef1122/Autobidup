@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { m } from 'framer-motion';
 import Slider from 'react-slick';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 // next
 import NextLink from 'next/link';
@@ -38,11 +38,14 @@ const DotStyle = styled('span')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
+const bestcities = [
 
-BlogMarketingLatestPosts.propTypes = {
-  posts: PropTypes.array.isRequired,
+]
+LatestPosts2.propTypes = {
+  data: PropTypes.array.isRequired,
 };
-export default function BlogMarketingLatestPosts({ posts }) {
+export default function LatestPosts2({data}) {
+  console.log("data here", data)
   const theme = useTheme();
   const router = useRouter();
 
@@ -51,7 +54,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
@@ -75,6 +78,10 @@ export default function BlogMarketingLatestPosts({ posts }) {
     carouselRef.current?.slickNext();
   };
 
+ 
+  // bestcities.push(data)
+  // console.log(bestcities)
+
   return (
     // <RootStyle>
     <Container>
@@ -82,9 +89,10 @@ export default function BlogMarketingLatestPosts({ posts }) {
         variant="h3"
         sx={{
           textAlign: 'center',
+          mt:2
         }}
       >
-        Feature Cars{' '}
+        Latest Used Cars{' '}
       </Typography>
 
       <Box sx={{ position: 'relative' }}>
@@ -99,34 +107,38 @@ export default function BlogMarketingLatestPosts({ posts }) {
           }}
         >
           <Slider ref={carouselRef} {...carouselSettings}>
-            {posts.map((value) => (
+            {data.map((value) => (
               <Box
                 sx={{
                   px: 2,
-                  py: { xs: 8, md: 10 },
+                  py: { xs: 3, md: 4 },
                 }}
               >
                 {/* <CarsCard item={items} /> */}
                 <Box>
                   {/* {items.map((value) => ( */}
                     <Box
-                      onClick={() => router.push('/travel/buysellcar/displaycardetails')}
-                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                      onClick={() => {
+                        router.push({
+                          pathname: '/travel/buysellcar/displaycardetails',
+                          query: { data: JSON.stringify(value) },
+                        });
+                      }}
+                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1,cursor: 'pointer', }}
                     >
                       {/* <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
+              <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
                       <Image
-                        alt={value.title}
-                        src={value.image.src}
-                        sx={{ width: '100%', height: 'auto' }}
+                        src={value.images}
+                        sx={{ width: '100%', height: '200px' }}
                       />
                       {/* </Grid>
-          <Grid item xs={12} sm={8}> */}
-                      <Typography variant="h4">{value.heading}</Typography>
-                      <Typography variant="h6">{value.city}</Typography>
+              <Grid item xs={12} sm={8}> */}
+                      <Typography variant="h4">{`${value.make} ${value.variant}`}</Typography>
+                      <Typography variant="h6">{value.year}</Typography>
                       <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.year}
+                          {value.city}
                         </Typography>
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
                           {value.distance}
@@ -134,23 +146,23 @@ export default function BlogMarketingLatestPosts({ posts }) {
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
                           {value.fuel}
                         </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        {/* <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
                           {value.cc}
                         </Typography>
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
                           {value.type}{' '}
-                        </Typography>
+                        </Typography> */}
                       </Stack>
                       <Typography variant="h4" color="#CE9A00">
                         {' '}
                         PKR {value.price}
                       </Typography>
                       {/* </Grid>
-        </Grid> */}
+              </Grid> */}
                     </Box>
                   {/* ))} */}
                 </Box>
-              </Box>
+              </Box>             
             ))}
           </Slider>
         </CarouselArrows>

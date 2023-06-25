@@ -31,20 +31,25 @@ import { Sellerinfo } from '.';
 //     icon: userIcon,
 //   },
 // ];
-
-export default function Contactinfo() {
+Contactinfo.propTypes = {
+  post: PropTypes.array.isRequired,
+  make: PropTypes.array,
+  variant: PropTypes.array,
+  price: PropTypes.array,
+};
+export default function Contactinfo({post,make,variant,price}) {
   return (
     <Box>
-      <Typography variant="h3">Honda N Wgn G 2013</Typography>
+      <Typography variant="h3">{`${make} ${variant}`}</Typography>
       <Typography variant="h4" color="#CE9A00">
-        PKR 2.10 Crores
+        PKR {price}
       </Typography>
 
       <Stack direction="row" spacing={1} display="flex" alignItems="center">
         <Icon icon={location} width="1.5vw" vAlign="middle" color="#CE9A00" />
         <Typography fontWeight="bold">Lahore</Typography>
       </Stack>
-      <Sellerinfo/>
+      <Sellerinfo  post={post}/>
 
       {/* <Container
         sx={{
