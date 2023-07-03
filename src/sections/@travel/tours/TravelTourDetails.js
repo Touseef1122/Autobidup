@@ -18,47 +18,48 @@ import { TextIconLabel, Iconify } from '../../../components';
 // ----------------------------------------------------------------------
 
 const images1 = [
-  {
-    val: 'Petrol',
-    title: 'Engine Type',
-    icon: locationIcon,
-  },
-  {
-    val: 'Imported',
-    title: 'Assembly',
-    icon: userIcon,
-  },
-  {
-    val: '2017',
-    title: 'Year',
-    icon: userIcon,
-  },
-  {
-    val: 'Automatic',
-    title: 'Transmission',
-    icon: userIcon,
-  },
-  {
-    val: 'White',
-    title: 'Color',
-    icon: locationIcon,
-  },
-  {
-    val: 'Islamabad',
-    title: 'RegCity',
-    icon: locationIcon,
-  },
-  {
-    val: '2007cc',
-    title: 'Engine Capacity',
-    icon: locationIcon,
-  },
-  {
-    val: '20923',
-    title: 'Ad Ref# 20923',
-    icon: locationIcon,
-  },
+  // {
+  //   val: 'Petrol',
+  //   title: 'Engine Type',
+  //   icon: locationIcon,
+  // },
+  // {
+  //   val: 'Imported',
+  //   title: 'Assembly',
+  //   icon: userIcon,
+  // },
+  // {
+  //   val: '2017',
+  //   title: 'Year',
+  //   icon: userIcon,
+  // },
+  // {
+  //   val: 'Automatic',
+  //   title: 'Transmission',
+  //   icon: userIcon,
+  // },
+  // {
+  //   val: 'White',
+  //   title: 'Color',
+  //   icon: locationIcon,
+  // },
+  // {
+  //   val: 'Islamabad',
+  //   title: 'RegCity',
+  //   icon: locationIcon,
+  // },
+  // {
+  //   val: '2007cc',
+  //   title: 'Engine Capacity',
+  //   icon: locationIcon,
+  // },
+  // {
+  //   val: '20923',
+  //   title: 'Ad Ref# 20923',
+  //   icon: locationIcon,
+  // },
 ];
+var dict1 = {title: " ", val: " " }
 const data = [
   {
     description:
@@ -85,8 +86,46 @@ TravelTourDetails.propTypes = {
 };
 
 export default function TravelTourDetails({ post }) {
-  console.log(post.airbags)
-  images1.push()
+  console.log(post)
+  // images1 = []
+  // images1.push()
+  for (let i=0;i<8;i++ ){
+    if ("color" in post ){
+      dict1.val = post.color
+      dict1.title = "color"
+    }
+    //  if (post.assembly){
+    //   dict1.val = post.assembly
+    //   dict1.title = "assembly"
+    // }
+    //  if (post.transmission){
+    //   dict1.val = post.transmission
+    //   dict1.title = "transmission"
+    // }
+    //  if (post.model){
+    //   dict1.val = post.model
+    //   dict1.title = "model"
+    // }
+    //  if (post.engine_capacity){
+    //   dict1.val = post.engine_capacity
+    //   dict1.title = "engine_capacity"
+    // }
+    //  if (post.engine_type){
+    //   dict1.val = post.engine_type
+    //   dict1.title = "engine_type"
+    // }
+    //  if (post.mileage){
+    //   dict1.val = post.mileage
+    //   dict1.title = "mileage"
+    // }
+    //  if (post.bodytype){
+    //   dict1.val = post.bodytype
+    //   dict1.title = "bodytype"
+    // }
+    images1.push(dict1)
+    // console.log(dict1)
+    dict1 = {title: " ", val: " " }
+  }
 
   return (
     <Stack spacing={2} mb={6} mt={6}>

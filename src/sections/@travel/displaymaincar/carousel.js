@@ -117,7 +117,7 @@ export default function Carousel({post,name,price,images}) {
         {/* </Container> */}
       </Grid>
       <Grid item xs={12} sm={5}>
-        <Contactinfo post={post} make={post?.make || ''} variant={post?.variant || ''} price={post?.price || ''} />
+        <Contactinfo post={post} make={post?.make || ''} variant={post?.variant || ''} price={post?.price || ''} year={post?.year || ''} />
       </Grid>
     </Grid>
   );

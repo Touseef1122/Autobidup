@@ -36,11 +36,12 @@ Contactinfo.propTypes = {
   make: PropTypes.array,
   variant: PropTypes.array,
   price: PropTypes.array,
+  year: PropTypes.array,
 };
-export default function Contactinfo({post,make,variant,price}) {
+export default function Contactinfo({post,make,variant,price,year}) {
   return (
     <Box>
-      <Typography variant="h3">{`${make} ${variant}`}</Typography>
+      <Typography variant="h3">{`${make} ${variant} ${year}`}</Typography>
       <Typography variant="h4" color="#CE9A00">
         PKR {price}
       </Typography>
