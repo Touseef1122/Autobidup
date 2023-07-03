@@ -31,14 +31,6 @@ export default function Requestmechanic({ posts }) {
       <Loader/>
       <ChatButton/>
       <Box sx={{ mt:{xs:"20%", sm:"10%",lg:"6%"}, overflowX:"hidden" }}>
-        {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{ mb: 4 }}
-        /> */}
        <Mechanicrequest/>
       </Box>
     </Page>
