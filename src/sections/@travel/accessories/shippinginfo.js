@@ -35,8 +35,10 @@ const FormSchema = Yup.object().shape({
     .max(11, 'Phone number should of 11 digits'),
   name: Yup.string().required('Name is required'),
 });
-
-export default function Shippinginfo() {
+Shippinginfo.propTypes = {
+  post: PropTypes.array,
+};
+export default function Shippinginfo({ post }) {
   const router = useRouter();
   const {
     reset,
@@ -51,12 +53,17 @@ export default function Shippinginfo() {
       phoneNumber: '',
     },
   });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  const [show, setShow] = useState(false);
+
+  // const [show, setShow] = useState(false);
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [address, setAddress] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+
+  console.log('post form', post);
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden', padding: { xs: '2%', md: '4%' } }}>
       <Container
@@ -87,6 +94,8 @@ export default function Shippinginfo() {
                 fullWidth
                 placeholder="Enter first name"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
@@ -97,6 +106,8 @@ export default function Shippinginfo() {
                 fullWidth
                 placeholder="Enter last name"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                value={lastName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
           </Stack>
@@ -110,6 +121,8 @@ export default function Shippinginfo() {
                 fullWidth
                 placeholder="Enter address"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                value={address}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
@@ -134,6 +147,8 @@ export default function Shippinginfo() {
                 fullWidth
                 placeholder="Enter zip code"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                value={zipCode}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div>
@@ -144,6 +159,8 @@ export default function Shippinginfo() {
                 fullWidth
                 placeholder="Enter phone number"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                value={phoneNumber}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
           </Stack>
@@ -155,18 +172,37 @@ export default function Shippinginfo() {
             fullWidth
             placeholder="Enter email"
             sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+            value={email}
+            onChange={(e) => setFirstName(e.target.value)}
           />
           <br />
-          <Box sx={{display:"flex", alignItems:"center",justifyContent:"end"}}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
             <Button
               sx={{
-                size:"15px",
+                size: '15px',
                 mt: 3,
                 backgroundColor: '#212B36',
                 color: 'white',
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() => router.push('/travel/carRentals/payment')}
+              onClick={() =>
+                {
+                  const updatedPost = {
+                    ...post,
+                    firstName: firstName,
+                    lastName: lastName,
+                    address: address,
+                    city: "Lahore",
+                    zipCode: zipCode,
+                    phoneNumber: phoneNumber,
+                    email: email,
+                  };
+              
+                  router.push({
+                    pathname: '/travel/carRentals/payment',
+                    query: { data: JSON.stringify(updatedPost) },
+                  });
+                }}             
             >
               Proceed to Payment
             </Button>

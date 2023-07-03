@@ -68,7 +68,17 @@ export default function Order({totalPrice}) {
           color: 'white',
           '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
         }}
-        onClick={() => router.push('/travel/carRentals/shipping')}
+        onClick={() => {
+          const updatedPost = {
+            ...post,
+            price: totalPrice,
+          };
+      
+          router.push({
+            pathname: '/travel/carRentals/shipping',
+            query: { data: JSON.stringify(updatedPost) },
+          });
+        }}
       >
         Checkout
       </Button>

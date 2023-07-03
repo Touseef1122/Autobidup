@@ -1,6 +1,7 @@
 //react
 import React, { useState } from 'react';
 import NextLink from 'next/link';
+import localstorage from '../../../src/hooks/useLocalStorage'
 
 //form
 import * as Yup from 'yup';
@@ -83,8 +84,8 @@ export default function LoginForm() {
         // API call successful
         const responseData = await response.json();
         // Handle the response data as needed
-        localStorage.setItem('firstname', responseData.firstName);
-
+        // localStorage.setItem('firstname', responseData.firstName);
+        localstorage("firstname", responseData.firstName)
         // Store JWT token in document cookie
         document.cookie = `jwt=${responseData.jwt}; path=/`;
         console.log(responseData);
