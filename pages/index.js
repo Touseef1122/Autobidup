@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 // @mui
 import { Box, Container } from '@mui/material';
 // utils
@@ -81,8 +82,6 @@ export default function TravelLandingPage({ posts }) {
       <TravelLandingIntroduce categories={vehicalType} />
       <LatestPosts posts={bestcities} />
       <TravelLandingfull />
-
-      {/* <LatestPosts2 posts={bestcities} /> */}
       <TravelLandingCars />
     </Page>
   );
