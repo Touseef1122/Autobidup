@@ -38,19 +38,6 @@ Overview.propTypes = {
   overview: PropTypes.array.isRequired,
 };
 export default function Overview({ overview }) {
-  // const {
-  //   program,
-  //   includes,
-  //   location,
-  //   duration,
-  //   tourGuide,
-  //   languages,
-  //   highlights,
-  //   description,
-  //   availableEnd,
-  //   availableStart,
-  // } = tour;
-
   return (
     <section>
       {overview?.map((value) => (
@@ -66,7 +53,7 @@ export default function Overview({ overview }) {
               <Divider/>
             </Stack>
         </Box>
-      ))}
+      ))} 
     </section>
   );
 }
