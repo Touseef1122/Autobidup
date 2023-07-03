@@ -37,8 +37,8 @@ const ScrollStyle = styled('div')(({ theme }) => ({
 export default function Item( props ) {
   const router = useRouter();
   const [counter, setCounter] = useState(1);
- 
   console.log( "data reached", props.item)
+
 
   // const handleIncrement = () => {
   //   this.setState((state) => ({ counter: state.counter + 1 }));

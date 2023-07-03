@@ -21,15 +21,12 @@ import { Overview } from '../tours';
 
 //--------------------------------------------------------------
 Order.propTypes = {
-  post:PropTypes.array,
   totalPrice: PropTypes.array,
 };
-export default function Order({post, totalPrice}) {
+export default function Order({totalPrice}) {
   const router = useRouter();
   const convertedTotalPrice = parseFloat(totalPrice);
   const finalPrice = convertedTotalPrice + 100;
-
-  console.log(post)
   return (
     <Box
       sx={{

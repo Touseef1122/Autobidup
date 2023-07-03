@@ -57,7 +57,7 @@ Itemcarasol.propTypes = {
 
 };
 export default function Itemcarasol({ post,name,price,images }) {
-  console.log("post data", post)
+  console.log("post data",post)
   const carouselRef = useRef(null);
   const theme = useTheme();
   const router = useRouter();
@@ -194,17 +194,10 @@ export default function Itemcarasol({ post,name,price,images }) {
                 mt: 3,
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() => {
-                const updatedPost = {
-                  ...post,
-                  quantity: counter,
-                };
-            
-                router.push({
-                  pathname: '/travel/carRentals/cart/',
-                  query: { data: JSON.stringify(updatedPost) },
-                });
-              }}
+              onClick={() => router.push({
+                pathname: '/travel/carRentals/cart/',
+                query: { data: JSON.stringify(post) }
+              })}
             >
               Add to Cart
             </Button>

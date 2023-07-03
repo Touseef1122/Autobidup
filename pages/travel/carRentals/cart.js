@@ -52,7 +52,24 @@ const items = [
 ];
 
 export default function Cart() {
+  // const [mobileOpen, setMobileOpen] = useState(false);
+  // const [page, setPage] = useState(1);
+  // const handleChange = (event, value) => {
+  //   setPage(value);
+  // };
+  // const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
 
+  // const handleMobileOpen = () => {
+  //   setMobileOpen(true);
+  // };
+
+  // const handleMobileClose = () => {
+  //   setMobileOpen(false);
+  // };
+
+  // if (error) {
+  //   return <ErrorScreen />;
+  // }
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
@@ -90,7 +107,7 @@ export default function Cart() {
           {items.length > 0 && <Item item={items} onRemoveItem={handleRemoveItem}/>}
           </Grid>
           <Grid item xs={12} sm={5} md={4}>
-            <Order post={item} totalPrice={totalPrice} />
+            <Order totalPrice={totalPrice} />
           </Grid>
         </Grid>
       </Box>
