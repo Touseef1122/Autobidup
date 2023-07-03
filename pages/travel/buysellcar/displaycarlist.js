@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
@@ -139,6 +139,25 @@ export default function Displaycarlist({ posts }) {
   if (error) {
     return <ErrorScreen />;
   }
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/all_cars/');
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setData(jsonData);
+        console.log(data)
+        console.log("created")
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(data)
   return (
     <Page title="Buy/Sell Used Cars List">
       <Loader/>
@@ -152,14 +171,7 @@ export default function Displaycarlist({ posts }) {
           ]}
           sx={{ mb: 4 }}
         /> */}
-        {/* <Grid container justifyContent="center">
-          <Grid item xs={12} sm={3}>
-            <Carfilterbar/>
-          </Grid>
-          <Grid item xs={12} sm={9}>
-            <Caritemlist item={items} />
-          </Grid>
-        </Grid> */}
+
          <Button
               color="inherit"
               variant="contained"
@@ -182,7 +194,7 @@ export default function Displaycarlist({ posts }) {
               // width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
             }}
           >
-            <Caritemlist item={items} />
+            <Caritemlist item={data} />
           </Box>
         </Stack>
       </Container>

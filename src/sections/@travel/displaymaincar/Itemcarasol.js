@@ -85,6 +85,22 @@ export default function Itemcarasol({ post,name,price,images }) {
   const handleNext = () => {
     carouselRef.current?.slickNext();
   };
+  console.log(counter)
+  var condition = '';
+  var value = '';
+  if (typeof window !== "undefined") {
+    value = localStorage.getItem("firstname") || ""
+    console.log(value)
+    if (value){
+      console.log(true)
+      condition = true
+    }else{
+      condition = false
+      router.push('auth/logincover');
+    }
+  }
+
+
 
   return (
     <Grid container spacing={6}>
@@ -153,7 +169,7 @@ export default function Itemcarasol({ post,name,price,images }) {
                   -
                 </Button>
               }
-              {<Button disabled>{counter}</Button>}
+              {<Button disabled className='buttonCounter'>{counter}</Button>}
               <Button
                 sx={{
                   backgroundColor: 'white',

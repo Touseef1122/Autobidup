@@ -30,11 +30,14 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
+// TravelLandingCars.propTypes = {
+//   link: PropTypes.array,
+// };
 export default function TravelLandingCars() {
   const isDesktop = useResponsive('up', 'md');
   const router = useRouter();
-
+ 
+  // console.log(props.link)
   const containerRef = useRef(null);
   const container = useBoundingClientRect(containerRef);
 

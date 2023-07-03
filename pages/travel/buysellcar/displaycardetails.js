@@ -20,6 +20,7 @@ import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymain
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
+import { useRouter } from 'next/router';
 
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -42,6 +43,10 @@ export default function Displaycardetails({ posts }) {
   if (error) {
     return <ErrorScreen />;
   }
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log(item)
 
   return (
     <Page title="Buy/Sell Used Cars">
@@ -58,13 +63,13 @@ export default function Displaycardetails({ posts }) {
         />
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <Carousel />
+            <Carousel post={item} images={item?.images || ''}/>
             {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <TravelTourDetails />
+            <TravelTourDetails post={item} />
           </Grid>
           <Grid item xs={12} sm={5}>
             <Box>{/* <TravelTourDetails /> */}</Box>
