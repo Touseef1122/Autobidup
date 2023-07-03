@@ -27,7 +27,7 @@ import { Iconify } from '../../components';
 const FormSchema = Yup.object().shape({
   fullname: Yup.string()
     .required('Full name is required')
-    .min(6, 'Mininum 6 characters')
+    .min(6, 'Mininum 3 characters')
     .max(15, 'Maximum 15 characters'),
   email: Yup.string().required('Email is required').email('That is not an email'),
   password: Yup.string()
@@ -42,6 +42,9 @@ const FormSchema = Yup.object().shape({
     .max(15, 'Maximum 15 characters'),
 });
 
+const API_ENDPOINT = 'http://autobidup.pythonanywhere.com/user/register';
+
+
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -53,7 +56,9 @@ export default function RegisterForm() {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      fullName: '',
+      fullname: '',
+      lastname: '',
+      phone: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -65,9 +70,27 @@ export default function RegisterForm() {
   };
 
   const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      // Handle success here, e.g., show a success message or redirect the user to another page
+      alert('Registration successful!');
+      reset();
+    } catch (error) {
+      // Handle errors here, e.g., show an error message to the user
+      alert('Registration failed: ' + error.message);
+    }
   };
 
   return (
@@ -203,7 +226,6 @@ export default function RegisterForm() {
             marginTop: '5px !important',
           }}
           loading={isSubmitting}
-          // sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}}
         >
           Sign up
         </LoadingButton>

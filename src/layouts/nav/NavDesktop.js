@@ -138,29 +138,6 @@ function NavItemDesktop({ item, isScrolling, isTransparent }) {
     return (
       <>
         <MenuBtn item={item} />
-        {/* <RootLinkStyle
-          onClick={handleOpen}
-          open={open}
-          scrolling={isScrolling}
-          transparent={isTransparent}
-        >
-          {title}
-          <Iconify
-            icon={open ? chevronUp : chevronDown}
-            sx={{
-              ml: 0.5,
-              width: 16,
-              height: 16,
-            }}
-          />
-        </RootLinkStyle>
-
-        <NavDesktopMenu
-          lists={children}
-          isOpen={open}
-          onClose={handleClose}
-          isScrolling={isScrolling}
-        /> */}
       </>
     );
   }

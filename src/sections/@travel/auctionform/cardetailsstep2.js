@@ -78,11 +78,7 @@ export default function Enterpricestep2({ tours, icons, services }) {
     alert(JSON.stringify(data, null, 2));
     reset();
   };
-  //   const [value, setValue] = React.useState('female');
 
-  //   const handleChange = (event) => {
-  //     setValue(event.target.value);
-  //   };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -102,17 +98,12 @@ export default function Enterpricestep2({ tours, icons, services }) {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <div>
-                  {/* <Typography fontSize="14px" fontWeight="bold">
-                    Chassis Number *
-                  </Typography> */}
-
                   <TextField
                     {...field}
                     fullWidth
                     label="Chassis Number *"
                     error={Boolean(error)}
                     helperText={error?.message}
-                    // sx={{ width:'255px' }}
                   />
                 </div>
               )}
@@ -122,16 +113,13 @@ export default function Enterpricestep2({ tours, icons, services }) {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <div>
-                  {/* <Typography fontSize="14px" fontWeight="bold">
-                    Engine Number *
-                  </Typography> */}
                   <TextField
                     {...field}
                     fullWidth
                     label="Engine Number *"
                     error={Boolean(error)}
                     helperText={error?.message}
-                    // sx={{ width:'100%'}}
+                    sx={{ width: '100%' }}
                   />
                 </div>
               )}
@@ -142,19 +130,33 @@ export default function Enterpricestep2({ tours, icons, services }) {
               name="Request"
               control={control}
               render={({ field, fieldState: { error } }) => (
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Year"
-                  sx={{ width: { xs: '100%' } }}
-                  size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                <div>
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Year*"
+                    error={Boolean(error)}
+                    helperText={error?.message}
+                    sx={{ width: '100%' }}
+                  />
+                </div>
+              )}
+            />
+
+            <Controller
+              name="Request"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <div>
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Milage"
+                    error={Boolean(error)}
+                    helperText={error?.message}
+                    sx={{ width: '100%' }}
+                  />
+                </div>
               )}
             />
 
@@ -164,18 +166,12 @@ export default function Enterpricestep2({ tours, icons, services }) {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <TextField
-                  id="outlined-select-currency"
-                  select
+                  {...field}
+                  fullWidth
                   label="Maker"
                   sx={{ width: { xs: '100%' } }}
                   size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                ></TextField>
               )}
             />
           </Stack>
@@ -185,18 +181,12 @@ export default function Enterpricestep2({ tours, icons, services }) {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <TextField
-                  id="outlined-select-currency"
-                  select
+                  {...field}
+                  fullWidth
                   label="Model"
                   sx={{ width: { xs: '100%' } }}
                   size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                ></TextField>
               )}
             />
 
@@ -206,18 +196,12 @@ export default function Enterpricestep2({ tours, icons, services }) {
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <TextField
-                  id="outlined-select-currency"
-                  select
+                  {...field}
+                  fullWidth
                   label="Variant"
                   sx={{ width: { xs: '100%' } }}
                   size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
+                ></TextField>
               )}
             />
           </Stack>
