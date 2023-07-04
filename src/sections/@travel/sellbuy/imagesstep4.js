@@ -27,31 +27,13 @@ import { Image } from '../../../components';
 // import { TravelLandingfull } from '../landing';
 import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
 Imagesstep4.propTypes = {
   services: PropTypes.array.isRequired,
   icons: PropTypes.array.isRequired,
   tours: PropTypes.array.isRequired,
 };
 
-export default function Imagesstep4({ tours, icons, services }) {
+export default function Imagesstep4({ onNext}) {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -61,6 +43,14 @@ export default function Imagesstep4({ tours, icons, services }) {
     }
   }, [selectedImage]);
 
+
+  const handleNext = () => {
+    const stepData = {
+      "images": imageUrl,
+    };
+    onNext(stepData);
+    console.log('step 4', stepData);
+  };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -119,6 +109,16 @@ export default function Imagesstep4({ tours, icons, services }) {
         </Box>
         {/* </form> */}
       </Container>
+      <Box
+        m={1}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

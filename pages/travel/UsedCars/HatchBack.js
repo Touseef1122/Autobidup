@@ -13,13 +13,13 @@ import Layout from '../../../src/layouts';
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist} from '../../../src/sections/@travel/displaymaincar';
+import { Caritemlist } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
 import filterIcon from '@iconify/icons-carbon/filter';
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar'
+import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -31,169 +31,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 const items = [
   {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
+    name: 'HatchBack',
   },
 ];
 
@@ -206,6 +44,28 @@ export default function Displaycarlist({ posts }) {
     setPage(value);
   };
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
+
+  const [searchValues, setSearchValues] = useState('');
+  const [filterprice, setFilterPrice] = useState('');
+  const [filteryear, setFilterYear] = useState('');
+
+  const handleFilterClick = (searchValues, filterprice, filteryear) => {
+    console.log('Filter Search:', searchValues);
+    console.log('Filter Price:', filterprice);
+    console.log('Filter Year:', filteryear);
+
+    if (searchValues !== '' || filterprice !== '' || filteryear !== '') {
+      if (searchValues !== '') {
+        setSearchValues(searchValues);
+      }
+      if (filterprice !== '') {
+        setFilterPrice(filterprice);
+      }
+      if (filteryear !== '') {
+        setFilterYear(filteryear);
+      }
+    }
+  };
 
   const handleMobileOpen = () => {
     setMobileOpen(true);
@@ -228,25 +88,29 @@ export default function Displaycarlist({ posts }) {
             HatchBack{' '}
           </Typography>
           <Button
-              color="inherit"
-              variant="contained"
-              startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-              onClick={handleMobileOpen}
-              sx={{
-                display: { md: 'none' },
-              }}
-            >
-              Filters
-        </Button>
+            color="inherit"
+            variant="contained"
+            startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
+            onClick={handleMobileOpen}
+            sx={{
+              display: { md: 'none' },
+            }}
+          >
+            Filters
+          </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-            <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
+            <Carfilterbar
+              mobileOpen={mobileOpen}
+              onMobileClose={handleMobileClose}
+              onFilterClick={handleFilterClick}
+            />
 
             <Box
               sx={{
                 flexGrow: 1,
               }}
             >
-              <Caritemlist item={items} />
+              <Caritemlist search={searchValues} value={'Hatchback'} filterprice={filterprice} filteryear={filteryear} />
             </Box>
           </Stack>
         </Container>

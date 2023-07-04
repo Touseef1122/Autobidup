@@ -210,6 +210,27 @@ export default function Displaycarlist({ posts }) {
     setPage(value);
   };
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
+  const [searchValues, setSearchValues] = useState('');
+  const [filterprice, setFilterPrice] = useState('');
+  const [filteryear, setFilterYear] = useState('');
+
+  const handleFilterClick = (searchValues, filterprice, filteryear) => {
+    console.log('Filter Search:', searchValues);
+    console.log('Filter Price:', filterprice);
+    console.log('Filter Year:', filteryear);
+
+    if (searchValues !== '' || filterprice !== '' || filteryear !== '') {
+      if (searchValues !== '') {
+        setSearchValues(searchValues);
+      }
+      if (filterprice !== '') {
+        setFilterPrice(filterprice);
+      }
+      if (filteryear !== '') {
+        setFilterYear(filteryear);
+      }
+    }
+  };
 
   const handleMobileOpen = () => {
     setMobileOpen(true);
@@ -243,14 +264,14 @@ export default function Displaycarlist({ posts }) {
               Filters
         </Button>
           <Stack direction={{ xs: 'column', sm: 'row' }}>
-          <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
+          <Carfilterbar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} onFilterClick={handleFilterClick}/>
 
             <Box
               sx={{
                 flexGrow: 1,
               }}
             >
-              <Caritemlist item={items} />
+              <Caritemlist search={searchValues} value={'SUV'} filterprice={filterprice} filteryear={filteryear} />
             </Box>
           </Stack>
         </Container>

@@ -23,12 +23,10 @@ const defaultValues = {
 Storefilterbar.propTypes = {
   mobileOpen: PropTypes.bool,
   onMobileClose: PropTypes.func,
-  setSearchValue : PropTypes.string,
   onFilterClick: PropTypes.func,
-
 };
 
-export default function Storefilterbar({ mobileOpen, onMobileClose,setSearchValue,onFilterClick }) {
+export default function Storefilterbar({ mobileOpen, onMobileClose,onFilterClick }) {
   const [filters, setFilters] = useState(defaultValues);
 
   const handlechangesearch = (keyword) => {
@@ -45,8 +43,8 @@ export default function Storefilterbar({ mobileOpen, onMobileClose,setSearchValu
     });
   };
   const handleFilterClick = () => {
-    console.log("filtersearch", filters.filtersearch)
-    onFilterClick(filters.filtersearch); // Pass the search value to the parent component
+    console.log("filtersearch", filters.filtersearch, filters.filterprice)
+    onFilterClick(filters.filtersearch, filters.filterprice); // Pass the search value to the parent component
   };
 
   const renderFilters = (
