@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+
 // icons
 import checkmarkIcon from '@iconify/icons-carbon/checkmark';
 import locationIcon from '@iconify/icons-carbon/location';
@@ -17,49 +19,7 @@ import { TextIconLabel, Iconify } from '../../../components';
 
 // ----------------------------------------------------------------------
 
-const images1 = [
-  // {
-  //   val: 'Petrol',
-  //   title: 'Engine Type',
-  //   icon: locationIcon,
-  // },
-  // {
-  //   val: 'Imported',
-  //   title: 'Assembly',
-  //   icon: userIcon,
-  // },
-  // {
-  //   val: '2017',
-  //   title: 'Year',
-  //   icon: userIcon,
-  // },
-  // {
-  //   val: 'Automatic',
-  //   title: 'Transmission',
-  //   icon: userIcon,
-  // },
-  // {
-  //   val: 'White',
-  //   title: 'Color',
-  //   icon: locationIcon,
-  // },
-  // {
-  //   val: 'Islamabad',
-  //   title: 'RegCity',
-  //   icon: locationIcon,
-  // },
-  // {
-  //   val: '2007cc',
-  //   title: 'Engine Capacity',
-  //   icon: locationIcon,
-  // },
-  // {
-  //   val: '20923',
-  //   title: 'Ad Ref# 20923',
-  //   icon: locationIcon,
-  // },
-];
-var dict1 = {title: " ", val: " " }
+const images1 = [];
 const data = [
   {
     description:
@@ -67,77 +27,89 @@ const data = [
   },
 ];
 const includes = [
-  // {
-  //   label:'ABS'
-  // },
-  {
-    label: 'AM/FM radio',
-  },
-  {
-    label: 'Air Conditioning',
-  },
-  {
-    label: 'Alloy rims',
-  },
+ 
 ];
-
+let knownKeys = [
+  'color',
+  'model',
+  'assembly',
+  'transmission',
+  'bodytype',
+  'mileage',
+  'engine_capacity',
+  'engine_type',
+];
+let known = [
+  'airbags',
+  'airconditioner',
+  'alloywheels',
+  'antilockbreakingsystem',
+  'coolbox',
+  'cupholders',
+  'foldingrearseat',
+  'immobilizer',
+  'powerdoorlocks',
+  'powersteering',
+  'powerwindows',
+  'powermirrors',
+  'rearwiper',
+  'tractioncontrol',
+  'rearseatent',
+  'climatecontrol',
+  'rearacvents',
+  'frontspeaker',
+  'rearspeaker',
+  'armrests',
+];
 TravelTourDetails.propTypes = {
   post: PropTypes.array.isRequired,
+  description: PropTypes.array,
 };
 
-export default function TravelTourDetails({ post }) {
-  console.log(post)
-  // images1 = []
-  // images1.push()
-  for (let i=0;i<8;i++ ){
-    if ("color" in post ){
-      dict1.val = post.color
-      dict1.title = "color"
+export default function TravelTourDetails({ post , description}) {
+  console.log(post);
+
+  useEffect(() => {
+    for (let i = 0; i < knownKeys.length; i++) {
+      let key = knownKeys[i];
+      if (post.hasOwnProperty(key)) {
+        let dict = {
+          val: post[key],
+          title: key,
+        };
+        images1.push(dict);
+      }
     }
-    //  if (post.assembly){
-    //   dict1.val = post.assembly
-    //   dict1.title = "assembly"
-    // }
-    //  if (post.transmission){
-    //   dict1.val = post.transmission
-    //   dict1.title = "transmission"
-    // }
-    //  if (post.model){
-    //   dict1.val = post.model
-    //   dict1.title = "model"
-    // }
-    //  if (post.engine_capacity){
-    //   dict1.val = post.engine_capacity
-    //   dict1.title = "engine_capacity"
-    // }
-    //  if (post.engine_type){
-    //   dict1.val = post.engine_type
-    //   dict1.title = "engine_type"
-    // }
-    //  if (post.mileage){
-    //   dict1.val = post.mileage
-    //   dict1.title = "mileage"
-    // }
-    //  if (post.bodytype){
-    //   dict1.val = post.bodytype
-    //   dict1.title = "bodytype"
-    // }
-    images1.push(dict1)
-    // console.log(dict1)
-    dict1 = {title: " ", val: " " }
-  }
+  }, []);
+
+  console.log(images1);
+
+  useEffect(() => {
+    for (let i = 0; i < known.length; i++) {
+      let key = known[i];
+      
+      console.log("hello", post[key] === true)
+      if (post.hasOwnProperty(key) && post[key] === true) {
+        let dict = {
+          val: post[key],
+          label: key,
+        };
+        includes.push(dict);
+      }
+    }
+  }, []);
+
+  console.log(includes);
 
   return (
     <Stack spacing={2} mb={6} mt={6}>
-      <Typography variant="h4">
-        Overview
-      </Typography>
+      <Typography variant="h4">Overview</Typography>
       <Box sx={{}}>
         <section>
           <Box
             sx={{
               boxShadow: '0 1px 10px #64666b',
-              borderRadius: '8px',  
+              borderRadius: '8px',
               p: 3,
               pl: 6,
               display: 'grid',
@@ -163,19 +135,18 @@ export default function TravelTourDetails({ post }) {
           <Typography variant="h4" paragraph mt={6}>
             Description
           </Typography>
-          {data.map((value) => (
-            <Typography mt={1}>{value.description}</Typography>
-          ))}
+
+          <Typography mt={1}>{description}</Typography>
         </section>
 
         <section>
           <Stack>
-            <Typography variant="h4">Car Features</Typography>
+            <Typography variant="h4" mt={6}>Car Features</Typography>
             <Box
               sx={{
                 boxShadow: '0 1px 10px #64666b',
                 borderRadius: '8px',
-                mt:1,
+                mt: 2,
                 p: 3,
                 pl: 6,
                 display: 'grid',

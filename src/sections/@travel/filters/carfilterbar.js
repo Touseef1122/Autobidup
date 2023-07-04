@@ -18,27 +18,25 @@ import Carfiltervariant from './carfiltervariant';
 // ----------------------------------------------------------------------
 
 const defaultValues = {
-  filtermileage: [],
   filteryear: [],
   filterprice: [],
-  filtermake: [],
 };
 
 Carfilterbar.propTypes = {
   mobileOpen: PropTypes.bool,
   onMobileClose: PropTypes.func,
+  onFilterClick: PropTypes.func,
 };
 
-export default function Carfilterbar({ mobileOpen, onMobileClose }) {
+export default function Carfilterbar({ mobileOpen, onMobileClose, onFilterClick }) {
   const [filters, setFilters] = useState(defaultValues);
 
-  const handlechangemake = (keyword) => {
+  const handlechangesearch = (keyword) => {
     setFilters({
       ...filters,
-      filtermake: keyword,
+      filtersearch: keyword,
     });
   };
-
   const handlechangeprice = (keyword) => {
     setFilters({
       ...filters,
@@ -51,52 +49,32 @@ export default function Carfilterbar({ mobileOpen, onMobileClose }) {
       filteryear: keyword,
     });
   };
-  const handlechangemileage = (keyword) => {
-    setFilters({
-      ...filters,
-      filtermileage: keyword,
-    });
+
+  const handleFilterClick = () => {
+    console.log("filtersearch", filters.filtersearch, filters.filterprice, filters.filteryear)
+    onFilterClick(filters.filtersearch, filters.filterprice, filters.filteryear ); 
   };
 
   const renderFilters = (
     <Stack spacing={2.5}>
-      <SearchInput />
+      <SearchInput filtersearch={filters.filtersearch} onchangesearch={handlechangesearch}/>
 
       <section>
-        <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
-          Make
-        </Typography>
-        <Carfiltermake filtermake={filters.filtermake} onchangemake={handlechangemake} />
-      </section>
-      <section>
-        <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
+        <Typography variant="h6" sx={{ mb: 1.5, color: 'text.dark', display: 'block' }}>
           Price
         </Typography>
         <Carfilterprice filterprice={filters.filterprice} onchangeprice={handlechangeprice} />
       </section>
       <section>
-        <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
+        <Typography variant="h6" sx={{ mb: 1.5, color: 'text.dark', display: 'block' }}>
           Year
         </Typography>
         <Carfilteryear filteryear={filters.filteryear} onchangeyear={handlechangeyear} />
       </section>
-      <section>
-        <Typography variant="overline" sx={{ mb: 1.5, color: 'text.secondary', display: 'block' }}>
-          Variant
-        </Typography>
-        <Carfiltervariant
-          filtermileage={filters.filtermileage}
-          onchangemileage={handlechangemileage}
-        />
-      </section>
       <Button
         color="inherit"
         variant="contained"
-        // startIcon={<Iconify icon={filterIcon} sx={{ width: 18, height: 18 }} />}
-        // // onClick={handleMobileOpen}
-        // sx={{
-        //   display: { md: 'none' },
-        // }}
+        onClick={handleFilterClick}
       >
         Filters
       </Button>
