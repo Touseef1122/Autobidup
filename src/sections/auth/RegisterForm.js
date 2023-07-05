@@ -5,6 +5,7 @@ import { useState } from 'react';
 // icons
 import viewIcon from '@iconify/icons-carbon/view';
 import viewOff from '@iconify/icons-carbon/view-off';
+import { useRouter } from 'next/router';
 // @mui
 import { LoadingButton } from '@mui/lab';
 import {
@@ -25,28 +26,27 @@ import { Iconify } from '../../components';
 // ----------------------------------------------------------------------
 
 const FormSchema = Yup.object().shape({
-  fullname: Yup.string()
+  first_name: Yup.string()
     .required('Full name is required')
-    .min(6, 'Mininum 3 characters')
+    .min(6, 'Mininum 6 characters')
     .max(15, 'Maximum 15 characters'),
-  email: Yup.string().required('Email is required').email('That is not an email'),
+  username: Yup.string().required('Email is required').email('That is not an email'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password should be of minimum 6 characters length'),
   confirmpassword: Yup.string()
     .required('Confirm password is required')
     .oneOf([Yup.ref('password')], "Password's not match"),
-  phone: Yup.string()
+  contact: Yup.string()
     .required('Mobile number is required')
     .min(11, 'Mininum 11 characters')
     .max(15, 'Maximum 15 characters'),
 });
 
-const API_ENDPOINT = 'http://autobidup.pythonanywhere.com/user/register';
-
-
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  console.log('blaggggggggggggggggggggggg');
   const {
     reset,
     control,
@@ -56,12 +56,12 @@ export default function RegisterForm() {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      fullname: '',
-      lastname: '',
-      phone: '',
-      email: '',
+      first_name: '',
+      last_name: '',
+      contact: '',
+      username: '',
       password: '',
-      confirmPassword: '',
+
     },
   });
 
@@ -70,36 +70,49 @@ export default function RegisterForm() {
   };
 
   const onSubmit = async (data) => {
+    console.log(' working', data);
     try {
-      const response = await fetch(API_ENDPOINT, {
+      console.log('checking Signup');
+      const response = await fetch('http://autobidup.pythonanywhere.com/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+        xhrFields: {
+          withCredentials: true,
+        },
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
-      }
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        // Handle the response data as needed
+        localStorage.setItem('firstname', responseData.first_name);
 
-      // Handle success here, e.g., show a success message or redirect the user to another page
-      alert('Registration successful!');
-      reset();
+        // Store JWT token in document cookie
+        document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log(responseData);
+        router.push('/');
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
     } catch (error) {
-      // Handle errors here, e.g., show an error message to the user
-      alert('Registration failed: ' + error.message);
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    // <form>
+    <div>
       <Stack spacing={1}>
-       
         <Stack direction="row" spacing={2}>
           <Controller
-            name="fullname"
+            name="first_name"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <TextField
@@ -112,7 +125,7 @@ export default function RegisterForm() {
             )}
           />
           <Controller
-            name="lastname"
+            name="last_name"
             control={control}
             render={({ field, fieldState: { error } }) => (
               <TextField
@@ -127,7 +140,7 @@ export default function RegisterForm() {
         </Stack>
 
         <Controller
-          name="phone"
+          name="contact"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
@@ -140,7 +153,7 @@ export default function RegisterForm() {
           )}
         />
         <Controller
-          name="email"
+          name="username"
           control={control}
           render={({ field, fieldState: { error } }) => (
             <TextField
@@ -197,7 +210,6 @@ export default function RegisterForm() {
             />
           )}
         />
-        
 
         <FormControlLabel
           sx={{ marginTop: '10px !important' }}
@@ -226,11 +238,13 @@ export default function RegisterForm() {
             marginTop: '5px !important',
           }}
           loading={isSubmitting}
+          onClick={handleSubmit(onSubmit)}
         >
           Sign up
         </LoadingButton>
       </Stack>
-    </form>
+      </div>
+    // </form>
   );
 }
 
