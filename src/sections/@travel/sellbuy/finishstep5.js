@@ -17,7 +17,6 @@ import {
   MenuItem,
 } from '@mui/material';
 import { blogTitle } from '_data/mock/text';
-
 const FormSchema = Yup.object().shape({
   phone: Yup.array()
     .required()
@@ -108,6 +107,11 @@ export default function Finishstep5({ formValues, handleInputChange}) {
           </Box>
         </Box>
       </Container>
+      <Box m={1} display="flex" justifyContent="flex-end" alignItems="flex-end">
+        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

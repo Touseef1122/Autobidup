@@ -103,6 +103,16 @@ export default function Imagesstep4({ handleInputChange}) {
         </Box>
         {/* </form> */}
       </Container>
+      <Box
+        m={1}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

@@ -102,13 +102,9 @@ export default function LoginForm() {
                   {...field}
                   fullWidth
                   label="Email address"
-                  // error={Boolean(error)}
-                  // helperText={error?.message}
                 />
               )}
-            />
-            {/* {errors.email && <p>{errors.email.message}</p>} */}
-
+            />          
             <Controller
               name="password"
               control={control}
@@ -127,19 +123,10 @@ export default function LoginForm() {
                       </InputAdornment>
                     ),
                   }}
-                  // error={Boolean(error)}
-                  // helperText={error?.message}
+              
                 />
               )}
-            />
-            {/* {errors.password && <p>{errors.password.message}</p>} */}
-
-            {/* <NextLink href={Routes.resetPassword} passHref>
-          <Link variant="body3" underline="always" color="text.secondary">
-            Forgot password?
-          </Link>
-           </NextLink> */}
-
+            />      
             <LoadingButton
               fullWidth
               size="large"

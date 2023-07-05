@@ -62,6 +62,10 @@ export default function Header({ transparent }) {
               <Button variant="contained" onClick={() => router.push('/travel/buysellcar/form')} target="_blank" rel="noopener">
                   Post an Add
               </Button>
+
+              <Button variant="contained" onClick={() => router.push('/auth/logincover')} target="_blank" rel="noopener">
+                  Login
+              </Button>
             </Stack>
             {!isDesktop && (
               <NavMobile
