@@ -27,7 +27,7 @@ import { LoadingButton } from '@mui/lab';
 //   tours: PropTypes.array.isRequired,
 // };
 
-export default function Imagesstep4({ onNext}) {
+export default function Imagesstep4({ handleInputChange}) {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -71,7 +71,7 @@ export default function Imagesstep4({ onNext}) {
                 multiple
                 type="file"
                 style={{ display: 'none' }}
-                onChange={(e) => setSelectedImage(e.target.files[0])}
+                onChange={handleInputChange}
               />
             </LoadingButton>
             <Typography fontSize={{xs:"10px",sm:"16px"}} p="12px" fontWeight="bold">
@@ -103,16 +103,6 @@ export default function Imagesstep4({ onNext}) {
         </Box>
         {/* </form> */}
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
-          Submit
-        </Button>
-      </Box>
     </Box>
   );
 }

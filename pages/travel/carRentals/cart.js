@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../../src/contexts/GlobalContext';
 // @mui
 import { Typography, Grid, Box, Stack, Button } from '@mui/material';
@@ -49,19 +49,35 @@ const styling = {
   backgroundSize: 'cover',
 };
 let items = [];
-
+let temp = { pid: [], quantity: [] };
 export default function Cart() {
-
   const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
-  
-  if(globalVariable.length>0){
-    let it=globalVariable.pop();
-    items.push(it);
-    localStorage.setItem('cartItems',JSON.stringify(items))
+  let index;
+  if (typeof window !== 'undefined') {
+    if (globalVariable.length > 0) {
+      let it = globalVariable.pop();
 
-    
+      // if (!JSON.parse(localStorage.getItem('cartItems')).some(v=>v.pid==it.pid)) {
+      if (
+        JSON.parse(localStorage.getItem('cartItems')).some((v, i) => {
+          if (v['pid'] == it['pid']) {
+            index = i;
+            return true;
+          }
+        }) &&
+        items.length > 0
+      ) {
+        items[index]['quantity'] += it['quantity'];
+        items[index]['price'] = parseFloat(items[index]['price']) + parseFloat(it['price']);
+        localStorage.setItem('cartItems', JSON.stringify(items));
+      } else {
+        items.push(it);
+        localStorage.setItem('cartItems', JSON.stringify(items));
+      }
+    }
   }
-  console.log(items)
+  console.log(items);
+
   // const router = useRouter();
   // const { data } = router.query;
   // const item = data ? JSON.parse(data) : null;
@@ -72,33 +88,46 @@ export default function Cart() {
     const updatedItems = items.filter((item) => item.pid !== productId);
     setItems(updatedItems);
   };
-  const totalPrice = items.reduce((total, item) => {return total + (parseFloat(item?.price) || 0)}, 0);
+  let totalPrice = items.reduce((total, item) => {
+    return total + (parseFloat(item?.price) || 0);
+  }, 0);
   // const totalPrice = (items) => items
   // .map((item) => item.price)
   // .reduce((acc, value) => acc + value, 0)
-  console.log(totalPrice)
+  console.log(totalPrice);
 
   useState(() => {
     // if (typeof window !== 'undefined') {
     //   value = localStorage.getItem('firstname') || '';
     //   console.log(value);
-      // 
-      if (typeof window !== 'undefined') {
-      if(JSON.parse(localStorage.getItem('cartItems')).length!=0){
-        items=JSON.parse(localStorage.getItem('cartItems'));
+    //
+    if (typeof window !== 'undefined') {
+      if (JSON.parse(localStorage.getItem('cartItems')).length != 0) {
+        items = JSON.parse(localStorage.getItem('cartItems'));
+        totalPrice = items.reduce((total, item) => {
+          return total + (parseFloat(item?.price) || 0);
+        }, 0);
         console.log(items);
       }
-    }
 
-  }, [])
+      for (let i of items) {
+        console.log(i);
+        if (i['pid'] != temp['pid']) {
+          temp['pid'].push(i['pid']);
+          temp['quantity'].push(i['quantity']);
+        }
+      }
+      console.log(temp);
+    }
+  }, []);
   useEffect(() => {
     //check refresh page
-   
+
     const handleBeforeUnload = (event) => {
       event.preventDefault();
       event.returnValue = ''; // Some browsers require a return value to show a custom confirmation message
       // Perform any necessary cleanup or additional logic before the page is refreshed
-      localStorage.setItem('cartItems',JSON.stringify(items))
+      localStorage.setItem('cartItems', JSON.stringify(items));
       console.log('Page is being refreshed...');
     };
 
@@ -109,30 +138,26 @@ export default function Cart() {
     };
   }, []);
 
-
-
   return (
     <Page title="Cart | Accessories">
-      <Loader/>
-      <ChatButton/>
+      <Loader />
+      <ChatButton />
       <Box
         sx={{
-          marginTop: { xs: '18%', sm: '13%',md:"12%" },
+          marginTop: { xs: '18%', sm: '13%', md: '12%' },
           mb: 6,
           overflowX: 'hidden',
           pl: '5%',
           pr: '5%',
-          
         }}
       >
         <Typography variant="h2"> Shopping Cart </Typography>
         <Grid spacing={2} container justifyContent="center">
           <Grid item xs={12} sm={7} md={8}>
-            
-          {items.length > 0 && <Item item={items} onRemoveItem={handleRemoveItem}/>}
+            {items.length > 0 && <Item item={items} data={temp} onRemoveItem={handleRemoveItem} />}
           </Grid>
           <Grid item xs={12} sm={5} md={4}>
-            <Order totalPrice={totalPrice} />
+            <Order totalPrice={totalPrice} post={items} data={temp} />
           </Grid>
         </Grid>
       </Box>

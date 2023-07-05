@@ -34,6 +34,7 @@ export default function Itemcarasol({ post, name, price, images }) {
   const theme = useTheme();
   const router = useRouter();
   const [counter, setCounter] = useState(1);
+  
   const carouselSettings = {
     dots: true,
     arrows: false,
@@ -60,10 +61,12 @@ export default function Itemcarasol({ post, name, price, images }) {
   console.log(counter);
 
   var condition = '';
+  var username = '';
   var value = '';
 
   if (typeof window !== 'undefined') {
     value = localStorage.getItem('firstname') || '';
+    username = localStorage.getItem('username') || '';
     console.log(value);
     if (value) {
       console.log(true);
@@ -77,6 +80,9 @@ export default function Itemcarasol({ post, name, price, images }) {
   const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
 
   const handleSubmit = (post) => {
+    if (counter){
+      post.quantity = counter
+    }
     console.log([post]), setGlobalVariable([post]);
     router.push(`/travel/carRentals/cart/`);
   };
