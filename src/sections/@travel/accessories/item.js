@@ -34,39 +34,39 @@ const ScrollStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Item( props ) {
+export default function Item(props) {
   const router = useRouter();
   const [counter, setCounter] = useState(1);
-  console.log( "data reached", props.item)
-
-
-  
+  console.log('data reached', props.item);
 
   return (
-    <Box mt={2} mb={2} sx={{background:"white", boxShadow: '0 1px 10px #64666B' }} height="400px">
+    <Box mt={2} mb={2} sx={{ background: 'white', boxShadow: '0 1px 10px #64666B' }} height="400px">
       <Scrollbar>
         <ScrollStyle>
           {props.item?.map((value) => (
-            <Box sx={{ p: 3 }} >
+            <Box sx={{ p: 3 }}>
               {value ? (
-              <Grid container spacing={4} mb={2} justifyContent="center" key={value.pid}>
-                <Grid item xs={12} sm={4} display="flex" alignItems="center">
-                  <Image
-                    src={value.images}
-                    sx={{ width: '100%', height: 'auto' }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={8}>
-                  <Stack direction="row" justifyContent="space-between">
-                    <Typography variant="h4">{value.pname}</Typography>
-                    <Typography variant="h4" color="#CE9A00">
-                      {' '}
-                      PKR {value.price}
-                    </Typography>
-                  </Stack>
-                  <Typography variant="h6">Shipping PKR 100</Typography>
-                  {/* <Stack spacing={2} mt={2} direction="row">
-                    <Typography variant="h6">Quantity:</Typography>
+                <Grid container spacing={4} mb={2} justifyContent="center" key={value.pid}>
+                  <Grid item xs={12} sm={4} display="flex" alignItems="center">
+                    <Image src={value.images} sx={{ width: '100%', height: 'auto' }} />
+                  </Grid>
+                  <Grid item xs={12} sm={8}>
+                    <Stack direction="row" justifyContent="space-between">
+                      <Typography variant="h4">{value.pname}</Typography>
+                      <Typography variant="h4" color="#CE9A00">
+                        {' '}
+                        PKR {value.price}
+                      </Typography>
+                    </Stack>
+                    <Typography variant="h6" mt={2}>Shipping:  PKR 100</Typography>
+                    <Stack direction="row" mt={2}>
+                      <Typography variant="h6">Quantity:</Typography>
+                      <Typography variant="h6" color="#CE9A00">
+                        {' '}
+                         {value.quantity}
+                      </Typography>
+                    </Stack>
+                    {/* <Stack spacing={2} mt={2} direction="row">
 
                     <ButtonGroup
                       size="small"
@@ -105,21 +105,21 @@ export default function Item( props ) {
                       </Button>
                     </ButtonGroup>
                   </Stack> */}
-                  <Button
-                    sx={{
-                      float: 'right',
-                      backgroundColor: '#212B36',
-                      color: 'white',
-                      mt: 3,
-                      '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-                    }}
-                    onClick={() => props.onRemoveItem(item.pid)}
-                  >
-                    Remove
-                  </Button>
+                    <Button
+                      sx={{
+                        float: 'right',
+                        backgroundColor: '#212B36',
+                        color: 'white',
+                        mt: 3,
+                        '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                      }}
+                      onClick={() => props.onRemoveItem(item.pid)}
+                    >
+                      Remove
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-               ) : null}
+              ) : null}
               <Divider sx={{ backgroundColor: 'darkgrey' }} />
             </Box>
           ))}

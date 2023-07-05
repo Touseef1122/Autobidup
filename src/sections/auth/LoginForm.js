@@ -71,7 +71,6 @@ export default function LoginForm() {
         // Handle the response data as needed
         localStorage.setItem('firstname', responseData.firstName);
         localStorage.setItem('username', responseData.username);
-        localStorage.setItem('password', responseData.user.password);
 
         // Store JWT token in document cookie
         document.cookie = `jwt=${responseData.jwt}; path=/`;

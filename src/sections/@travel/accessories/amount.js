@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
-import * as React from 'react';
-import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-import { Item, Order } from '../accessories';
-import img1 from '../../../Assets/Images/FordMinivan.jpg';
-import { Icon } from '@iconify/react';
 
+import { useRouter } from 'next/router';
+import { Item } from '../accessories';
+import { Icon } from '@iconify/react';
+import React, { useContext, useState } from 'react';
+import { GlobalContext } from '../../../contexts/GlobalContext';
 import {
   FormControlLabel,
   FormControl,
@@ -28,33 +24,11 @@ import {
 } from '@mui/material';
 // ----------------------------------------------------------------------
 
-const items = [
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
+const items = [];
 
 export default function Shippinginfo() {
   const [open, setOpen] = React.useState(false);
+  const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -63,6 +37,17 @@ export default function Shippinginfo() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  if (typeof window !== 'undefined') {
+    if (globalVariable.length > 0) {
+      let it = globalVariable.pop();
+      items.push(it);
+      localStorage.setItem('cartItems', JSON.stringify(items));
+      // if (!JSON.parse(localStorage.getItem('cartItems')).some(v=>v.pid==it.pid)) {     
+    }
+  }
+  console.log(items);
+
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', textAlign: 'left' }}>
@@ -79,7 +64,9 @@ export default function Shippinginfo() {
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h4">Cart</Typography>
+
             <Item item={items} />
+
             <Typography variant="h4">Order Summary</Typography>
             <Stack direction="row" style={{ justifyContent: 'space-between' }}>
               <Typography variant="h6">Subtotal</Typography>

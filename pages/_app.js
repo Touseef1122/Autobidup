@@ -35,6 +35,7 @@ import ProgressBar from '../src/components/ProgressBar';
 import ThemeColorPresets from '../src/components/ThemeColorPresets';
 import MotionLazyContainer from '../src/components/animate/MotionLazyContainer';
 import { GlobalProvider } from '../src/contexts/GlobalContext';
+import { useEffect, useState } from 'react';
 // ----------------------------------------------------------------------
 
 MyApp.propTypes = {
@@ -48,6 +49,21 @@ export default function MyApp(props) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   console.info('[INFO] baseAPI', axios.defaults.baseURL);
+//   useEffect(()=>{
+
+//     if (typeof window !== 'undefined') {
+    
+//         window.addEventListener('close', ()=>{
+          
+//           alert('asd')
+//           localStorage.clear();
+//         })
+//         window.onclose = ()=>{
+//           alert('asd')
+//           localStorage.clear();
+//         }
+// }},[])
+
 
   return (
     <>
