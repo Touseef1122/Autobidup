@@ -35,7 +35,6 @@ import ProgressBar from '../src/components/ProgressBar';
 import ThemeColorPresets from '../src/components/ThemeColorPresets';
 import MotionLazyContainer from '../src/components/animate/MotionLazyContainer';
 import { GlobalProvider } from '../src/contexts/GlobalContext';
-
 // ----------------------------------------------------------------------
 
 MyApp.propTypes = {
@@ -64,15 +63,16 @@ export default function MyApp(props) {
                 <RtlLayout>
                   {/* <Settings /> */}
                   <ProgressBar />
-                  <GlobalProvider>
-                  {getLayout(<Component {...pageProps} />)}
-                  </GlobalProvider>
+                    <GlobalProvider>
+                        {getLayout(<Component {...pageProps} />)}
+                    </GlobalProvider>
                 </RtlLayout>
               </MotionLazyContainer>
             </ThemeColorPresets>
           </ThemeProvider>
         </SettingsProvider>
       </LocalizationProvider>
+
     </>
   );
 }

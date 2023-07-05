@@ -5,9 +5,6 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
   Button,
@@ -20,19 +17,13 @@ import {
   MenuItem,
 } from '@mui/material';
 import { blogTitle } from '_data/mock/text';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
+
 // ----------------------------------------------------------------------
-Finishstep5.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
+// Finishstep5.propTypes = {
+//   services: PropTypes.array.isRequired,
+//   icons: PropTypes.array.isRequired,
+//   tours: PropTypes.array.isRequired,
+// };
 const FormSchema = Yup.object().shape({
   phone: Yup.array()
     .required()

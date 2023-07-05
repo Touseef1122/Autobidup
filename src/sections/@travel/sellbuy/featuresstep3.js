@@ -5,9 +5,6 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
   FormControlLabel,
@@ -102,11 +99,11 @@ const check = [
     label: 'Armrests',
   },
 ];
-Featuresstep3.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
+// Featuresstep3.propTypes = {
+//   services: PropTypes.array.isRequired,
+//   icons: PropTypes.array.isRequired,
+//   tours: PropTypes.array.isRequired,
+// };
 const FormSchema = Yup.object().shape({
   services: Yup.array().required().min(1, 'Services field must have at least 1 items'),
 });

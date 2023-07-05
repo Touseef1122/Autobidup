@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
-
+import React, { useContext,useState } from 'react';
+import { GlobalContext } from '../../../src/contexts/GlobalContext';
 // @mui
 import { Typography, Grid, Box, Stack, Button } from '@mui/material';
 // utils
@@ -30,6 +30,7 @@ import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import sell from '../../../src/Assets/Images/cart.jpg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
+import { useEffect } from 'react';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -47,35 +48,26 @@ const styling = {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
 };
-const items = [
-  
-];
+let items = [];
 
 export default function Cart() {
-  // const [mobileOpen, setMobileOpen] = useState(false);
-  // const [page, setPage] = useState(1);
-  // const handleChange = (event, value) => {
-  //   setPage(value);
-  // };
-  // const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
 
-  // const handleMobileOpen = () => {
-  //   setMobileOpen(true);
-  // };
+  const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
+  
+  if(globalVariable.length>0){
+    let it=globalVariable.pop();
+    items.push(it);
+    localStorage.setItem('cartItems',JSON.stringify(items))
 
-  // const handleMobileClose = () => {
-  //   setMobileOpen(false);
-  // };
-
-  // if (error) {
-  //   return <ErrorScreen />;
-  // }
-  const router = useRouter();
-  const { data } = router.query;
-  const item = data ? JSON.parse(data) : null;
-  console.log("item data",item)
-  items.push(item)
-  console.log("Items",items)
+    
+  }
+  console.log(items)
+  // const router = useRouter();
+  // const { data } = router.query;
+  // const item = data ? JSON.parse(data) : null;
+  // console.log("item data",item)
+  // items.push(item)
+  // console.log("Items",items)
   const handleRemoveItem = (productId) => {
     const updatedItems = items.filter((item) => item.pid !== productId);
     setItems(updatedItems);
@@ -85,6 +77,39 @@ export default function Cart() {
   // .map((item) => item.price)
   // .reduce((acc, value) => acc + value, 0)
   console.log(totalPrice)
+
+  useState(() => {
+    // if (typeof window !== 'undefined') {
+    //   value = localStorage.getItem('firstname') || '';
+    //   console.log(value);
+      // 
+      if (typeof window !== 'undefined') {
+      if(JSON.parse(localStorage.getItem('cartItems')).length!=0){
+        items=JSON.parse(localStorage.getItem('cartItems'));
+        console.log(items);
+      }
+    }
+
+  }, [])
+  useEffect(() => {
+    //check refresh page
+   
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; // Some browsers require a return value to show a custom confirmation message
+      // Perform any necessary cleanup or additional logic before the page is refreshed
+      localStorage.setItem('cartItems',JSON.stringify(items))
+      console.log('Page is being refreshed...');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+
 
   return (
     <Page title="Cart | Accessories">

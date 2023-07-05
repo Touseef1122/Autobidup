@@ -5,9 +5,7 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
+
 
 import {
   Radio,
@@ -20,20 +18,14 @@ import {
   FormLabel,
   TextField,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
+
 // ----------------------------------------------------------------------
 
-Enterpricestep2.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
+// Enterpricestep2.propTypes = {
+//   services: PropTypes.array.isRequired,
+//   icons: PropTypes.array.isRequired,
+//   tours: PropTypes.array.isRequired,
+// };
 const FormSchema = Yup.object().shape({
   price: Yup.string().required().min(100000, 'minimum price is 1 lac').max(1000000000,'maximum price is 100 crore'),
 });
