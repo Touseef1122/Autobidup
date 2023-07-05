@@ -13,7 +13,7 @@ import {
   Radio,
   RadioGroup,
   Typography,
-  FormControlLabel,
+  Button,
   Box,
   FormControl,
   Container,
@@ -28,34 +28,17 @@ import {
 // import { TravelLandingfull } from '../landing';
 // import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
+
 Enterpricestep2.propTypes = {
   services: PropTypes.array.isRequired,
   icons: PropTypes.array.isRequired,
   tours: PropTypes.array.isRequired,
 };
 const FormSchema = Yup.object().shape({
-  price: Yup.array().required().min(100000, 'minimum price is 8 lac').max(1000000000,'maximum price is 100 crore'),
+  price: Yup.string().required().min(100000, 'minimum price is 1 lac').max(1000000000,'maximum price is 100 crore'),
 });
 
-export default function Enterpricestep2({ tours, icons, services }) {
+export default function Enterpricestep2({ onNext }) {
   const router = useRouter();
   const {
     reset,
@@ -74,11 +57,15 @@ export default function Enterpricestep2({ tours, icons, services }) {
     alert(JSON.stringify(data, null, 2));
     reset();
   };
-  //   const [value, setValue] = React.useState('female');
+  const [price, setPrice] = React.useState('');
 
-  //   const handleChange = (event) => {
-  //     setValue(event.target.value);
-  //   };
+  const handleNext = () => {
+    const stepData = {
+      "price":price,
+    };
+    onNext(stepData);
+    console.log("step 2",stepData)
+  };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -105,6 +92,8 @@ export default function Enterpricestep2({ tours, icons, services }) {
                 placeholder="Enter Price"
                 error={Boolean(error)}
                 helperText={error?.message}
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 sx={{ width: {xs:"100%",sm:'50%'} }}
               />
             )}
@@ -113,8 +102,19 @@ export default function Enterpricestep2({ tours, icons, services }) {
               Please enter realistic price to get more genuine responses.
             </Typography>
         </Box>
+
         {/* </form> */}
       </Container>
+      <Box
+        m={1}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

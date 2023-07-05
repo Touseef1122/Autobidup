@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import * as React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import { Button, Typography, Box, Container, Stepper, Step, StepButton } from '@mui/material';
 
@@ -20,10 +20,10 @@ const steps = [
   'Upload Images',
   'Finish',
 ];
-
 export default function Formsellbuy() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+  const [formData, setFormData] = React.useState([]);
 
   const totalSteps = () => {
     return steps.length;
@@ -41,7 +41,13 @@ export default function Formsellbuy() {
     return completedSteps() === totalSteps();
   };
 
-  const handleNext = () => {
+  const handleNext = (stepData) => {
+    console.log("data reached",stepData)
+    setFormData((prevData) => ({
+      ...prevData,
+      ...stepData,      
+    }));
+    console.log("form Data",formData)
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -63,7 +69,13 @@ export default function Formsellbuy() {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
-    handleNext();
+    if (activeStep === steps.length - 1) {
+      // All steps completed, send the form data
+      console.log('Form Data:', formData);
+      // Implement your API call using fetch here
+    } else {
+      handleNext();
+    }
   };
 
   const handleReset = () => {
@@ -84,7 +96,7 @@ export default function Formsellbuy() {
         }}
       >
         <Typography variant="h2" textAlign="center" mb={4}>
-         Sell Used Car Form
+          Sell Used Car Form
         </Typography>
         <Stepper
           alternativeLabel
@@ -133,27 +145,27 @@ export default function Formsellbuy() {
             <React.Fragment>
               {activeStep === 0 && (
                 <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step1 />
+                  <Step1 onNext={handleNext}/>
                 </Typography>
               )}
               {activeStep === 1 && (
                 <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step2 />
+                  <Step2 onNext={handleNext}/>
                 </Typography>
               )}
               {activeStep === 2 && (
                 <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step3 />
+                  <Step3 onNext={handleNext}/>
                 </Typography>
               )}
               {activeStep === 3 && (
                 <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step4 />
+                  <Step4 onNext={handleNext}/>
                 </Typography>
               )}
               {activeStep === 4 && (
                 <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step5 />
+                  <Step5 onNext={handleNext}/>
                 </Typography>
               )}
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>

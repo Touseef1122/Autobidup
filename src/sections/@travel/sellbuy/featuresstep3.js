@@ -17,70 +17,89 @@ import {
   Box,
   TextField,
   Container,
-  MenuItem,
+  Button,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
 const check = [
   {
     value: '1',
-    label: 'Air bags',
+    label: 'Airbags',
   },
   {
     value: '2',
-    label: 'Cup holder',
+    label: 'Airconditioner',
   },
   {
     value: '3',
-    label: 'Air conditioner',
+    label: 'Alloywheels',
   },
   {
     value: '4',
-    label: 'Folding rear seat',
+    label: 'Antilockbreakingsystem',
   },
   {
     value: '5',
-    label: 'Anti lock braking system',
-  },
-  {
-    value: '6',
-    label: 'Alloy wheels',
-  },
-  {
-    value: '7',
-    label: 'Immobilizer',
-  },
-  {
-    value: '8',
     label: 'Coolbox',
   },
   {
+    value: '6',
+    label: 'Cupholders',
+  },
+  {
+    value: '7',
+    label: 'Foldingrearseat',
+  },
+  {
+    value: '8',
+    label: 'Immobilizer',
+  },
+  {
     value: '9',
-    label: 'Power door locks',
+    label: 'Powerdoorlocks',
+  },
+  {
+    value: '10',
+    label: 'Powersteering',
+  },
+  {
+    value: '11',
+    label: 'Powerwindows',
+  },
+  {
+    value: '12',
+    label: 'Powermirrors',
+  },
+  {
+    value: '13',
+    label: 'Rearwiper',
+  },
+  {
+    value: '14',
+    label: 'Tractioncontrol',
+  },
+  {
+    value: '15',
+    label: 'Rearseatent',
+  },
+  {
+    value: '16',
+    label: 'Climatecontrol',
+  },
+  {
+    value: '17',
+    label: 'Rearacvents',
+  },
+  {
+    value: '18',
+    label: 'Frontspeaker',
+  },
+  {
+    value: '19',
+    label: 'Rearspeaker',
+  },
+  {
+    value: '20',
+    label: 'Armrests',
   },
 ];
 Featuresstep3.propTypes = {
@@ -90,12 +109,9 @@ Featuresstep3.propTypes = {
 };
 const FormSchema = Yup.object().shape({
   services: Yup.array().required().min(1, 'Services field must have at least 1 items'),
-  email: Yup.string().required('Email is required').email('That is not an email'),
-  compnany: Yup.string().required('Compnany is required'),
-  website: Yup.string().required('Website is required'),
 });
 
-export default function Featuresstep3({ tours, icons, services }) {
+export default function Featuresstep3({ onNext }) {
   const router = useRouter();
   const {
     reset,
@@ -106,15 +122,10 @@ export default function Featuresstep3({ tours, icons, services }) {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      services: [],
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      compnany: '',
-      website: '',
-      budget: [2000, 10000],
-      message: '',
+      enginetype: '',
+      engineCapacity: '',
+      transmission: '',
+      assembly: '',
     },
   });
   const onSubmit = async (data) => {
@@ -122,7 +133,21 @@ export default function Featuresstep3({ tours, icons, services }) {
     alert(JSON.stringify(data, null, 2));
     reset();
   };
-  const [show, setShow] = useState(false);
+  const [enginetype, setEngineType] = React.useState('');
+  const [enginecapacity, setEngineCapacity] = React.useState('');
+  const [transmission, setTransmission] = React.useState('');
+  const [assembly, setAssembly] = React.useState('');
+  const stepData = {}
+  const handleNext = () => {
+    stepData = {
+      "engine_type": enginetype,
+      "engine_capacity": enginecapacity,
+      "transmission": transmission,
+      "assembly": assembly,
+    };
+    onNext(stepData);
+    console.log('step 3', stepData);
+  };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -138,91 +163,84 @@ export default function Featuresstep3({ tours, icons, services }) {
           </Typography>
           <Box
             sx={{
-              
               mr: { md: '25%' },
             }}
           >
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <Controller
-                name="Request"
+                name="engine_type"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Engine Type *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    {...field}
+                    fullWidth
+                    placeholder="Enter Engine Type"
+                    label="Engine Type"
+                    error={Boolean(error)}
+                    helperText={error?.message}
+                    value={enginetype}
+                    onChange={(e) => setEngineType(e.target.value)}
+                    // value={stepData.step1Data?.engine_type || ''}
+                    sx={{ width: { xs: '100%', sm: '50%' } }}
+                  />
                 )}
               />
 
               <Controller
-                name="Request"
-                sx={{ width: '100%' }}
+                name="engine_capacity"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Engine Capacity *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    {...field}
+                    fullWidth
+                    placeholder="Enter Engine Capacity"
+                    error={Boolean(error)}
+                    label="Engine Capacity"
+                    helperText={error?.message}
+                    value={enginecapacity}
+                    onChange={(e) => setEngineCapacity(e.target.value)}
+                    // value={stepData.step1Data?.engine_capacity || ''}
+                    sx={{ width: { xs: '100%', sm: '50%' } }}
+                  />
                 )}
               />
             </Stack>
             <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
               <Controller
-                name="Request"
+                name="transmission"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Transmission *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    {...field}
+                    fullWidth
+                    placeholder="Enter Transmission"
+                    error={Boolean(error)}
+                    label="Transmission"
+                    helperText={error?.message}
+                    value={transmission}
+                    onChange={(e) => setTransmission(e.target.value)}
+                    // value={stepData.step1Data?.transmission || ''}
+                    sx={{ width: { xs: '100%', sm: '50%' } }}
+                  />
                 )}
               />
 
               <Controller
-                name="Request"
-                sx={{ width: '100%' }}
+                name="assembly"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Assembly *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    {...field}
+                    fullWidth
+                    placeholder="Enter Assembly"
+                    label="Assembly"
+                    error={Boolean(error)}
+                    helperText={error?.message}
+                    value={assembly}
+                    onChange={(e) => setAssembly(e.target.value)}
+                    // value={stepData.step1Data?.assembly || ''}
+                    sx={{ width: { xs: '100%', sm: '50%' } }}
+                  />
                 )}
               />
             </Stack>
@@ -245,14 +263,36 @@ export default function Featuresstep3({ tours, icons, services }) {
             {check.map((option) => (
               <FormControlLabel
                 sx={{}}
-                control={<Checkbox name={option.label} sx={{}} />}
+                control={
+                  <Checkbox
+                    name={option.label}
+                    checked={stepData[option.label] || false}
+                    onChange={(e) =>
+                      setStepData((prevData) => ({
+                        ...prevData,
+                        [option.label]: e.target.checked,
+                      }))
+                    }
+                  />
+                }
                 label={option.label}
               />
             ))}
           </Box>
         </Box>
+
         {/* </form> */}
       </Container>
+      <Box
+        m={1}
+        display="flex"
+        justifyContent="flex-end"
+        alignItems="flex-end"
+      >
+        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
+          Submit
+        </Button>
+      </Box>
     </Box>
   );
 }

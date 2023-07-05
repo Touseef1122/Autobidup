@@ -53,14 +53,14 @@ export default function Displaycardetails({ posts }) {
       <Loader/>
       <ChatButton/>
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
             { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
+            { name: '' },
           ]}
           sx={{mb:4}}
-        />
+        /> */}
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <Carousel post={item} images={item?.images || ''}/>
@@ -69,7 +69,7 @@ export default function Displaycardetails({ posts }) {
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <TravelTourDetails post={item} />
+            <TravelTourDetails post={item} description={item?.description || ''} />
           </Grid>
           <Grid item xs={12} sm={5}>
             <Box>{/* <TravelTourDetails /> */}</Box>

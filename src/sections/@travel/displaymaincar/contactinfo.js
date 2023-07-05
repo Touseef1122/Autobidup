@@ -50,7 +50,7 @@ export default function Contactinfo({post,make,variant,price,year}) {
         <Icon icon={location} width="1.5vw" vAlign="middle" color="#CE9A00" />
         <Typography fontWeight="bold">Lahore</Typography>
       </Stack>
-      <Sellerinfo  post={post}/>
+      <Sellerinfo  post={post} name={post?.seller_name || ''} phone={post?.seller_phone  || ''}/>
 
       {/* <Container
         sx={{
