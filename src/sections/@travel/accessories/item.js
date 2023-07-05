@@ -40,14 +40,7 @@ export default function Item( props ) {
   console.log( "data reached", props.item)
 
 
-  // const handleIncrement = () => {
-  //   this.setState((state) => ({ counter: state.counter + 1 }));
-  // };
-
-  // const handleDecrement = () => {
-  //   this.setState((state) => ({ counter: state.counter - 1 }));
-  // };
-  // const displayCounter = this.state.counter > 0;
+  
 
   return (
     <Box mt={2} mb={2} sx={{background:"white", boxShadow: '0 1px 10px #64666B' }} height="400px">
@@ -72,7 +65,7 @@ export default function Item( props ) {
                     </Typography>
                   </Stack>
                   <Typography variant="h6">Shipping PKR 100</Typography>
-                  <Stack spacing={2} mt={2} direction="row">
+                  {/* <Stack spacing={2} mt={2} direction="row">
                     <Typography variant="h6">Quantity:</Typography>
 
                     <ButtonGroup
@@ -111,7 +104,7 @@ export default function Item( props ) {
                         +
                       </Button>
                     </ButtonGroup>
-                  </Stack>
+                  </Stack> */}
                   <Button
                     sx={{
                       float: 'right',

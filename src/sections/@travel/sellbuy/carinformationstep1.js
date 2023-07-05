@@ -6,8 +6,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
-import { LoadingButton } from '@mui/lab';
-
 import {
   Button,
   Link,
@@ -21,11 +19,9 @@ import {
 
 // ----------------------------------------------------------------------
 
-Carinformationstep1.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
+// Carinformationstep1.propTypes = {
+
+// };
 const FormSchema = Yup.object().shape({
   website: Yup.string().required('Website is required'),
 });

@@ -31,7 +31,7 @@ const FormSchema = Yup.object().shape({
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  console.log('blaggggggggggggggggggggggg');
+  console.log('blag');
   const {
     reset,
     control,
@@ -70,10 +70,12 @@ export default function LoginForm() {
         const responseData = await response.json();
         // Handle the response data as needed
         localStorage.setItem('firstname', responseData.firstName);
+        localStorage.setItem('username', responseData.username);
+        localStorage.setItem('password', responseData.user.password);
 
         // Store JWT token in document cookie
         document.cookie = `jwt=${responseData.jwt}; path=/`;
-        console.log(responseData);
+        console.log("response data",responseData);
         router.push('/');
       } else {
         // API call failed
