@@ -5,9 +5,6 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
   FormControlLabel,
@@ -19,21 +16,18 @@ import {
   Container,
   Button,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
+
 // // components
 import { Image } from '../../../components';
-// import { TravelLandingfull } from '../landing';
 import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-Imagesstep4.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
+// Imagesstep4.propTypes = {
+//   services: PropTypes.array.isRequired,
+//   icons: PropTypes.array.isRequired,
+//   tours: PropTypes.array.isRequired,
+// };
 
-export default function Imagesstep4({ onNext}) {
+export default function Imagesstep4({ handleInputChange}) {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -77,7 +71,7 @@ export default function Imagesstep4({ onNext}) {
                 multiple
                 type="file"
                 style={{ display: 'none' }}
-                onChange={(e) => setSelectedImage(e.target.files[0])}
+                onChange={handleInputChange}
               />
             </LoadingButton>
             <Typography fontSize={{xs:"10px",sm:"16px"}} p="12px" fontWeight="bold">

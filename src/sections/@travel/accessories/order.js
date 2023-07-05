@@ -22,11 +22,16 @@ import { Overview } from '../tours';
 //--------------------------------------------------------------
 Order.propTypes = {
   totalPrice: PropTypes.array,
+  post: PropTypes.array,
+  data: PropTypes.array,
 };
-export default function Order({totalPrice}) {
+export default function Order({post, data, totalPrice}) {
   const router = useRouter();
   const convertedTotalPrice = parseFloat(totalPrice);
-  const finalPrice = convertedTotalPrice + 100;
+  // const finalPrice = convertedTotalPrice + 100;
+  console.log("entered order", data)
+
+
   return (
     <Box
       sx={{
@@ -40,8 +45,8 @@ export default function Order({totalPrice}) {
         background: 'white',
       }}
     >
-      <Typography variant="h4">Order Summary</Typography>
-      <Stack direction="row" style={{ justifyContent: 'space-between' }}>
+      <Typography variant="h4">Total Amount</Typography>
+      {/* <Stack direction="row" style={{ justifyContent: 'space-between' }}>
         <Typography variant="h6">Subtotal</Typography>
         <Typography variant="h4" color="#CE9A00">
          PKR  {totalPrice}
@@ -52,12 +57,12 @@ export default function Order({totalPrice}) {
         <Typography variant="h4" color="#CE9A00">
           PKR 100
         </Typography>
-      </Stack>
+      </Stack> */}
       <Divider />
       <Stack direction="row" style={{ justifyContent: 'space-between' }}>
         <Typography variant="h6">Total</Typography>
         <Typography variant="h4" color="#CE9A00">
-          PKR {finalPrice}
+          PKR {totalPrice}
         </Typography>
       </Stack>
       <Button
@@ -70,10 +75,10 @@ export default function Order({totalPrice}) {
         }}
         onClick={() => {
           const updatedPost = {
-            ...post,
+            ...data,
             price: totalPrice,
           };
-      
+          console.log("price added",updatedPost)
           router.push({
             pathname: '/travel/carRentals/shipping',
             query: { data: JSON.stringify(updatedPost) },

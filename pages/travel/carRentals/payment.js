@@ -44,7 +44,7 @@ const styling = {
 
 export default function Payment() {
   return (
-    <Page title="Shipping Address | Accessories" style={styling}>
+    <Page title="Payment | Accessories" style={styling}>
       <Loader />
       <ChatButton />
       <Container sx={{ marginTop: { xs: '18%', sm: '10%', md: '8%' }, overflowX: 'hidden' }}>

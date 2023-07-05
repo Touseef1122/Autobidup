@@ -5,9 +5,6 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
   FormControlLabel,
@@ -102,56 +99,12 @@ const check = [
     label: 'Armrests',
   },
 ];
-Featuresstep3.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
-  services: Yup.array().required().min(1, 'Services field must have at least 1 items'),
-});
 
-export default function Featuresstep3({ onNext }) {
-  const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
-    defaultValues: {
-      enginetype: '',
-      engineCapacity: '',
-      transmission: '',
-      assembly: '',
-    },
-  });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  const [enginetype, setEngineType] = React.useState('');
-  const [enginecapacity, setEngineCapacity] = React.useState('');
-  const [transmission, setTransmission] = React.useState('');
-  const [assembly, setAssembly] = React.useState('');
-  const stepData = {}
-  const handleNext = () => {
-    stepData = {
-      "engine_type": enginetype,
-      "engine_capacity": enginecapacity,
-      "transmission": transmission,
-      "assembly": assembly,
-    };
-    onNext(stepData);
-    console.log('step 3', stepData);
-  };
+export default function Featuresstep3({ formValues, formValues3p1, handleInputChange, handleInputChange3p1 }) {
+  
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
@@ -167,81 +120,44 @@ export default function Featuresstep3({ onNext }) {
             }}
           >
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="engine_type"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    placeholder="Enter Engine Type"
-                    label="Engine Type"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    value={enginetype}
-                    onChange={(e) => setEngineType(e.target.value)}
-                    // value={stepData.step1Data?.engine_type || ''}
-                    sx={{ width: { xs: '100%', sm: '50%' } }}
-                  />
-                )}
+              <TextField
+                fullWidth
+                placeholder="Enter Engine Type"
+                name="enginetype"
+                label="Engine Type"
+                value={formValues.enginetype}
+                onChange={handleInputChange}
+                sx={{ width: { xs: '100%', sm: '50%' } }}
               />
-
-              <Controller
-                name="engine_capacity"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    placeholder="Enter Engine Capacity"
-                    error={Boolean(error)}
-                    label="Engine Capacity"
-                    helperText={error?.message}
-                    value={enginecapacity}
-                    onChange={(e) => setEngineCapacity(e.target.value)}
-                    // value={stepData.step1Data?.engine_capacity || ''}
-                    sx={{ width: { xs: '100%', sm: '50%' } }}
-                  />
-                )}
+              <TextField
+                fullWidth
+                placeholder="Enter Engine Capacity"
+                label="Engine Capacity"
+                name="engineCapacity"
+                value={formValues.engineCapacity}
+                onChange={handleInputChange}
+                sx={{ width: { xs: '100%', sm: '50%' } }}
               />
             </Stack>
             <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
+              <TextField
+                fullWidth
+                placeholder="Enter Transmission"
+                label="Transmission"
                 name="transmission"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    placeholder="Enter Transmission"
-                    error={Boolean(error)}
-                    label="Transmission"
-                    helperText={error?.message}
-                    value={transmission}
-                    onChange={(e) => setTransmission(e.target.value)}
-                    // value={stepData.step1Data?.transmission || ''}
-                    sx={{ width: { xs: '100%', sm: '50%' } }}
-                  />
-                )}
+                value={formValues.transmission}
+                onChange={handleInputChange}
+                // value={stepData.step1Data?.transmission || ''}
+                sx={{ width: { xs: '100%', sm: '50%' } }}
               />
-
-              <Controller
+              <TextField
+                fullWidth
+                placeholder="Enter Assembly"
+                label="Assembly"
                 name="assembly"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    placeholder="Enter Assembly"
-                    label="Assembly"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    value={assembly}
-                    onChange={(e) => setAssembly(e.target.value)}
-                    // value={stepData.step1Data?.assembly || ''}
-                    sx={{ width: { xs: '100%', sm: '50%' } }}
-                  />
-                )}
+                value={formValues.assembly}
+                onChange={handleInputChange}
+                sx={{ width: { xs: '100%', sm: '50%' } }}
               />
             </Stack>
           </Box>
@@ -261,27 +177,17 @@ export default function Featuresstep3({ onNext }) {
             }}
           >
             {check.map((option) => (
-              <FormControlLabel
-                sx={{}}
-                control={
-                  <Checkbox
-                    name={option.label}
-                    checked={stepData[option.label] || false}
-                    onChange={(e) =>
-                      setStepData((prevData) => ({
-                        ...prevData,
-                        [option.label]: e.target.checked,
-                      }))
-                    }
-                  />
-                }
-                label={option.label}
-              />
+              <span>
+                <Checkbox
+                  name={option.label}
+                  checked={formValues3p1[option.label]}
+                  onChange={handleInputChange3p1}
+                />
+                {option.label}
+              </span>
             ))}
           </Box>
         </Box>
-
-        {/* </form> */}
       </Container>
       <Box
         m={1}

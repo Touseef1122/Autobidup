@@ -1,16 +1,8 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
-
-import {
-  Button,
-  Grid,
-  Box,
-  Typography,
-  ButtonGroup,
-  Stack,
-} from '@mui/material';
+import React, { useContext, useRef } from 'react';
+import { GlobalContext } from '../../../contexts/GlobalContext';
+import { Button, Grid, Box, Typography, ButtonGroup, Stack } from '@mui/material';
 import Slider from 'react-slick';
-import { useRef } from 'react';
 import { Icon } from '@iconify/react';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
@@ -21,25 +13,6 @@ import image4 from '../../../Assets/Images/JeepWrangler.jpg';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 //--------------------------------------------------------------
-
-const images = [
-  {
-    image: image1,
-    title: 'Ford Minivan',
-  },
-  {
-    image: image2,
-    title: 'Ford Mustang',
-  },
-  {
-    image: image3,
-    title: 'Ford Transit',
-  },
-  {
-    image: image4,
-    title: 'Jeep Wrangler',
-  },
-];
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -54,14 +27,14 @@ Itemcarasol.propTypes = {
   name: PropTypes.array,
   price: PropTypes.array,
   images: PropTypes.array,
-
 };
-export default function Itemcarasol({ post,name,price,images }) {
-  console.log("post data",post)
+export default function Itemcarasol({ post, name, price, images }) {
+  console.log('post data', post);
   const carouselRef = useRef(null);
   const theme = useTheme();
   const router = useRouter();
   const [counter, setCounter] = useState(1);
+  
   const carouselSettings = {
     dots: true,
     arrows: false,
@@ -85,23 +58,34 @@ export default function Itemcarasol({ post,name,price,images }) {
   const handleNext = () => {
     carouselRef.current?.slickNext();
   };
-  console.log(counter)
+  console.log(counter);
+
   var condition = '';
+  var username = '';
   var value = '';
-  if (typeof window !== "undefined") {
-    value = localStorage.getItem("firstname") || ""
-    console.log(value)
-    if (value){
-      console.log(true)
-      condition = true
-    }else{
-      condition = false
-      router.push('auth/logincover');
+
+  if (typeof window !== 'undefined') {
+    value = localStorage.getItem('firstname') || '';
+    username = localStorage.getItem('username') || '';
+    console.log(value);
+    if (value) {
+      console.log(true);
+      condition = true;
+    } else {
+      condition = false;
+      router.push('/auth/logincover');
     }
   }
 
+  const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
 
-
+  const handleSubmit = (post) => {
+    if (counter){
+      post.quantity = counter
+    }
+    console.log([post]), setGlobalVariable([post]);
+    router.push(`/travel/carRentals/cart/`);
+  };
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={7}>
@@ -125,13 +109,13 @@ export default function Itemcarasol({ post,name,price,images }) {
           >
             <Slider ref={carouselRef} {...carouselSettings}>
               {/* {images.map((img) => ( */}
-                <Box p={5} mt={2}>
-                  <Image
-                    // alt={img.title}
-                    src={images}
-                    sx={{ width: '100%', height: '100%' }}
-                  />
-                </Box>
+              <Box p={5} mt={2}>
+                <Image
+                  // alt={img.title}
+                  src={images}
+                  sx={{ width: '100%', height: '100%' }}
+                />
+              </Box>
               {/* ))} */}
             </Slider>
           </CarouselArrows>
@@ -141,7 +125,7 @@ export default function Itemcarasol({ post,name,price,images }) {
         <Box>
           <Typography variant="h3">{name}</Typography>
           <Typography variant="h4" color="#CE9A00">
-          PKR {price}
+            PKR {price}
           </Typography>
 
           <Stack direction="row" spacing={1} mt={3} display="flex" alignItems="center">
@@ -169,7 +153,11 @@ export default function Itemcarasol({ post,name,price,images }) {
                   -
                 </Button>
               }
-              {<Button disabled className='buttonCounter'>{counter}</Button>}
+              {
+                <Button disabled className="buttonCounter">
+                  {counter}
+                </Button>
+              }
               <Button
                 sx={{
                   backgroundColor: 'white',
@@ -185,22 +173,24 @@ export default function Itemcarasol({ post,name,price,images }) {
               </Button>
             </ButtonGroup>
           </Stack>
-            <Button
+          <Button
             fullWidth
-              sx={{
-                float: 'right',
-                backgroundColor: '#212B36',
-                color: 'white',
-                mt: 3,
-                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-              }}
-              onClick={() => router.push({
-                pathname: '/travel/carRentals/cart/',
-                query: { data: JSON.stringify(post) }
-              })}
-            >
-              Add to Cart
-            </Button>
+            sx={{
+              float: 'right',
+              backgroundColor: '#212B36',
+              color: 'white',
+              mt: 3,
+              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+            }}
+            // onClick={() => router.push({
+            //   pathname: '/travel/carRentals/cart/',
+            //   query: { data: JSON.stringify(post) }
+            // })}
+            onClick={() => handleSubmit(post)}
+          >
+            Add to Cart
+          </Button>
+          {/* <div>{globalVariable}</div> */}
         </Box>
       </Grid>
     </Grid>

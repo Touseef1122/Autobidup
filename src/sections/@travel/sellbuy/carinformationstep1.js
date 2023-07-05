@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-
-import { LoadingButton } from '@mui/lab';
-
 import {
   Button,
   Link,
@@ -21,16 +19,14 @@ import {
 
 // ----------------------------------------------------------------------
 
-Carinformationstep1.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
+// Carinformationstep1.propTypes = {
+
+// };
+const FormSchema1 = Yup.object().shape({
   website: Yup.string().required('Website is required'),
 });
 
-export default function Carinformationstep1({ onNext }) {
+export default function Carinformationstep1({ formValues, handleInputChange }) {
   const router = useRouter();
   const {
     reset,
@@ -39,7 +35,7 @@ export default function Carinformationstep1({ onNext }) {
     formState: { isSubmitting },
   } = useForm({
     mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
+    resolver: yupResolver(FormSchema1),
     defaultValues: {
       reg_city: '',
       city: '',
@@ -70,36 +66,10 @@ export default function Carinformationstep1({ onNext }) {
     reset();
   };
 
-  const [reg_city, setRegCity] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [color, setColor] = React.useState('');
-  const [mileage, setMileage] = React.useState('');
-  const [year, setYear] = React.useState('');
-  const [maker, setMaker] = React.useState('');
-  const [model, setModel] = React.useState('');
-  const [variant, setVariant] = React.useState('');
-  const [bodytype, setBodyType] = React.useState('');
-
-  const handleNext = () => {
-    const stepData = {
-      reg_city: reg_city,
-      city: city,
-      color: color,
-      mileage: mileage,
-      year: year,
-      maker: maker,
-      model: model,
-      variant: variant,
-      bodytype: bodytype,
-    };
-    onNext(stepData);
-    console.log('step 1', stepData);
-  };
 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
@@ -110,194 +80,109 @@ export default function Carinformationstep1({ onNext }) {
             Enter Car Information
           </Typography>
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="reg_city"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Registration City"
-                  error={Boolean(error)}
+                  name='reg_city'
                   label="Registration City"
-                  helperText={error?.message}
-                  value={reg_city}
-                  onChange={(e) => setRegCity(e.target.value)}
-                  // value={stepData.step1Data?.reg_city || ''}
+                  value={formValues.reg_city}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
-
-            <Controller
-              name="city"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter City"
-                  error={Boolean(error)}
                   label="City"
-                  helperText={error?.message}
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  // value={stepData.step1Data?.city || ''}
+                  name='city'
+                  value={formValues.city}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
           </Stack>
           <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="color"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Color"
-                  error={Boolean(error)}
                   label="Color"
-                  helperText={error?.message}
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                  // value={stepData.step1Data?.color || ''}
+                  name="color"
+                  value={formValues.color}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
-
-            <Controller
-              name="mileage"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Mileage"
-                  error={Boolean(error)}
                   label="Mileage"
-                  helperText={error?.message}
-                  value={mileage}
-                  onChange={(e) => setMileage(e.target.value)}
-                  // value={stepData.step1Data?.mileage || ''}
+                  name='mileage'
+                  value={formValues.mileage}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
           </Stack>
           <Typography variant="h5" mb="6" fontWeight="bold">
             Car Info *
           </Typography>
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="year"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Year"
-                  error={Boolean(error)}
-                  helperText={error?.message}
                   label="Year"
-                  value={year}
-                  onChange={(e) => setYear(e.target.value)}
-                  // value={stepData.step1Data?.year || ''}
+                  name='year'
+                  value={formValues.year}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
-            <Controller
-              name="maker"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
+            <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Maker"
-                  error={Boolean(error)}
-                  helperText={error?.message}
                   label="Maker"
-                  value={maker}
-                  onChange={(e) => setMaker(e.target.value)}
-                  // value={stepData.step1Data?.maker || ''}
+                  name='maker'
+                  value={formValues.maker}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
           </Stack>
           <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="model"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Model"
-                  error={Boolean(error)}
                   label="Model"
-                  helperText={error?.message}
-                  value={model}
-                  onChange={(e) => setModel(e.target.value)}
-                  // value={stepData.step1Data?.model || ''}
+                  name='model'
+                  value={formValues.model}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
-
-            <Controller
-              name="variant"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
                 <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Variant"
-                  error={Boolean(error)}
-                  helperText={error?.message}
                   label="Variant"
-                  value={variant}
-                  onChange={(e) => setVariant(e.target.value)}
-                  // value={stepData.step1Data?.variant || ''}
+                  name='variant'
+                  value={formValues.variant}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
-              )}
-            />
           </Stack>
           <Stack>
-            <Controller
-              name="bodytype"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
+             <TextField
                   type="text"
-                  {...field}
                   fullWidth
                   placeholder="Enter Body Type"
-                  error={Boolean(error)}
-                  helperText={error?.message}
                   label="Body Type"
-                  value={bodytype}
-                  onChange={(e) => setBodyType(e.target.value)}
-                  // value={stepData.step1Data?.bodytype || ''}
+                  name='bodytype'
+                  value={formValues.bodytype}
+                  onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' }, mt: '12px' }}
                 />
-              )}
-            />
           </Stack>
         </Box>
-        {/* </form> */}
       </Container>
       <Box
         m={1}
