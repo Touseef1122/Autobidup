@@ -20,22 +20,12 @@ import {
 } from '@mui/material';
 
 // ----------------------------------------------------------------------
-
-// Enterpricestep2.propTypes = {
-//   services: PropTypes.array.isRequired,
-//   icons: PropTypes.array.isRequired,
-//   tours: PropTypes.array.isRequired,
-// };
-
 export default function Enterpricestep2({ formValues, handleInputChange}) {
   const router = useRouter();
- 
 
- 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
@@ -60,17 +50,7 @@ export default function Enterpricestep2({ formValues, handleInputChange}) {
               Please enter realistic price to get more genuine responses.
             </Typography>
         </Box>
-
-        {/* </form> */}
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-      
-      </Box>
     </Box>
   );
 }
