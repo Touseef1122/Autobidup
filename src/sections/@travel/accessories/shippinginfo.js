@@ -21,12 +21,12 @@ const FormSchema = Yup.object().shape({
     .required()
     .min(11, 'Phone number should of 11 digits')
     .max(11, 'Phone number should of 11 digits'),
-  name: Yup.string().required('Name is required'),
+    firstName: Yup.string().required('Name is required'),
 });
 Shippinginfo.propTypes = {
   post: PropTypes.array,
 };
-export default function Shippinginfo({ post}) {
+export default function Shippinginfo({post}) {
 
   const router = useRouter();
   const {
@@ -38,24 +38,24 @@ export default function Shippinginfo({ post}) {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      name: '',
+      firstName: '',
       phoneNumber: '',
     },
   });
 
   // const [show, setShow] = useState(false);
-  const currentDate = new Date();
-  const currentDay = currentDate.getDate(); // Get the current day (1-31)
-  const currentMonth = currentDate.getMonth() + 1; // Get the current month (0-11) and add 1 to match human-readable month (1-12)
-  const currentYear = currentDate.getFullYear();
-
+  
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [address, setAddress] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
-
+  
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate(); 
+  const currentMonth = currentDate.getMonth() + 1; 
+  const currentYear = currentDate.getFullYear();
   const formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay
     .toString()
     .padStart(2, '0')}`;
@@ -105,6 +105,7 @@ export default function Shippinginfo({ post}) {
                 fullWidth
                 placeholder="Enter last name"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
+                name="firstname"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />

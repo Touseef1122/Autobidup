@@ -92,7 +92,7 @@ export default function Caritems(props) {
         const jsonData = await response.json();
         const filteredData = jsonData.filter((item) => item.ptype === String(props.value));
         setData(filteredData);
-        // console.log(jsonData)  
+        console.log(filteredData)  
         // setData(jsonData);
         console.log("created");
       } catch (error) {

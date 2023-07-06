@@ -17,6 +17,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import { blogTitle } from '_data/mock/text';
+
 const FormSchema = Yup.object().shape({
   phone: Yup.array()
     .required()
@@ -26,7 +27,6 @@ const FormSchema = Yup.object().shape({
 });
 
 export default function Finishstep5({ formValues, handleInputChange }) {
-  const router = useRouter();
 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>

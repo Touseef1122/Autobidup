@@ -21,29 +21,32 @@ import {
 import { Image } from '../../../components';
 import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
+
 // Imagesstep4.propTypes = {
 //   services: PropTypes.array.isRequired,
 //   icons: PropTypes.array.isRequired,
 //   tours: PropTypes.array.isRequired,
 // };
-
-export default function Imagesstep4({ handleInputChange }) {
+export default function Imagesstep4({ handleInputChange,formValues }) {
   const router = useRouter();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
+  // const [selectedImage, setSelectedImage] = useState('');
+  // const [imageUrl, setImageUrl] = useState(null);
+  // useEffect(() => {
+  //   if (selectedImage) {
+  //     setImageUrl(URL.createObjectURL(selectedImage));
+  //   }
+  // }, [selectedImage]);
+  // setSelectedImage(formValues);
 
-  const handleNext = () => {
-    const stepData = {
-      images: imageUrl,
-    };
-    onNext(stepData);
-    console.log('step 4', stepData);
-  };
+  // useEffect(() => {
+  //   setSelectedImage(formValues.images);
+  // }, [formValues.images]);
+
+  // const handleImageSelect = (event) => {
+  //   const file = event.target.files[0];
+  //   setSelectedImage(file);
+  //   handleInputChange(event); // Update the form values
+  // };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -68,12 +71,14 @@ export default function Imagesstep4({ handleInputChange }) {
               component="label"
             >
               Upload Images
-              <input
-                accept="image/"
-                multiple
+              <input               
+                // multiple
                 type="file"
+                name= "images"
+                accept="image/png, image/jpeg, image/jpg"        
+                target={formValues.images}
                 style={{ display: 'none' }}
-                onChange={handleInputChange}
+                onChange={handleInputChange}     
               />
             </LoadingButton>
             <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
@@ -93,19 +98,18 @@ export default function Imagesstep4({ handleInputChange }) {
               format only.
             </Typography>
           </Stack>
-          {imageUrl && selectedImage && (
-            <Box>
-              <Typography fontWeight="bold">Images selected</Typography>
-              <Image
-                src={imageUrl.src}
-                alt={selectedImage.name}
-                sx={{ height: '100%', width: '100%' }}
-              />
-            </Box>
-          )}
+          {/* {imageUrl && selectedImage && ( */}
+          {/* <Box>
+            <Typography fontWeight="bold">Images selected</Typography>
+            {/* <Image
+              src={selectedImage.src}
+              // alt={selectedImage.name}
+              sx={{ height: '100%', width: '100%' }}
+            /> 
+          </Box> */}
+          {/* )} */}
         </Box>
       </Container>
-
     </Box>
   );
 }

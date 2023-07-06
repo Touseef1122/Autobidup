@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
+
 import {
   Button,
   Link,
@@ -19,36 +16,10 @@ import {
 
 // ----------------------------------------------------------------------
 
-// Carinformationstep1.propTypes = {
-
-// };
-const FormSchema1 = Yup.object().shape({
-  website: Yup.string().required('Website is required'),
-});
-
 export default function Carinformationstep1({ formValues, handleInputChange }) {
-  const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema1),
-    defaultValues: {
-      reg_city: '',
-      city: '',
-      color: '',
-      mileage: '',
-      year: '',
-      maker: '',
-      model: '',
-      variant: '',
-      bodytype: '',
-    },
-  });
+  const [errors, setErrors] = useState({});
 
+  
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -64,10 +35,11 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
                 <TextField
                   type="text"
+                  required
                   fullWidth
                   placeholder="Enter Registration City"
                   name='reg_city'
-                  label="Registration City"
+                  label="Registration City "
                   value={formValues.reg_city}
                   onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
@@ -75,8 +47,9 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                 <TextField
                   type="text"
                   fullWidth
+                  required
                   placeholder="Enter City"
-                  label="City"
+                  label="City "
                   name='city'
                   value={formValues.city}
                   onChange={handleInputChange}
@@ -88,7 +61,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Color"
-                  label="Color"
+                  label="Color *"
                   name="color"
                   value={formValues.color}
                   onChange={handleInputChange}
@@ -98,7 +71,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Mileage"
-                  label="Mileage"
+                  label="Mileage *"
                   name='mileage'
                   value={formValues.mileage}
                   onChange={handleInputChange}
@@ -113,7 +86,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Year"
-                  label="Year"
+                  label="Year *"
                   name='year'
                   value={formValues.year}
                   onChange={handleInputChange}
@@ -123,7 +96,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Maker"
-                  label="Maker"
+                  label="Maker *"
                   name='maker'
                   value={formValues.maker}
                   onChange={handleInputChange}
@@ -135,7 +108,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Model"
-                  label="Model"
+                  label="Model *"
                   name='model'
                   value={formValues.model}
                   onChange={handleInputChange}
@@ -145,7 +118,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Variant"
-                  label="Variant"
+                  label="Variant *"
                   name='variant'
                   value={formValues.variant}
                   onChange={handleInputChange}
@@ -157,7 +130,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
                   type="text"
                   fullWidth
                   placeholder="Enter Body Type"
-                  label="Body Type"
+                  label="Body Type *"
                   name='bodytype'
                   value={formValues.bodytype}
                   onChange={handleInputChange}

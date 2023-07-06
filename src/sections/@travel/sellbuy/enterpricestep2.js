@@ -20,6 +20,12 @@ import {
 } from '@mui/material';
 
 // ----------------------------------------------------------------------
+const FormSchema = Yup.object().shape({
+  price: Yup.string()
+    .required()
+    .min(100000, 'minimum price is 1 lac')
+    .max(1000000000, 'maximum price is 100 crore'),
+});
 export default function Enterpricestep2({ formValues, handleInputChange}) {
   const router = useRouter();
 

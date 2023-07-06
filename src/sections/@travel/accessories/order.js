@@ -81,7 +81,7 @@ export default function Order({post, data, totalPrice}) {
           console.log("price added",updatedPost)
           router.push({
             pathname: '/travel/carRentals/shipping',
-            query: { data: JSON.stringify(updatedPost) },
+            query: { data: JSON.stringify(updatedPost), post: JSON.stringify(post)},
           });
         }}
       >
