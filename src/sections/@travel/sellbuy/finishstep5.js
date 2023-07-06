@@ -25,10 +25,9 @@ const FormSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
 });
 
-export default function Finishstep5({ formValues, handleInputChange}) {
+export default function Finishstep5({ formValues, handleInputChange }) {
   const router = useRouter();
- 
-  
+
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -53,7 +52,7 @@ export default function Finishstep5({ formValues, handleInputChange}) {
               rows={4}
               placeholder="Describe your car..."
               variant="filled"
-              name='description'
+              name="description"
               value={formValues.description}
               onChange={handleInputChange}
             />
@@ -72,37 +71,36 @@ export default function Finishstep5({ formValues, handleInputChange}) {
               Contact Information
             </Typography>
             <Stack spacing={2} mt="4" direction={{ xs: 'column' }}>
-            
-                  <div>
-                    <Typography fontSize="14px" fontWeight="bold">
-                      Seller Name *
-                    </Typography>
+              <div>
+                <Typography fontSize="14px" fontWeight="bold">
+                  Seller Name *
+                </Typography>
 
-                    <TextField
-                      fullWidth
-                      placeholder="Enter Seller Name"
-                      name='name'
-                      value={ formValues.name}
-                      onChange={handleInputChange}
-                      sx={{ width: { xs: '100%', sm: '50%' } }}
-                    />
-                  </div>
-                  <div>
-                    <Typography fontSize="14px" fontWeight="bold">
-                      Phone Number *
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      placeholder="Enter Phone Number"
-                      name='phoneNumber'
-                      value={formValues.phoneNumber}
-                      onChange={handleInputChange}
-                      sx={{ width: { xs: '100%', sm: '50%' } }}
-                    />
-                    <Typography variant="body3" fontWeight="bold">
-                      Enter genuine number of 11 digits
-                    </Typography>
-                  </div>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Seller Name"
+                  name="name"
+                  value={formValues.name}
+                  onChange={handleInputChange}
+                  sx={{ width: { xs: '100%', sm: '50%' } }}
+                />
+              </div>
+              <div>
+                <Typography fontSize="14px" fontWeight="bold">
+                  Phone Number *
+                </Typography>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Phone Number"
+                  name="phoneNumber"
+                  value={formValues.phoneNumber}
+                  onChange={handleInputChange}
+                  sx={{ width: { xs: '100%', sm: '50%' } }}
+                />
+                <Typography variant="body3" fontWeight="bold">
+                  Enter genuine number of 11 digits
+                </Typography>
+              </div>
             </Stack>
           </Box>
         </Box>
