@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useEffect, useState } from 'react';
 
-
 import { Button, Typography, Box, Container, Stepper, Step, StepButton } from '@mui/material';
 
 import { yupResolver } from '@hookform/resolvers/yup';

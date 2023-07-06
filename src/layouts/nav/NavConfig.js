@@ -55,5 +55,4 @@ export const navConfig = [
     title: 'Auction',
     path: '/travel/Auction/Auction',
   },
-  { title: 'Login', path: '/auth/logincover' },
 ];

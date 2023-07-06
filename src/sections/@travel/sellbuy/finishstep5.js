@@ -17,7 +17,6 @@ import {
   MenuItem,
 } from '@mui/material';
 import { blogTitle } from '_data/mock/text';
-
 const FormSchema = Yup.object().shape({
   phone: Yup.array()
     .required()

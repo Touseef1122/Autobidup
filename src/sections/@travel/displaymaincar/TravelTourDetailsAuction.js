@@ -99,18 +99,7 @@ const includes = [
 // };
 
 export default function TravelTourDetails({ tour }) {
-  // const {
-  //   program,
-  //   includes,
-  //   location,
-  //   duration,
-  //   tourGuide,
-  //   languages,
-  //   highlights,
-  //   description,
-  //   availableEnd,
-  //   availableStart,
-  // } = tour;
+
 
   return (
     <Stack spacing={2} mb={6}   >

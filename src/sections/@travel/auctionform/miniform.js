@@ -141,21 +141,7 @@ export default function Miniform() {
                   <Step2 />
                 </Typography>
               )}
-              {/* {activeStep === 2 && (
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step3 />
-                </Typography>
-              )}
-              {activeStep === 3 && (
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step4 />
-                </Typography>
-              )}
-              {activeStep === 4 && (
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  <Step5 />
-                </Typography>
-              )} */}
+              
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                 <Button
                   color="inherit"
