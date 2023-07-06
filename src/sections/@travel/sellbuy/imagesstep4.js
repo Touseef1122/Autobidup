@@ -27,7 +27,7 @@ import { LoadingButton } from '@mui/lab';
 //   tours: PropTypes.array.isRequired,
 // };
 
-export default function Imagesstep4({ handleInputChange}) {
+export default function Imagesstep4({ handleInputChange }) {
   const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -37,10 +37,9 @@ export default function Imagesstep4({ handleInputChange}) {
     }
   }, [selectedImage]);
 
-
   const handleNext = () => {
     const stepData = {
-      "images": imageUrl,
+      images: imageUrl,
     };
     onNext(stepData);
     console.log('step 4', stepData);
@@ -48,23 +47,26 @@ export default function Imagesstep4({ handleInputChange}) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
             mr: { md: '5%' },
           }}
         >
-          <Stack direction={{xs:"column",sm:"row"}}>
+          <Stack direction={{ xs: 'column', sm: 'row' }}>
             <Typography variant="h3" textAlign="left" pb="5px">
               Upload Image *
             </Typography>
-            <Typography variant={{xs:"body3",md:"h6"}} textAlign="left" pt="12px">
+            <Typography variant={{ xs: 'body3', md: 'h6' }} textAlign="left" pt="12px">
               (max limit is 50MB per image)
             </Typography>
           </Stack>
-          <Stack direction={{xs:"column",sm:"row"}} mt="10px" textAlign="center">
-            <LoadingButton sx={{backgroundColor:"black", '&:hover': { backgroundColor: '#CE9A00' }}} variant="contained" component="label" >
+          <Stack direction={{ xs: 'column', sm: 'row' }} mt="10px" textAlign="center">
+            <LoadingButton
+              sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#CE9A00' } }}
+              variant="contained"
+              component="label"
+            >
               Upload Images
               <input
                 accept="image/"
@@ -74,7 +76,7 @@ export default function Imagesstep4({ handleInputChange}) {
                 onChange={handleInputChange}
               />
             </LoadingButton>
-            <Typography fontSize={{xs:"10px",sm:"16px"}} p="12px" fontWeight="bold">
+            <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
               Tip: Select several photos to add them in one go
             </Typography>
           </Stack>
@@ -86,7 +88,10 @@ export default function Imagesstep4({ handleInputChange}) {
               Adding clear Front, Back and Interior pictures of your car increases the quality of
               your Ad and gets you noticed more.
             </Typography>
-            <Typography variant="body3">Photos should be in <span style={{fontWeight:"bold"}}>"jpeg, jpg, png"</span> format only.</Typography>
+            <Typography variant="body3">
+              Photos should be in <span style={{ fontWeight: 'bold' }}>"jpeg, jpg, png"</span>{' '}
+              format only.
+            </Typography>
           </Stack>
           {imageUrl && selectedImage && (
             <Box>
@@ -98,21 +103,9 @@ export default function Imagesstep4({ handleInputChange}) {
               />
             </Box>
           )}
-
-
         </Box>
-        {/* </form> */}
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
-          Submit
-        </Button>
-      </Box>
+
     </Box>
   );
 }

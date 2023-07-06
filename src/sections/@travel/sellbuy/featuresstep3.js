@@ -189,16 +189,6 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
           </Box>
         </Box>
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
-          Submit
-        </Button>
-      </Box>
     </Box>
   );
 }

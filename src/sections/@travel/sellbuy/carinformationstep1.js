@@ -49,24 +49,6 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
     },
   });
 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setStepData((prevData) => ({
-  //     ...prevData,
-  //     step1Data: {
-  //       ...prevData.step1Data,
-  //       [name]: value,
-  //     },
-  //   }));
-  // };
-
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    // alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-
-
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -184,16 +166,6 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
           </Stack>
         </Box>
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
-          Submit
-        </Button>
-      </Box>
     </Box>
   );
 }
