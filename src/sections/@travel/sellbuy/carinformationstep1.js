@@ -166,16 +166,6 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
           </Stack>
         </Box>
       </Container>
-      <Box
-        m={1}
-        display="flex"
-        justifyContent="flex-end"
-        alignItems="flex-end"
-      >
-        <Button mt="6" color="inherit" variant="contained" onClick={handleNext}>
-          Submit
-        </Button>
-      </Box>
     </Box>
   );
 }
