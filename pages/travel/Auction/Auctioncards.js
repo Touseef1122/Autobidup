@@ -73,7 +73,8 @@ const items = [
   },
 ];
 
-export default function BlogMarketingLatestPosts({ posts }) {
+export default function BlogMarketingLatestPosts({ data }) {
+  console.log('data here', data);
   const theme = useTheme();
   const router = useRouter();
 
@@ -85,7 +86,7 @@ export default function BlogMarketingLatestPosts({ posts }) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
@@ -134,52 +135,41 @@ export default function BlogMarketingLatestPosts({ posts }) {
             }}
           >
             <Slider ref={carouselRef} {...carouselSettings}>
-              {posts?.map((post) => (
+              {data?.map((value) => (
                 <Box
                   sx={{
                     px: 2,
-                    py: { xs: 8, md: 10 },
+                    py: { xs: 3, md: 4 },
                   }}
                 >
                   <Box>
-                    {items.map((value) => (
-                      <Box
-                        onClick={handleOpen}
-                        sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
-                      >
-                        <Typography variant="h4" color={'red'}>
-                          {value.time}
+                    <Box
+                      onClick={handleOpen}
+                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                    >
+                      <Typography variant="h4" color={'red'}>
+                        {value.bid_time}
+                      </Typography>
+                      <Image src={value.images} sx={{ width: '100%', height: '200px' }} />
+
+                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
+                      <Typography variant="h6">{value.year}</Typography>
+                      <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.car_location}
                         </Typography>
-                        <Image
-                          alt={value.title}
-                          src={value.image.src}
-                          sx={{ width: '100%', height: 'auto' }}
-                        />
-                        <Typography variant="h4">{value.heading}</Typography>
-                        <Typography variant="h6">{value.city}</Typography>
-                        <Stack direction="row" justifyContent="space-between">
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.year}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.distance}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.fuel}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.cc}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.type}{' '}
-                          </Typography>
-                        </Stack>
-                        <Typography variant="h4" color="#CE9A00">
-                          {' '}
-                          PKR {value.price}
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.mileage}
                         </Typography>
-                      </Box>
-                    ))}
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.engine_type}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="h4" color="#CE9A00">
+                        {' '}
+                        PKR {value.starting_bid}
+                      </Typography>
+                    </Box>
                     <Modal
                       open={open}
                       onClose={handleClose}
@@ -232,7 +222,12 @@ export default function BlogMarketingLatestPosts({ posts }) {
                             width: '100%',
                             mt: 2,
                           }}
-                          onClick={() => router.push('/travel/Auction/BiddingDetails/')}
+                          onClick={() => {
+                            router.push({
+                              pathname: '/travel/Auction/BiddingDetails/',
+                              query: { data: JSON.stringify(value) },
+                            });
+                          }}
                         >
                           {' '}
                           Buy{' '}
