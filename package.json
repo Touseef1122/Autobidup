@@ -48,6 +48,7 @@
     "react-player": "^2.10.1",
     "react-router-dom": "^6.12.1",
     "react-slick": "^0.29.0",
+    "react-test-renderer": "^18.2.0",
     "sax": "^1.2.4",
     "simplebar-react": "^2.4.1",
     "slick-carousel": "^1.8.1",

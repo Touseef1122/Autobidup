@@ -1,4 +1,4 @@
-import { add } from 'date-fns';
+// import { add } from 'date-fns';
 //
 import _mock from './_mock';
 
@@ -28,9 +28,9 @@ export const _tours = [...Array(12)].map((_, index) => ({
   coverImg: _mock.image.travel(index),
   heroImg: _mock.image.travelLarge(index),
   slug: _mock.text.tourName(index),
-  createdAt: _mock.time(index),
-  availableStart: add(new Date(), { days: 2 }),
-  availableEnd: add(new Date(), { months: 4 }),
+  // createdAt: _mock.time(index),
+  // availableStart: add(new Date(), { days: 2 }),
+  // availableEnd: add(new Date(), { months: 4 }),
   location: _mock.address.country(index),
   continent: CONTINENTS[index],
   duration: '3 days 2 nights',
