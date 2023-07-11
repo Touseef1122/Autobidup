@@ -1,3 +1,4 @@
+import React, { useRef, useEffect, useState } from 'react';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // _data
@@ -11,8 +12,8 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 import { styled } from '@mui/material/styles';
 import { TravelLandingHero } from '../../../src/sections/@travel';
 
-import Formcompo from '../auction/formcompo'
-import AuctionCards from './Auctioncards'
+import Formcompo from '../auction/formcompo';
+import AuctionCards from './Auctioncards';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 //images
@@ -31,107 +32,127 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 export default function Displaycarlist({ posts }) {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        setData(jsonData);
+        console.log(data);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(data);
+  var list = data;
   return (
     <Page title="Auction | AutoBidUp">
       <RootStyle>
         <Loader />
         <ChatButton />
-        <TravelLandingHero/>
+        <TravelLandingHero />
         <Formcompo />
-        <AuctionCards posts={bestcities}/>      
+        <AuctionCards data={data} />
       </RootStyle>
     </Page>
   );
 }
 
 //-------------------------------------------------------------------------------
-const bestcities = [
-  {
-    id: 1,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
-  },
-  {
-    id: 2,
-    name: 'Crola Atlas',
-    dis: '2020',
-    price: 'Rs 3,000,000',
-    img: Dallas,
-  },
-  {
-    id: 3,
-    name: 'Mehran',
-    dis: '2016',  
-      price: 'Rs 3,000,000',
+// const bestcities = [
+//   {
+//     id: 1,
+//     name: 'Honda City',
+//     dis: '2019',
+//     price: 'Rs 3,000,000',
+//     img: Houston,
+//   },
+//   {
+//     id: 2,
+//     name: 'Crola Atlas',
+//     dis: '2020',
+//     price: 'Rs 3,000,000',
+//     img: Dallas,
+//   },
+//   {
+//     id: 3,
+//     name: 'Mehran',
+//     dis: '2016',
+//     price: 'Rs 3,000,000',
 
-    img: Austin,
-  },
-  {
-    id: 4,
-    price: 'Rs 3,000,000',
-    name: 'Jeep',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 5,
-    price: 'Rs 3,000,000',
-    name: 'Honda City',
-    dis: '2019',
-    img: Houston,
-  },
-  {
-    id: 6,
-    price: 'Rs 3,000,000',
-    name: 'Crola Atlas',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 7,
-    name: 'Mehran',
-    price: 'Rs 3,000,000',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 8,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 9,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
-  },
-  {
-    id: 10,
-    name: 'Crola Atlas',
-    price: 'Rs 3,000,000',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 11,
-    price: 'Rs 3,000,000',
-    name: 'Mehran',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 12,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
-  }
-];
+//     img: Austin,
+//   },
+//   {
+//     id: 4,
+//     price: 'Rs 3,000,000',
+//     name: 'Jeep',
+//     dis: '2018',
+//     img: Galviston,
+//   },
+//   {
+//     id: 5,
+//     price: 'Rs 3,000,000',
+//     name: 'Honda City',
+//     dis: '2019',
+//     img: Houston,
+//   },
+//   {
+//     id: 6,
+//     price: 'Rs 3,000,000',
+//     name: 'Crola Atlas',
+//     dis: '2020',
+//     img: Dallas,
+//   },
+//   {
+//     id: 7,
+//     name: 'Mehran',
+//     price: 'Rs 3,000,000',
+//     dis: '2016',
+//     img: Austin,
+//   },
+//   {
+//     id: 8,
+//     name: 'Jeep',
+//     price: 'Rs 3,000,000',
+//     dis: '2018',
+//     img: Galviston,
+//   },
+//   {
+//     id: 9,
+//     name: 'Honda City',
+//     dis: '2019',
+//     price: 'Rs 3,000,000',
+//     img: Houston,
+//   },
+//   {
+//     id: 10,
+//     name: 'Crola Atlas',
+//     price: 'Rs 3,000,000',
+//     dis: '2020',
+//     img: Dallas,
+//   },
+//   {
+//     id: 11,
+//     price: 'Rs 3,000,000',
+//     name: 'Mehran',
+//     dis: '2016',
+//     img: Austin,
+//   },
+//   {
+//     id: 12,
+//     name: 'Jeep',
+//     price: 'Rs 3,000,000',
+//     dis: '2018',
+//     img: Galviston,
+//   },
+// ];
 // ----------------------------------------------------------------------
 
 Displaycarlist.getLayout = function getLayout(page) {
@@ -147,4 +168,3 @@ export async function getStaticProps() {
     },
   };
 }
-

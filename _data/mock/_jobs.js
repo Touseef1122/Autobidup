@@ -1,8 +1,8 @@
-import { add } from 'date-fns';
+// import { add } from 'date-fns';
 //
 import _mock from './_mock';
 import { jobContent } from './text';
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 // import HB from '../../src/assets/images/hatchback.jpg'
 
 
@@ -15,7 +15,7 @@ export const _jobs = [...Array(12)].map((_, index) => ({
   slug: _mock.text.jobTitle(index),
   category: _mock.text.jobCategories(index),
   createdAt: new Date(),
-  deadline: add(new Date(), { months: 1 }),
+  // deadline: add(new Date(), { months: 1 }),
   location: _mock.address.country(index),
   experience: index + 1,
   type: (index % 2 && 'part time') || (index % 4 && 'freelance') || 'full time',

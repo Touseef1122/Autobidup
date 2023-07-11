@@ -146,11 +146,8 @@ export default function Caritemlist(props) {
             query: { data: JSON.stringify(value) },
           })
         }>
-          {/* <Grid container spacing={4} justifyContent="center" >
-          <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
+          
           <Image alt={value.title} src={value.images} sx={{ width: '100%', height: '200px' }} />
-          {/* </Grid>
-          <Grid item xs={12} sm={8}> */}
           <Typography variant="h4">{`${value.make} ${value.variant}`}</Typography>
           <Typography variant="h6">{value.year}</Typography>
           <Stack direction="row" justifyContent="space-between">
@@ -163,15 +160,12 @@ export default function Caritemlist(props) {
             <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
               {value.fuel}
             </Typography>
-            {/* <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.cc}</Typography>
-              <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>{value.type} </Typography> */}
-          </Stack>
+           </Stack>
           <Typography variant="h4" color="#CE9A00">
             {' '}
             PKR {value.price}
           </Typography>
-          {/* </Grid>
-        </Grid> */}
+    
         </Box>
       ))}
     </Box>
