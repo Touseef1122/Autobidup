@@ -34,6 +34,7 @@
     "gray-matter": "^4.0.3",
     "next": "^12.1.6",
     "next-mdx-remote": "^4.0.3",
+    "npm-watch": "^0.11.0",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
     "prism-react-renderer": "^1.3.3",
