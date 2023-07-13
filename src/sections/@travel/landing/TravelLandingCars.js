@@ -61,7 +61,7 @@ export default function TravelLandingCars() {
         const response = await fetch('https://autobidup.pythonanywhere.com/store/all_products/');
         const jsonData = await response.json();
         setData(jsonData);
-        console.log("created")
+        console.log("created", jsonData)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -106,7 +106,7 @@ export default function TravelLandingCars() {
                   
                 }}>
                   <Image
-                    src={item.images.src}
+                    src={item.images}
                     sx={{
                       width: '100%',
                       //  height: '58%',

@@ -25,7 +25,7 @@ import Comments from '../displaymaincar/comments';
 //   item: PropTypes.array.isRequired,
 // };
 
-export default function Expertcall() {
+export default function Expertprofile() {
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
