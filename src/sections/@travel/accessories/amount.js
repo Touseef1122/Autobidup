@@ -24,29 +24,82 @@ import {
 } from '@mui/material';
 // ----------------------------------------------------------------------
 
-const items = [];
+let items = [];
 
-export default function Shippinginfo() {
+export default function Shippinginfo({ post, price }) {
+  const router = useRouter();
+
   const [open, setOpen] = React.useState(false);
-  const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
+  console.log(post);
 
-  const handleClickOpen = () => {
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      if (JSON.parse(localStorage.getItem('cartItems')).length != 0) {
+        items = JSON.parse(localStorage.getItem('cartItems'));
+        // totalPrice = items.reduce((total, item) => {
+        //   return total + (parseFloat(item?.price) || 0);
+        // }, 0);
+        console.log(items);
+      }
+    }
+  }, []);
+  var finalPrice = price + 100;
+  // (post.price = String(finalPrice)),
+  // (post.pid = toString(post.pid)),
+  // (post.quantity = toString(post.quantity));
+  // console.log('updated', post);
+
+  const handleClickOpen = async () => {
+    console.log('entered', post.quantity);
+    const updatedPost = {
+      ...post,
+      price: String(finalPrice),
+      product_ids: JSON.stringify(post.product_ids),
+      quantity: JSON.stringify(post.quantity),     
+    };
+    console.log(updatedPost);
+
+    try {
+      console.log('form is submiting');
+      const response = await fetch('https://autobidup.pythonanywhere.com/store/order/', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedPost)
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        // Handle the response data as needed
+        // localStorage.setItem('firstname', responseData.firstName);
+        // localStorage.setItem('username', responseData.username);
+
+        // // Store JWT token in document cookie
+        // document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log('response data', responseData);
+        console.log('Item bought succesfully');
+        setOpen(true)
+        //
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+    }
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    // router.push('/');
   };
-
-  if (typeof window !== 'undefined') {
-    if (globalVariable.length > 0) {
-      let it = globalVariable.pop();
-      items.push(it);
-      localStorage.setItem('cartItems', JSON.stringify(items));
-      // if (!JSON.parse(localStorage.getItem('cartItems')).some(v=>v.pid==it.pid)) {     
-    }
-  }
-  console.log(items);
 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
@@ -71,7 +124,7 @@ export default function Shippinginfo() {
             <Stack direction="row" style={{ justifyContent: 'space-between' }}>
               <Typography variant="h6">Subtotal</Typography>
               <Typography variant="h4" color="#CE9A00">
-                PKR 100
+                PKR {price}
               </Typography>
             </Stack>
             <Stack direction="row" style={{ justifyContent: 'space-between' }}>
@@ -84,7 +137,7 @@ export default function Shippinginfo() {
             <Stack mb={4} direction="row" style={{ justifyContent: 'space-between' }}>
               <Typography variant="h6">Total</Typography>
               <Typography variant="h4" color="#CE9A00">
-                PKR 100
+                PKR {finalPrice}
               </Typography>
             </Stack>
             <Button
@@ -105,7 +158,7 @@ export default function Shippinginfo() {
               onClose={handleClose}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
-              sx={{ textAlign: 'center' }}
+              sx={{ textalign: 'center' }}
             >
               <DialogTitle id="alert-dialog-title" variant="h2" color="#CE9A00">
                 {' '}

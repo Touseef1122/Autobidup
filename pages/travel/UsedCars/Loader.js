@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import Logo from '../../../src/assets/Images/LogoAutoBidUp.png';
+import Logo from '../../../src/assets/images/LogoAutoBidUp.png';
 
 const keyframes = `
   @keyframes spin {
@@ -55,7 +55,7 @@ export default function SimpleBackdrop() {
             animationIterationCount: 'infinite',
             transformStyle: 'preserve-3d',
             perspective: '1000px',
-            '@media (min-width: 600px)': {
+            '@media (minWidth: 600px)': {
               maxWidth: '100px',
             },
           }}

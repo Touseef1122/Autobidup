@@ -49,15 +49,15 @@ const styling = {
   backgroundSize: 'cover',
 };
 let items = [];
-let temp = { pid: [], quantity: [] };
+let temp = { product_ids: [], quantity: [] };
 export default function Cart() {
   const { globalVariable, setGlobalVariable } = useContext(GlobalContext);
   let index;
+  
   if (typeof window !== 'undefined') {
     if (globalVariable.length > 0) {
       let it = globalVariable.pop();
 
-      // if (!JSON.parse(localStorage.getItem('cartItems')).some(v=>v.pid==it.pid)) {
       if (
         JSON.parse(localStorage.getItem('cartItems')).some((v, i) => {
           if (v['pid'] == it['pid']) {
@@ -78,12 +78,6 @@ export default function Cart() {
   }
   console.log(items);
 
-  // const router = useRouter();
-  // const { data } = router.query;
-  // const item = data ? JSON.parse(data) : null;
-  // console.log("item data",item)
-  // items.push(item)
-  // console.log("Items",items)
   const handleRemoveItem = (productId) => {
     const updatedItems = items.filter((item) => item.pid !== productId);
     setItems(updatedItems);
@@ -91,10 +85,7 @@ export default function Cart() {
   let totalPrice = items.reduce((total, item) => {
     return total + (parseFloat(item?.price) || 0);
   }, 0);
-  // const totalPrice = (items) => items
-  // .map((item) => item.price)
-  // .reduce((acc, value) => acc + value, 0)
-  console.log(totalPrice);
+
 
   useState(() => {
     // if (typeof window !== 'undefined') {
@@ -112,14 +103,15 @@ export default function Cart() {
 
       for (let i of items) {
         console.log(i);
-        if (i['pid'] != temp['pid']) {
-          temp['pid'].push(i['pid']);
+        if (i['pid'] != temp['product_ids']) {
+          temp['product_ids'].push((parseInt(i['pid'])));
           temp['quantity'].push(i['quantity']);
         }
       }
-      console.log(temp);
+      console.log("temp",temp);
     }
   }, []);
+
   useEffect(() => {
     //check refresh page
 

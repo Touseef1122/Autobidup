@@ -21,12 +21,15 @@ import Comments from '../displaymaincar/comments';
 
 //--------------------------------------------------------------
 
-Expertcall.propTypes = {
-  item: PropTypes.array.isRequired,
-};
+// Expertcall.propTypes = {
+//   item: PropTypes.array.isRequired,
+// };
 
-export default function Expertcall({ item }) {
-  // const router = useRouter();
+export default function Expertcall() {
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log("items reached", item)
 
   return (
     <Box
@@ -36,7 +39,6 @@ export default function Expertcall({ item }) {
       }}
     >
       {/* {item.map((value) => ( */}
-      {/* <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px',m:2 }}> */}
       <Grid container spacing={4} justifyContent="center">
         <Grid item xs={12} sm={4} display="block" alignItems="center">
           <Image src={image.src} sx={{ width: '100%', height: 'auto', borderRadius: '30px' }} />
@@ -44,10 +46,7 @@ export default function Expertcall({ item }) {
           <Typography variant="h3" mt={3}>Description</Typography>
           <Box sx={{p:3,boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 2 }}>
             <Typography variant="body1">
-              Fusce quis eros at sem suscipit convallis eu ut odio. Aenean sagittis, mauris in
-              finibus mollis, dolor urna sollicitudin lacus, ac egestas dolor lectus ac nibh. In
-              placerat ante ligula, vitae mollis ante lobortis vel. Morbi et justo ut nisi mattis
-              ornare quis nec massa.{' '}
+             {item.description}
             </Typography>
           </Box>
           <Typography variant="h3">Skills</Typography>
@@ -60,18 +59,24 @@ export default function Expertcall({ item }) {
                 },
               }}
             >
-              <ListItem>Double check your spelling</ListItem>
+              <ListItem>{item.skills}</ListItem>
               <ListItem>Your search </ListItem>
             </List>
           </Box>
         </Grid>
         <Grid item xs={12} sm={8}>
           <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 2 }}>
-            <Typography variant="h3">Asim Ihsan</Typography>
+            <Typography variant="h3">{item.name}</Typography>
             <Typography variant="h4" mt={1}>
               Car Expert
             </Typography>
-            <Stack spacing={2} mt={6} direction="row">
+            <Stack spacing={2} mt={3} direction="row">
+              <Typography variant="h5">Phone Number: </Typography>
+              <Typography variant="h6" color="#CE9A00">
+                {item.phone_no}
+              </Typography>
+            </Stack>
+            <Stack spacing={2} mt={3} direction="row">
               <Typography variant="h5">Experience: </Typography>
               <Typography variant="h6" color="#CE9A00">
                 + 2 years
@@ -81,8 +86,7 @@ export default function Expertcall({ item }) {
           <Comments/>
         </Grid>
       </Grid>
-      {/* </Box> */}
-      {/* ))} */}
+      {/* ))}  */}
     </Box>
   );
 }

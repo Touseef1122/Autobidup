@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // import Loader from './Premium/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import Loader from '../UsedCars/Loader.js';
@@ -53,6 +53,27 @@ var items = [
   }
 ];
 export default function Callexpert({ posts }) {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/show_experts');
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setData(jsonData);
+        console.log(data)
+        console.log("created")
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(data)
+
+  
   return (
     <Page title="Call Expert | AutoBidUp">
       <Loader/>
@@ -64,7 +85,7 @@ export default function Callexpert({ posts }) {
             <Call/>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <Expertcall item={items} />
+            <Expertcall item={data} />
           </Grid>
         </Grid>
       </Box>
