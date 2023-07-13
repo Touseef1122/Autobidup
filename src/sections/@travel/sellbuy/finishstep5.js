@@ -17,6 +17,7 @@ import {
   MenuItem,
 } from '@mui/material';
 import { blogTitle } from '_data/mock/text';
+
 const FormSchema = Yup.object().shape({
   phone: Yup.array()
     .required()
@@ -26,7 +27,6 @@ const FormSchema = Yup.object().shape({
 });
 
 export default function Finishstep5({ formValues, handleInputChange }) {
-  const router = useRouter();
 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
@@ -79,7 +79,7 @@ export default function Finishstep5({ formValues, handleInputChange }) {
                 <TextField
                   fullWidth
                   placeholder="Enter Seller Name"
-                  name="name"
+                  name="seller_name"
                   value={formValues.name}
                   onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
@@ -92,7 +92,7 @@ export default function Finishstep5({ formValues, handleInputChange }) {
                 <TextField
                   fullWidth
                   placeholder="Enter Phone Number"
-                  name="phoneNumber"
+                  name="seller_phone"
                   value={formValues.phoneNumber}
                   onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}

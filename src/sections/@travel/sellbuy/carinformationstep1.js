@@ -42,7 +42,7 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
       color: '',
       mileage: '',
       year: '',
-      maker: '',
+      make: '',
       model: '',
       variant: '',
       bodytype: '',
@@ -122,10 +122,10 @@ export default function Carinformationstep1({ formValues, handleInputChange }) {
             <TextField
                   type="text"
                   fullWidth
-                  placeholder="Enter Maker"
-                  label="Maker"
-                  name='maker'
-                  value={formValues.maker}
+                  placeholder="Enter Make"
+                  label="Make"
+                  name='make'
+                  value={formValues.make}
                   onChange={handleInputChange}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />

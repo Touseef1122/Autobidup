@@ -23,9 +23,9 @@ const FormSchema = Yup.object().shape({
     .max(11, 'Phone number should of 11 digits'),
   name: Yup.string().required('Name is required'),
 });
-Shippinginfo.propTypes = {
-  post: PropTypes.array,
-};
+// Shippinginfo.propTypes = {
+//   post: PropTypes.array,
+// };
 export default function Shippinginfo({ post}) {
 
   const router = useRouter();
@@ -152,7 +152,7 @@ export default function Shippinginfo({ post}) {
             </div>
             <div>
               <Typography variant="h4" fontWeight="bold">
-                Phone Number *
+              Phone Number *
               </Typography>
               <TextField
                 fullWidth

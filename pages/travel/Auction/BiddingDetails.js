@@ -71,10 +71,10 @@ export default function Displaycardetails({ posts }) {
             sm={7}
             sx={{
               mt: 1 /* Default margin-top value */,
-              '@media (min-width: 600px)': {
+              '@media (minWidth: 600px)': {
                 mt: -50 /* For small screens */,
               },
-              '@media (min-width: 960px)': {
+              '@media (minWidth: 960px)': {
                 mt: -35 /* For medium and large screens */,
               },
             }}

@@ -44,16 +44,61 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'white',
-  // border: '2px solid #000',
   borderRadius: '10px',
   p: 6,
 };
-
-export default function Expertcall({ item }) {
+let creditValue = ''
+export default function Expertcall({ }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [selectedValue, setSelectedValue] = useState('1'); // Default selected value
 
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  
+  const handleSubmit = async () => {
+    // Access the selected value in the handleSubmit function
+    console.log("done", selectedValue);
+    try {
+      console.log('form is submiting');
+      const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/buy_calls', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          { credit: selectedValue }
+        )
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        creditValue =  responseData["call credit "]
+
+        console.log('response data', responseData["call credit "]);
+        console.log('calls bought succesfully');
+        console.log(creditValue);
+        
+        setOpen(true)
+        //
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+    }
+    handleClose()
+    // Perform any necessary actions with the selected value
+  };
   return (
     <Box
       sx={{
@@ -63,7 +108,7 @@ export default function Expertcall({ item }) {
     >
       <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 6 }}>
         <Typography variant="h4">Your Available Calls:</Typography>
-        <Typography variant="h6">0</Typography>
+        <Typography variant="h6">{creditValue}</Typography>
         <Button
           sx={{
             border: '1px solid #FFBE00',
@@ -86,7 +131,7 @@ export default function Expertcall({ item }) {
             <Typography id="modal-modal-title" variant="h3" component="h2">
               Purchase a Call
             </Typography>
-            <FormControl>
+            {/* <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
@@ -94,7 +139,7 @@ export default function Expertcall({ item }) {
                 color="#FFBE00"
               >
                 <FormControlLabel
-                  value="one"
+                  value="1"
                   control={
                     <Radio
                       sx={{
@@ -107,7 +152,7 @@ export default function Expertcall({ item }) {
                   label="1 Call"
                 />
                 <FormControlLabel
-                  value="three"
+                  value="3"
                   control={
                     <Radio
                       sx={{
@@ -120,7 +165,7 @@ export default function Expertcall({ item }) {
                   label="3 Call"
                 />
                 <FormControlLabel
-                  value="five"
+                  value="5"
                   control={
                     <Radio
                       sx={{
@@ -132,6 +177,17 @@ export default function Expertcall({ item }) {
                   }
                   label="5 Call"
                 />
+              </RadioGroup> */}
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                value={selectedValue}
+                onChange={handleRadioChange}
+                color="#FFBE00"
+              >
+                <FormControlLabel value="1" control={<Radio />} label="1 Call" />
+                <FormControlLabel value="3" control={<Radio />} label="3 Calls" />
+                <FormControlLabel value="5" control={<Radio />} label="5 Calls" />
               </RadioGroup>
             </FormControl>
             <Button
@@ -142,9 +198,9 @@ export default function Expertcall({ item }) {
                 width: '100%',
                 mt: 4,
               }}
+              onClick={handleSubmit}
             >
-              {' '}
-              Buy{' '}
+              Buy 
             </Button>
             <Button
               sx={{
@@ -156,7 +212,7 @@ export default function Expertcall({ item }) {
               }}
               onClick={handleClose}
             >
-              Close 
+              Close
             </Button>
           </Box>
         </Modal>
