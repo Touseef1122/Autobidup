@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { useEffect } from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
 import { TextIconLabel, Iconify, Image } from '../../../components';
@@ -7,28 +8,54 @@ import { Icon } from '@iconify/react';
 
 import {
   Grid,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
   Button,
   Stack,
-  Container,
   Box,
   Typography,
 } from '@mui/material';
-import { Overview } from '../tours';
 
 //--------------------------------------------------------------
 
-Expertcall.propTypes = {
-  item: PropTypes.array.isRequired,
-};
-
-export default function Expertcall({ item }) {
+let calls = ''
+export default function Expertcall({ item, updateLeftCalls }) {
   const router = useRouter();
 
   console.log('data reached', item);
+
+  const handleCall = async (id) => {
+    try {
+      console.log('form is submiting',id);
+      const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/request_call', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          { expert_id: id }
+        )
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+
+        calls = responseData["left calls"]
+        updateLeftCalls(calls);
+        console.log('response data', responseData);
+        console.log('call done succesfully');
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+    }
+
+  }
 
   return (
     <Box
@@ -39,7 +66,6 @@ export default function Expertcall({ item }) {
         gridTemplateColumns: {
           xs: 'repeat(1, 1fr)',
         },
-        // py: 5,
         pl: { sm: 2 },
         pr: { sm: 2 },
       }}
@@ -83,6 +109,7 @@ export default function Expertcall({ item }) {
                       query: { data: JSON.stringify(value) },
                     });
                   }}
+                  
                 >
                   View Profile
                 </Button>
@@ -93,6 +120,7 @@ export default function Expertcall({ item }) {
                     '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
                     width: '20%',
                   }}
+                  onClick={() => handleCall(value.e_id)}
                 >
                   Call
                 </Button>

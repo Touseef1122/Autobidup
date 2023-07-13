@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
 import { TextIconLabel, Iconify, Image } from '../../../components';
@@ -21,22 +21,9 @@ import {
 import { Overview } from '../tours';
 
 //--------------------------------------------------------------
-const comments = [
-  {
-    name: 'Ali Khan',
-    text: 'Does AC works?',
-    icon: userIcon,
-  },
-  {
-    name: 'Saim Asim',
-    text: 'Nice',
-    icon: userIcon,
-  },
-];
-
-Expertcall.propTypes = {
-  item: PropTypes.array.isRequired,
-};
+// Expertcall.propTypes = {
+//   item: PropTypes.array.isRequired,
+// };
 const style = {
   position: 'absolute',
   top: '50%',
@@ -47,8 +34,11 @@ const style = {
   borderRadius: '10px',
   p: 6,
 };
-let creditValue = ''
-export default function Expertcall({ }) {
+
+let Value = '';
+let callsValue = '';
+export default function Call({calls}) {
+  console.log(calls)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -58,10 +48,42 @@ export default function Expertcall({ }) {
     setSelectedValue(event.target.value);
   };
 
-  
+  useEffect( () => {
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch('https://autobidup.pythonanywhere.com/user/customer-details', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          Value = responseData['call_credit'];
+
+          console.log('response data', responseData['call_credit']);
+          console.log('customer details arrived succesfully');
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log("value",Value)
+
   const handleSubmit = async () => {
     // Access the selected value in the handleSubmit function
-    console.log("done", selectedValue);
+    console.log('done', selectedValue);
     try {
       console.log('form is submiting');
       const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/buy_calls', {
@@ -71,21 +93,17 @@ export default function Expertcall({ }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(
-          { credit: selectedValue }
-        )
+        body: JSON.stringify({ credit: selectedValue }),
       });
 
       if (response.ok) {
         // API call successful
         const responseData = await response.json();
-        creditValue =  responseData["call credit "]
 
-        console.log('response data', responseData["call credit "]);
+        console.log('response data', responseData['call credit ']);
         console.log('calls bought succesfully');
-        console.log(creditValue);
-        
-        setOpen(true)
+
+        setOpen(true);
         //
       } else {
         // API call failed
@@ -96,9 +114,16 @@ export default function Expertcall({ }) {
       // Error occurred during the API call
       console.error(error);
     }
-    handleClose()
+    handleClose();
     // Perform any necessary actions with the selected value
   };
+
+  if (calls != 0){
+    callsValue = calls
+  }
+  else{
+    callsValue = Value
+  }
   return (
     <Box
       sx={{
@@ -108,7 +133,7 @@ export default function Expertcall({ }) {
     >
       <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 6 }}>
         <Typography variant="h4">Your Available Calls:</Typography>
-        <Typography variant="h6">{creditValue}</Typography>
+        <Typography variant="h6">{callsValue}</Typography>
         <Button
           sx={{
             border: '1px solid #FFBE00',
@@ -131,53 +156,7 @@ export default function Expertcall({ }) {
             <Typography id="modal-modal-title" variant="h3" component="h2">
               Purchase a Call
             </Typography>
-            {/* <FormControl>
-              <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue="female"
-                name="radio-buttons-group"
-                color="#FFBE00"
-              >
-                <FormControlLabel
-                  value="1"
-                  control={
-                    <Radio
-                      sx={{
-                        '&.Mui-checked': {
-                          color: '#FFBE00',
-                        },
-                      }}
-                    />
-                  }
-                  label="1 Call"
-                />
-                <FormControlLabel
-                  value="3"
-                  control={
-                    <Radio
-                      sx={{
-                        '&.Mui-checked': {
-                          color: '#FFBE00',
-                        },
-                      }}
-                    />
-                  }
-                  label="3 Call"
-                />
-                <FormControlLabel
-                  value="5"
-                  control={
-                    <Radio
-                      sx={{
-                        '&.Mui-checked': {
-                          color: '#FFBE00',
-                        },
-                      }}
-                    />
-                  }
-                  label="5 Call"
-                />
-              </RadioGroup> */}
+
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -200,7 +179,7 @@ export default function Expertcall({ }) {
               }}
               onClick={handleSubmit}
             >
-              Buy 
+              Buy
             </Button>
             <Button
               sx={{

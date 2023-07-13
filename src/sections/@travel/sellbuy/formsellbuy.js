@@ -1,12 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useEffect, useState } from 'react';
-
-import { Button, Typography, Box, Container, Stepper, Step, StepButton } from '@mui/material';
+import { Icon } from '@iconify/react';
+import {
+  Button,
+  Typography,
+  Box,
+  Container,
+  Stepper,
+  Step,
+  StepButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
-// import Serviceclassdata from '../../../_data/mock/serviceclassdata.js';
 
 import Step1 from '../sellbuy/carinformationstep1';
 import Step2 from '../sellbuy/enterpricestep2';
@@ -31,9 +43,12 @@ const FormSchema2 = Yup.object().shape({
 
 export default function Formsellbuy() {
   const [activeStep, setActiveStep] = useState(0);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [formData, setFormData] = useState({});
- console.log('hello');
- 
+  console.log('hello');
+
   const [formValues1, setFormValues1] = useState({
     reg_city: '',
     city: '',
@@ -77,7 +92,7 @@ export default function Formsellbuy() {
     armrests: false,
   });
   const [formValues4, setFormValues4] = useState({
-    images : '',
+    images: '',
   });
 
   const [formValues5, setFormValues5] = useState({
@@ -176,7 +191,7 @@ export default function Formsellbuy() {
   }, [formValues1, formValues2, formValues3, formValues3p1, formValues4, formValues5]);
 
   const handleSubmit = async () => {
-   console.log(formValues5);
+    console.log(formValues5);
     console.log('submitteeedddd now');
     console.log(formData);
     try {
@@ -313,6 +328,39 @@ export default function Formsellbuy() {
           </div>
         </form>
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{ textalign: 'center' }}
+      >
+        <DialogTitle id="alert-dialog-title" variant="h2" color="#CE9A00">
+          {' '}
+          <Icon icon="il:heart" />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText variant="h3" id="alert-dialog-description" color="black">
+            Thank You!
+          </DialogContentText>
+          <DialogContentText variant="h5" id="alert-dialog-description" color="black" mt={2}>
+            Your Post has been submitted.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            textAlign="center"
+            onClick={handleClose}
+            sx={{
+              backgroundColor: '#212B36',
+              color: 'white',
+              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+            }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }

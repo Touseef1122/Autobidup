@@ -71,6 +71,12 @@ export default function RegisterForm() {
 
   const onSubmit = async (data) => {
     console.log(' working', data);
+    const updatedPost = {
+      ...data,
+      state: 'Punjab',
+      city: 'Lahore',
+    };
+    console.log("updated",updatedPost);
     try {
       console.log('checking Signup');
       const response = await fetch('http://autobidup.pythonanywhere.com/user/register', {
@@ -78,7 +84,7 @@ export default function RegisterForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(updatedPost),
         xhrFields: {
           withCredentials: true,
         },
@@ -88,10 +94,10 @@ export default function RegisterForm() {
         // API call successful
         const responseData = await response.json();
         // Handle the response data as needed
-        localStorage.setItem('firstname', responseData.first_name);
+        // localStorage.setItem('firstname', responseData.first_name);
 
         // Store JWT token in document cookie
-        document.cookie = `jwt=${responseData.jwt}; path=/`;
+        // document.cookie = `jwt=${responseData.jwt}; path=/`;
         console.log(responseData);
         router.push('/');
       } else {
