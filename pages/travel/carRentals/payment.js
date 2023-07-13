@@ -5,6 +5,7 @@ import { useState } from 'react';
 // icons
 import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
+import { useRouter } from 'next/router';
 
 // @mui
 import { Container, Grid, Box, Stack, Button } from '@mui/material';
@@ -43,6 +44,10 @@ const styling = {
 // ----------------------------------------------------------------------
 
 export default function Payment() {
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log("data reached in payment",item)
   return (
     <Page title="Payment | Accessories" style={styling}>
       <Loader />
@@ -56,7 +61,7 @@ export default function Payment() {
           ]}
           sx={{ mb: 4 }}
         /> */}
-        <Amount />
+        <Amount post={item} price={item?.price || ''}/>
       </Container>
     </Page>
   );

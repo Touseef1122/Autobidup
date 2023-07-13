@@ -29,68 +29,6 @@ const styling = {
   backgroundSize: 'cover',
 };
 // ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Ali Park',
-  },
-  {
-    value: '2',
-    label: 'Ali town',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
-const check = [
-  {
-    value: '1',
-    label: 'Air bags',
-  },
-  {
-    value: '2',
-    label: 'Cup holder',
-  },
-  {
-    value: '3',
-    label: 'Air conditioner',
-  },
-  {
-    value: '4',
-    label: 'Folding rear seat',
-  },
-  {
-    value: '5',
-    label: 'Braking system',
-  },
-  {
-    value: '6',
-    label: 'Alloy wheels',
-  },
-  {
-    value: '7',
-    label: 'Immobilizer',
-  },
-  {
-    value: '8',
-    label: 'Coolbox',
-  },
-  {
-    value: '9',
-    label: 'Power door locks',
-  },
-];
-
-Mechanicrequest.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
 const FormSchema = Yup.object().shape({
   name: Yup.array().required('Name is required'),
   phone: Yup.string()
@@ -113,9 +51,10 @@ const style = {
   height: '600px',
 };
 
-export default function Mechanicrequest({ tours, icons, services }) {
+export default function Mechanicrequest() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
@@ -143,9 +82,46 @@ export default function Mechanicrequest({ tours, icons, services }) {
   });
   const onSubmit = async (data) => {
     console.log(data.location);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
+    // await new Promise((resolve) => setTimeout(resolve, 500));
+    // alert(JSON.stringify(data, null, 2));
+    // reset();
+    console.log(' working');
+    try {
+      console.log('checking login');
+      const response = await fetch('https://autobidup.pythonanywhere.com/user/login', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        // xhrFields: {
+        //   withCredentials: true,
+        // },
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        // Handle the response data as needed
+        localStorage.setItem('firstname', responseData.firstName);
+        localStorage.setItem('username', responseData.username);
+
+        // Store JWT token in document cookie
+        // document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log('response data', responseData);
+        router.push('/');
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
+    }
   };
   const [show, setShow] = useState(false);
   return (
@@ -255,6 +231,7 @@ export default function Mechanicrequest({ tours, icons, services }) {
                   </Button>
                 )}
               />
+
             </Stack>
 
             <Typography variant="h6" textAlign="left" mt={5}>

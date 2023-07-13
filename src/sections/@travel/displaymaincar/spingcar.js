@@ -7,10 +7,10 @@ import { useRef } from 'react';
 // import { CarouselDots, CarouselArrows } from '../../../src/components';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
-import image1 from '../../../Assets/Images/FordMinivan.jpg';
-import image2 from '../../../Assets/Images/FordMustang.jpg';
-import image3 from '../../../Assets/Images/ForTransit.jpg';
-import image4 from '../../../Assets/Images/JeepWrangler.jpg';
+import image1 from '../../../Assets/images/FordMinivan.jpg';
+import image2 from '../../../Assets/images/FordMustang.jpg';
+import image3 from '../../../Assets/images/ForTransit.jpg';
+import image4 from '../../../Assets/images/JeepWrangler.jpg';
 import { display } from '@mui/system';
 import Contactinfo from './contactinfo';
 

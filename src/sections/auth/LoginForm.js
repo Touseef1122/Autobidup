@@ -56,13 +56,15 @@ export default function LoginForm() {
       console.log('checking login');
       const response = await fetch('https://autobidup.pythonanywhere.com/user/login', {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-        xhrFields: {
-          withCredentials: true,
-        },
+        // xhrFields: {
+        //   withCredentials: true,
+        // },
       });
 
       if (response.ok) {
@@ -73,8 +75,8 @@ export default function LoginForm() {
         localStorage.setItem('username', responseData.username);
 
         // Store JWT token in document cookie
-        document.cookie = `jwt=${responseData.jwt}; path=/`;
-        console.log("response data",responseData);
+        // document.cookie = `jwt=${responseData.jwt}; path=/`;
+        console.log('response data', responseData);
         router.push('/');
       } else {
         // API call failed
@@ -91,57 +93,47 @@ export default function LoginForm() {
   return (
     //  <form >
     <div>
-      
-          <Stack spacing={2.5} alignItems="flex-end">
-            <Controller
-              name="username"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  type="text"
-                  {...field}
-                  fullWidth
-                  label="Email address"
-                />
-              )}
-            />          
-            <Controller
-              name="password"
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Password"
-                  type={showPassword ? 'text' : 'password'}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton onClick={handleShowPassword} edge="end">
-                          <Iconify icon={showPassword ? viewIcon : viewOff} />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-              
-                />
-              )}
-            />      
-            <LoadingButton
+      <Stack spacing={2.5} alignItems="flex-end">
+        <Controller
+          name="username"
+          control={control}
+          render={({ field }) => (
+            <TextField type="text" {...field} fullWidth label="Email address" />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              {...field}
               fullWidth
-              size="large"
-              type="submit"
-              variant="contained"
-              loading={isSubmitting}
-              sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
-              onClick={handleSubmit(onSubmit)}
-            >
-              Login
-            </LoadingButton>
-          </Stack>
-         
-           
-
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleShowPassword} edge="end">
+                      <Iconify icon={showPassword ? viewIcon : viewOff} />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
+        />
+        <LoadingButton
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={isSubmitting}
+          sx={{ backgroundColor: 'black', '&:hover': { backgroundColor: '#FFBE00' } }}
+          onClick={handleSubmit(onSubmit)}
+        >
+          Login
+        </LoadingButton>
+      </Stack>
     </div>
     // </form>
   );

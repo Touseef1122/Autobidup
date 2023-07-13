@@ -6,10 +6,10 @@ import Slider from 'react-slick';
 import { Icon } from '@iconify/react';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
-import image1 from '../../../Assets/Images/FordMinivan.jpg';
-import image2 from '../../../Assets/Images/FordMustang.jpg';
-import image3 from '../../../Assets/Images/ForTransit.jpg';
-import image4 from '../../../Assets/Images/JeepWrangler.jpg';
+import image1 from '../../../Assets/images/FordMinivan.jpg';
+import image2 from '../../../Assets/images/FordMustang.jpg';
+import image3 from '../../../Assets/images/ForTransit.jpg';
+import image4 from '../../../Assets/images/JeepWrangler.jpg';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 //--------------------------------------------------------------
@@ -86,6 +86,7 @@ export default function Itemcarasol({ post, name, price, images }) {
     console.log([post]), setGlobalVariable([post]);
     router.push(`/travel/carRentals/cart/`);
   };
+  console.log("global",globalVariable)
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} sm={7}>

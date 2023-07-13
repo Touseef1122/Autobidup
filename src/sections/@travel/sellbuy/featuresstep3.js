@@ -123,7 +123,7 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
               <TextField
                 fullWidth
                 placeholder="Enter Engine Type"
-                name="enginetype"
+                name="engine_type"
                 label="Engine Type"
                 value={formValues.enginetype}
                 onChange={handleInputChange}
@@ -133,7 +133,7 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
                 fullWidth
                 placeholder="Enter Engine Capacity"
                 label="Engine Capacity"
-                name="engineCapacity"
+                name="engine_capacity"
                 value={formValues.engineCapacity}
                 onChange={handleInputChange}
                 sx={{ width: { xs: '100%', sm: '50%' } }}
@@ -177,10 +177,10 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
             }}
           >
             {check.map((option) => (
-              <span>
-                <Checkbox
-                  name={option.label}
-                  checked={formValues3p1[option.label]}
+              <span key={option.value}>
+                <Checkbox                 
+                  name={option.label.toLowerCase()}
+                  checked={formValues3p1[option.label.toLowerCase()]}
                   onChange={handleInputChange3p1}
                 />
                 {option.label}

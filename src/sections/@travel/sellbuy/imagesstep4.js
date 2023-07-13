@@ -27,23 +27,17 @@ import { LoadingButton } from '@mui/lab';
 //   tours: PropTypes.array.isRequired,
 // };
 
-export default function Imagesstep4({ handleInputChange }) {
+export default function Imagesstep4({ handleInputChange,formValues }) {
   const router = useRouter();
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
+  // const [selectedImage, setSelectedImage] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(null);
+  // useEffect(() => {
+  //   if (selectedImage) {
+  //     setImageUrl(URL.createObjectURL(selectedImage));
+  //   }
+  // }, [selectedImage]);
 
-  const handleNext = () => {
-    const stepData = {
-      images: imageUrl,
-    };
-    onNext(stepData);
-    console.log('step 4', stepData);
-  };
+ 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -69,11 +63,12 @@ export default function Imagesstep4({ handleInputChange }) {
             >
               Upload Images
               <input
-                accept="image/"
-                multiple
                 type="file"
+                name= "images"
+                accept="image/png, image/jpeg, image/jpg"        
+                target={formValues.images}
                 style={{ display: 'none' }}
-                onChange={handleInputChange}
+                onChange={handleInputChange}     
               />
             </LoadingButton>
             <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
@@ -93,7 +88,7 @@ export default function Imagesstep4({ handleInputChange }) {
               format only.
             </Typography>
           </Stack>
-          {imageUrl && selectedImage && (
+          {/* {imageUrl && selectedImage && (
             <Box>
               <Typography fontWeight="bold">Images selected</Typography>
               <Image
@@ -102,7 +97,7 @@ export default function Imagesstep4({ handleInputChange }) {
                 sx={{ height: '100%', width: '100%' }}
               />
             </Box>
-          )}
+          )} */}
         </Box>
       </Container>
 

@@ -46,8 +46,9 @@ const styling={
 
 export default function Shipping() {
   const router = useRouter();
-  const { data } = router.query;
+  const { data, post } = router.query;
   const item = data ? JSON.parse(data) : null;
+  const postData = post ? JSON.parse(post) : null;
   console.log("data reached in shipping",item)
   return (
     <Page title="Shipping Address | Accessories" style={styling}>
@@ -63,7 +64,7 @@ export default function Shipping() {
           sx={{ mb: 4 }}
         /> */}
         <Typography variant='h2' color="black" pt="3%">Shipping Information</Typography>
-        <Shippinginfo post={item}/>
+        <Shippinginfo post={item} data={postData}/>
       </Container>
     </Page>
   );
