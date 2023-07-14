@@ -47,6 +47,7 @@ export default function Formsellbuy() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
   console.log('hello');
 
   const [formValues1, setFormValues1] = useState({
@@ -94,15 +95,123 @@ export default function Formsellbuy() {
   const [formValues4, setFormValues4] = useState({
     images: '',
   });
-
   const [formValues5, setFormValues5] = useState({
     seller_name: '',
     seller_phone: '',
     description: '',
   });
+  const validateForm = (i) => {
+    let isValid = true;
+    const newErrors = {};
+    if (i == 0) {
+      // Validate each field
+      if (!formValues1.reg_city) {
+        newErrors.reg_city = 'Registration City is required';
+        isValid = false;
+      }
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      if (!formValues1.city) {
+        newErrors.city = 'City is required';
+        isValid = false;
+      }
+
+      if (!formValues1.color) {
+        newErrors.color = 'Color is required';
+        isValid = false;
+      }
+
+      if (!formValues1.mileage) {
+        newErrors.mileage = 'Mileage is required';
+        isValid = false;
+      }
+
+      if (!formValues1.year) {
+        newErrors.year = 'Year is required';
+        isValid = false;
+      }
+
+      if (!formValues1.make) {
+        newErrors.make = 'Make is required';
+        isValid = false;
+      }
+
+      if (!formValues1.model) {
+        newErrors.model = 'Model is required';
+        isValid = false;
+      }
+
+      if (!formValues1.variant) {
+        newErrors.variant = 'Variant is required';
+        isValid = false;
+      }
+
+      if (!formValues1.bodytype) {
+        newErrors.bodytype = 'Body Type is required';
+        isValid = false;
+      }
+    } else if (i == 1) {
+      if (!formValues2.price) {
+        newErrors.price = 'Price is required';
+        isValid = false;
+      }
+    } else if (i == 2) {
+      if (!formValues3.engine_type) {
+        newErrors.engine_type = 'Engine Type is required';
+        isValid = false;
+      }
+      if (!formValues3.engine_capacity) {
+        newErrors.engine_capacity = 'Engine Capacity is required';
+        isValid = false;
+      }
+      if (!formValues3.transmission) {
+        newErrors.transmission = 'Transmission is required';
+        isValid = false;
+      }
+      if (!formValues3.assembly) {
+        newErrors.assembly = 'Assembly is required';
+        isValid = false;
+      }
+    } else if (i == 3) {
+      if (!formValues4.images) {
+        newErrors.images = 'Images is required';
+        isValid = false;
+      }
+    } 
+    else if (i == 4) {
+      if (!formValues5.description) {
+        newErrors.description = 'Description is required';
+        isValid = false;
+      }
+      if (!formValues5.seller_name) {
+        newErrors.seller_name = 'Seller Name is required';
+        isValid = false;
+      }
+      if (!formValues5.seller_phone) {
+        newErrors.seller_phone = 'Seller Phone is required';
+        isValid = false;
+      }
+    }
+    setErrors(newErrors);
+    return isValid;
+  };
+  const handleNext = (actStep) => {
+    const isValid1 = validateForm(actStep);
+    const isValid2 = validateForm(actStep);
+    const isValid3 = validateForm(actStep);
+    const isValid4 = validateForm(actStep);
+    // const isValid5 = validateForm(actStep);
+    if (isValid1 && actStep == 0) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (isValid2 && actStep == 1) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (isValid3 && actStep == 2) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (isValid4 && actStep == 3) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } 
+    // else if (isValid5 && actStep == 4) {
+    //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // }
   };
 
   const handleBack = () => {
@@ -170,12 +279,12 @@ export default function Formsellbuy() {
   const handleNextButton = (e) => {
     e.preventDefault();
     // Do something with the form values
-    console.log(formValues1);
+    // console.log(e);
     console.log(formValues2);
-    console.log(formValues3);
-    console.log(formValues3p1);
+    // console.log(formValues3);
+    // console.log(formValues3p1);
     // console.log();
-    handleNext();
+    handleNext(activeStep);
   };
 
   useEffect(() => {
@@ -191,49 +300,55 @@ export default function Formsellbuy() {
   }, [formValues1, formValues2, formValues3, formValues3p1, formValues4, formValues5]);
 
   const handleSubmit = async () => {
-    console.log(formValues5);
-    console.log('submitteeedddd now');
-    console.log(formData);
-    try {
-      console.log('form is submiting');
-      const response = await fetch('https://autobidup.pythonanywhere.com/cars/create/', {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        // xhrFields: {
-        //   withCredentials: true,
-        // },
-      });
-
-      if (response.ok) {
-        // API call successful
-        const responseData = await response.json();
-
-        console.log('response data', responseData);
-        console.log('form submitted succesfully');
-        setOpen(true);
-        //
-      } else {
-        // API call failed
-        const errorData = await response.json();
-        // Handle the error data as needed
+    if (validateForm(4)){
+      console.log(formValues5);
+      console.log('submitteeedddd now');
+      console.log(formData);
+      try {
+        console.log('form is submiting');
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/create/', {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+          // xhrFields: {
+          //   withCredentials: true,
+          // },
+        });
+  
+        if (response.ok) {
+          // API call successful
+          const responseData = await response.json();
+  
+          console.log('response data', responseData);
+          console.log('form submitted succesfully');
+          setOpen(true);
+          //
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        // Error occurred during the API call
+        console.error(error);
       }
-    } catch (error) {
-      // Error occurred during the API call
-      console.error(error);
     }
   };
 
   const getStepContent = (stepIndex) => {
     switch (stepIndex) {
       case 0:
-        return <Step1 formValues={formValues1} handleInputChange={handleInputChange1} />;
+        return (
+          <Step1 formValues={formValues1} handleInputChange={handleInputChange1} errors={errors} />
+        );
       case 1:
-        return <Step2 formValues={formValues2} handleInputChange={handleInputChange2} />;
+        return (
+          <Step2 formValues={formValues2} handleInputChange={handleInputChange2} errors={errors} />
+        );
       case 2:
         return (
           <Step3
@@ -241,12 +356,17 @@ export default function Formsellbuy() {
             formValues3p1={formValues3p1}
             handleInputChange={handleInputChange3}
             handleInputChange3p1={handleInputChange3p1}
+            errors={errors}
           />
         );
       case 3:
-        return <Step4 formValues={formValues4} handleInputChange={handleInputChange4} />;
+        return (
+          <Step4 formValues={formValues4} handleInputChange={handleInputChange4} errors={errors} />
+        );
       case 4:
-        return <Step5 formValues={formValues5} handleInputChange={handleInputChange5} />;
+        return (
+          <Step5 formValues={formValues5} handleInputChange={handleInputChange5} errors={errors} />
+        );
       default:
         return null;
     }
