@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useEffect } from 'react';
-import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
-import { TextIconLabel, Iconify, Image } from '../../../components';
-import { Icon } from '@iconify/react';
+import { Image } from '../../../components';
 
 import {
   Grid,
@@ -60,7 +57,6 @@ export default function Expertcall({ item, updateLeftCalls }) {
   return (
     <Box
       sx={{
-        // textAlign: 'center',
         display: 'grid',
         gap: { xs: 8, md: 3 },
         gridTemplateColumns: {

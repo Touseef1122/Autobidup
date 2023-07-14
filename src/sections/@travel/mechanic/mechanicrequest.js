@@ -80,7 +80,7 @@ export default function Mechanicrequest() {
   const onSubmit = async (data) => {
     console.log(data.location);
 
-    console.log(' working');
+    console.log('working');
     // try {
     //   console.log('checking login');
     //   const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {

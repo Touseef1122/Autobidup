@@ -1,29 +1,19 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import userIcon from '@iconify/icons-carbon/user';
-// import { useRouter } from 'next/router';
-import { TextIconLabel, Iconify, Image } from '../../../components';
-import { Icon } from '@iconify/react';
+
+import {Image } from '../../../components';
 import image from '../../../Assets/Images/expert2.jpg';
 import {
   Grid,
   List,
-  ListSubheader,
   ListItem,
-  TextField,
-  Button,
   Stack,
-  Container,
   Box,
   Typography,
 } from '@mui/material';
 import Comments from '../displaymaincar/comments';
 
 //--------------------------------------------------------------
-
-// Expertcall.propTypes = {
-//   item: PropTypes.array.isRequired,
-// };
 
 export default function Expertprofile() {
   const router = useRouter();
