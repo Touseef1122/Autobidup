@@ -7,15 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 
-import {
-  Button,
-  Modal,
-  Typography,
-  Stack,
-  Box,
-  TextField,
-  Container,
-} from '@mui/material';
+import { Button, Modal, Typography, Stack, Box, TextField, Container } from '@mui/material';
 
 import mechanic from '../../../assets/images/mechanicform.jpg';
 
@@ -28,12 +20,10 @@ const styling = {
 };
 // ----------------------------------------------------------------------
 const FormSchema = Yup.object().shape({
-  name: Yup.array().required('Name is required'),
+  name: Yup.string().required('Name is required'),
   phone: Yup.string()
     .required('Phone number is required')
     .min(11, 'Phone number is at least 11 numbers minumum'),
-  address: Yup.string().required('Address is required'),
-  location: Yup.string().required('Location is required'),
 });
 
 const style = {
@@ -49,16 +39,61 @@ const style = {
   height: '600px',
 };
 
+let map = '';
 export default function Mechanicrequest() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [location, setLocation] = useState('');
+  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState('');
+  console.log('mechanic');
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
-  const handleConfirmLocation = () => {
+  map = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d435521.9537239478!2d74.00473096991998!3d31.482517977862887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483e58107d9%3A0xc23abe6ccc7e2462!2sLahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1689331760317!5m2!1sen!2sus`;
+
+  const handleConfirmLocation = async () => {
     // Handle confirm location logic
+    console.log('Location right now', location);
+
+    try {
+      console.log('checking location');
+      const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/location', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address: location }),
+      });
+
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        setLatitude(responseData.latitude);
+        setLongitude(responseData.longitude);
+        console.log(responseData.latitude);
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
+    }
   };
+
+  if (longitude && latitude) {
+    map = `https://www.google.com/maps?q=${latitude},${longitude}&hl=es&z%3D14&amp&output=embed`;
+  }
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
@@ -74,42 +109,41 @@ export default function Mechanicrequest() {
     defaultValues: {
       name: '',
       phone: '',
-      address: '',
     },
   });
   const onSubmit = async (data) => {
-    console.log(data.location);
-
+    console.log('data', data);
+    data.location = location
+    console.log('location', data.location);
     console.log('working');
-    // try {
-    //   console.log('checking login');
-    //   const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {
-    //     method: 'POST',
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+    try {
+      console.log('checking login');
+      const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    //   if (response.ok) {
-    //     // API call successful
-    //     const responseData = await response.json();
-    //     console.log(responseData);
-        
-    //   } else {
-    //     // API call failed
-    //     const errorData = await response.json();
-    //     // Handle the error data as needed
-    //   }
-    // } catch (error) {
-    //   // Error occurred during the API call
-    //   console.error(error);
-    //   // Handle the error
-    // }
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        console.log(responseData);
+
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
+    }
   };
-  const [show, setShow] = useState(false);
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }} style={styling}>
       <Container
@@ -119,133 +153,141 @@ export default function Mechanicrequest() {
           textAlign: 'left',
         }}
       >
-        <form>
-          <Box
-            sx={{
-              p: { xs: '5%', sm: '7%' },
-              pb: { xs: '20%', sm: '7%' },
-              borderRadius: '20px',
-              background: 'rgba(254,254,254,0.93)',
-            }}
-          >
-            <Typography variant="h3" textAlign="center" pb="5px">
-              Request A Mechanic Form
-            </Typography>
-            <Typography variant="h6" textAlign="left" mb={6}>
-              Fill out the form to request a mechanic
-            </Typography>
-            <Stack spacing={2} mb={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    variant="filled"
-                    label="Name *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    sx={{ width: { xs: '100%' } }}
-                  />
-                )}
+        <Box
+          sx={{
+            p: { xs: '5%', sm: '7%' },
+            pb: { xs: '20%', sm: '7%' },
+            borderRadius: '20px',
+            background: 'rgba(254,254,254,0.93)',
+          }}
+        >
+          <Typography variant="h3" textAlign="center" pb="5px">
+            Request A Mechanic Form
+          </Typography>
+          <Typography variant="h6" textAlign="left" mb={6}>
+            Fill out the form to request a mechanic
+          </Typography>
+          <Typography variant="h5" mb="6" fontWeight="bold">
+            Name
+          </Typography>
+          <Controller
+            name="name"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                {...field}
+                fullWidth
+                variant="filled"
+                label="Name *"
+                error={Boolean(error)}
+                helperText={error?.message}
+                sx={{ width: { xs: '100%' } }}
               />
-              <Controller
-                name="phone"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Phone *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    sx={{ width: { xs: '100%' }, mb: 2 }}
-                  />
-                )}
+            )}
+          />
+          <Typography variant="h5" mb="6" fontWeight="bold">
+            Phone Number
+          </Typography>
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <TextField
+                {...field}
+                fullWidth
+                label="Phone *"
+                error={Boolean(error)}
+                helperText={error?.message}
+                sx={{ width: { xs: '100%' }, mb: 2 }}
               />
-            </Stack>
-            <Controller
-              name="address "
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  {...field}
-                  fullWidth
-                  label="Address *"
-                  error={Boolean(error)}
-                  helperText={error?.message}
-                  sx={{ width: { xs: '100%' }, mb: 2 }}
-                />
-              )}
-            />
+            )}
+          />
 
-            <Modal
-              open={isModalOpen}
-              onClose={handleModalClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Typography
-                  sx={{ textAlign: 'center' }}
-                  id="modal-modal-title"
-                  variant="h3"
-                  component="h2"
-                >
-                  Select Your Location
-                </Typography>
-                <Box style={{ width: '760px', height: '450px', border: 0 }}>
-                  <iframe
-                    style={{ width: '100%', height: '100%' }}
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217759.99380853778!2d74.3343893!3d31.482940349999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483e58107d9%3A0xc23abe6ccc7e2462!2sLahore%2C%20Punjab!5e0!3m2!1sen!2s!4v1686749711341!5m2!1sen!2s"
-                  ></iframe>
-                </Box>
-                <TextField label="Location" variant="outlined" sx={{ mt: 2 }} />
-                <Button variant="contained" onClick={handleConfirmLocation} sx={{ mt: 2 }}>
+          <Modal
+            open={isModalOpen}
+            onClose={handleModalClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography
+                sx={{ textAlign: 'center' }}
+                id="modal-modal-title"
+                variant="h3"
+                component="h2"
+              >
+                Select Your Location
+              </Typography>
+              <Box style={{ width: '760px', height: '450px', border: 0 }}>
+                <iframe
+                  style={{ width: '100%', height: '100%', border: 0 }}
+                  src={map}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </Box>
+              <Stack direction="row" spacing={3} mt={3}>
+                <TextField
+                  label="Location"
+                  variant="outlined"
+                  value={location}
+                  onChange={handleLocationChange}
+                />
+                <Button variant="contained" onClick={handleConfirmLocation}>
                   Confirm
                 </Button>
-              </Box>
-            </Modal>
-            <Stack spacing={2} mt={1} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="location"
-                control={control}
-                render={({ field }) => (
-                  <Button variant="outlined" onClick={handleModalOpen}>
-                    Select Location
-                  </Button>
-                )}
-              />
+              </Stack>
+            </Box>
+          </Modal>
+          <Typography variant="h5" mb="6" fontWeight="bold">
+            Location
+          </Typography>
+          <Stack spacing={2} mt={1} direction={{ xs: 'column', sm: 'row' }}>
+            <Button variant="outlined" onClick={handleModalOpen}>
+              Select Location
+            </Button>
 
-            </Stack>
-
-            <Typography variant="h6" textAlign="left" mt={5}>
-              Description
-            </Typography>
             <TextField
-              id="filled-multiline-static"
-              sx={{ width: '100%', mt: 2 }}
-              multiline
-              rows={4}
-              placeholder="Describe your problem..."
-              variant="filled"
+              disabled
+              fullWidth
+              placeholder={location}
+              name="location"
+              value={location}
+              // error={Boolean(error)}
+              // helperText={error?.location}
+              sx={{ width: { xs: '100%' }, mb: 3 }}
             />
-            <LoadingButton
-              sx={{
-                mt: 1,
-                float: 'right',
-                width: '20%',
-                backgroundColor: 'black',
-                color: 'white',
-                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-              }}
-              onClick={handleSubmit(onSubmit)}
-            >
-              Submit
-            </LoadingButton>
-          </Box>
-        </form>
+          </Stack>
+
+          <Typography variant="h5" mb="6" fontWeight="bold">
+            Description
+          </Typography>
+          <TextField
+            id="filled-multiline-static"
+            sx={{ width: '100%', mt: 2 }}
+            multiline
+            rows={4}
+            placeholder="Describe your problem..."
+            variant="filled"
+          />
+          <LoadingButton
+            sx={{
+              mt: 1,
+              float: 'right',
+              width: '20%',
+              backgroundColor: 'black',
+              color: 'white',
+              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+            }}
+            size="large"
+            variant="contained"
+            loading={isSubmitting}
+            type='submit'
+            onClick={handleSubmit(onSubmit)}
+          >
+            Submit
+          </LoadingButton>
+        </Box>
       </Container>
     </Box>
   );

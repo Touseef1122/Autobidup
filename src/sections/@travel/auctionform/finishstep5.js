@@ -1,13 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
   FormControlLabel,
@@ -19,63 +13,12 @@ import {
   Container,
   MenuItem,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
-// ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
-Finishstep5.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
-  title: Yup.string().required('Title is required'),
-  price: Yup.string().required('Price is required'),
-});
 
-export default function Finishstep5({ tours, icons, services }) {
+// ----------------------------------------------------------------------
+
+export default function Finishstep5({ formValues, handleInputChange, errors }) {
   const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
-    defaultValues: {
-      name: '',
-      phoneNumber: '',
-    },
-  });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  const [show, setShow] = useState(false);
+
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -86,98 +29,74 @@ export default function Finishstep5({ tours, icons, services }) {
             mr: { md: '5%' },
           }}
         >
-          <Controller
-            name="title"
-            control={control}
-            render={({ field, fieldState: { error } }) => (
-              <div>
-                {/* <Typography variant='h3' fontWeight="bold">
-                  Title *
-                </Typography> */}
-                <TextField
-                  {...field}
-                  fullWidth
-                  variant="filled"
-                  label="Title *"
-                  error={Boolean(error)}
-                  helperText={error?.message}
-                  sx={{ width: { xs: '100%', sm: '80%' } }}
-                />
-                <Typography variant="body3" fontWeight="bold">
-                  Enter a proper title for bidding of your car
-                </Typography>
-              </div>
-            )}
-          />
-          <Stack spacing={6} mt={3} mb={3} direction={{ xs: 'column', sm: 'row' }}>
-            <div>
-              {/* <Typography variant="h4" fontWeight="bold">
-                Price *
-              </Typography> */}
-              <Controller
-                name="price"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div>
-                    {/* <Typography variant='h3' fontWeight="bold">
-                  Title *
-                </Typography> */}
-                    <TextField
-                      {...field}
-                      fullWidth
-                      variant="filled"
-                      label="Price *"
-                      error={Boolean(error)}
-                      helperText={error?.message}
-                      sx={{ width: { xs: '100%', sm: '50vh' } }}
-                    />
-                    <Typography variant="body3" fontWeight="bold">
-                      Enter a starting bid price for your car
-                    </Typography>
-                  </div>
-                )}
-              />
-              {/* <TextField fullWidth variant="filled" label="Price *" sx={{ width: '100%' }} /> */}
-              {/* <Typography variant="body3" fontWeight="bold">
-                Enter a starting bid price for your car
-              </Typography> */}
-            </div>
-            <div>
-              {/* <Typography variant="h4" fontWeight="bold">
-                Date *
-              </Typography> */}
-              <Controller
-                name="date"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div>
-                    {/* <Typography variant='h3' fontWeight="bold">
-                  Title *
-                </Typography> */}
-                    <TextField
-                      {...field}
-                      fullWidth
-                      variant="filled"
-                      label="Date *"
-                      error={Boolean(error)}
-                      helperText={error?.message}
-                      sx={{ width: { xs: '100%', sm: '50vh' } }}
-                    />
-                    <Typography variant="body3" fontWeight="bold">
-                      Enter date for live bidding of your car
-                    </Typography>
-                  </div>
-                )}
-              />
-              {/* <TextField fullWidth variant="filled" label="Date *" sx={{ width: '100%' }} />
-              <Typography variant="body3" fontWeight="bold">
-                Enter date for live bidding of your car
-              </Typography> */}
-            </div>
-          </Stack>
+          <div>
+            <Typography fontSize="14px" fontWeight="bold">
+              AD Title *
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter AD Title"
+              name="ad_titlex"
+              value={formValues.ad_titlex}
+              onChange={handleInputChange}
+              error={!!errors.ad_titlex}
+              helperText={errors.ad_titlex}
+              sx={{ width: { xs: '100%' } }}
+            />
+          </div>
+          <div>
+            <Typography fontSize="14px" fontWeight="bold">
+              Starting Bid *
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter Starting Bid"
+              name="staring_bid"
+              value={formValues.staring_bid}
+              onChange={handleInputChange}
+              error={!!errors.staring_bid}
+              helperText={errors.staring_bid}
+              sx={{ width: { xs: '100%' } }}
+            />
+          </div>
+
+          <div>
+            <Typography fontSize="14px" fontWeight="bold">
+              Bidding Date *
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter Bidding Date"
+              name="bid_datx"
+              value={formValues.seller_name}
+              onChange={handleInputChange}
+              error={!!errors.bid_datx}
+              helperText={errors.bid_datx}
+              sx={{ width: { xs: '100%' } }}
+            />
+          </div>
+          <div>
+            <Typography fontSize="14px" fontWeight="bold">
+              Bidding Time *
+            </Typography>
+
+            <TextField
+              fullWidth
+              placeholder="Enter Bidding Time"
+              name="bid_timex"
+              value={formValues.bid_timex}
+              onChange={handleInputChange}
+              error={!!errors.bid_timex}
+              helperText={errors.bid_timex}
+              sx={{ width: { xs: '100%' } }}
+            />
+          </div>
 
           <Box>
-            <Typography variant="h3" fontWeight="bold">
+            <Typography fontSize="14px" fontWeight="bold">
               Description
             </Typography>
             <TextField
@@ -187,6 +106,11 @@ export default function Finishstep5({ tours, icons, services }) {
               rows={4}
               placeholder="Describe your car..."
               variant="filled"
+              name="ad_descriptionx"
+              value={formValues.ad_descriptionx}
+              onChange={handleInputChange}
+              error={!!errors.ad_descriptionx}
+              helperText={errors.ad_descriptionx}
             />
             <Typography variant="body3" textAlign="right" fontWeight="bold">
               Word limit is 1000
