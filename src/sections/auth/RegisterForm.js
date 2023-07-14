@@ -19,12 +19,14 @@ import {
   Container,
   Checkbox,
   FormControlLabel,
+  Modal,
+  Box,
 } from '@mui/material';
 // components
 import { Iconify } from '../../components';
 
 // ----------------------------------------------------------------------
-
+let Data = [];
 const FormSchema = Yup.object().shape({
   first_name: Yup.string()
     .required('Full name is required')
@@ -42,8 +44,22 @@ const FormSchema = Yup.object().shape({
     .min(11, 'Mininum 11 characters')
     .max(15, 'Maximum 15 characters'),
 });
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function RegisterForm() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   console.log('blaggggggggggggggggggggggg');
@@ -61,7 +77,6 @@ export default function RegisterForm() {
       contact: '',
       username: '',
       password: '',
-
     },
   });
 
@@ -70,13 +85,14 @@ export default function RegisterForm() {
   };
 
   const onSubmit = async (data) => {
+    Data = data;
     console.log(' working', data);
     const updatedPost = {
       ...data,
       state: 'Punjab',
-      city: 'Lahore',
+      city: 'lahore',
     };
-    console.log("updated",updatedPost);
+    console.log('updated', updatedPost);
     try {
       console.log('checking Signup');
       const response = await fetch('http://autobidup.pythonanywhere.com/user/register', {
@@ -85,9 +101,10 @@ export default function RegisterForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(updatedPost),
-        xhrFields: {
-          withCredentials: true,
-        },
+
+        // xhrFields: {
+        //   withCredentials: true,
+        // },
       });
 
       if (response.ok) {
@@ -96,10 +113,11 @@ export default function RegisterForm() {
         // Handle the response data as needed
         // localStorage.setItem('firstname', responseData.first_name);
 
-        // Store JWT token in document cookie
+        // // Store JWT token in document cookie
         // document.cookie = `jwt=${responseData.jwt}; path=/`;
-        console.log(responseData);
-        router.push('/');
+        // console.log(responseData);
+        // router.push('/');
+        handleOpen();
       } else {
         // API call failed
         const errorData = await response.json();
@@ -110,6 +128,41 @@ export default function RegisterForm() {
       console.error(error);
       // Handle the error
     }
+  };
+
+  const handleModalSubmit = async () => {
+    // const username = document.getElementById('username').value; // Replace with the actual username value from the modal
+    const otp = document.getElementById('otp').value; // Get the OTP value from the input field in the modal
+    console.log(Data.username, otp);
+    try {
+      console.log('form is submiting');
+      const response = await fetch('https://autobidup.pythonanywhere.com/user/otp-verify', {
+        method: 'POST',
+        // mode: 'cors',
+        // credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: Data.username, otp: otp }),
+      });
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        console.log('response data', responseData);
+        console.log('call done succesfully');
+        router.push('/auth/logincover/')
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+    }
+  };
+  const handleModalContentClick = (event) => {
+    event.stopPropagation();
   };
 
   return (
@@ -249,7 +302,40 @@ export default function RegisterForm() {
           Sign up
         </LoadingButton>
       </Stack>
-      </div>
+      <Modal
+        open={open}
+        // onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} onClick={handleModalContentClick}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Enter Your OTP
+          </Typography>
+          <TextField
+            id="otp"
+            label="OTP"
+            variant="outlined"
+            inputProps={{
+              maxLength: 4,
+              placeholder: '####',
+            }}
+          />
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            sx={{
+              marginTop: '5px !important',
+            }}
+            onClick={handleModalSubmit}
+          >
+            Enter
+          </LoadingButton>
+        </Box>
+      </Modal>
+    </div>
     // </form>
   );
 }
