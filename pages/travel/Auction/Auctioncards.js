@@ -3,7 +3,7 @@ import { m } from 'framer-motion';
 import Slider from 'react-slick';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 // next
 import NextLink from 'next/link';
 // @mui
@@ -72,33 +72,6 @@ const items = [
     price: '20 lac',
   },
 ];
-const CountdownTimer = ({ initialTime }) => {
-  const [timeRemaining, setTimeRemaining] = useState(initialTime);
-
-  useEffect(() => {
-    if (timeRemaining <= 0) {
-      // Timer has ended
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setTimeRemaining((prevTime) => prevTime - 1);
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [timeRemaining]);
-
-  const minutes = Math.floor(timeRemaining / 60);
-  const seconds = timeRemaining % 60;
-
-  return (
-    <Typography variant="h4" color="red">
-      {`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
-    </Typography>
-  );
-};
 
 export default function BlogMarketingLatestPosts({ data }) {
   console.log('data here', data);
@@ -149,7 +122,6 @@ export default function BlogMarketingLatestPosts({ data }) {
         >
           Cars Available for Auction{' '}
         </Typography>
-
         <Box sx={{ position: 'relative' }}>
           <CarouselArrows
             onNext={handleNext}
@@ -171,21 +143,12 @@ export default function BlogMarketingLatestPosts({ data }) {
                 >
                   <Box>
                     <Box
-                      key={value.automatic_generated_bid_id}
                       onClick={handleOpen}
                       sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                     >
-                      {/* <Typography variant="h4" color={'red'}>
-                        {(() => {
-                          const minutes = Math.floor(timeRemaining / 60);
-                          const seconds = timeRemaining % 60;
-                          return `${minutes.toString().padStart(2, '0')}:${seconds
-                            .toString()
-                            .padStart(2, '0')}`;
-                        })()}
-                      </Typography> */}
-                      <CountdownTimer initialTime={value.bid_time} />
-                      {/* Render the CountdownTimer component */}
+                      <Typography variant="h4" color={'red'}>
+                        {value.bid_time}
+                      </Typography>
                       <Image src={value.images} sx={{ width: '100%', height: '200px' }} />
                       <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                       <Typography variant="h6">{value.year}</Typography>
