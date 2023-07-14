@@ -15,6 +15,7 @@ import {
   TextField,
   Container,
   Button,
+  MenuItem
 } from '@mui/material';
 // ----------------------------------------------------------------------
 const check = [
@@ -99,9 +100,65 @@ const check = [
     label: 'Armrests',
   },
 ];
-
-export default function Featuresstep3({ formValues, formValues3p1, handleInputChange, handleInputChange3p1 }) {
-  
+const enginetype = [
+  {
+    value: '1',
+    label: 'Petrol',
+  },
+  {
+    value: '2',
+    label: 'Diesal',
+  },
+  {
+    value: '3',
+    label: 'CNG',
+  },
+];
+const engineCapacity = [
+  {
+    value: '1',
+    label: '1000',
+  },
+  {
+    value: '2',
+    label: '1200',
+  },
+  {
+    value: '3',
+    label: '1500',
+  },
+  {
+    value: '4',
+    label: '2000',
+  },
+];
+const transmission = [
+  {
+    value: '1',
+    label: 'Automatic',
+  },
+  {
+    value: '2',
+    label: 'Manual',
+  },
+];
+const assembly = [
+  {
+    value: '1',
+    label: 'Local',
+  },
+  {
+    value: '2',
+    label: 'Imported',
+  },
+];
+export default function Featuresstep3({
+  formValues,
+  formValues3p1,
+  handleInputChange,
+  handleInputChange3p1,
+  errors
+}) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -120,7 +177,7 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
             }}
           >
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <TextField
+              {/* <TextField
                 fullWidth
                 placeholder="Enter Engine Type"
                 name="engine_type"
@@ -137,10 +194,44 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
                 value={formValues.engineCapacity}
                 onChange={handleInputChange}
                 sx={{ width: { xs: '100%', sm: '50%' } }}
-              />
+              /> */}
+              <TextField
+                id="outlined-select-currency"
+                select
+                name="engine_type"
+                label="Engine Type *"
+                value={formValues.engine_type}
+                onChange={handleInputChange}
+                error={!!errors.engine_type}
+                helperText={errors.engine_type}
+                sx={{ width: '100%' }}
+              >
+                {enginetype.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Engine Capacity *"
+                name="engine_capacity"
+                value={formValues.engine_capacity}
+                onChange={handleInputChange}
+                error={!!errors.engine_capacity}
+                helperText={errors.engine_capacity}
+                sx={{ width: '100%' }}
+              >
+                {engineCapacity.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Stack>
             <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-              <TextField
+              {/* <TextField
                 fullWidth
                 placeholder="Enter Transmission"
                 label="Transmission"
@@ -149,8 +240,25 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
                 onChange={handleInputChange}
                 // value={stepData.step1Data?.transmission || ''}
                 sx={{ width: { xs: '100%', sm: '50%' } }}
-              />
-              <TextField
+              /> */}
+               <TextField
+                id="outlined-select-currency"
+                select
+                label="Transmission *"
+                name="transmission"
+                value={formValues.transmission}
+                onChange={handleInputChange}
+                error={!!errors.transmission}
+                helperText={errors.transmission}
+                sx={{ width: '100%' }}
+              >
+                {transmission.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              {/* <TextField
                 fullWidth
                 placeholder="Enter Assembly"
                 label="Assembly"
@@ -158,8 +266,25 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
                 value={formValues.assembly}
                 onChange={handleInputChange}
                 sx={{ width: { xs: '100%', sm: '50%' } }}
-              />
-            </Stack>
+              />*/}
+             <TextField
+                id="outlined-select-currency"
+                select
+                label="Assembly *"
+                name="assembly"
+                value={formValues.assembly}
+                onChange={handleInputChange}
+                error={!!errors.assembly}
+                helperText={errors.assembly}
+                sx={{ width: '100%' }}
+              >
+                {assembly.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Stack> 
           </Box>
           <Typography variant="h5" mb="6" fontWeight="bold">
             Features
@@ -178,7 +303,7 @@ export default function Featuresstep3({ formValues, formValues3p1, handleInputCh
           >
             {check.map((option) => (
               <span key={option.value}>
-                <Checkbox                 
+                <Checkbox
                   name={option.label.toLowerCase()}
                   checked={formValues3p1[option.label.toLowerCase()]}
                   onChange={handleInputChange3p1}

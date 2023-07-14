@@ -1,29 +1,21 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useState,useEffect } from 'react';
-import userIcon from '@iconify/icons-carbon/user';
-import { useRouter } from 'next/router';
-import { TextIconLabel, Iconify, Image } from '../../../components';
-import { Icon } from '@iconify/react';
+
 
 import {
   Radio,
   RadioGroup,
   FormControl,
   FormControlLabel,
-  FormLabel,
-  Divider,
   Modal,
   Button,
   Box,
   Typography,
 } from '@mui/material';
-import { Overview } from '../tours';
 
 //--------------------------------------------------------------
-// Expertcall.propTypes = {
-//   item: PropTypes.array.isRequired,
-// };
+
 const style = {
   position: 'absolute',
   top: '50%',

@@ -6,7 +6,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
-
 import {
   Radio,
   RadioGroup,
@@ -20,7 +19,7 @@ import {
 } from '@mui/material';
 
 // ----------------------------------------------------------------------
-export default function Enterpricestep2({ formValues, handleInputChange}) {
+export default function Enterpricestep2({ formValues, handleInputChange, errors }) {
   const router = useRouter();
 
   return (
@@ -38,17 +37,19 @@ export default function Enterpricestep2({ formValues, handleInputChange}) {
           <Typography variant="h5" textAlign="left">
             Price
           </Typography>
-              <TextField
-                fullWidth
-                placeholder="Enter Price"
-                name='price'
-                value={formValues.price}
-                onChange={handleInputChange}
-                sx={{ width: {xs:"100%",sm:'50%'} }}
-              />
-           <Typography fontSize="13px" color="#181a1f;" fontWeight="bold">
-              Please enter realistic price to get more genuine responses.
-            </Typography>
+          <TextField
+            fullWidth
+            placeholder="Enter Price"
+            name="price"
+            value={formValues.price}
+            onChange={handleInputChange}
+            error={!!errors.price}
+            helperText={errors.price}
+            sx={{ width: { xs: '100%', sm: '50%' } }}
+          />
+          <Typography fontSize="13px" color="#181a1f;" fontWeight="bold">
+            Please enter realistic price to get more genuine responses.
+          </Typography>
         </Box>
       </Container>
     </Box>
