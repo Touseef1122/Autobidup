@@ -75,9 +75,9 @@ export default function Carousel() {
   }, [images]);
 
   return (
-      <Grid container spacing={8} >
+      <Grid container spacing={2} >
           <Grid item xs={12} sm={7}>
-        <div style={{}}>
+        <div style={{ marginTop: '200px' }}>
         {images && images.length !== 0 &&
                   <div className={"animate-card"}>
                       <img

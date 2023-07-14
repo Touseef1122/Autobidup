@@ -22,7 +22,7 @@ import {
 } from '@mui/material';
 
 import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
-
+import ReverseCounter from './timer';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 // ----------------------------------------------------------------------
 
@@ -77,7 +77,9 @@ export default function BlogMarketingLatestPosts({ data }) {
   console.log('data here', data);
   const theme = useTheme();
   const router = useRouter();
-
+  const value = {
+    bid_time: 3600, // Replace with the actual value from the API response
+  };
   const carouselRef = useRef(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -143,12 +145,12 @@ export default function BlogMarketingLatestPosts({ data }) {
                 >
                   <Box>
                     <Box
-                      onClick={handleOpen}
+                      // onClick={handleOpen}
+                      
                       sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                     >
-                      <Typography variant="h4" color={'red'}>
-                        {value.bid_time}
-                      </Typography>
+                      <ReverseCounter bid={value.bid_time} />
+
                       <Image src={value.images} sx={{ width: '100%', height: '200px' }} />
                       <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                       <Typography variant="h6">{value.year}</Typography>
@@ -168,7 +170,7 @@ export default function BlogMarketingLatestPosts({ data }) {
                         PKR {value.starting_bid}
                       </Typography>
                     </Box>
-                    <Modal
+                    {/* <Modal
                       open={open}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
@@ -243,7 +245,7 @@ export default function BlogMarketingLatestPosts({ data }) {
                           Close
                         </Button>
                       </Box>
-                    </Modal>
+                    </Modal> */}
                   </Box>
                 </Box>
               ))}

@@ -39,6 +39,7 @@ export default function Displaycarlist({ posts }) {
       try {
         const response = await fetch('https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars');
         const jsonData = await response.json();
+      
         console.log(jsonData);
         setData(jsonData);
         console.log(data);
