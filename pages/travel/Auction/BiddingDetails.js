@@ -49,19 +49,9 @@ export default function Displaycardetails({ posts }) {
     <Page title="Auction">
       <Loader />
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-        {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{mb:4}}
-        /> */}
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <CarouselAuction />
-
-            {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">

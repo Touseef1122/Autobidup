@@ -28,7 +28,7 @@ export default function Landing() {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
+        <Grid item xs={12} sm={4} md={4} display="flex" alignItems="center">
           <Box
             ml={{ xs: 2, sm: 4 }}
             mr={{ xs: 2, sm: 4 }}
@@ -63,7 +63,44 @@ export default function Landing() {
             </LoadingButton>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={6} md={4} display="flex" alignItems="center">
+        <Grid item xs={12} sm={4} md={4} display="flex" alignItems="center">
+          <Box
+            ml={{ xs: 2, sm: 4 }}
+            mr={{ xs: 2, sm: 4 }}
+            sx={{
+              p: 3,
+              backgroundColor: 'white',
+              boxShadow: '0 1px 10px #64666B',
+              borderRadius: '8px',
+              m: 1,
+              textAlign: 'center',
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${Apply.src})`,
+              backgroundSize: '70%',
+              backgroundPosition: 'left',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            <Typography variant="h3" pb={2}>
+              Post for Auction
+            </Typography>
+            <Typography variant="h4" pb={6}>
+              Posting form a vehicle for auction.
+            </Typography>
+            <LoadingButton
+              onClick={() => router.push('/travel/Auction/formmain')}
+              sx={{
+                border: '1px solid #FFBE00 ',
+                color: '#FFBE00',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+              }}
+            >
+              Apply
+            </LoadingButton>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={4} md={4} display="flex" alignItems="center">
           <Box
             ml={{ xs: 2, sm: 4 }}
             mr={{ xs: 2, sm: 4 }}

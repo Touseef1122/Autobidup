@@ -74,7 +74,7 @@ export default function Usedcars({ posts }) {
     <Page title="Used Cars | AutoBidUp">
       <Loader />
       <Pageimage images={usedimage} />
-      <ChatButton />
+      <ChatButton />vs 
       {/* <TravelLandingIntroduceOurServices /> */}
 
       <TravelLandingIntroduce categories={vehicalType}/>
@@ -86,56 +86,7 @@ export default function Usedcars({ posts }) {
 }
 
 //-------------------------------------------------------------------------------
-const bestcities = [
-  {
-    id: 1,
-    image: MVI,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    id: 2,
-    image: MVI,
-    heading: 'Civic',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '5 lac',
-  },
-  {
-    id: 3,
-    image: MVI,
-    heading: 'Mehran',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    id: 4,
-    image: MVI,
-    heading: 'Mehran',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
+
 const vehicalType = [
   {
     id: 1,

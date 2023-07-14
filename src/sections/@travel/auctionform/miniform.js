@@ -7,9 +7,9 @@ import { Button, Typography, Box, Container, Stepper, Step, StepButton } from '@
 
 import Step1 from '../auctionform/usernformationstep1';
 import Step2 from '../auctionform/cardetailsstep2';
-import Step3 from '../sellbuy/featuresstep3';
-import Step4 from '../sellbuy/imagesstep4';
-import Step5 from '../sellbuy/finishstep5';
+// import Step3 from '../sellbuy/featuresstep3';
+// import Step4 from '../sellbuy/imagesstep4';
+// import Step5 from '../sellbuy/finishstep5';
 
 //--------------------------------------------------------------
 const steps = [
