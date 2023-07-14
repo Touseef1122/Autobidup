@@ -47,7 +47,7 @@ export default function Displaycarlist({ posts }) {
     async function fetchData() {
       try {
         console.log('details fetching');
-        const response = await fetch('https://autobidup.pythonanywhere.com/user/customer-details', {
+        const response = await fetch('https://autobidup.pythonanywhere.com/bidding/record_details_username', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
