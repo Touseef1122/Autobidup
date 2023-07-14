@@ -6,7 +6,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
-import { styled } from '@mui/material/styles';
 
 import {
   Button,
@@ -16,7 +15,6 @@ import {
   Box,
   TextField,
   Container,
-  MenuItem,
 } from '@mui/material';
 
 import mechanic from '../../../assets/images/mechanicform.jpg';
@@ -74,7 +72,6 @@ export default function Mechanicrequest() {
     mode: 'onTouched',
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      services: [],
       name: '',
       phone: '',
       address: '',
@@ -82,46 +79,35 @@ export default function Mechanicrequest() {
   });
   const onSubmit = async (data) => {
     console.log(data.location);
-    // await new Promise((resolve) => setTimeout(resolve, 500));
-    // alert(JSON.stringify(data, null, 2));
-    // reset();
-    console.log(' working');
-    try {
-      console.log('checking login');
-      const response = await fetch('https://autobidup.pythonanywhere.com/user/login', {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        // xhrFields: {
-        //   withCredentials: true,
-        // },
-      });
 
-      if (response.ok) {
-        // API call successful
-        const responseData = await response.json();
-        // Handle the response data as needed
-        localStorage.setItem('firstname', responseData.firstName);
-        localStorage.setItem('username', responseData.username);
+    console.log('working');
+    // try {
+    //   console.log('checking login');
+    //   const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-        // Store JWT token in document cookie
-        // document.cookie = `jwt=${responseData.jwt}; path=/`;
-        console.log('response data', responseData);
-        router.push('/');
-      } else {
-        // API call failed
-        const errorData = await response.json();
-        // Handle the error data as needed
-      }
-    } catch (error) {
-      // Error occurred during the API call
-      console.error(error);
-      // Handle the error
-    }
+    //   if (response.ok) {
+    //     // API call successful
+    //     const responseData = await response.json();
+    //     console.log(responseData);
+        
+    //   } else {
+    //     // API call failed
+    //     const errorData = await response.json();
+    //     // Handle the error data as needed
+    //   }
+    // } catch (error) {
+    //   // Error occurred during the API call
+    //   console.error(error);
+    //   // Handle the error
+    // }
   };
   const [show, setShow] = useState(false);
   return (
@@ -133,7 +119,7 @@ export default function Mechanicrequest() {
           textAlign: 'left',
         }}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form>
           <Box
             sx={{
               p: { xs: '5%', sm: '7%' },
@@ -248,14 +234,13 @@ export default function Mechanicrequest() {
             <LoadingButton
               sx={{
                 mt: 1,
-                // mb: 4,
                 float: 'right',
                 width: '20%',
-                // border: '1px solid #FFBE00 ',
                 backgroundColor: 'black',
                 color: 'white',
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
+              onClick={handleSubmit(onSubmit)}
             >
               Submit
             </LoadingButton>

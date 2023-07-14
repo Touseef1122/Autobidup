@@ -27,7 +27,7 @@ import { LoadingButton } from '@mui/lab';
 //   tours: PropTypes.array.isRequired,
 // };
 
-export default function Imagesstep4({ handleInputChange,formValues }) {
+export default function Imagesstep4({ handleInputChange,formValues , errors}) {
   const router = useRouter();
   // const [selectedImage, setSelectedImage] = useState(null);
   // const [imageUrl, setImageUrl] = useState(null);
@@ -69,8 +69,14 @@ export default function Imagesstep4({ handleInputChange,formValues }) {
                 target={formValues.images}
                 style={{ display: 'none' }}
                 onChange={handleInputChange}     
+                
               />
             </LoadingButton>
+
+            <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold" 
+                >
+                {errors.images}
+            </Typography>
             <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
               Tip: Select several photos to add them in one go
             </Typography>

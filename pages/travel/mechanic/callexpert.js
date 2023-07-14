@@ -8,12 +8,12 @@ import Loader from '../UsedCars/Loader.js';
 import ChatButton from '../ChatButton';
 
 // @mui
-import { Container, Grid, Box, Stack, Button } from '@mui/material';
+import { Grid, Box} from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, Image, Breadcrumbs, Iconify } from '../../../src/components';
+import { Page} from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import Expertcall from '../../../src/sections/@travel/mechanic/expertcall';
@@ -23,7 +23,6 @@ import landing from '../../../src/Assets/Images/expertCard.jpg';
 import Pageimage from '../../../src/sections/@travel/landing/pageimage';
 
 
-import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,

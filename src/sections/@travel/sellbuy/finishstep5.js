@@ -26,8 +26,7 @@ const FormSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
 });
 
-export default function Finishstep5({ formValues, handleInputChange }) {
-
+export default function Finishstep5({ formValues, handleInputChange, errors }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -55,6 +54,8 @@ export default function Finishstep5({ formValues, handleInputChange }) {
               name="description"
               value={formValues.description}
               onChange={handleInputChange}
+              error={!!errors.description}
+              helperText={errors.description}
             />
             <Typography variant="body3" textAlign="right" fontWeight="bold">
               Word limit is 1000
@@ -80,8 +81,10 @@ export default function Finishstep5({ formValues, handleInputChange }) {
                   fullWidth
                   placeholder="Enter Seller Name"
                   name="seller_name"
-                  value={formValues.name}
+                  value={formValues.seller_name}
                   onChange={handleInputChange}
+                  error={!!errors.seller_name}
+                  helperText={errors.seller_name}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
               </div>
@@ -93,8 +96,10 @@ export default function Finishstep5({ formValues, handleInputChange }) {
                   fullWidth
                   placeholder="Enter Phone Number"
                   name="seller_phone"
-                  value={formValues.phoneNumber}
+                  value={formValues.seller_phone}
                   onChange={handleInputChange}
+                  error={!!errors.seller_phone}
+                  helperText={errors.seller_phone}
                   sx={{ width: { xs: '100%', sm: '50%' } }}
                 />
                 <Typography variant="body3" fontWeight="bold">
