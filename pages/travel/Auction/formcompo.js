@@ -17,7 +17,7 @@ export default function Landing() {
             <Typography variant="h2">Auction</Typography>
             <Typography variant="h4">Join the Excitement: Bid on Cars</Typography>
             <Box pl="10%" pr="10%">
-              <Typography>
+              <Typography pb={4}>
                 Enter your details below to join the excitement and bid on classic/vintage cars.
                 Don't miss out on the chance to bid on cars – fill out the form below to get
                 started. Ready to participate in the bidding action? Simply complete the form below
@@ -106,24 +106,22 @@ export default function Landing() {
             mr={{ xs: 2, sm: 4 }}
             sx={{
               p: 3,
-              backgroundColor: 'white',
               boxShadow: '0 1px 10px #64666B',
               borderRadius: '8px',
               m: 1,
               textAlign: 'center',
               width: '100%',
               height: '100%',
-              backgroundImage: `url(${Apply.src})`,
-              backgroundSize: '70%',
+              backgroundImage: `url(${Applying.src})`,
+              backgroundSize: 'cover',
               backgroundPosition: 'left',
-              backgroundRepeat: 'no-repeat',
             }}
           >
             <Typography variant="h3" pb={2}>
-              Post for Auction
+              Room for Auction
             </Typography>
             <Typography variant="h4" pb={6}>
-              Posting form a vehicle for auction.
+              Apply for alot room for auction.
             </Typography>
             <LoadingButton
               onClick={() => router.push('/travel/Auction/formmain')}
