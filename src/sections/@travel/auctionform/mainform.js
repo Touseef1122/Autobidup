@@ -54,7 +54,8 @@ export default function Mainform() {
     // armrestsx: false,
   });
   const [formValues2, setFormValues2] = useState({
-    images_url: [],
+    images
+    : [],
   });
   const [formValues3, setFormValues3] = useState({
     ad_titlex: '',
@@ -88,8 +89,8 @@ export default function Mainform() {
         isValid = false;
       }
     } else if (i == 1) {
-      if (!formValues2.images_url) {
-        newErrors.images_url = 'Images are required';
+      if (!formValues2.images) {
+        newErrors.images = 'Images are required';
         isValid = false;
       }
     } else if (i == 2) {
@@ -167,7 +168,7 @@ export default function Mainform() {
         // results is an array of base64 encoded images
         setFormValues2((prevValues) => ({
           ...prevValues,
-          images_url: results,
+          images: results,
         }));
       })
       .catch((error) => {
@@ -215,7 +216,7 @@ export default function Mainform() {
           mode: 'cors',
           credentials: 'include',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
           body: JSON.stringify(formData),
         });

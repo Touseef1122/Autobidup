@@ -52,7 +52,7 @@ export default function Imagesstep4({ formValues, handleInputChange, errors }) {
               Upload Images
               <input               
                 type="file"
-                name="images_url"
+                name="images"
                 multiple="multiple"
                 accept="image/png, image/jpeg, image/jpg"
                 // target={formValues.images}

@@ -4,7 +4,7 @@
   },
   "include": [
     "src/**/*"
-, "pages/travel/Auction"  ],
+, "pages/travel/Auction", "pages/travel/testfile.js"  ],
   "exclude": [
     "node_modules",
     "**/node_modules/*"
