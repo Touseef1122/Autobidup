@@ -7,9 +7,52 @@ import { LoadingButton } from '@mui/lab';
 import Apply from '../../../src/assets/Images/apply.jpg';
 import Applying from '../../../src/assets/Images/applying.jpg';
 
-export default function Landing({bidId}) {
+export default function Landing({ bidId, bid_Id }) {
   const router = useRouter();
+  const [showModal, setShowModal] = React.useState(false); // State for controlling the modal visibility
+  const [roomAllotted, setRoomAllotted] = React.useState(false); // State for tracking if the room was allotted
+  const [alreadyAllotted, setAlreadyAllotted] = React.useState(false); // State for tracking if the room is already allotted
 
+  console.log(bid_Id);
+  const handleBiddingRoom = async () => {
+    try {
+      const response = await fetch(
+        'http://autobidup.pythonanywhere.com/bidding/allot_bidding_room',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ bids: bid_Id }),
+        }
+      );
+
+      if (response.ok) {
+        // API call successful
+        console.log('Bidding room allotted successfully');
+        setRoomAllotted(true); // Set the state to indicate that the room was allotted
+      } else if (response.status === 409) {
+        // Room already allotted
+        console.log('Room already allotted');
+        setAlreadyAllotted(true); // Set the state to indicate that the room is already allotted
+      } else {
+        // API call failed
+        console.error('Failed to allot bidding room');
+        setRoomAllotted(false); // Set the state to indicate that the room was not allotted
+      }
+    } catch (error) {
+      console.error('Error during API call:', error);
+      setRoomAllotted(false); // Set the state to indicate that the room was not allotted
+    } finally {
+      setShowModal(true); // Show the modal after API call completion
+    }
+  };
+
+  // Function to handle closing the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setAlreadyAllotted(false);
+  };
   return (
     <>
       <Grid container spacing={2} justifyContent="center" mt={3}>
@@ -53,9 +96,11 @@ export default function Landing({bidId}) {
               Verification form for vehicle verification.
             </Typography>
             <LoadingButton
-               onClick={() => router.push({
-                pathname: '/travel/Auction/formmini',
-              })}
+              onClick={() =>
+                router.push({
+                  pathname: '/travel/Auction/formmini',
+                })
+              }
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
@@ -92,7 +137,12 @@ export default function Landing({bidId}) {
               Posting form a vehicle for auction.
             </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/Auction/formmain')}
+              onClick={() => {
+                router.push({
+                  pathname: '/travel/Auction/formmain/',
+                  query: { id: bidId },
+                });
+              }}
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
@@ -127,12 +177,7 @@ export default function Landing({bidId}) {
               Apply for alot room for auction.
             </Typography>
             <LoadingButton
-              onClick={() => {
-                router.push({
-                  pathname: '/travel/Auction/formmain/',
-                  query: { id: bidId }
-                });
-              }}
+              onClick={handleBiddingRoom}
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
@@ -143,6 +188,36 @@ export default function Landing({bidId}) {
             </LoadingButton>
           </Box>
         </Grid>
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              {roomAllotted && <h2>Room Allotted Successfully</h2>}
+              {alreadyAllotted && <h2>Room Already Allotted</h2>}
+              {!roomAllotted && !alreadyAllotted && <h2>Room Not Allotted</h2>}
+              <button onClick={handleCloseModal}>Close</button>
+            </div>
+          </div>
+        )}
+        <style jsx>{`
+          .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+          }
+        `}</style>
       </Grid>
     </>
   );

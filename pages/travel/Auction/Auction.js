@@ -18,10 +18,6 @@ import AuctionCards from './Auctioncards';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 //images
-import Galviston from '../../../src/assets/images/bentley8.jpg';
-import Houston from '../../../src/assets/images/BMW3Series.jpg';
-import Dallas from '../../../src/assets/images/FordMustang.jpg';
-import Austin from '../../../src/assets/images/FordMinivan.jpg';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -36,31 +32,31 @@ export default function Displaycarlist({ posts }) {
   const router = useRouter();
   const { bidId } = router.query;
   const item = bidId;
-
-  // const [biddingid, setBidding] = useState(0);
-  // const updateBidding = (bidId) => {
-  //   setBidding(bidId);
-  // };
-  console.log('Bid Id', item);
+  const [bid_Id, setBid_Id] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         console.log('details fetching');
-        const response = await fetch('https://autobidup.pythonanywhere.com/bidding/record_details_username', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-        });
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/bidding/record_details_username',
+          {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
         if (response.ok) {
           // API call successful
           let responseData = await response.json();
-          // Value = responseData['call_credit'];
+          const automaticGeneratedBidId = responseData.automatic_generated_bid_id;
+          setBid_Id(automaticGeneratedBidId);
 
           console.log('response data', responseData);
+          console.log('Automatic Generated Bid ID:', automaticGeneratedBidId);
           console.log('customer details arrived succesfully');
         } else {
           // API call failed
@@ -75,13 +71,56 @@ export default function Displaycarlist({ posts }) {
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       console.log('details fetching');
+  //       const response = await fetch(
+  //         `https://autobidup.pythonanywhere.com/bidding/record_details_username?bidId=${encodeURIComponent(
+  //           bidId
+  //         )}`,
+  //         {
+  //           method: 'GET',
+  //           credentials: 'include',
+  //           headers: {
+  //             'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.ok) {
+  //         // API call successful
+  //         let responseData = await response.json();
+  //         const automaticGeneratedBidId = responseData.automatic_generated_bid_id;
+  //         setBid_Id(automaticGeneratedBidId);
+
+  //         console.log('response data', responseData);
+  //         console.log('Automatic Generated Bid ID:', automaticGeneratedBidId);
+  //         console.log('customer details arrived succesfully');
+  //       } else {
+  //         // API call failed
+  //         const errorData = await response.json();
+  //         // Handle the error data as needed
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, []);
+
+  const Id = bid_Id;
+
+  console.log('Bid ID:', bid_Id);
+
   return (
     <Page title="Auction | AutoBidUp">
       <RootStyle>
         <Loader />
         <ChatButton />
         <TravelLandingHero />
-        <Formcompo bidId={item} />
+        <Formcompo bidId={item} bid_Id={Id} />
         <AuctionCards />
       </RootStyle>
     </Page>
