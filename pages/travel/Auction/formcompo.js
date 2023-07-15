@@ -134,12 +134,7 @@ export default function Landing({bidId}) {
               Posting form a vehicle for auction.
             </Typography>
             <LoadingButton
-              onClick={() => {
-                router.push({
-                  pathname: '/travel/Auction/formmain/',
-                  query: { id: bidId }
-                });
-              }}
+             
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
