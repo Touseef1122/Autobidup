@@ -43,7 +43,7 @@ const style = {
 };
 const style2 = {
   position: 'absolute',
-  top: '57%',
+  top: '70%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '500px',
@@ -51,7 +51,19 @@ const style2 = {
   border: '1px solid #000',
   boxShadow: 24,
   p: 2,
-  height: '600px',
+  height: '640px',
+};
+const style3 = {
+  position: 'absolute',
+  top: '70%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '500px',
+  bgcolor: 'background.paper',
+  border: '1px solid #000',
+  boxShadow: 24,
+  p: 2,
+  height: '150px',
 };
 
 let map = '';
@@ -65,6 +77,7 @@ export default function Mechanicrequest() {
   const [latitude, setLatitude] = useState('');
   let [mechanicName, setMechanicName] = useState('');
   let [mechanicPhone, setMechanicPhone] = useState('');
+  let [updatedData, setUpdatedData] = useState('');
   map = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d435521.9537239478!2d74.00473096991998!3d31.482517977862887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190483e58107d9%3A0xc23abe6ccc7e2462!2sLahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1689331760317!5m2!1sen!2sus`;
   useState(() => {}, []);
 
@@ -74,6 +87,14 @@ export default function Mechanicrequest() {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [openError, setOpenError] = useState(false);
+  const handleOpenError = () => setOpenError(true);
+  const handleCloseError = () => setOpenError(false);
 
   const handleConfirmLocation = async () => {
     // Handle confirm location logic
@@ -117,10 +138,6 @@ export default function Mechanicrequest() {
     setLocation(event.target.value);
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const {
     reset,
     control,
@@ -140,34 +157,40 @@ export default function Mechanicrequest() {
     data.location = location;
     console.log('location', data.location);
     console.log('working');
-    // try {
-    //   console.log('checking login');
-    //   const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {
-    //     method: 'POST',
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+    setUpdatedData({
+      ...data,
+      location: String([location, latitude, longitude]),
+    });
+    console.log(updatedData);
+    
+    try {
+      console.log('Mechanic api calling');
+      const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/allot_mechanic', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
+      });
 
-    //   if (response.ok) {
-    //     // API call successful
-    //     const responseData = await response.json();
-    //     // mechanicId = responseData.Mechanic id
-    //     console.log(responseData.mechanic);
-    //     handleOpen()
-    //   } else {
-    //     // API call failed
-    //     const errorData = await response.json();
-    //     // Handle the error data as needed
-    //   }
-    // } catch (error) {
-    //   // Error occurred during the API call
-    //   console.error(error);
-    //   // Handle the error
-    // }
+      if (response.ok) {
+        // API call successful
+        const responseData = await response.json();
+        // mechanicId = responseData.Mechanic id;
+        console.log(responseData.mechanic);
+        handleOpen()
+      } else {
+        // API call failed
+        const errorData = await response.json();
+        // Handle the error data as needed
+      }
+    } catch (error) {
+      // Error occurred during the API call
+      console.error(error);
+      // Handle the error
+    }
   };
   useEffect(() => {
     console.log(mechanicId);
@@ -188,7 +211,7 @@ export default function Mechanicrequest() {
           let responseData = await response.json();
           mechanicId = responseData['alloted_mechanic'];
           console.log(mechanicId);
-          fetchData1(mechanicId);
+          // fetchData1(mechanicId);
           console.log('response data', responseData);
           console.log('customer details arrived succesfully');
         } else {
@@ -200,13 +223,61 @@ export default function Mechanicrequest() {
         console.error('Error fetching data:', error);
       }
     }
-    async function fetchData1(mechanicId) {
+
+    fetchData();
+  }, []);
+
+  const handleMechanic = async () => {
+    console.log(mechanicId);
+    if (mechanicId) {
+      async function fetchData1(mechanicId) {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            `https://autobidup.pythonanywhere.com/mechanic/search_mechanic?search=${mechanicId}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              credentials: 'include',
+            }
+          );
+
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            setMechanicName(responseData[0].name);
+            setMechanicPhone(responseData[0].phone_no);
+            console.log('mechanic', responseData);
+            console.log('mechanic details arrived succesfully');
+            // if (mechanicName && mechanicPhone) {
+            handleOpen();
+            // }
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData1(mechanicId);
+    } else {
+      console.log('hellllll');
+      
+      handleOpenError()
+    }
+  };
+  const handleRemove = async () => {
+    async function fetchData() {
       try {
         console.log('details fetching');
         const response = await fetch(
-          `https://autobidup.pythonanywhere.com/mechanic/search_mechanic?search=${mechanicId}`,
+          `https://autobidup.pythonanywhere.com/mechanic/remove_mechanic`,
           {
-            method: 'GET',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -217,13 +288,10 @@ export default function Mechanicrequest() {
         if (response.ok) {
           // API call successful
           let responseData = await response.json();
-          setMechanicName(responseData[0].name);
-          setMechanicPhone(responseData[0].phone_no);
+
           console.log('mechanic', responseData);
-          console.log('mechanic details arrived succesfully');
-          // if (mechanicName && mechanicPhone) {
-          handleOpen();
-          // }
+          console.log('mechanic removed succesfully');
+          mechanicId = ''
         } else {
           // API call failed
           const errorData = await response.json();
@@ -233,8 +301,8 @@ export default function Mechanicrequest() {
         console.error('Error fetching data:', error);
       }
     }
-    fetchData();
-  }, []);
+    fetchData()
+  }
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }} style={styling}>
       <Container
@@ -326,6 +394,9 @@ export default function Mechanicrequest() {
                 <Button variant="contained" onClick={handleConfirmLocation}>
                   Confirm
                 </Button>
+                <Button variant="contained" onClick={handleModalClose}>
+                  Close
+                </Button>
               </Stack>
             </Box>
           </Modal>
@@ -386,6 +457,23 @@ export default function Mechanicrequest() {
           >
             Submit
           </LoadingButton>
+          <LoadingButton
+            sx={{
+              mt: 1,
+              float: 'left',
+              width: '30%',
+              backgroundColor: 'black',
+              color: 'white',
+              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+            }}
+            size="large"
+            variant="contained"
+            // loading={isSubmitting}
+            // type="submit"
+            onClick={handleMechanic}
+          >
+            Check Status Of Mechanic
+          </LoadingButton>
           <Modal
             open={open}
             onClose={handleClose}
@@ -425,7 +513,47 @@ export default function Mechanicrequest() {
                   width: '100%',
                   mt: 1,
                 }}
+                // onClick={handleRemove}
+              >
+                Remove Mechanic
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                  width: '100%',
+                  mt: 3,
+                }}
                 onClick={handleClose}
+              >
+                Close
+              </Button>
+            </Box>
+          </Modal>
+          <Modal
+            open={openError}
+            onClose={handleCloseError}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              position: 'unset !important',
+            }}
+          >
+            <Box sx={style3}>
+              <Typography id="modal-modal-title" variant="h4" component="h2">
+                Submit form First Thank You!
+              </Typography>
+
+              <Button
+                sx={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                  width: '100%',
+                  mt: 3,
+                }}
+                onClick={handleCloseError}
               >
                 Close
               </Button>

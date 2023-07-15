@@ -140,7 +140,7 @@ export default function Landing({ bidId, bid_Id }) {
               onClick={() => {
                 router.push({
                   pathname: '/travel/Auction/formmain/',
-                  query: { id: bidId },
+                  query: { id: bidId }
                 });
               }}
               sx={{

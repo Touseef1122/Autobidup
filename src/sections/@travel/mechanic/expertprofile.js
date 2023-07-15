@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { useRouter } from 'next/router';
 
 import {Image } from '../../../components';
 import image from '../../../Assets/Images/expert2.jpg';
@@ -39,20 +40,8 @@ export default function Expertprofile() {
              {item.description}
             </Typography>
           </Box>
-          <Typography variant="h3">Skills</Typography>
-          <Box sx={{ p: 4, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 2 }}>
-            <List
-              sx={{
-                listStyleType: 'disc',
-                '& .MuiListItem-root': {
-                  display: 'list-item',
-                },
-              }}
-            >
-              <ListItem>{item.skills}</ListItem>
-              <ListItem>Your search </ListItem>
-            </List>
-          </Box>
+          
+        
         </Grid>
         <Grid item xs={12} sm={8}>
           <Box sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 2 }}>
@@ -73,7 +62,21 @@ export default function Expertprofile() {
               </Typography>
             </Stack>
           </Box>
-          <Comments/>
+          {/* <Comments/> */}
+          <Typography variant="h3">Skills</Typography>
+          <Box sx={{ p: 4, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', m: 2 }}>
+            <List
+              sx={{
+                listStyleType: 'disc',
+                '& .MuiListItem-root': {
+                  display: 'list-item',
+                },
+              }}
+            >
+              <ListItem>{item.skills}</ListItem>
+              <ListItem>Your search </ListItem>
+            </List>
+          </Box>
         </Grid>
       </Grid>
       {/* ))}  */}
