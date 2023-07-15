@@ -92,7 +92,12 @@ export default function Landing({bidId}) {
               Posting form a vehicle for auction.
             </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/Auction/formmain')}
+              onClick={() => {
+                router.push({
+                  pathname: '/travel/Auction/formmain/',
+                  query: { id: bidId }
+                });
+              }}
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
@@ -127,12 +132,7 @@ export default function Landing({bidId}) {
               Apply for alot room for auction.
             </Typography>
             <LoadingButton
-              onClick={() => {
-                router.push({
-                  pathname: '/travel/Auction/formmain/',
-                  query: { id: bidId }
-                });
-              }}
+             
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',

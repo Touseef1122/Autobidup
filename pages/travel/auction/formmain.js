@@ -47,7 +47,8 @@ export default function Formmain({ posts }) {
   if (error) {
     return <ErrorScreen />;
   }
-
+  // const { bidId } = router.query;
+  // const item = bidId;
   return (
     <Page title="Consignor Main Form">
       <Loader />
