@@ -11,8 +11,9 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 // sections
 import { styled } from '@mui/material/styles';
 import { TravelLandingHero } from '../../../src/sections/@travel';
+import { useRouter } from 'next/router';
 
-import Formcompo from '../auction/formcompo';
+import Formcompo from './formcompo';
 import AuctionCards from './Auctioncards';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
@@ -32,35 +33,56 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 export default function Displaycarlist({ posts }) {
-  const [data, setData] = useState([]);
+  const router = useRouter();
+  const { bidId } = router.query;
+  const item = bidId;
+
+  // const [biddingid, setBidding] = useState(0);
+  // const updateBidding = (bidId) => {
+  //   setBidding(bidId);
+  // };
+  console.log('Bid Id', item);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const response = await fetch('https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars');
-        const jsonData = await response.json();
-      
-        console.log(jsonData);
-        setData(jsonData);
-        console.log(data);
-        console.log('created');
+        console.log('details fetching');
+        const response = await fetch('https://autobidup.pythonanywhere.com/bidding/record_details_username', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          // Value = responseData['call_credit'];
+
+          console.log('response data', responseData);
+          console.log('customer details arrived succesfully');
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    };
+    }
 
     fetchData();
   }, []);
-  console.log(data);
-  var list = data;
+
   return (
     <Page title="Auction | AutoBidUp">
       <RootStyle>
         <Loader />
         <ChatButton />
         <TravelLandingHero />
-        <Formcompo />
-        <AuctionCards data={data} />
+        <Formcompo bidId={item} />
+        <AuctionCards />
       </RootStyle>
     </Page>
   );

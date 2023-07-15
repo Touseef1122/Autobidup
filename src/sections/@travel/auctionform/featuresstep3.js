@@ -19,114 +19,101 @@ import {
   Container,
   MenuItem,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
+
 // ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
+
 const check = [
   {
     value: '1',
-    label: 'Air bags',
+    label: 'Airbagsx',
   },
   {
     value: '2',
-    label: 'Cup holder',
+    label: 'Acx',
   },
   {
     value: '3',
-    label: 'Air conditioner',
+    label: 'Alloy_wheelsx',
   },
   {
     value: '4',
-    label: 'Folding rear seat',
+    label: 'Antibrakingsystemx',
   },
   {
     value: '5',
-    label: 'Anti lock braking system',
+    label: 'Cool_boxx',
   },
   {
     value: '6',
-    label: 'Alloy wheels',
+    label: 'Folding_seatsx',
   },
   {
     value: '7',
-    label: 'Immobilizer',
+    label: 'Immoblizerx',
   },
   {
     value: '8',
-    label: 'Coolbox',
-  },
-  {
-    value: '9',
-    label: 'Power door locks',
+    label: 'Power_door_locksx',
   },
 ];
-Featuresstep3.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
-  services: Yup.array().required().min(1, 'Services field must have at least 1 items'),
-  email: Yup.string().required('Email is required').email('That is not an email'),
-  compnany: Yup.string().required('Compnany is required'),
-  website: Yup.string().required('Website is required'),
-});
 
-export default function Featuresstep3({ tours, icons, services }) {
-  const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
-    defaultValues: {
-      services: [],
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      compnany: '',
-      website: '',
-      budget: [2000, 10000],
-      message: '',
-    },
-  });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  const [show, setShow] = useState(false);
+const enginetype = [
+  {
+    value: '1',
+    label: 'Petrol',
+  },
+  {
+    value: '2',
+    label: 'Diesal',
+  },
+  {
+    value: '3',
+    label: 'CNG',
+  },
+];
+const engineCapacity = [
+  {
+    value: '1',
+    label: '1000',
+  },
+  {
+    value: '2',
+    label: '1200',
+  },
+  {
+    value: '3',
+    label: '1500',
+  },
+  {
+    value: '4',
+    label: '2000',
+  },
+];
+const transmission = [
+  {
+    value: '1',
+    label: 'Automatic',
+  },
+  {
+    value: '2',
+    label: 'Manual',
+  },
+];
+const assembly = [
+  {
+    value: '1',
+    label: 'Local',
+  },
+  {
+    value: '2',
+    label: 'Imported',
+  },
+];
+export default function Featuresstep3({ formValues, handleInputChange,formValues1p1, handleInputChange1p1, errors }) {
+
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
@@ -138,93 +125,80 @@ export default function Featuresstep3({ tours, icons, services }) {
           </Typography>
           <Box
             sx={{
-              
               mr: { md: '25%' },
             }}
           >
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="Request"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Engine Type *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-
-              <Controller
-                name="Request"
+              <TextField
+                id="outlined-select-currency"
+                select
+                name="engine_typex"
+                label="Engine Type *"
+                value={formValues.engine_typex}
+                onChange={handleInputChange}
+                error={!!errors.engine_typex}
+                helperText={errors.engine_typex}
                 sx={{ width: '100%' }}
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Engine Capacity *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
+              >
+                {enginetype.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Engine Capacity *"
+                name="engine_capacityx"
+                value={formValues.engine_capacityx}
+                onChange={handleInputChange}
+                error={!!errors.engine_capacityx}
+                helperText={errors.engine_capacityx}
+                sx={{ width: '100%' }}
+              >
+                {engineCapacity.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Stack>
             <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-              <Controller
-                name="Request"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Transmission *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
-
-              <Controller
-                name="Request"
+            <TextField
+                id="outlined-select-currency"
+                select
+                label="Transmission *"
+                name="transmissionx"
+                value={formValues.transmissionx}
+                onChange={handleInputChange}
+                error={!!errors.transmissionx}
+                helperText={errors.transmissionx}
                 sx={{ width: '100%' }}
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <TextField
-                    id="outlined-select-currency"
-                    select
-                    label="Assembly *"
-                    sx={{ width: '100%' }}
-                    size="small"
-                  >
-                    {currencie.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                )}
-              />
+              >
+                {transmission.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                id="outlined-select-currency"
+                select
+                label="Assembly *"
+                name="assemblyx"
+                value={formValues.assemblyx}
+                onChange={handleInputChange}
+                error={!!errors.assemblyx}
+                helperText={errors.assemblyx}
+                sx={{ width: '100%' }}
+              >
+                {assembly.map((option) => (
+                  <MenuItem key={option.value} value={option.label}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Stack>
           </Box>
           <Typography variant="h5" mb="6" fontWeight="bold">
@@ -243,15 +217,17 @@ export default function Featuresstep3({ tours, icons, services }) {
             }}
           >
             {check.map((option) => (
-              <FormControlLabel
-                sx={{}}
-                control={<Checkbox name={option.label} sx={{}} />}
-                label={option.label}
-              />
+              <span key={option.value}>
+                <Checkbox
+                  name={option.label.toLowerCase()}
+                  checked={formValues1p1[option.label.toLowerCase()]}
+                  onChange={handleInputChange1p1}
+                />
+                {option.label}
+              </span>
             ))}
           </Box>
         </Box>
-        {/* </form> */}
       </Container>
     </Box>
   );
