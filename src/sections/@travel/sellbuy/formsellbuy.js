@@ -209,7 +209,9 @@ export default function Formsellbuy() {
     } else if (isValid4 && actStep == 3) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } 
-   
+    // else if (isValid5 && actStep == 4) {
+    //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // }
   };
 
   const handleBack = () => {

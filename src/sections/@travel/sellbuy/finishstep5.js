@@ -16,16 +16,7 @@ import {
   Container,
   MenuItem,
 } from '@mui/material';
-import { blogTitle } from '_data/mock/text';
-
-const FormSchema = Yup.object().shape({
-  phone: Yup.array()
-    .required()
-    .min(11, 'Phone number should of 11 digits')
-    .max(11, 'Phone number should of 11 digits'),
-  name: Yup.string().required('Name is required'),
-});
-
+//------------------------------------------------------------------------------------
 export default function Finishstep5({ formValues, handleInputChange, errors }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>

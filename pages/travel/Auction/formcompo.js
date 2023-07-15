@@ -7,8 +7,9 @@ import { LoadingButton } from '@mui/lab';
 import Apply from '../../../src/assets/Images/apply.jpg';
 import Applying from '../../../src/assets/Images/applying.jpg';
 
-export default function Landing() {
+export default function Landing({bidId}) {
   const router = useRouter();
+
   return (
     <>
       <Grid container spacing={2} justifyContent="center" mt={3}>
@@ -52,7 +53,9 @@ export default function Landing() {
               Verification form for vehicle verification.
             </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/Auction/formmini')}
+               onClick={() => router.push({
+                pathname: '/travel/Auction/formmini',
+              })}
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',
@@ -126,7 +129,12 @@ export default function Landing() {
               Posting form a vehicle for auction.
             </Typography>
             <LoadingButton
-              onClick={() => router.push('/travel/Auction/formmain')}
+              onClick={() => {
+                router.push({
+                  pathname: '/travel/Auction/formmain/',
+                  query: { id: bidId }
+                });
+              }}
               sx={{
                 border: '1px solid #FFBE00 ',
                 color: '#FFBE00',

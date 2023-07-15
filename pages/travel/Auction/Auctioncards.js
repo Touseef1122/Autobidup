@@ -55,9 +55,7 @@ const DotStyle = styled('span')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-BlogMarketingLatestPosts.propTypes = {
-  posts: PropTypes.array.isRequired,
-};
+
 const items = [
   {
     image: img1,
@@ -73,13 +71,32 @@ const items = [
   },
 ];
 
-export default function BlogMarketingLatestPosts({ data }) {
-  console.log('data here', data);
+export default function BlogMarketingLatestPosts({  }) {
+  // console.log('data here', data);
   const theme = useTheme();
   const router = useRouter();
-  const value = {
-    bid_time: 3600, // Replace with the actual value from the API response
-  };
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars'
+        );
+        const jsonData = await response.json();
+        console.log(jsonData);
+        setData(jsonData);
+        console.log(data);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(data);
+
   const carouselRef = useRef(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
