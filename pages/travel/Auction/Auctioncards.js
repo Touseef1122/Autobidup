@@ -77,6 +77,7 @@ export default function BlogMarketingLatestPosts({  }) {
   const router = useRouter();
 
   const [data, setData] = useState([]);
+  const [room, setRoom] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,6 +89,14 @@ export default function BlogMarketingLatestPosts({  }) {
         console.log(jsonData);
         setData(jsonData);
         console.log(data);
+        for (let i = 0; i < jsonData.length; i++) {
+          if (jsonData[i].room_id_alloted) {
+            setRoom(jsonData[i].room_id) 
+            break; // Exit the loop once a match is found
+          }
+        }
+        console.log("room",room);
+        
         console.log('created');
       } catch (error) {
         console.error('Error fetching data:', error);
