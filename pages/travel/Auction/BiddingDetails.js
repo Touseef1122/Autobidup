@@ -16,13 +16,13 @@ import Loader from '../UsedCars/Loader.js';
 // components
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
+import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import {
   CarouselAuction,
   Contactinfo,
   TravelTourDetailsAuction,
 } from '../../../src/sections/@travel/displaymaincar';
-// import {  } from '../../../src/sections/@travel';
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -32,14 +32,13 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-// ----------------------------------------------------------------------
-
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
 
 export default function Displaycardetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
+  
+  const router = useRouter();
+  const { bidId } = router.query;
+  const item = bidId ? JSON.parse(bidId) : null;
 
   if (error) {
     return <ErrorScreen />;
@@ -72,24 +71,16 @@ export default function Displaycardetails({ posts }) {
             <TravelTourDetailsAuction />
           </Grid>
           <Grid item xs={12} sm={5}>
-            {/* <Box><TravelTourDetails /></Box> */}
           </Grid>
         </Grid>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );
 }
 
-//-------------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
-
 Displaycardetails.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
-
-// ----------------------------------------------------------------------
 
 export async function getStaticProps() {
   return {
