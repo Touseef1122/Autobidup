@@ -81,21 +81,26 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          'https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars'
+          'https://autobidup.pythonanywhere.com/bidding/cars_with_room_id'
         );
         const jsonData = await response.json();
-        console.log(jsonData);
-        for (let i = 0; i < jsonData.length; i++) {
-          console.log('entered');
+        console.log(jsonData, jsonData.length);
+        // for (let i = 0; i < jsonData.length; i++) {
+        //   console.log('entered');
           
-          if (jsonData[i].room_id_alloted) {
+        //   if (jsonData[i].room_id_alloted) {
+        //     console.log('checking');
             
-            setData([jsonData[i]]);
-            // setRoom([jsonData[i].room_id]) 
-            break; 
-          }
-        }
-        // setData(jsonData)
+        //     setData(jsonData[i]);
+        //     // setRoom([jsonData[i].room_id]) 
+        //     // break; 
+        //   }
+        //   else{
+        //     console.log('nope');
+            
+        //   }
+        // }
+        setData(jsonData)
         // console.log("room",room);       
         console.log('created');
       } catch (error) {
@@ -116,7 +121,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
     const carouselSettings = {
       dots: true,
       arrows: false,
-      slidesToShow: 3,
+      slidesToShow: 2,
       slidesToScroll: 1,
       rtl: Boolean(theme.direction === 'rtl'),
       ...CarouselDots(),
@@ -200,10 +205,9 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
               }}
             >
               <Slider ref={carouselRef} {...carouselSettings}>
-              {/* {data.length > 0 ? ( */}
                 {data?.map((value) => (
                   <Box
-                  key={value.automatic_generated_bid_id}
+                  
                     sx={{
                       px: 2,
                       py: { xs: 3, md: 4 },
@@ -216,8 +220,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                         sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                       >
                         <ReverseCounter bid={value.bid_time} />
-
-                        <Image src={value.image} sx={{ width: '100%', height: '200px' }} />
+                        <Image src={value.images[1].image_url} sx={{ width: '100%', height: '200px' }} />
                         <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                         <Typography variant="h6">{value.year}</Typography>
                         <Stack direction="row" justifyContent="space-between">
@@ -314,11 +317,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                     </Modal> */}
                     </Box>
                   </Box>
-                ))
-                // ) : (
-                //   <p>No data available</p>
-                // )
-                }
+                ))}
               </Slider>
             </CarouselArrows>
           </Box>
