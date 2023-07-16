@@ -54,8 +54,7 @@ export default function Mainform() {
     // armrestsx: false,
   });
   const [formValues2, setFormValues2] = useState({
-    images
-    : [],
+    images: [],
   });
   const [formValues3, setFormValues3] = useState({
     ad_titlex: '',
@@ -123,8 +122,8 @@ export default function Mainform() {
     const isValid1 = validateForm(actStep);
     const isValid2 = validateForm(actStep);
     if (isValid1 && actStep == 0) {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }else if (isValid2 && actStep == 1) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else if (isValid2 && actStep == 1) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
@@ -141,10 +140,11 @@ export default function Mainform() {
   const handleInputChange1p1 = (e) => {
     const value = e.target.checked;
     const name = e.target.name;
+    const capitalizedValue = value ? 'True' : 'False';
 
     setFormValues1p1((prevValues) => ({
       ...prevValues,
-      [name]: value,
+      [name]: capitalizedValue,
     }));
   };
   const handleInputChange2 = (e) => {
@@ -168,7 +168,7 @@ export default function Mainform() {
         // results is an array of base64 encoded images
         setFormValues2((prevValues) => ({
           ...prevValues,
-          images: results,
+          images: [...prevValues.images, ...results],
         }));
       })
       .catch((error) => {
@@ -199,14 +199,14 @@ export default function Mainform() {
       ...formValues1p1,
       ...formValues2,
       ...formValues3,
-      bids : item
+      bids: item,
       // created_at: formattedDate,
     });
   }, [formValues1, formValues1p1, formValues2, formValues3]);
 
   const handleSubmit = async () => {
     console.log('Form Data', formData);
-    if (validateForm(2)){
+    if (validateForm(2)) {
       console.log('submitteeedddd now');
       console.log(formData);
       try {
