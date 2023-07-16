@@ -105,14 +105,14 @@ export default function BlogMarketingLatestPosts({  }) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
     responsive: [
       {
         breakpoint: theme.breakpoints.values.md,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: 3 },
       },
       {
         breakpoint: theme.breakpoints.values.sm,
@@ -162,7 +162,7 @@ export default function BlogMarketingLatestPosts({  }) {
                 >
                   <Box>
                     <Box
-                      // onClick={handleOpen}
+                      onClick={handleOpen}
                       
                       sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                     >
@@ -187,7 +187,7 @@ export default function BlogMarketingLatestPosts({  }) {
                         PKR {value.starting_bid}
                       </Typography>
                     </Box>
-                    {/* <Modal
+                    <Modal
                       open={open}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
@@ -262,7 +262,7 @@ export default function BlogMarketingLatestPosts({  }) {
                           Close
                         </Button>
                       </Box>
-                    </Modal> */}
+                    </Modal>
                   </Box>
                 </Box>
               ))}
