@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 import { useRouter } from 'next/router';
-
 // @mui
 import { Container, Grid, Box } from '@mui/material';
 // utils
@@ -24,7 +23,7 @@ import {
   Contactinfo,
   TravelTourDetailsAuction,
 } from '../../../src/sections/@travel/displaymaincar';
-
+// import {  } from '../../../src/sections/@travel';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -32,24 +31,19 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-
-
+// ----------------------------------------------------------------------
+// Registerchauffeur.propTypes = {
+//   posts: PropTypes.array.isRequired,
+// };
 export default function Displaycardetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
-  
-  const router = useRouter();
-  const { bidId } = router.query;
-  const item = bidId ? JSON.parse(bidId) : null;
-
   if (error) {
     return <ErrorScreen />;
   }
-
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
   console.log('bidding item', item);
-
   return (
     <Page title="Auction">
       <Loader />
@@ -83,11 +77,12 @@ export default function Displaycardetails({ posts }) {
     </Page>
   );
 }
-
+//-------------------------------------------------------------------------------
+// ----------------------------------------------------------------------
 Displaycardetails.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
-
+// ----------------------------------------------------------------------
 export async function getStaticProps() {
   return {
     props: {
