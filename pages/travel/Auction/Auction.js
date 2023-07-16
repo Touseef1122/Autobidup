@@ -33,6 +33,8 @@ export default function Displaycarlist({ posts }) {
   const { bidId } = router.query;
   const item = bidId;
   const [bid_Id, setBid_Id] = useState(null);
+  const [dataID, setdataID] = React.useState(false); // State for tracking if the room is already allotted
+
 
   useEffect(() => {
     async function fetchData() {
@@ -113,7 +115,13 @@ export default function Displaycarlist({ posts }) {
   const Id = bid_Id;
 
   console.log('Bid ID:', bid_Id);
-
+  // const [leftCalls, setLeftCalls] = useState('');
+  // const updateLeftCalls = (calls) => {
+  //   setLeftCalls(calls);
+  // };
+  // if(leftCalls != ''){
+  //   console.log(leftCalls)
+  // }
   return (
     <Page title="Auction | AutoBidUp">
       <RootStyle>
@@ -121,7 +129,7 @@ export default function Displaycarlist({ posts }) {
         <ChatButton />
         <TravelLandingHero />
         <Formcompo bidId={item} bid_Id={Id} />
-        <AuctionCards />
+        <AuctionCards bid_Id={Id} />
       </RootStyle>
     </Page>
   );

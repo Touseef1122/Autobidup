@@ -55,7 +55,6 @@ const DotStyle = styled('span')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-
 const items = [
   {
     image: img1,
@@ -71,8 +70,7 @@ const items = [
   },
 ];
 
-export default function BlogMarketingLatestPosts({  }) {
-  // console.log('data here', data);
+export default function BlogMarketingLatestPosts({ bid_Id }) {
   const theme = useTheme();
   const router = useRouter();
 
@@ -106,97 +104,129 @@ export default function BlogMarketingLatestPosts({  }) {
   }, []);
   console.log(data);
 
-  const carouselRef = useRef(null);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  const carouselSettings = {
-    dots: true,
-    arrows: false,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    rtl: Boolean(theme.direction === 'rtl'),
-    ...CarouselDots(),
-    responsive: [
-      {
-        breakpoint: theme.breakpoints.values.md,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: theme.breakpoints.values.sm,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
+    const carouselRef = useRef(null);
+    const [open, setOpen] = useState(false);
+    const [alloted, setAlloted] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
-  const handlePrevious = () => {
-    carouselRef.current?.slickPrev();
-  };
+    const carouselSettings = {
+      dots: true,
+      arrows: false,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      rtl: Boolean(theme.direction === 'rtl'),
+      ...CarouselDots(),
+      responsive: [
+        {
+          breakpoint: theme.breakpoints.values.md,
+          settings: { slidesToShow: 3 },
+        },
+        {
+          breakpoint: theme.breakpoints.values.sm,
+          settings: { slidesToShow: 1 },
+        },
+      ],
+    };
 
-  const handleNext = () => {
-    carouselRef.current?.slickNext();
-  };
+    const handleOpenRoom = async () => {
+      try {
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
+          {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ bids: alloted }),
+          }
+        );
 
-  return (
-    <RootStyle>
-      <Container>
-        <Typography
-          variant="h3"
-          paddingTop={'100px'}
-          sx={{
-            textAlign: 'center',
-          }}
-        >
-          Cars Available for Auction{' '}
-        </Typography>
-        <Box sx={{ position: 'relative' }}>
-          <CarouselArrows
-            onNext={handleNext}
-            onPrevious={handlePrevious}
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log(responseData)
+          s
+          console.log('Bidding room Enterence successfully');
+          router.push('/travel/Auction/BiddingDetails')
+        } else {
+          // API call failed
+          console.error('Failed to Enter bidding room');
+        }
+      } catch (error) {
+        console.error('Error during API call:', error);
+      }
+    };
+    const handlePrevious = () => {
+      carouselRef.current?.slickPrev();
+    };
+
+    const handleNext = () => {
+      carouselRef.current?.slickNext();
+    };
+
+    return (
+      <RootStyle>
+        <Container>
+          <Typography
+            variant="h3"
+            paddingTop={'100px'}
             sx={{
-              '& .arrow': {
-                '&.left': { left: -20 },
-                '&.right': { right: -20 },
-              },
+              textAlign: 'center',
             }}
           >
-            <Slider ref={carouselRef} {...carouselSettings}>
-              {data?.map((value) => (
-                <Box
-                  sx={{
-                    px: 2,
-                    py: { xs: 3, md: 4 },
-                  }}
-                >
-                  <Box>
-                    <Box
-                      onClick={handleOpen}
-                      
-                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
-                    >
-                      <ReverseCounter bid={value.bid_time} />
+            Cars Available for Auction{' '}
+          </Typography>
+          <Box sx={{ position: 'relative' }}>
+            <CarouselArrows
+              onNext={handleNext}
+              onPrevious={handlePrevious}
+              sx={{
+                '& .arrow': {
+                  '&.left': { left: -20 },
+                  '&.right': { right: -20 },
+                },
+              }}
+            >
+              <Slider ref={carouselRef} {...carouselSettings}>
+                {data.map((value) => (
+                  <Box
+                    sx={{
+                      px: 2,
+                      py: { xs: 3, md: 4 },
+                    }}
+                  >
+                    <Box>
+                      <Box
+                        // onClick={handleOpen}
+                        onClick={handleOpenRoom}
+                        sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                      >
+                        <ReverseCounter bid={value.bid_time} />
 
-                      <Image src={value.images} sx={{ width: '100%', height: '200px' }} />
-                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
-                      <Typography variant="h6">{value.year}</Typography>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.car_location}
+                        <Image src={value.image} sx={{ width: '100%', height: '200px' }} />
+                        <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
+                        <Typography variant="h6">{value.year}</Typography>
+                        <Stack direction="row" justifyContent="space-between">
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.car_location}
+                          </Typography>
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.mileage}
+                          </Typography>
+                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            {value.engine_type}
+                          </Typography>
+                        </Stack>
+                        <Typography variant="h4" color="#CE9A00">
+                          {' '}
+                          PKR {value.starting_bid}
                         </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.mileage}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.engine_type}
-                        </Typography>
-                      </Stack>
-                      <Typography variant="h4" color="#CE9A00">
-                        {' '}
-                        PKR {value.starting_bid}
-                      </Typography>
-                    </Box>
-                    <Modal
+                      </Box>
+                      {/* <Modal
                       open={open}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
@@ -271,14 +301,15 @@ export default function BlogMarketingLatestPosts({  }) {
                           Close
                         </Button>
                       </Box>
-                    </Modal>
+                    </Modal> */}
+                    </Box>
                   </Box>
-                </Box>
-              ))}
-            </Slider>
-          </CarouselArrows>
-        </Box>
-      </Container>
-    </RootStyle>
-  );
+                ))}
+              </Slider>
+            </CarouselArrows>
+          </Box>
+        </Container>
+      </RootStyle>
+    );
+  
 }
