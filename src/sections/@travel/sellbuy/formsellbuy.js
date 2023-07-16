@@ -247,18 +247,46 @@ export default function Formsellbuy() {
       [name]: value,
     }));
   };
+  // const handleInputChange4 = (e) => {
+  //   var reader = new FileReader();
+  //   var file = e.target.files[0];
+  //   console.log(e);
+  //   reader.onload = () => {
+  //     // console.log(reader.result);
+  //     setFormValues4((prevValues) => ({
+  //       ...prevValues,
+  //       images: reader.result,
+  //     }));
+  //   };
+  //   reader.readAsDataURL(e.target.files[0]);
+  // };
   const handleInputChange4 = (e) => {
-    var reader = new FileReader();
-    var file = e.target.files[0];
-    console.log(e);
-    reader.onload = () => {
-      // console.log(reader.result);
-      setFormValues4((prevValues) => ({
-        ...prevValues,
-        images: reader.result,
-      }));
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    const files = e.target.files;
+    const imageArray = Array.from(files);
+    Promise.all(
+      imageArray.map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            resolve(event.target.result);
+          };
+          reader.onerror = (error) => {
+            reject(error);
+          };
+          reader.readAsDataURL(file);
+        });
+      })
+    )
+      .then((results) => {
+        // results is an array of base64 encoded images
+        setFormValues2((prevValues) => ({
+          ...prevValues,
+          images: [...prevValues.images, ...results],
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   const handleInputChange5 = (e) => {
     const { name, value } = e.target;

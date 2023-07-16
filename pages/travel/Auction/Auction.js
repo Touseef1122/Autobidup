@@ -90,6 +90,8 @@ export default function Displaycarlist({ posts }) {
   );
 }
 
+// ----------------------------------------------------------------------
+
 Displaycarlist.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };

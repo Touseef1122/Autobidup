@@ -75,7 +75,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
   const router = useRouter();
 
   const [data, setData] = useState([]);
-  console.log(bid_Id);
+  const [room, setRoom] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,8 +85,18 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
         );
         const jsonData = await response.json();
         console.log(jsonData);
-        setData(jsonData);
-        console.log(data);
+        for (let i = 0; i < jsonData.length; i++) {
+          console.log('entered');
+          
+          if (jsonData[i].room_id_alloted) {
+            
+            setData([jsonData[i]]);
+            // setRoom([jsonData[i].room_id]) 
+            break; 
+          }
+        }
+        // setData(jsonData)
+        // console.log("room",room);       
         console.log('created');
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -94,7 +104,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
     };
     fetchData();
   }, []);
-  console.log(data);
+  console.log("data",data, data.length);
 
   const carouselRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -126,13 +136,46 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
       const response = await fetch(
         'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
         {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ bids: alloted }),
+          breakpoint: theme.breakpoints.values.md,
+          settings: { slidesToShow: 3 },
+        },
+        {
+          breakpoint: theme.breakpoints.values.sm,
+          settings: { slidesToShow: 1 },
+        },
+      ],
+    };
+
+    const handleOpenRoom = async (roomid) => {
+      console.log('Working');
+      
+      try {
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
+          {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ bids: roomid }),
+          }
+        );
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log(responseData)
+
+          console.log('Bidding room Enterence successfully');
+          router.push({
+            pathname: '/travel/Auction/BiddingDetails',
+            query: { data: JSON.stringify(bid_Id) },
+          });
+        } else {
+          // API call failed
+          console.error('Failed to Enter bidding room');
         }
       );
 
@@ -149,13 +192,11 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
         // API call failed
         console.error('Failed to Enter bidding room');
       }
-    } catch (error) {
-      console.error('Error during API call:', error);
-    }
-  };
-  const handlePrevious = () => {
-    carouselRef.current?.slickPrev();
-  };
+    };
+
+    const handlePrevious = () => {
+      carouselRef.current?.slickPrev();
+    };
 
   const handleNext = () => {
     carouselRef.current?.slickNext();
@@ -184,20 +225,36 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
               },
             }}
           >
-            <Slider ref={carouselRef} {...carouselSettings}>
-              {data.map((value) => (
-                <Box
-                  sx={{
-                    px: 2,
-                    py: { xs: 3, md: 4 },
-                  }}
-                >
-                  <Box>
-                    <Box
-                      onClick={() => handleOpenRoom(value.bid_Id)} // Call the handleOpenRoom function with the bid_Id
-                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
-                    >
-                      <ReverseCounter bid={value.bid_time} />
+            Cars Available for Auction{' '}
+          </Typography>
+          <Box sx={{ position: 'relative' }}>
+            <CarouselArrows
+              onNext={handleNext}
+              onPrevious={handlePrevious}
+              sx={{
+                '& .arrow': {
+                  '&.left': { left: -20 },
+                  '&.right': { right: -20 },
+                },
+              }}
+            >
+              <Slider ref={carouselRef} {...carouselSettings}>
+              {/* {data.length > 0 ? ( */}
+                {data?.map((value) => (
+                  <Box
+                  key={value.automatic_generated_bid_id}
+                    sx={{
+                      px: 2,
+                      py: { xs: 3, md: 4 },
+                    }}
+                  >
+                    <Box>
+                      <Box
+                        // onClick={handleOpen}
+                        onClick={() => handleOpenRoom(value.room_id)}
+                        sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                      >
+                        <ReverseCounter bid={value.bid_time} />
 
                       <Image src={value.image} sx={{ width: '100%', height: '200px' }} />
                       <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
@@ -295,12 +352,16 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                       </Box>
                     </Modal> */}
                   </Box>
-                </Box>
-              ))}
-            </Slider>
-          </CarouselArrows>
-        </Box>
-      </Container>
-    </RootStyle>
-  );
+                ))
+                // ) : (
+                //   <p>No data available</p>
+                // )
+                }
+              </Slider>
+            </CarouselArrows>
+          </Box>
+        </Container>
+      </RootStyle>
+    );
+  
 }

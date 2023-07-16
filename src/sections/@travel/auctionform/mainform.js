@@ -40,18 +40,6 @@ export default function Mainform() {
     folding_seatsx: 'False',
     immoblizerx: 'False',
     power_door_locksx: 'False',
-    // cupholdersx: false,
-    // powersteeringx: false,
-    // powerwindowsx: false,
-    // powermirrorsx: false,
-    // rearwiperx: false,
-    // tractioncontrolx: false,
-    // rearseatentx: false,
-    // climatecontrolx: false,
-    // rearacventsx: false,
-    // frontspeakerx: false,
-    // rearspeakerx: false,
-    // armrestsx: false,
   });
   const [formValues2, setFormValues2] = useState({
     images: [],
@@ -62,7 +50,6 @@ export default function Mainform() {
     bid_datx: '',
     bid_timex: '',
     ad_descriptionx: '',
-    // bids: ''
   });
 
   const validateForm = (i) => {
@@ -147,18 +134,6 @@ export default function Mainform() {
       [name]: capitalizedValue,
     }));
   };
-  // const handleInputChange1p1 = (e) => {
-  //   const value = e.target.checked;
-  //   const name = e.target.name;
-
-  //   setFormValues1p1((prevValues) => {
-  //     const updatedValues = { ...prevValues };
-  //     updatedValues[name] = value
-  //       ? value.toString().charAt(0).toUpperCase() + value.toString().slice(1)
-  //       : value;
-  //     return updatedValues;
-  //   });
-  // };
 
   const handleInputChange2 = (e) => {
     const files = e.target.files;
