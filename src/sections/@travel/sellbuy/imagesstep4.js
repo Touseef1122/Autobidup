@@ -55,13 +55,12 @@ export default function Imagesstep4({ handleInputChange,formValues , errors}) {
               Upload Images
               <input
                 type="file"
-                name= "images"
+                name="images"
                 multiple="multiple"
-                accept="image/png, image/jpeg, image/jpg"        
-                target={formValues.images}
+                accept="image/png, image/jpeg, image/jpg"
+                // target={formValues.images}
                 style={{ display: 'none' }}
-                onChange={handleInputChange}     
-                
+                onChange={handleInputChange}                 
               />
             </LoadingButton>
 
