@@ -99,7 +99,7 @@ export default function Itemcarasol({ post, name, price, images }) {
             width: '100%',
           }}
         >
-          <CarouselArrows
+          {/* <CarouselArrows
             onNext={handleNext}
             onPrevious={handlePrevious}
             sx={{
@@ -108,7 +108,7 @@ export default function Itemcarasol({ post, name, price, images }) {
               },
             }}
           >
-            <Slider ref={carouselRef} {...carouselSettings}>
+            <Slider ref={carouselRef} {...carouselSettings}> */}
               {/* {images.map((img) => ( */}
               <Box p={5} mt={2}>
                 <Image
@@ -118,8 +118,8 @@ export default function Itemcarasol({ post, name, price, images }) {
                 />
               </Box>
               {/* ))} */}
-            </Slider>
-          </CarouselArrows>
+            {/* </Slider>
+          </CarouselArrows> */}
         </Box>
       </Grid>
       <Grid item xs={12} sm={5}>

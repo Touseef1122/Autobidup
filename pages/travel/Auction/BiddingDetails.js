@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
+import { useRouter } from 'next/router';
 
 // @mui
 import { Container, Grid, Box } from '@mui/material';
@@ -44,6 +45,11 @@ export default function Displaycardetails({ posts }) {
   if (error) {
     return <ErrorScreen />;
   }
+
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log('bidding item', item);
 
   return (
     <Page title="Auction">

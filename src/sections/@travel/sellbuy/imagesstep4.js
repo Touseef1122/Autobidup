@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+
 import { useRouter } from 'next/router';
 
 import {
@@ -21,12 +18,6 @@ import {
 import { Image } from '../../../components';
 import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-// Imagesstep4.propTypes = {
-//   services: PropTypes.array.isRequired,
-//   icons: PropTypes.array.isRequired,
-//   tours: PropTypes.array.isRequired,
-// };
-
 export default function Imagesstep4({ handleInputChange,formValues , errors}) {
   const router = useRouter();
   // const [selectedImage, setSelectedImage] = useState(null);
@@ -64,12 +55,12 @@ export default function Imagesstep4({ handleInputChange,formValues , errors}) {
               Upload Images
               <input
                 type="file"
-                name= "images"
-                accept="image/png, image/jpeg, image/jpg"        
-                target={formValues.images}
+                name="images"
+                multiple="multiple"
+                accept="image/png, image/jpeg, image/jpg"
+                // target={formValues.images}
                 style={{ display: 'none' }}
-                onChange={handleInputChange}     
-                
+                onChange={handleInputChange}                 
               />
             </LoadingButton>
 

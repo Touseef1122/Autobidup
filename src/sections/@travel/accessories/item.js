@@ -105,7 +105,7 @@ export default function Item(props) {
                       </Button>
                     </ButtonGroup>
                   </Stack> */}
-                    <Button
+                    {/* <Button
                       sx={{
                         float: 'right',
                         backgroundColor: '#212B36',
@@ -116,7 +116,7 @@ export default function Item(props) {
                       onClick={() => props.onRemoveItem(item.pid)}
                     >
                       Remove
-                    </Button>
+                    </Button> */}
                   </Grid>
                 </Grid>
               ) : null}

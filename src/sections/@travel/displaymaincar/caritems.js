@@ -124,7 +124,6 @@ export default function Caritems(props) {
             {data.map((item) => (
               <div key={item.pid}>
                 <Box 
-                // onClick={() => router.push('/travel/buysellcar/displaystoreItems')}
                 onClick={() => router.push({
                   pathname: '/travel/buysellcar/displaystoreItems',
                   query: { data: JSON.stringify(item) }
