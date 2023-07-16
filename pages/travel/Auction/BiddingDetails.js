@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useRouter } from 'next/router';
 // @mui
 import { Container, Grid, Box } from '@mui/material';
 // utils
