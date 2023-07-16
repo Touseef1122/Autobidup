@@ -98,7 +98,7 @@ const includes = [
 //   }),
 // };
 
-export default function TravelTourDetails({ tour }) {
+export default function TravelTourDetails({ tour , inFo}) {
 
 
   return (
@@ -183,7 +183,7 @@ export default function TravelTourDetails({ tour }) {
             </Box>
           </Stack>
         </section>
-        <Comments />
+        {/* <Comments /> */}
       </Box>
     </Stack>
   );

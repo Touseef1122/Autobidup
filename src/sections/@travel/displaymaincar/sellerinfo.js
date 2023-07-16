@@ -27,19 +27,30 @@ Contactinfo.propTypes = {
   name: PropTypes.array,
   phone: PropTypes.array,
 };
-export default function Contactinfo({ post, name, phone }) {
+export default function Contactinfo({ post, name, phone, car }) {
   if (post) {
    
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-      let dict = {
-        title: 'Seller Information',
-        name: name,
-        icon: userIcon,
-        text: phone,
-      };
-      setComments([dict]);
+      if(post){
+        let dict = {
+          title: 'Seller Information',
+          name: name,
+          icon: userIcon,
+          text: phone,
+        };
+        setComments([dict]);
+      }
+      else if (car){
+        let dict = {
+          title: 'Seller Information',
+          name: name,
+          icon: userIcon,
+          text: phone_no,
+        };
+        setComments([dict]);
+      }
     }, []);
 
     console.log(comments);

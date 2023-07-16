@@ -85,23 +85,8 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
         );
         const jsonData = await response.json();
         console.log(jsonData, jsonData.length);
-        // for (let i = 0; i < jsonData.length; i++) {
-        //   console.log('entered');
-          
-        //   if (jsonData[i].room_id_alloted) {
-        //     console.log('checking');
-            
-        //     setData(jsonData[i]);
-        //     // setRoom([jsonData[i].room_id]) 
-        //     // break; 
-        //   }
-        //   else{
-        //     console.log('nope');
-            
-        //   }
-        // }
-        setData(jsonData)
-        // console.log("room",room);       
+        setData(jsonData);
+        // console.log("room",room);
         console.log('created');
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -109,138 +94,140 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
     };
     fetchData();
   }, []);
-  console.log("data",data, data.length);
+  console.log('data', data, data.length);
 
+  const carouselRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [alloted, setAlloted] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    const carouselRef = useRef(null);
-    const [open, setOpen] = useState(false);
-    const [alloted, setAlloted] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const carouselSettings = {
+    dots: true,
+    arrows: false,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    rtl: Boolean(theme.direction === 'rtl'),
+    ...CarouselDots(),
+    responsive: [
+      {
+        breakpoint: theme.breakpoints.values.md,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: theme.breakpoints.values.sm,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
 
-    const carouselSettings = {
-      dots: true,
-      arrows: false,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      rtl: Boolean(theme.direction === 'rtl'),
-      ...CarouselDots(),
-      responsive: [
+  const handleOpenRoom = async (roomid) => {
+    console.log('Working');
+
+    try {
+      const response = await fetch(
+        'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
         {
-          breakpoint: theme.breakpoints.values.md,
-          settings: { slidesToShow: 3 },
-        },
-        {
-          breakpoint: theme.breakpoints.values.sm,
-          settings: { slidesToShow: 1 },
-        },
-      ],
-    };
-
-    const handleOpenRoom = async (roomid) => {
-      console.log('Working');
-      
-      try {
-        const response = await fetch(
-          'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
-          {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ bids: roomid }),
-          }
-        );
-
-        if (response.ok) {
-          // API call successful
-          let responseData = await response.json();
-          console.log(responseData)
-
-          console.log('Bidding room Enterence successfully');
-          router.push({
-            pathname: '/travel/Auction/BiddingDetails',
-            query: { data: JSON.stringify(bid_Id) },
-          });
-        } else {
-          // API call failed
-          console.error('Failed to Enter bidding room');
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ bids: roomid }),
         }
-      } catch (error) {
-        console.error('Error during API call:', error);
+      );
+
+      if (response.ok) {
+        // API call successful
+        let responseData = await response.json();
+        console.log(responseData);
+
+        console.log('Bidding room Enterence successfully');
+        router.push({
+          pathname: '/travel/Auction/BiddingDetails',
+          // query: { data: JSON.stringify(bid_Id) },
+          query: { data: JSON.stringify(roomid) },
+        });
+      } else {
+        // API call failed
+        console.error('Failed to Enter bidding room');
       }
-    };
+    } catch (error) {
+      console.error('Error during API call:', error);
+    }
+  };
 
-    const handlePrevious = () => {
-      carouselRef.current?.slickPrev();
-    };
+  const handlePrevious = () => {
+    carouselRef.current?.slickPrev();
+  };
 
-    const handleNext = () => {
-      carouselRef.current?.slickNext();
-    };
+  const handleNext = () => {
+    carouselRef.current?.slickNext();
+  };
 
-    return (
-      <RootStyle>
-        <Container>
-          <Typography
-            variant="h3"
-            paddingTop={'100px'}
+  return (
+    <RootStyle>
+      <Container>
+        <Typography
+          variant="h3"
+          paddingTop={'100px'}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          Cars Available for Auction{' '}
+        </Typography>
+        <Box sx={{ position: 'relative' }}>
+          <CarouselArrows
+            onNext={handleNext}
+            onPrevious={handlePrevious}
             sx={{
-              textAlign: 'center',
+              '& .arrow': {
+                '&.left': { left: -20 },
+                '&.right': { right: -20 },
+              },
             }}
           >
-            Cars Available for Auction{' '}
-          </Typography>
-          <Box sx={{ position: 'relative' }}>
-            <CarouselArrows
-              onNext={handleNext}
-              onPrevious={handlePrevious}
-              sx={{
-                '& .arrow': {
-                  '&.left': { left: -20 },
-                  '&.right': { right: -20 },
-                },
-              }}
-            >
-              <Slider ref={carouselRef} {...carouselSettings}>
-                {data?.map((value) => (
-                  <Box
-                  
-                    sx={{
-                      px: 2,
-                      py: { xs: 3, md: 4 },
-                    }}
-                  >
-                    <Box>
-                      <Box
-                        // onClick={handleOpen}
-                        onClick={() => handleOpenRoom(value.room_id)}
-                        sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
-                      >
-                        <ReverseCounter bid={value.bid_time} />
+            <Slider ref={carouselRef} {...carouselSettings}>
+              {data?.map((value) => (
+                <Box
+                  sx={{
+                    px: 2,
+                    py: { xs: 3, md: 4 },
+                  }}
+                >
+                  <Box>
+                    <Box
+                      // onClick={handleOpen}
+                      onClick={() => handleOpenRoom(value.room_id)}
+                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
+                    >
+                      <ReverseCounter bid={value.bid_time} />
 
-                        <Image src={value.images[1].image_url} sx={{ width: '100%', height: '200px' }} />
-                        <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
-                        <Typography variant="h6">{value.year}</Typography>
-                        <Stack direction="row" justifyContent="space-between">
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.car_location}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.mileage}
-                          </Typography>
-                          <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                            {value.engine_type}
-                          </Typography>
-                        </Stack>
-                        <Typography variant="h4" color="#CE9A00">
-                          {' '}
-                          PKR {value.starting_bid}
+                      <Image
+                        src={value.images[1].image_url}
+                        sx={{ width: '100%', height: '200px' }}
+                      />
+                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
+                      <Typography variant="h6">{value.year}</Typography>
+                      <Stack direction="row" justifyContent="space-between">
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.car_location}
                         </Typography>
-                      </Box>
-                      {/* <Modal
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.mileage}
+                        </Typography>
+                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                          {value.engine_type}
+                        </Typography>
+                      </Stack>
+                      <Typography variant="h4" color="#CE9A00">
+                        {' '}
+                        PKR {value.starting_bid}
+                      </Typography>
+                    </Box>
+                    {/* <Modal
                       open={open}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
@@ -316,16 +303,15 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                         </Button>
                       </Box>
                     </Modal> */}
-                    </Box>
                   </Box>
-                ))}
-              </Slider>
-            </CarouselArrows>
-          </Box>
-        </Container>
-      </RootStyle>
-    );
-  
+                </Box>
+              ))}
+            </Slider>
+          </CarouselArrows>
+        </Box>
+      </Container>
+    </RootStyle>
+  );
 }
 BlogMarketingLatestPosts.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;

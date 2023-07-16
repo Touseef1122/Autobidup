@@ -44,7 +44,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Carousel() {
+export default function Carousel({imagesInfo}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
 
@@ -104,7 +104,7 @@ export default function Carousel() {
             
           </Grid>
           <Grid item xs={12} sm={5}>
-              <ContactinfoAuction/>
+              <ContactinfoAuction car={imagesInfo}/>
           </Grid>
       </Grid>
   );
