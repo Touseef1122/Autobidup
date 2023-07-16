@@ -32,14 +32,14 @@ export default function Mainform() {
     assemblyx: '',
   });
   const [formValues1p1, setFormValues1p1] = useState({
-    airbagsx: false,
-    acx: false,
-    alloy_wheelsx: false,
-    antibrakingsystemx: false,
-    cool_boxx: false,
-    folding_seatsx: false,
-    immoblizerx: false,
-    power_door_locksx: false,
+    airbagsx: 'False',
+    acx: 'False',
+    alloy_wheelsx: 'False',
+    antibrakingsystemx: 'False',
+    cool_boxx: 'False',
+    folding_seatsx: 'False',
+    immoblizerx: 'False',
+    power_door_locksx: 'False',
     // cupholdersx: false,
     // powersteeringx: false,
     // powerwindowsx: false,
@@ -111,7 +111,7 @@ export default function Mainform() {
       }
       if (!formValues3.ad_descriptionx) {
         newErrors.ad_descriptionx = 'Discription is required';
-        isValid = false;
+        isValid = False;
       }
     }
     setErrors(newErrors);
@@ -137,6 +137,7 @@ export default function Mainform() {
       [name]: value,
     }));
   };
+
   const handleInputChange1p1 = (e) => {
     const value = e.target.checked;
     const name = e.target.name;
@@ -147,6 +148,19 @@ export default function Mainform() {
       [name]: capitalizedValue,
     }));
   };
+  // const handleInputChange1p1 = (e) => {
+  //   const value = e.target.checked;
+  //   const name = e.target.name;
+
+  //   setFormValues1p1((prevValues) => {
+  //     const updatedValues = { ...prevValues };
+  //     updatedValues[name] = value
+  //       ? value.toString().charAt(0).toUpperCase() + value.toString().slice(1)
+  //       : value;
+  //     return updatedValues;
+  //   });
+  // };
+
   const handleInputChange2 = (e) => {
     const files = e.target.files;
     const imageArray = Array.from(files);
@@ -202,31 +216,75 @@ export default function Mainform() {
       bids: item,
       // created_at: formattedDate,
     });
-  }, [formValues1, formValues1p1, formValues2, formValues3]);
+  }, [formValues1, formValues1p1, formValues2,formValues3]);
 
+  // const handleSubmit = async () => {
+  //   console.log('Form Data', formData);
+  //   if (validateForm(2)){
+  //     console.log('submitteeedddd now');
+  //     console.log(formData);
+  //     try {
+  //       console.log('form is submiting');
+  //       const response = await fetch('https://autobidup.pythonanywhere.com/bidding/mainform', {
+  //         method: 'POST',
+  //         mode: 'cors',
+  //         credentials: 'include',
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //         body: JSON.stringify(formData),
+  //       });
+  //       if (response.ok) {
+  //         // API call successful
+  //         const responseData = await response.json();
+  //         console.log('response data', responseData);
+  //         console.log('form submitted succesfully');
+  //         setOpen(true);
+  //         //
+  //       } else {
+  //         // API call failed
+  //         const errorData = await response.json();
+  //         // Handle the error data as needed
+  //       }
+  //     } catch (error) {
+  //       // Error occurred during the API call
+  //       console.error(error);
+  //     }
+  //   }
+  // };
   const handleSubmit = async () => {
     console.log('Form Data', formData);
     if (validateForm(2)) {
       console.log('submitteeedddd now');
       console.log(formData);
       try {
-        console.log('form is submiting');
+        console.log('form is submitting');
+        const form = new FormData();
+
+        for (const key in formData) {
+          if (key === 'images') {
+            // Append each image file separately
+            for (let i = 0; i < formData.images.length; i++) {
+              form.append('images', formData.images[i]);
+            }
+          } else {
+            form.append(key, formData[key]);
+          }
+        }
+
         const response = await fetch('https://autobidup.pythonanywhere.com/bidding/mainform', {
           method: 'POST',
           mode: 'cors',
           credentials: 'include',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          body: JSON.stringify(formData),
+          body: form,
         });
+
         if (response.ok) {
           // API call successful
           const responseData = await response.json();
           console.log('response data', responseData);
-          console.log('form submitted succesfully');
+          console.log('form submitted successfully');
           setOpen(true);
-          //
         } else {
           // API call failed
           const errorData = await response.json();

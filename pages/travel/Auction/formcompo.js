@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab';
 import Apply from '../../../src/assets/Images/apply.jpg';
 import Applying from '../../../src/assets/Images/applying.jpg';
 
-export default function Landing({ bidId, bid_Id }) {
+export default function Landing({ bidId, bid_Id, updateLeftCalls }) {
   const router = useRouter();
   const [showModal, setShowModal] = React.useState(false); // State for controlling the modal visibility
   const [roomAllotted, setRoomAllotted] = React.useState(false); // State for tracking if the room was allotted
@@ -29,6 +29,9 @@ export default function Landing({ bidId, bid_Id }) {
 
       if (response.ok) {
         // API call successful
+        let responseData = await response.json();
+        console.log(responseData)
+        // updateLeftCalls(responseData.room_id_alloted)
         console.log('Bidding room allotted successfully');
         setRoomAllotted(true); // Set the state to indicate that the room was allotted
       } else if (response.status === 409) {
