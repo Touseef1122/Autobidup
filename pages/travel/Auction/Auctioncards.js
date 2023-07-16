@@ -20,10 +20,12 @@ import {
   TextField,
   Button,
 } from '@mui/material';
+
 import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
 import ReverseCounter from './timer';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 // ----------------------------------------------------------------------
+
 const RootStyle = styled('div')(({ theme }) => ({
   overflow: 'hidden',
   padding: theme.spacing(1, 0),
@@ -42,6 +44,7 @@ const style = {
   borderRadius: '10px',
   p: 6,
 };
+
 const DotStyle = styled('span')(({ theme }) => ({
   width: 4,
   height: 4,
@@ -49,7 +52,9 @@ const DotStyle = styled('span')(({ theme }) => ({
   backgroundColor: 'currentColor',
   margin: theme.spacing(0, 1),
 }));
+
 // ----------------------------------------------------------------------
+
 const items = [
   {
     image: img1,
@@ -64,11 +69,14 @@ const items = [
     price: '20 lac',
   },
 ];
+
 export default function BlogMarketingLatestPosts({ bid_Id }) {
   const theme = useTheme();
   const router = useRouter();
+
   const [data, setData] = useState([]);
   const [room, setRoom] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -160,19 +168,8 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
           // API call failed
           console.error('Failed to Enter bidding room');
         }
-      );
-      if (response.ok) {
-        // API call successful
-        let responseData = await response.json();
-        console.log(responseData);
-        console.log('Bidding room Enterence successfully');
-        router.push({
-          pathname: '/travel/Auction/BiddingDetails',
-          query: { data: JSON.stringify(bid_Id) },
-        });
-      } else {
-        // API call failed
-        console.error('Failed to Enter bidding room');
+      } catch (error) {
+        console.error('Error during API call:', error);
       }
     };
 
@@ -191,10 +188,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
             variant="h3"
             paddingTop={'100px'}
             sx={{
-              '& .arrow': {
-                '&.left': { left: -20 },
-                '&.right': { right: -20 },
-              },
+              textAlign: 'center',
             }}
           >
             Cars Available for Auction{' '}
@@ -226,6 +220,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                         sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}
                       >
                         <ReverseCounter bid={value.bid_time} />
+
                         <Image src={value.images[1].image_url} sx={{ width: '100%', height: '200px' }} />
                         <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                         <Typography variant="h6">{value.year}</Typography>
@@ -244,19 +239,8 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                           {' '}
                           PKR {value.starting_bid}
                         </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.mileage}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.engine_type}
-                        </Typography>
-                      </Stack>
-                      <Typography variant="h4" color="#CE9A00">
-                        {' '}
-                        PKR {value.starting_bid}
-                      </Typography>
-                    </Box>
-                    {/* <Modal
+                      </Box>
+                      {/* <Modal
                       open={open}
                       onClose={handleClose}
                       aria-labelledby="modal-modal-title"
@@ -332,13 +316,27 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                         </Button>
                       </Box>
                     </Modal> */}
+                    </Box>
                   </Box>
-                </Box>
-              ))}
-            </Slider>
-          </CarouselArrows>
-        </Box>
-      </Container>
-    </RootStyle>
-  );
+                ))}
+              </Slider>
+            </CarouselArrows>
+          </Box>
+        </Container>
+      </RootStyle>
+    );
+  
+}
+BlogMarketingLatestPosts.getLayout = function getLayout(page) {
+  return <Layout>{page}</Layout>;
+};
+
+// ----------------------------------------------------------------------
+
+export async function getStaticProps() {
+  return {
+    props: {
+      posts: getAllPosts(),
+    },
+  };
 }
