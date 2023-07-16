@@ -279,7 +279,7 @@ export default function Formsellbuy() {
     )
       .then((results) => {
         // results is an array of base64 encoded images
-        setFormValues2((prevValues) => ({
+        setFormValues4((prevValues) => ({
           ...prevValues,
           images: [...prevValues.images, ...results],
         }));
