@@ -141,8 +141,7 @@ export default function Mainform() {
   const handleInputChange1p1 = (e) => {
     const value = e.target.checked;
     const name = e.target.name;
-    const capitalizedValue = value ? 'True' : 'False';
-
+    const capitalizedValue = value ? 'True' : 'False'
     setFormValues1p1((prevValues) => ({
       ...prevValues,
       [name]: capitalizedValue,
