@@ -220,7 +220,7 @@ export default function Featuresstep3({ formValues, handleInputChange,formValues
               <span key={option.value}>
                 <Checkbox
                   name={option.label.toLowerCase()}
-                  checked={formValues1p1[option.label.toLowerCase()]}
+                  checked={formValues1p1[option.label.toLowerCase()] === 'True'}
                   onChange={handleInputChange1p1}
                 />
                 {option.label}

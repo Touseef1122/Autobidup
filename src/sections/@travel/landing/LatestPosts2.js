@@ -126,7 +126,7 @@ export default function LatestPosts2({data}) {
                         sx={{ width: '100%', height: '200px' }}
                       />
                      
-                      <Typography variant="h4">{`${value.make} ${value.variant}`}</Typography>
+                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                       <Typography variant="h6">{value.year}</Typography>
                       <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>

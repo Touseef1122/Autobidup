@@ -18,13 +18,83 @@ import { _testimonials } from '../../../_data/mock';
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, ContactMap } from '../../../src/components';
-import { Button, Modal, Typography, Stack, Box, TextField, Container } from '@mui/material';
+import { Button, Modal, Typography, Stack, Box, TextField } from '@mui/material';
 
 // ----------------------------------------------------------------------
+const style2 = {
+  position: "absolute",
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '1000px',
+  bgcolor: 'background.paper',
+  border: '1px solid #000',
+  boxShadow: 24,
+  p: 2,
+  height: '640px',
+};
 export default function Profile() {
+  let [customerDetails, setCustomerDetails] = useState({
+    first_name: '',
+    last_name: '',
+    contact: '',
+    username: '',
+    state: '',
+  });
+  // let [adsDetails, setAdDetails] = useState({
+  //   cname: '',
+  //   cid: '',
+  //   bodytype: '',
+  //   reg_city: '',
+  //   city: '',
+  //   color: '',
+  //   mileage: '',
+  //   year: '',
+  //   make: '',
+  //   model: '',
+  //   created_at: '',
+  //   variant: '',
+  //   engine_type: '',
+  //   engine_capacity: '',
+  //   transmission: '',
+  //   assembly: '',
+  //   description: '',
+  //   seller_name: '',
+  //   seller_phone: '',
+  //   price: '',
+  //   images: [],
+  //   airbags: '',
+  //   airconditioner: '',
+  //   alloywheels: '',
+  //   antilockbreakingsystem: '',
+  //   coolbox: '',
+  //   cupholders: '',
+  //   foldingrearseat: '',
+  //   immobilizer: '',
+  //   powerdoorlocks: '',
+  //   powersteering: '',
+  //   powerwindows: '',
+  //   powermirrors: '',
+  //   rearwiper: '',
+  //   tractioncontrol: '',
+  //   rearseatent: '',
+  //   climatecontrol: '',
+  //   rearacvents: '',
+  //   frontspeaker: '',
+  //   rearspeaker: '',
+  //   armrests: '',
+  // });
+  let [adDetails, setAdDetails] = useState([]);
+  let [orderDetails, setOrderDetails] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  // let customerDetails = []
   // let menuicn = document.className('.menuicn');
   // let nav = document.className('.navcontainer');
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  const [selectedAd, setSelectedAd] = useState([]);
 
   const handleTitleClick = () => {
     // nav.classList.toggle('navclose');
@@ -32,46 +102,160 @@ export default function Profile() {
   };
   const [currentOption, setCurrentOption] = useState('profile');
 
-  // useEffect(() => {
+  useEffect(() => {
+    if (currentOption === 'profile') {
+      async function fetchData() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            'https://autobidup.pythonanywhere.com/user/customer-details',
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //   async function fetchData() {
-  //     try {
-  //       console.log('details fetching');
-  //       const response = await fetch('https://autobidup.pythonanywhere.com/user/customer-details', {
-  //         method: 'GET',
-  //         mode: 'cors',
-  //         credentials: 'include',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            console.log('response data', responseData);
+            if (responseData) {
+              setCustomerDetails(responseData);
+            }
+            console.log('customer details arrived succesfully');
+            console.log(customerDetails);
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData();
+    } else if (currentOption === 'myads') {
+      console.log('entered ads');
 
-  //       });
+      async function fetchData1() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            `https://autobidup.pythonanywhere.com/cars/get_posts/?search=${customerDetails.username}`,
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //       if (response.ok) {
-  //         // API call successful
-  //         let responseData = await response.json();
-  //         // fetchData1(mechanicId);
-  //         console.log('response data', responseData);
-  //         console.log('customer details arrived succesfully');
-  //       } else {
-  //         // API call failed
-  //         const errorData = await response.json();
-  //         // Handle the error data as needed
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            setAdDetails((prevOrderDetails) => [...prevOrderDetails, ...responseData]);
+            console.log('response data', responseData);
+            console.log(adDetails);
+            console.log('customer details arrived succesfully');
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData1();
+    } else if (currentOption === 'myorders') {
+      async function fetchData() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            `https://autobidup.pythonanywhere.com/store/get_orders/?search=${customerDetails.username}`,
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //   fetchData();
-  // }, [0]);
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            // setOrderDetails(responseData);
+            setOrderDetails((prevOrderDetails) => [...prevOrderDetails, ...responseData]);
+            console.log('response data', responseData);
+            console.log(orderDetails);
+            console.log('customer details arrived succesfully');
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData();
+    }
+  }, [currentOption]);
 
+  const handleEdit = (value) => {
+    setSelectedAd(value);
+    handleOpen();
+  };
+  const handleDelete = (value) => {
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/cars/remove',
+          {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id : value
+            }),
+          }
+        );
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log('response data', responseData);
+          if (responseData) {
+            setCustomerDetails(responseData);
+          }
+          console.log('customer details arrived succesfully');
+          console.log(customerDetails);
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  };
   return (
     <Page title="Personal Profile" mt="50px">
-      <Loader />
-      <ChatButton />
-
-      <body>
+      <div className="">
         <div className="main-container">
           {isDescriptionVisible && (
             <div className="navcontainer">
@@ -154,19 +338,40 @@ export default function Profile() {
                     <Stack direction="row" spacing={10}>
                       <Stack className="profileData">
                         <label className="profileLabel" htmlFor="name">
-                          Name:
-                        </label>
-                        <input className="profileInput" type="text" id="name" name="name"></input>
-                      </Stack>
-                      <Stack className="profileData">
-                        <label className="profileLabel" htmlFor="email">
-                          Email:
+                          First Name:
                         </label>
                         <input
+                          disabled
                           className="profileInput"
-                          type="email"
-                          id="email"
-                          name="email"
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={customerDetails.first_name}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              first_name: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Stack className="profileData">
+                        <label className="profileLabel" htmlFor="lname">
+                          Last Name:
+                        </label>
+                        <input
+                          disabled
+                          className="profileInput"
+                          type="text"
+                          id="lname"
+                          name="lname"
+                          value={customerDetails.last_name}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              last: e.target.value,
+                            }))
+                          }
                         ></input>
                       </Stack>
                     </Stack>
@@ -175,20 +380,72 @@ export default function Profile() {
                         <label className="profileLabel" htmlFor="phone">
                           Phone:
                         </label>
-                        <input className="profileInput" type="text" id="phone" name="phone"></input>
-                      </Stack>
-                      <Stack className="profileData">
-                        <label className="profileLabel" htmlFor="address">
-                          Address:
-                        </label>
                         <input
+                          disabled
                           className="profileInput"
                           type="text"
-                          id="address"
-                          name="address"
+                          id="phone"
+                          name="phone"
+                          value={customerDetails.contact}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              contact: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Stack className="profileData">
+                        <label className="profileLabel" htmlFor="state">
+                          State:
+                        </label>
+                        <input
+                          disabled
+                          className="profileInput"
+                          type="text"
+                          id="state"
+                          name="state"
+                          value={customerDetails.state}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              state: e.target.value,
+                            }))
+                          }
                         ></input>
                       </Stack>
                     </Stack>
+                    <Stack className="profileData" mt={3}>
+                      <label className="profileLabel" htmlFor="email">
+                        Email:
+                      </label>
+                      <input
+                        disabled
+                        className="profileInput"
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={customerDetails.username}
+                        onChange={(e) =>
+                          setCustomerDetails((prevData) => ({
+                            ...prevData,
+                            username: e.target.value,
+                          }))
+                        }
+                      ></input>
+                    </Stack>
+                    <Button
+                      sx={{
+                        mt: 3,
+                        backgroundColor: 'black',
+                        color: 'white',
+                        '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                        width: '20%',
+                      }}
+                      // onClick={() => handleCall(value.e_id)}
+                    >
+                      Save
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -200,32 +457,247 @@ export default function Profile() {
                   <h1 className="recent-Articles">My Ads</h1>
                 </div>
                 <div className="myads-container">
-                  <label>Hekko</label>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {adDetails.map((value) => (
+                        <tr key={value.created_at}>
+                          <td>{value.created_at}</td>
+                          <td>{value.make}</td>
+                          <td>{value.model}</td>
+                          <td>{value.year}</td>
+                          <td>
+                            <Button
+                              sx={{
+                                backgroundColor: 'black',
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                                width: '20%',
+                              }}
+                              onClick={() => handleEdit(value)}
+                            >
+                              Edit
+                            </Button>
+                          </td>
+                          <td>
+                            <Button
+                              sx={{
+                                backgroundColor: 'black',
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                                width: '20%',
+                              }}
+                              onClick={() => handleDelete(value)}
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
 
-            {/* {currentOption === 'myorders' && (
+            {currentOption === 'myorders' && (
               <div>
                 <div className="report-header">
-                  <h1 className="recent-Articles">My Ads</h1>
+                  <h1 className="recent-Articles">My Orders</h1>
                 </div>
-                <div className="myorders-container">
-                  <label>Hekko</label>
+                <div className="myorder-container">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Oid</th>
+                        <th>Price</th>
+                        <th>Product IDs</th>
+                        <th>Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orderDetails.map((order) => (
+                        <tr key={order.oid}>
+                          <td>{order.oid}</td>
+                          <td>{order.price}</td>
+                          <td>{order.product_ids}</td>
+                          <td>{order.quantity}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Box sx={style2}>
+                <Typography id="modal-modal-title" variant="h4" component="h2">
+                  AD Edit 
+                </Typography>
+                <div>
+                  <div className="report-header">
+                    <h1 className="recent-Articles">AD Details</h1>
+                  </div>
+                  <div className="report-body">
+                    <div className="settings-container">
+                      <Stack direction="row" spacing={10}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="name">
+                            Car Name:
+                          </label>
+                          <input
+                            disabled
+                            className="profileInput"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={selectedAd.cname}
+                            onChange={(e) =>
+                              setCustomerDetails((prevData) => ({
+                                ...prevData,
+                                first_name: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="lname">
+                            Last Name:
+                          </label>
+                          <input
+                            disabled
+                            className="profileInput"
+                            type="text"
+                            id="lname"
+                            name="lname"
+                            value={customerDetails.last_name}
+                            onChange={(e) =>
+                              setCustomerDetails((prevData) => ({
+                                ...prevData,
+                                last: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="phone">
+                            Phone:
+                          </label>
+                          <input
+                            disabled
+                            className="profileInput"
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            value={customerDetails.contact}
+                            onChange={(e) =>
+                              setCustomerDetails((prevData) => ({
+                                ...prevData,
+                                contact: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="state">
+                            State:
+                          </label>
+                          <input
+                            disabled
+                            className="profileInput"
+                            type="text"
+                            id="state"
+                            name="state"
+                            value={customerDetails.state}
+                            onChange={(e) =>
+                              setCustomerDetails((prevData) => ({
+                                ...prevData,
+                                state: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack className="profileData" mt={3}>
+                        <label className="profileLabel" htmlFor="email">
+                          Email:
+                        </label>
+                        <input
+                          disabled
+                          className="profileInput"
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={customerDetails.username}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              username: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Button
+                        sx={{
+                          mt: 3,
+                          backgroundColor: 'black',
+                          color: 'white',
+                          '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                          width: '20%',
+                        }}
+                        // onClick={() => handleCall(value.e_id)}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+               
+                <Button
+                  sx={{
+                    backgroundColor: 'black',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                    width: '100%',
+                    mt: 3,
+                  }}
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Box>
+            </Modal>
+            {/* {currentOption === 'settings' && (
+             
+            )} */}
 
-            {currentOption === 'settings' && (
-              <div className="settings-container"></div>
-            )}
-
-            {currentOption === 'logout' && (
+            {/* {currentOption === 'logout' && (
               <div className="logout-container"></div>
             )} */}
           </div>
         </div>
-      </body>
+      </div>
       <style jsx>{`
         * {
           margin: 0;
@@ -251,10 +723,25 @@ export default function Profile() {
         .profileInput {
           font-size: 20px;
         }
-        body {
+        .body {
           background-color: #f0e9e9;
           max-width: 100%;
           overflow-x: hidden;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+
+        th {
+          background-color: #f2f2f2;
         }
         .menuicn {
           cursor: pointer;
@@ -299,7 +786,11 @@ export default function Profile() {
           position: relative;
           top: 70px;
           z-index: 1;
+          padding-top: 20px;
           padding-bottom: 20px;
+          background-color: #f0e9e9;
+          max-width: 100%;
+          overflow-x: hidden;
         }
         .dpicn {
           height: 42px;
@@ -456,7 +947,7 @@ export default function Profile() {
 
         .report-container {
           min-height: 500px;
-          max-width: 1200px;
+          max-width: 900px;
           margin: 0px auto 0px auto;
           background-color: #ffffff;
           border-radius: 30px;
@@ -491,30 +982,33 @@ export default function Profile() {
         }
 
         .report-body {
-          max-width: 1160px;
+          max-width: 900px;
           overflow-x: auto;
           padding: 20px;
         }
-        .report-topic-heading,
-        .item1 {
-          width: 1120px;
+        .items {
+          width: 900px;
+          margin-top: 15px;
+        }
+        .report-topic-heading {
+          max-width: 900px;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: 20px;
+        }
+        .item1 {
+          max-width: 860px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 20px;
         }
         .t-op {
           font-size: 18px;
           letter-spacing: 0px;
         }
 
-        .items {
-          width: 1120px;
-          margin-top: 15px;
-        }
-
-        .item1 {
-          margin-top: 20px;
-        }
         .t-op-nextlvl {
           font-size: 14px;
           letter-spacing: 0px;

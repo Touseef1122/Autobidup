@@ -74,7 +74,7 @@ export default function Usedcars({ posts }) {
     <Page title="Used Cars | AutoBidUp">
       <Loader />
       <Pageimage images={usedimage} />
-      <ChatButton />vs 
+      <ChatButton /> 
       {/* <TravelLandingIntroduceOurServices /> */}
 
       <TravelLandingIntroduce categories={vehicalType}/>
