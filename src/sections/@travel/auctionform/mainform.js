@@ -181,7 +181,7 @@ export default function Mainform() {
         // results is an array of base64 encoded images
         setFormValues2((prevValues) => ({
           ...prevValues,
-          images: results,
+          images: [...prevValues.images, ...results],
         }));
       })
       .catch((error) => {

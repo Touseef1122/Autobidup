@@ -1,77 +1,277 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-//data
-import { services, services2, image } from '../../../_data/mock/landing';
-// @mui
-import { styled, useTheme } from '@mui/material/styles';
-
-import Loader from '../UsedCars/Loader';
-import ChatButton from '../ChatButton';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
-import { useRequest } from '../../../src/hooks';
 // _data
 import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, ContactMap } from '../../../src/components';
-import { Button, Modal, Typography, Stack, Box, TextField, Container } from '@mui/material';
+import { Page } from '../../../src/components';
+import { Button, Modal, Typography, Stack, Box } from '@mui/material';
 
 // ----------------------------------------------------------------------
+const style2 = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '700px',
+  bgcolor: 'background.paper',
+  border: '1px solid #000',
+  boxShadow: 24,
+  p: 2,
+  maxHeight: '600px',
+  overflowY: 'auto',
+};
 export default function Profile() {
-  // let menuicn = document.className('.menuicn');
-  // let nav = document.className('.navcontainer');
+  let [customerDetails, setCustomerDetails] = useState({
+    first_name: '',
+    last_name: '',
+    contact: '',
+    username: '',
+    state: '',
+  });
+  let [adDetails, setAdDetails] = useState([]);
+  let [orderDetails, setOrderDetails] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
+  const [selectedAd, setSelectedAd] = useState([]);
 
   const handleTitleClick = () => {
-    // nav.classList.toggle('navclose');
     setIsDescriptionVisible(!isDescriptionVisible);
   };
   const [currentOption, setCurrentOption] = useState('profile');
 
-  // useEffect(() => {
+  useEffect(() => {
+    if (currentOption === 'profile') {
+      async function fetchData() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            'https://autobidup.pythonanywhere.com/user/customer-details',
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //   async function fetchData() {
-  //     try {
-  //       console.log('details fetching');
-  //       const response = await fetch('https://autobidup.pythonanywhere.com/user/customer-details', {
-  //         method: 'GET',
-  //         mode: 'cors',
-  //         credentials: 'include',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            console.log('response data', responseData);
+            if (responseData) {
+              setCustomerDetails(responseData);
+            }
+            console.log('customer details arrived succesfully');
+            console.log(customerDetails);
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData();
+    } else if (currentOption === 'myads') {
+      console.log('entered ads');
 
-  //       });
+      async function fetchData1() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            `https://autobidup.pythonanywhere.com/cars/get_posts/?search=${customerDetails.username}`,
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //       if (response.ok) {
-  //         // API call successful
-  //         let responseData = await response.json();
-  //         // fetchData1(mechanicId);
-  //         console.log('response data', responseData);
-  //         console.log('customer details arrived succesfully');
-  //       } else {
-  //         // API call failed
-  //         const errorData = await response.json();
-  //         // Handle the error data as needed
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            setAdDetails((prevOrderDetails) => [...prevOrderDetails, ...responseData]);
+            console.log('response data', responseData);
+            console.log(adDetails);
+            console.log('customer details arrived succesfully');
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData1();
+    } else if (currentOption === 'myorders') {
+      async function fetchData() {
+        try {
+          console.log('details fetching');
+          const response = await fetch(
+            `https://autobidup.pythonanywhere.com/store/get_orders/?search=${customerDetails.username}`,
+            {
+              method: 'GET',
+              mode: 'cors',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
 
-  //   fetchData();
-  // }, [0]);
+          if (response.ok) {
+            // API call successful
+            let responseData = await response.json();
+            // setOrderDetails(responseData);
+            setOrderDetails((prevOrderDetails) => [...prevOrderDetails, ...responseData]);
+            console.log('response data', responseData);
+            console.log(orderDetails);
+            console.log('customer details arrived succesfully');
+          } else {
+            // API call failed
+            const errorData = await response.json();
+            // Handle the error data as needed
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+      fetchData();
+    }
+  }, [currentOption]);
 
+  const handleEdit = (value) => {
+    setSelectedAd(value);
+    handleOpen();
+  };
+  const handleChangeProfile = (value) => {
+    console.log('value',value);
+    
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch('https://autobidup.pythonanywhere.com/user/update-customer', {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(value),
+        });
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log('response data', responseData);
+          if (responseData) {
+            setCustomerDetails(responseData);
+          }
+          console.log('Profile edited succesfully');
+          console.log(customerDetails);
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  };
+  const handleChange = (value) => {
+    console.log('value',value);
+    
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/edit/', {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(value),
+        });
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log('response data', responseData);
+          if (responseData) {
+            setCustomerDetails(responseData);
+          }
+          console.log('AD edited succesfully');
+          console.log(customerDetails);
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  };
+  const handleDelete = (value) => {
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/remove/', {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cid: value.cid,
+          }),
+        });
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          console.log('response data', responseData);
+          if (responseData) {
+            setCustomerDetails(responseData);
+          }
+          console.log('AD removed succesfully');
+          console.log(customerDetails);
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  };
   return (
     <Page title="Personal Profile" mt="50px">
-      <Loader />
-      <ChatButton />
-
-      <body>
+      <div className="">
         <div className="main-container">
           {isDescriptionVisible && (
             <div className="navcontainer">
@@ -154,19 +354,40 @@ export default function Profile() {
                     <Stack direction="row" spacing={10}>
                       <Stack className="profileData">
                         <label className="profileLabel" htmlFor="name">
-                          Name:
-                        </label>
-                        <input className="profileInput" type="text" id="name" name="name"></input>
-                      </Stack>
-                      <Stack className="profileData">
-                        <label className="profileLabel" htmlFor="email">
-                          Email:
+                          First Name:
                         </label>
                         <input
+                          
                           className="profileInput"
-                          type="email"
-                          id="email"
-                          name="email"
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={customerDetails.first_name}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              first_name: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Stack className="profileData">
+                        <label className="profileLabel" htmlFor="lname">
+                          Last Name:
+                        </label>
+                        <input
+                          
+                          className="profileInput"
+                          type="text"
+                          id="lname"
+                          name="lname"
+                          value={customerDetails.last_name}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              last_name: e.target.value,
+                            }))
+                          }
                         ></input>
                       </Stack>
                     </Stack>
@@ -175,20 +396,72 @@ export default function Profile() {
                         <label className="profileLabel" htmlFor="phone">
                           Phone:
                         </label>
-                        <input className="profileInput" type="text" id="phone" name="phone"></input>
-                      </Stack>
-                      <Stack className="profileData">
-                        <label className="profileLabel" htmlFor="address">
-                          Address:
-                        </label>
                         <input
+                          
                           className="profileInput"
                           type="text"
-                          id="address"
-                          name="address"
+                          id="phone"
+                          name="phone"
+                          value={customerDetails.contact}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              contact: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Stack className="profileData">
+                        <label className="profileLabel" htmlFor="state">
+                          State:
+                        </label>
+                        <input
+                          
+                          className="profileInput"
+                          type="text"
+                          id="state"
+                          name="state"
+                          value={customerDetails.state}
+                          onChange={(e) =>
+                            setCustomerDetails((prevData) => ({
+                              ...prevData,
+                              state: e.target.value,
+                            }))
+                          }
                         ></input>
                       </Stack>
                     </Stack>
+                    <Stack className="profileData" mt={3}>
+                      <label className="profileLabel" htmlFor="email">
+                        Email:
+                      </label>
+                      <input
+                        disabled
+                        className="profileInput"
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={customerDetails.username}
+                        onChange={(e) =>
+                          setCustomerDetails((prevData) => ({
+                            ...prevData,
+                            username: e.target.value,
+                          }))
+                        }
+                      ></input>
+                    </Stack>
+                    <Button
+                      sx={{
+                        mt: 3,
+                        backgroundColor: 'black',
+                        color: 'white',
+                        '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                        width: '20%',
+                      }}
+                      onClick={() => handleChangeProfile(customerDetails)}
+                    >
+                      Save
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -200,32 +473,851 @@ export default function Profile() {
                   <h1 className="recent-Articles">My Ads</h1>
                 </div>
                 <div className="myads-container">
-                  <label>Hekko</label>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {adDetails.map((value) => (
+                        <tr key={value.created_at}>
+                          <td>{value.created_at}</td>
+                          <td>{value.make}</td>
+                          <td>{value.model}</td>
+                          <td>{value.year}</td>
+                          <td>
+                            <Button
+                              sx={{
+                                backgroundColor: 'black',
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                                width: '20%',
+                              }}
+                              onClick={() => handleEdit(value)}
+                            >
+                              Edit
+                            </Button>
+                          </td>
+                          <td>
+                            <Button
+                              sx={{
+                                backgroundColor: 'black',
+                                color: 'white',
+                                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                                width: '20%',
+                              }}
+                              onClick={() => handleDelete(value)}
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
 
-            {/* {currentOption === 'myorders' && (
+            {currentOption === 'myorders' && (
               <div>
                 <div className="report-header">
-                  <h1 className="recent-Articles">My Ads</h1>
+                  <h1 className="recent-Articles">My Orders</h1>
                 </div>
-                <div className="myorders-container">
-                  <label>Hekko</label>
+                <div className="myorder-container">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Oid</th>
+                        <th>Price</th>
+                        <th>Product IDs</th>
+                        <th>Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orderDetails.map((order) => (
+                        <tr key={order.oid}>
+                          <td>{order.oid}</td>
+                          <td>{order.price}</td>
+                          <td>{order.product_ids}</td>
+                          <td>{order.quantity}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Box sx={style2}>
+                <Typography id="modal-modal-title" variant="h4" component="h2">
+                  AD Edit
+                </Typography>
+                <div>
+                  <div className="report-header">
+                    <h1 className="recent-Articles">AD Details</h1>
+                  </div>
+                  <div className="report-body">
+                    <div className="settings-container">
+                      <Stack direction="row" spacing={10}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="make">
+                            Car Make:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="make"
+                            value={selectedAd.make}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                make: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="model">
+                            Car Model:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="model"
+                            value={selectedAd.model}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                model: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="variant">
+                            Car Variant:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="variant"
+                            value={selectedAd.variant}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                variant: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="year">
+                            Car Year:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="year"
+                            value={selectedAd.year}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                year: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="reg_city">
+                            Car Registration City:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="reg_city"
+                            value={selectedAd.reg_city}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                reg_city: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="city">
+                            Car City:
+                          </label>
+                          <input
+                            disabled
+                            className="profileInput"
+                            type="text"
+                            name="city"
+                            value={selectedAd.city}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                city: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="engine_type">
+                            Car Engine Type:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="engine_type"
+                            value={selectedAd.engine_type}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                engine_type: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="engine_capacity">
+                            Car Engine Capacity:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="engine_capacity"
+                            value={selectedAd.engine_capacity}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                engine_capacity: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="assembly">
+                            Car Assembly:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="assembly"
+                            value={selectedAd.assembly}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                assembly: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="transmission">
+                            Car Transmission:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="transmission"
+                            value={selectedAd.transmission}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                transmission: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="mileage">
+                            Car Mileage:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="mileage"
+                            value={selectedAd.mileage}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                mileage: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="bodytype">
+                            Car Body Type:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="bodytype"
+                            value={selectedAd.bodytype}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                bodytype: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="color">
+                            Car Color:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="color"
+                            value={selectedAd.color}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                color: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="price">
+                            Car Price:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="price"
+                            value={selectedAd.price}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                price: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="seller_name">
+                            Car Seller Name:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="seller_name"
+                            value={selectedAd.seller_name}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                seller_name: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="seller_phone">
+                            Car Seller Phone:
+                          </label>
+                          <input
+                            className="profileInput"
+                            type="text"
+                            name="seller_phone"
+                            value={selectedAd.seller_phone}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                seller_phone: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="airbags">
+                            Car AirBags:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="airbags"
+                            value={selectedAd.airbags}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                airbags: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="airconditioner">
+                            Car Air Conditioner:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="airconditioner"
+                            value={selectedAd.airconditioner}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                airconditioner: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="alloywheels">
+                            Car Alloy Wheels:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="alloywheels"
+                            value={selectedAd.alloywheels}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                alloywheels: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="antilockbreakingsystem">
+                            Car Anti Lock Breaking System:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="antilockbreakingsystem"
+                            value={selectedAd.antilockbreakingsystem}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                antilockbreakingsystem: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="coolbox">
+                            Car Cool Box:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="coolbox"
+                            value={selectedAd.coolbox}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                coolbox: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="cupholders">
+                            Car Cupholders:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="cupholders"
+                            value={selectedAd.cupholders}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                cupholders: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="foldinggearseat">
+                            Car Folding Gear Seat:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="foldinggearseat"
+                            value={selectedAd.foldinggearseat}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                foldinggearseat: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="immobilizer">
+                            Car Immobilizer:
+                          </label>
+                          <input                           
+                            className="profileInput"
+                            type="text"
+                            name="immobilizer"
+                            value={selectedAd.immobilizer}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                immobilizer: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="powerdoorlocks">
+                            Car Power Door Locks:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="powerdoorlocks"
+                            value={selectedAd.powerdoorlocks}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                powerdoorlocks: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="powersteering">
+                            Car Power Steering:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="powersteering"
+                            value={selectedAd.powersteering}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                powersteering: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="powerwindows">
+                            Car Power Windows:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="powerwindows"
+                            value={selectedAd.powerwindows}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                powerwindows: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="powermirrors">
+                            Car Power Mirrors:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="powermirrors"
+                            value={selectedAd.powermirrors}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                powermirrors: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="rearwiper">
+                            Car Rear Viper:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="rearwiper"
+                            value={selectedAd.rearwiper}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                rearwiper: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="tractioncontrol">
+                            Car Traction Control:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="tractioncontrol"
+                            value={selectedAd.tractioncontrol}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                tractioncontrol: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="rearseatent">
+                            Car Rear Seatent:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="rearseatent"
+                            value={selectedAd.rearseatent}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                rearseatent: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="climatecontrol">
+                            Car Climate Control:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="climatecontrol"
+                            value={selectedAd.climatecontrol}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                climatecontrol: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="rearacvents">
+                            Car Rear Vents:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="rearacvents"
+                            value={selectedAd.rearacvents}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                rearacvents: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="frontspeaker">
+                            Car Front Speaker:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="frontspeaker"
+                            value={selectedAd.frontspeaker}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                frontspeaker: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack direction="row" spacing={10} mt={3}>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="rearspeaker">
+                            Car Rear Speaker:
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="rearspeaker"
+                            value={selectedAd.rearspeaker}
+                            onChange={(e) =>
+                              setCustomerDetails((prevData) => ({
+                                ...prevData,
+                                rearspeaker: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                        <Stack className="profileData">
+                          <label className="profileLabel" htmlFor="armrests">
+                            Car Arm :
+                          </label>
+                          <input
+                            
+                            className="profileInput"
+                            type="text"
+                            name="armrests"
+                            value={selectedAd.armrests}
+                            onChange={(e) =>
+                              setSelectedAd((prevData) => ({
+                                ...prevData,
+                                armrests: e.target.value,
+                              }))
+                            }
+                          ></input>
+                        </Stack>
+                      </Stack>
+                      <Stack className="profileData" mt={3}>
+                        <label className="profileLabel" htmlFor="created_at">
+                          Car Created Date:
+                        </label>
+                        <input
+                          disabled
+                          className="profileInput"
+                          type="text"
+                          name="created_at"
+                          value={selectedAd.created_at}
+                          onChange={(e) =>
+                            setSelectedAd((prevData) => ({
+                              ...prevData,
+                              created_at: e.target.value,
+                            }))
+                          }
+                        ></input>
+                      </Stack>
+                      <Stack className="profileData" mt={3}>
+                        <label className="profileLabel" htmlFor="description">
+                          Car Description:
+                        </label>
+                        <textarea
+                          className="profileInput"
+                          type="text"
+                          name="description"
+                          value={selectedAd.description}
+                          onChange={(e) =>
+                            setSelectedAd((prevData) => ({
+                              ...prevData,
+                              description: e.target.value,
+                            }))
+                          }
+                        ></textarea>
+                      </Stack>
+                      <Button
+                        sx={{
+                          mt: 3,
+                          backgroundColor: 'black',
+                          color: 'white',
+                          '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                          width: '20%',
+                        }}
+                        onClick={() => handleChange(selectedAd)}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                  </div>
+                </div>
 
-            {currentOption === 'settings' && (
-              <div className="settings-container"></div>
-            )}
+                <Button
+                  sx={{
+                    backgroundColor: 'black',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                    width: '100%',
+                    mt: 3,
+                  }}
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Box>
+            </Modal>
+            {/* {currentOption === 'settings' && (
+             
+            )} */}
 
-            {currentOption === 'logout' && (
+            {/* {currentOption === 'logout' && (
               <div className="logout-container"></div>
             )} */}
           </div>
         </div>
-      </body>
+      </div>
       <style jsx>{`
         * {
           margin: 0;
@@ -251,10 +1343,25 @@ export default function Profile() {
         .profileInput {
           font-size: 20px;
         }
-        body {
+        .body {
           background-color: #f0e9e9;
           max-width: 100%;
           overflow-x: hidden;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+
+        th {
+          background-color: #f2f2f2;
         }
         .menuicn {
           cursor: pointer;
@@ -299,7 +1406,11 @@ export default function Profile() {
           position: relative;
           top: 70px;
           z-index: 1;
+          padding-top: 20px;
           padding-bottom: 20px;
+          background-color: #f0e9e9;
+          max-width: 100%;
+          overflow-x: hidden;
         }
         .dpicn {
           height: 42px;
@@ -456,7 +1567,7 @@ export default function Profile() {
 
         .report-container {
           min-height: 500px;
-          max-width: 1200px;
+          max-width: 900px;
           margin: 0px auto 0px auto;
           background-color: #ffffff;
           border-radius: 30px;
@@ -491,30 +1602,33 @@ export default function Profile() {
         }
 
         .report-body {
-          max-width: 1160px;
+          max-width: 900px;
           overflow-x: auto;
           padding: 20px;
         }
-        .report-topic-heading,
-        .item1 {
-          width: 1120px;
+        .items {
+          width: 900px;
+          margin-top: 15px;
+        }
+        .report-topic-heading {
+          max-width: 900px;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: 20px;
+        }
+        .item1 {
+          max-width: 860px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 20px;
         }
         .t-op {
           font-size: 18px;
           letter-spacing: 0px;
         }
 
-        .items {
-          width: 1120px;
-          margin-top: 15px;
-        }
-
-        .item1 {
-          margin-top: 20px;
-        }
         .t-op-nextlvl {
           font-size: 14px;
           letter-spacing: 0px;

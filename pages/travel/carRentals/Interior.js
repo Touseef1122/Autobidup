@@ -40,173 +40,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const items = [
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  
-  
-];
-
 import Pagination from '@mui/material/Pagination';
 
 export default function Displaycarlist({ posts }) {
@@ -217,10 +50,19 @@ export default function Displaycarlist({ posts }) {
   };
   const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
   const [searchValues, setSearchValues] = useState('');
+  const [filterprice, setFilterPrice] = useState('');
 
-  const handleFilterClick = (searchValue) => {
-    console.log('Search Value:', searchValue);    
-    setSearchValues(searchValue)
+  const handleFilterClick = (searchValue,filterprice) => {
+    console.log('Search Value:', searchValue); 
+    console.log('Filter Price:', filterprice);   
+    if (searchValues !== '' || filterprice !== '') {
+      if (searchValues !== '') {
+        setSearchValues(searchValues);
+      }
+      if (filterprice !== '') {
+        setFilterPrice(filterprice);
+      }
+    }
   };
 
   const handleMobileOpen = () => {
@@ -262,7 +104,7 @@ export default function Displaycarlist({ posts }) {
                 flexGrow: 1
               }}
             >
-              <Caritem search={searchValues} value={3} />
+              <Caritem search={searchValues} value={3} filterprice={filterprice}/>
             </Box>
           </Stack>
         </Container>

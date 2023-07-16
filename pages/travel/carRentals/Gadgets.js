@@ -41,32 +41,6 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 // ----------------------------------------------------------------------
-const items = [
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-  {
-    image: b,
-    heading: 'LG',
-    city: 'Charger',
-    price: '800 RS',
-  },
-  {
-    image: c,
-    heading: 'LG',
-    city: 'Mobile Holder',
-    price: '300 RS',
-  },
-  {
-    image: a,
-    heading: 'LG',
-    city: 'Lighter',
-    price: '200 RS',
-  },
-];
 
 import Pagination from '@mui/material/Pagination';
 
