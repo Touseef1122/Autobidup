@@ -37,7 +37,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 //   posts: PropTypes.array.isRequired,
 // };
 
-export default function Displaycardetails({ posts }) {
+export default function Displaystoredetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
   if (error) {
@@ -50,7 +50,7 @@ export default function Displaycardetails({ posts }) {
  
 
   return (
-    <Page title="Buy/Sell Used Cars">
+    <Page title="Buy Store Accessories">
       <Loader/>
       <ChatButton/>
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>

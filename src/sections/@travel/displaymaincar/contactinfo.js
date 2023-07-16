@@ -19,18 +19,6 @@ import {
 import { Sellerinfo } from '.';
 
 //--------------------------------------------------------------
-// const comments = [
-//   {
-//     name: 'Ali Khan',
-//     text: 'Does AC works?',
-//     icon: userIcon,
-//   },
-//   {
-//     name: 'Saim Asim',
-//     text: 'Nice',
-//     icon: userIcon,
-//   },
-// ];
 Contactinfo.propTypes = {
   post: PropTypes.array.isRequired,
   make: PropTypes.array,
@@ -38,70 +26,24 @@ Contactinfo.propTypes = {
   price: PropTypes.array,
   year: PropTypes.array,
 };
-export default function Contactinfo({post,make,variant,price,year}) {
-  return (
-    <Box>
-      <Typography variant="h3">{`${make} ${variant} ${year}`}</Typography>
-      <Typography variant="h4" color="#CE9A00">
-        PKR {price}
-      </Typography>
+export default function Contactinfo({ post, make, variant, price, year }) {
+  console.log('make', post);
+  if (post) {
+    return (
+      <Box>
+        <Typography variant="h3">{`${make} ${variant} ${year}`}</Typography>
+        <Typography variant="h4" color="#CE9A00">
+          PKR {price}
+        </Typography>
 
-      <Stack direction="row" spacing={1} display="flex" alignItems="center">
-        <Icon icon={location} width="1.5vw" vAlign="middle" color="#CE9A00" />
-        <Typography fontWeight="bold">Lahore</Typography>
-      </Stack>
-      <Sellerinfo  post={post} name={post?.seller_name || ''} phone={post?.seller_phone  || ''}/>
-
-      {/* <Container
-        sx={{
-          boxShadow: '0 1px 10px #64666b',
-          borderRadius: '8px',
-          width: 'auto',
-          justifyContent: 'center',
-          mt: 1,
-          p: 3,
-        }}
-      >
-        {comments?.map((content) => (
-          <Stack spacing={1} display="flex" alignItems="left">
-            <OverviewItem
-              key={content.name}
-              icon={<Iconify icon={content.icon} />}
-              name={content.name}
-              text={content.text}
-            />
-            <Divider />
-          </Stack>
-        ))}
-      </Container> */}
-    </Box>
-  );
+        <Stack direction="row" spacing={1} display="flex" alignItems="center">
+          <Icon icon={location} width="1.5vw" vAlign="middle" color="#CE9A00" />
+          <Typography fontWeight="bold">Lahore</Typography>
+        </Stack>
+        <Sellerinfo post={post} name={post?.seller_name || ''} phone={post?.seller_phone || ''} />
+      </Box>
+    );
+  }
 }
 
 // ----------------------------------------------------------------------
-// OverviewItem.propTypes = {
-//   icon: PropTypes.any,
-//   name: PropTypes.string,
-//   text: PropTypes.string,
-// };
-
-// function OverviewItem({ icon, name, text = '-' }) {
-//   return (
-//     <TextIconLabel
-//       spacing={2}
-//       alignItems="center"
-//       icon={icon}
-//       color="#CE9A00"
-//       vAlign="middle"
-//       value={
-//         <Stack>
-//           <Typography variant="h6" color="black" pt={1}>
-//             {name}
-//           </Typography>
-//           <Typography sx={{ color: 'text.secondary' }}>{text}</Typography>
-//         </Stack>
-//       }
-//       sx={{ '& svg': { width: 24, height: 30 } }}
-//     />
-//   );
-// }
