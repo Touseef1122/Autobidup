@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
 // icons
-import checkmarkIcon from '@iconify/icons-carbon/checkmark';
-import locationIcon from '@iconify/icons-carbon/location';
-import mobileIcon from '@iconify/icons-carbon/mobile';
-import calendarIcon from '@iconify/icons-carbon/calendar';
-import translateIcon from '@iconify/icons-carbon/translate';
-import userIcon from '@iconify/icons-carbon/user';
-import timeIcon from '@iconify/icons-carbon/time';
-import Comments from '../../../sections/@travel/displaymaincar/comments';
+// import PropTypes from 'prop-types';
+// import { Typography, Stack, Box, Divider } from '@mui/material';
 import { Icon } from '@iconify/react';
+// import TextIconLabel from '../../../components/TextIconLabel';
+// import Iconify from '../../../components/Iconify';
+// import { Scrollbar } from '../../../components';
+// import { fDate } from '../../../utils/formatTime';
+// import { Icon } from '@iconify/react';
 
 // @mui
-import { Typography, Stack, Box, Divider,Block} from '@mui/material';
-import { Scrollbar } from '../../../components';
+import { Typography, Stack, Box, Divider, Block } from '@mui/material';
+// import { Scrollbar } from '../../../components';
 
 // utils
 import { fDate } from '../../../utils/formatTime';
@@ -24,23 +23,47 @@ import { TextIconLabel, Iconify } from '../../../components';
 OverviewAuction.propTypes = {
   overviewAuction: PropTypes.array.isRequired,
 };
+// export default function OverviewAuction({ post }) {
+//   return (
+//     <section>
+//       {overviewAuction?.map((value) => (
+//         <Box  sx={{
+//           padding: "20px",
+//         }}>
+//           <Typography variant="h4">{value.title}</Typography>
+//             <Stack display="flex" alignItems="left">
+//               <OverviewItem
+//                 key={value.name}
+//                 icon={<Iconify icon={value.icon} />}
+//                 label={value.name}
+//                 text={value.text}
+//               />
+//               <Divider/>
+//             </Stack>
+//         </Box>
+//       ))}
+//     </section>
+//   );
+// }
 export default function OverviewAuction({ overviewAuction }) {
   return (
     <section>
-      {overviewAuction?.map((value) => (      
-        <Box  sx={{
-          padding: "20px",
-        }}>
+      {overviewAuction?.map((value) => (
+        <Box
+          sx={{
+            padding: '20px',
+          }}
+          key={value.name}
+        >
           <Typography variant="h4">{value.title}</Typography>
-            <Stack display="flex" alignItems="left">
-              <OverviewItem
-                key={value.name}
-                icon={<Iconify icon={value.icon} />}
-                label={value.name}
-                text={value.text}
-              />
-              <Divider/>
-            </Stack>
+          <Stack display="flex" alignItems="left">
+            <OverviewItem
+              icon={<Iconify icon={value.icon} />}
+              label={value.name}
+              text={value.text}
+            />
+            <Divider />
+          </Stack>
         </Box>
       ))}
     </section>
@@ -66,8 +89,12 @@ function OverviewItem({ icon, label, text = '-' }) {
       value={
         <Stack>
           <Typography variant="h6">{label}</Typography>
-          <Typography variant="h6" sx={{ color: 'text.secondary' }}>{text}</Typography>
-         <Typography><Icon icon="material-symbols:add-call" width="30"/>  : 03030000000 </Typography>
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+            {text}
+          </Typography>
+          <Typography>
+            <Icon icon="material-symbols:add-call" width="30" /> : 03030000000{' '}
+          </Typography>
         </Stack>
       }
       sx={{ '& svg': { width: 24, height: 24 } }}

@@ -76,9 +76,7 @@ export default function Displaycarlist({ posts }) {
   //     try {
   //       console.log('details fetching');
   //       const response = await fetch(
-  //         `https://autobidup.pythonanywhere.com/bidding/record_details_username?bidId=${encodeURIComponent(
-  //           bidId
-  //         )}`,
+  //         `http://autobidup.pythonanywhere.com/bidding/get_bidding_records_roomid`,
   //         {
   //           method: 'GET',
   //           credentials: 'include',
