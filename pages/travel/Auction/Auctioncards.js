@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import {useEffect} from 'react'
 // next
 import NextLink from 'next/link';
 // @mui
@@ -74,9 +75,29 @@ const items = [
 ];
 
 export default function BlogMarketingLatestPosts({ posts }) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/all_cars/');
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setData(jsonData);
+        console.log(data)
+        console.log("created")
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(data)
+
+
+
+
   const theme = useTheme();
   const router = useRouter();
-
   const carouselRef = useRef(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);

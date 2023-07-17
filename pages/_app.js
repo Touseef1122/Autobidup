@@ -20,8 +20,8 @@ import PropTypes from 'prop-types';
 // next
 import Head from 'next/head';
 // @mui
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { LocalizationProvider } from '@mui/x-date-pickers';
 // contexts
 import { SettingsProvider } from '../src/contexts/SettingsContext';
 // theme
@@ -55,7 +55,7 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      {/* <LocalizationProvider dateAdapter={AdapterDateFns}> */}
         <SettingsProvider>
           <ThemeProvider>
             <ThemeColorPresets>
@@ -69,7 +69,7 @@ export default function MyApp(props) {
             </ThemeColorPresets>
           </ThemeProvider>
         </SettingsProvider>
-      </LocalizationProvider>
+      {/* </LocalizationProvider> */}
     </>
   );
 }
