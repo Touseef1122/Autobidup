@@ -18,22 +18,22 @@ SearchInput.propTypes = {
 };
 
 export default function SearchInput({ sx, filtersearch, onchangesearch }) {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(`https://autobidup.pythonanywhere.com/store/search/?search=${filtersearch}`);
-  //       const jsonData = await response.json();
-  //       console.log(jsonData)  
-  //       setData(jsonData);
-  //       console.log("created");
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://autobidup.pythonanywhere.com/cars/search/?search=${filtersearch}`);
+        const jsonData = await response.json();
+        console.log(jsonData)  
+        setData(jsonData);
+        console.log("created");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
   const handleInputChange = (event) => {
     const value = event.target.value;
     onchangesearch(value);
