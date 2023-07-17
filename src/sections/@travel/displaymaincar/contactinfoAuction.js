@@ -22,6 +22,8 @@ import { SellerinfoAuction, Sellerinfo } from './';
 //--------------------------------------------------------------
 
 export default function Contactinfo({post}) {
+  // console.log("caraiusel",post);
+  
   const handleExitRoom = async () => {
     try {
       const response = await fetch(
@@ -52,9 +54,9 @@ export default function Contactinfo({post}) {
   return (
     <Box>
       <Box>
-        <Typography variant="h3">Honda N Wgn G 2013</Typography>
+        <Typography variant="h3">{`${post?.bidding_car.make} ${post?.bidding_car.model} ${post?.bidding_car.year}`}</Typography>
         <Typography variant="h4" color="#CE9A00">
-          PKR 2.10 Crores
+          {post?.bidding_car.starting_bid}
         </Typography>
 
         <Stack direction="row" spacing={1} display="flex" alignItems="center">
@@ -71,7 +73,7 @@ export default function Contactinfo({post}) {
           Exit
         </Button>
       </Box>
-      <Sellerinfo />
+      <Sellerinfo car={post}/>
 
       <SellerinfoAuction post={post}/>
     </Box>

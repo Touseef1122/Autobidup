@@ -47,25 +47,8 @@ export default function Displaycardetails({post}) {
   const item = data ? JSON.parse(data) : null;
   console.log('bidding item', item);
   const [info, setData] = useState([]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars?search=${item}`
-  //       );
-  //       const jsonData = await response.json();
-  //       console.log(jsonData, jsonData.length);
-  //       setData(jsonData);
-  //       // console.log("room",room);
-  //       console.log('created');
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
 
-  useEffect(() => {
+  useState(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -82,7 +65,7 @@ export default function Displaycardetails({post}) {
       }
     };
     fetchData();
-  }, []);
+  }, [0]);
   
 
   console.log(info)
@@ -111,7 +94,7 @@ export default function Displaycardetails({post}) {
               },
             }}
           >
-            <TravelTourDetailsAuction />
+            <TravelTourDetailsAuction post={item}/>
           </Grid>
           <Grid item xs={12} sm={5}></Grid>
         </Grid>
