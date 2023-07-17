@@ -24,6 +24,7 @@ import {
 import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
 import ReverseCounter from './timer';
 import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -85,6 +86,21 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
         );
         const jsonData = await response.json();
         console.log(jsonData, jsonData.length);
+        // for (let i = 0; i < jsonData.length; i++) {
+        //   console.log('entered');
+
+        //   if (jsonData[i].room_id_alloted) {
+        //     console.log('checking');
+
+        //     setData(jsonData[i]);
+        //     // setRoom([jsonData[i].room_id])
+        //     // break;
+        //   }
+        //   else{
+        //     console.log('nope');
+
+        //   }
+        // }
         setData(jsonData);
         // console.log("room",room);
         console.log('created');
@@ -121,9 +137,43 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
     ],
   };
 
-  const handleOpenRoom = async (roomid) => {
-    console.log('Working');
+  // const handleOpenRoom = async (roomid) => {
+  //   console.log('Working');
 
+  //   try {
+  //     const response = await fetch(
+  //       'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
+  //       {
+  //         method: 'POST',
+  //         mode: 'cors',
+  //         credentials: 'include',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ bids: roomid }),
+  //       }
+  //     );
+
+  //     if (response.ok) {
+  //       // API call successful
+  //       let responseData = await response.json();
+  //       console.log(responseData)
+
+  //       console.log('Bidding room Enterence successfully');
+  //       router.push({
+  //         pathname: '/travel/Auction/BiddingDetails',
+  //         query: { data: JSON.stringify(bid_Id) },
+  //       });
+  //     } else {
+  //       // API call failed
+  //       console.error('Failed to Enter bidding room');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error during API call:', error);
+  //   }
+  // };
+
+  const handleOpenRoom = async (roomId) => {
     try {
       const response = await fetch(
         'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
@@ -134,24 +184,22 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ bids: roomid }),
+          body: JSON.stringify({ bids: roomId }),
         }
       );
 
       if (response.ok) {
         // API call successful
-        let responseData = await response.json();
+        const responseData = await response.json();
         console.log(responseData);
-
-        console.log('Bidding room Enterence successfully');
+        console.log('Bidding room entered successfully');
         router.push({
           pathname: '/travel/Auction/BiddingDetails',
-          // query: { data: JSON.stringify(bid_Id) },
-          query: { data: JSON.stringify(roomid) },
+          query: { data: JSON.stringify(responseData) },
         });
       } else {
         // API call failed
-        console.error('Failed to Enter bidding room');
+        console.error('Failed to enter bidding room');
       }
     } catch (error) {
       console.error('Error during API call:', error);
@@ -206,7 +254,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                       <ReverseCounter bid={value.bid_time} />
 
                       <Image
-                        src={value.images[1].image_url}
+                        src={value.images[1]}
                         sx={{ width: '100%', height: '200px' }}
                       />
                       <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>

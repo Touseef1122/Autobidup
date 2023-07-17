@@ -34,11 +34,14 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-export default function Displaycardetails({ posts }) {
 
+export default function Displaycardetails({post}) {
+
+  
+  const { data: tours = [], error } = useRequest('/api/travel/tours');
+  if (error) {
+    return <ErrorScreen />;
+  }
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
@@ -90,7 +93,7 @@ export default function Displaycardetails({ posts }) {
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <CarouselAuction />
+            <CarouselAuction post={item} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center">

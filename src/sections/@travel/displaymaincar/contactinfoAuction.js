@@ -21,7 +21,7 @@ import { SellerinfoAuction, Sellerinfo } from './';
 
 //--------------------------------------------------------------
 
-export default function Contactinfo() {
+export default function Contactinfo({post}) {
   const handleExitRoom = async () => {
     try {
       const response = await fetch(
@@ -73,7 +73,7 @@ export default function Contactinfo() {
       </Box>
       <Sellerinfo />
 
-      <SellerinfoAuction />
+      <SellerinfoAuction post={post}/>
     </Box>
   );
 }
