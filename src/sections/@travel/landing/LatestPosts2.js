@@ -8,10 +8,6 @@ import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Link, Stack, Avatar, Container, Typography } from '@mui/material';
-// routes
-import Routes from '../../../routes';
-// utils
-import { fDate } from '../../../utils/formatTime';
 // components
 import { varHover, varTranHover } from '../../../components/animate';
 import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../components';
@@ -54,14 +50,14 @@ export default function LatestPosts2({data}) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
     responsive: [
       {
         breakpoint: theme.breakpoints.values.md,
-        settings: { slidesToShow: 2 },
+        settings: { slidesToShow: 3 },
       },
       {
         breakpoint: theme.breakpoints.values.sm,
@@ -114,9 +110,7 @@ export default function LatestPosts2({data}) {
                   py: { xs: 3, md: 4 },
                 }}
               >
-                {/* <CarsCard item={items} /> */}
                 <Box>
-                  {/* {items.map((value) => ( */}
                     <Box
                       onClick={() => {
                         router.push({
@@ -126,15 +120,13 @@ export default function LatestPosts2({data}) {
                       }}
                       sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1,cursor: 'pointer', }}
                     >
-                      {/* <Grid container spacing={4} justifyContent="center" >
-              <Grid item xs={12} sm={4} display="flex" alignItems="center"> */}
+           
                       <Image
                         src={value.images}
                         sx={{ width: '100%', height: '200px' }}
                       />
-                      {/* </Grid>
-              <Grid item xs={12} sm={8}> */}
-                      <Typography variant="h4">{`${value.make} ${value.variant}`}</Typography>
+                     
+                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
                       <Typography variant="h6">{value.year}</Typography>
                       <Stack direction="row" justifyContent="space-between">
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -146,21 +138,14 @@ export default function LatestPosts2({data}) {
                         <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
                           {value.fuel}
                         </Typography>
-                        {/* <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.cc}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.type}{' '}
-                        </Typography> */}
+                      
                       </Stack>
                       <Typography variant="h4" color="#CE9A00">
                         {' '}
                         PKR {value.price}
                       </Typography>
-                      {/* </Grid>
-              </Grid> */}
+                  
                     </Box>
-                  {/* ))} */}
                 </Box>
               </Box>             
             ))}
@@ -168,6 +153,5 @@ export default function LatestPosts2({data}) {
         </CarouselArrows>
       </Box>
     </Container>
-    // </RootStyle>
   );
 }

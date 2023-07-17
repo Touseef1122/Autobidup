@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 // import Loader from './UsedCars/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-
 // @mui
 import { Container, Grid, Box } from '@mui/material';
 // utils
+import { useState, useEffect } from 'react';
+
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
@@ -16,6 +17,7 @@ import Loader from '../UsedCars/Loader.js';
 // components
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
+import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import {
   CarouselAuction,
@@ -23,7 +25,6 @@ import {
   TravelTourDetailsAuction,
 } from '../../../src/sections/@travel/displaymaincar';
 // import {  } from '../../../src/sections/@travel';
-
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -33,35 +34,63 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
 // Registerchauffeur.propTypes = {
 //   posts: PropTypes.array.isRequired,
 // };
-
 export default function Displaycardetails({ posts }) {
-  const { data: tours = [], error } = useRequest('/api/travel/tours');
 
-  if (error) {
-    return <ErrorScreen />;
-  }
+  const router = useRouter();
+  const { data } = router.query;
+  const item = data ? JSON.parse(data) : null;
+  console.log('bidding item', item);
+  const [info, setData] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars?search=${item}`
+  //       );
+  //       const jsonData = await response.json();
+  //       console.log(jsonData, jsonData.length);
+  //       setData(jsonData);
+  //       // console.log("room",room);
+  //       console.log('created');
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://autobidup.pythonanywhere.com/bidding/search_bidding_room?search=${item}`
+        );
+        
+        const jsonData = await response.json();
+        console.log(jsonData, jsonData.length);
+        setData(jsonData);
+        // console.log("room",room);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  
+
+  console.log(info)
 
   return (
     <Page title="Auction">
       <Loader />
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-        {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
-          ]}
-          sx={{mb:4}}
-        /> */}
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <CarouselAuction />
-
-            {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
@@ -71,36 +100,28 @@ export default function Displaycardetails({ posts }) {
             sm={7}
             sx={{
               mt: 1 /* Default margin-top value */,
-              '@media (min-width: 600px)': {
+              '@media (minWidth: 600px)': {
                 mt: -50 /* For small screens */,
               },
-              '@media (min-width: 960px)': {
+              '@media (minWidth: 960px)': {
                 mt: -35 /* For medium and large screens */,
               },
             }}
           >
             <TravelTourDetailsAuction />
           </Grid>
-          <Grid item xs={12} sm={5}>
-            {/* <Box><TravelTourDetails /></Box> */}
-          </Grid>
+          <Grid item xs={12} sm={5}></Grid>
         </Grid>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );
 }
-
 //-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
-
 Displaycardetails.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
-
 // ----------------------------------------------------------------------
-
 export async function getStaticProps() {
   return {
     props: {

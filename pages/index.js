@@ -32,11 +32,11 @@ import COI from '../src/assets/images/CrossOverIcon.png';
 import MVI from '../src/assets/images/MiniVanIcon.png';
 import Loader from './travel/UsedCars/Loader';
 import ChatButton from './travel/ChatButton';
-import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
-import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
+// import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
 import { useRouter } from 'next/router';
 import Serviceclassdata from '../_data/mock/imagesos';
-
+import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
+import { useState, useEffect } from 'react';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -51,7 +51,26 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 export default function TravelLandingPage({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://autobidup.pythonanywhere.com/cars/all_cars/');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        setData(jsonData);
+        console.log(data);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(data);
+  var list = data;
   if (error) {
     return <ErrorScreen />;
   }
@@ -80,7 +99,9 @@ export default function TravelLandingPage({ posts }) {
       </Box>
       <TravelLandingIntroduceOurServices data={Serviceclassdata} />
       <TravelLandingIntroduce categories={vehicalType} />
-      <LatestPosts posts={bestcities} />
+      {/* <LatestPosts posts={bestcities} /> */}
+      <LatestPosts2 data={data} />
+
       <TravelLandingfull />
       <TravelLandingCars />
     </Page>

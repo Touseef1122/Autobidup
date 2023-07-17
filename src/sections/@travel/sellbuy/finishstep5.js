@@ -5,12 +5,9 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
-  FormControlLabel,
+  Button,
   Checkbox,
   Typography,
   Stack,
@@ -19,70 +16,11 @@ import {
   Container,
   MenuItem,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
-// ----------------------------------------------------------------------
-const currencie = [
-  {
-    value: '1',
-    label: 'Please Select',
-  },
-  {
-    value: '2',
-    label: 'Mr',
-  },
-  {
-    value: '3',
-    label: 'Ms',
-  },
-  {
-    value: '4',
-    label: 'Mx',
-  },
-];
-Finishstep5.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
-  phone: Yup.array()
-    .required()
-    .min(11, 'Phone number should of 11 digits')
-    .max(11, 'Phone number should of 11 digits'),
-  name: Yup.string().required('Name is required'),
-});
-
-export default function Finishstep5({ tours, icons, services }) {
-  const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
-    defaultValues: {
-      name: '',
-      phoneNumber: '',
-    },
-  });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  const [show, setShow] = useState(false);
+//------------------------------------------------------------------------------------
+export default function Finishstep5({ formValues, handleInputChange, errors }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <Box
           sx={{
             ml: { md: '5%' },
@@ -104,6 +42,11 @@ export default function Finishstep5({ tours, icons, services }) {
               rows={4}
               placeholder="Describe your car..."
               variant="filled"
+              name="description"
+              value={formValues.description}
+              onChange={handleInputChange}
+              error={!!errors.description}
+              helperText={errors.description}
             />
             <Typography variant="body3" textAlign="right" fontWeight="bold">
               Word limit is 1000
@@ -120,52 +63,43 @@ export default function Finishstep5({ tours, icons, services }) {
               Contact Information
             </Typography>
             <Stack spacing={2} mt="4" direction={{ xs: 'column' }}>
-              <Controller
-                name="name"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div>
-                    <Typography fontSize="14px" fontWeight="bold">
-                      Seller Name *
-                    </Typography>
+              <div>
+                <Typography fontSize="14px" fontWeight="bold">
+                  Seller Name *
+                </Typography>
 
-                    <TextField
-                      {...field}
-                      fullWidth
-                      placeholder="Enter Seller Name"
-                      error={Boolean(error)}
-                      helperText={error?.message}
-                      sx={{ width: { xs: '100%', sm: '50%' } }}
-                    />
-                  </div>
-                )}
-              />
-              <Controller
-                name="phone"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div>
-                     <Typography fontSize="14px" fontWeight="bold">
-                      Phone Number *
-                    </Typography>
-                    <TextField
-                      {...field}
-                      fullWidth
-                      placeholder="Enter Phone Number"
-                      error={Boolean(error)}
-                      helperText={error?.message}
-                      sx={{ width: { xs: '100%', sm: '50%' } }}
-                    />
-                    <Typography variant="body3" fontWeight="bold">
-                      Enter genuine number of 11 digits
-                    </Typography>
-                  </div>
-                )}
-              />
+                <TextField
+                  fullWidth
+                  placeholder="Enter Seller Name"
+                  name="seller_name"
+                  value={formValues.seller_name}
+                  onChange={handleInputChange}
+                  error={!!errors.seller_name}
+                  helperText={errors.seller_name}
+                  sx={{ width: { xs: '100%', sm: '50%' } }}
+                />
+              </div>
+              <div>
+                <Typography fontSize="14px" fontWeight="bold">
+                  Phone Number *
+                </Typography>
+                <TextField
+                  fullWidth
+                  placeholder="Enter Phone Number"
+                  name="seller_phone"
+                  value={formValues.seller_phone}
+                  onChange={handleInputChange}
+                  error={!!errors.seller_phone}
+                  helperText={errors.seller_phone}
+                  sx={{ width: { xs: '100%', sm: '50%' } }}
+                />
+                <Typography variant="body3" fontWeight="bold">
+                  Enter genuine number of 11 digits
+                </Typography>
+              </div>
             </Stack>
           </Box>
         </Box>
-        {/* </form> */}
       </Container>
     </Box>
   );

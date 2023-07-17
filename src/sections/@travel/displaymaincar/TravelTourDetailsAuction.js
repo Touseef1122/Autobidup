@@ -98,19 +98,8 @@ const includes = [
 //   }),
 // };
 
-export default function TravelTourDetails({ tour }) {
-  // const {
-  //   program,
-  //   includes,
-  //   location,
-  //   duration,
-  //   tourGuide,
-  //   languages,
-  //   highlights,
-  //   description,
-  //   availableEnd,
-  //   availableStart,
-  // } = tour;
+export default function TravelTourDetails({ tour , inFo}) {
+
 
   return (
     <Stack spacing={2} mb={6}   >
@@ -194,7 +183,7 @@ export default function TravelTourDetails({ tour }) {
             </Box>
           </Stack>
         </section>
-        <Comments />
+        {/* <Comments /> */}
       </Box>
     </Stack>
   );

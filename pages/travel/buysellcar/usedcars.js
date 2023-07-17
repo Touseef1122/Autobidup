@@ -73,8 +73,8 @@ export default function Usedcars({ posts }) {
   return (
     <Page title="Used Cars | AutoBidUp">
       <Loader />
-      <ChatButton />
       <Pageimage images={usedimage} />
+      <ChatButton /> 
       {/* <TravelLandingIntroduceOurServices /> */}
 
       <TravelLandingIntroduce categories={vehicalType}/>
@@ -86,56 +86,7 @@ export default function Usedcars({ posts }) {
 }
 
 //-------------------------------------------------------------------------------
-const bestcities = [
-  {
-    id: 1,
-    image: MVI,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    id: 2,
-    image: MVI,
-    heading: 'Civic',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '5 lac',
-  },
-  {
-    id: 3,
-    image: MVI,
-    heading: 'Mehran',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    id: 4,
-    image: MVI,
-    heading: 'Mehran',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
+
 const vehicalType = [
   {
     id: 1,
@@ -155,21 +106,21 @@ const vehicalType = [
     id: 3,
     name: 'SUV',
     img: SUVI,
-    path: '/travel/UsedCars/SUV',
+    path: '/travel/UsedCars/Suv',
     button: 'Shop Now',
   },
   {
     id: 4,
     name: 'CrossOver',
     img: COI,
-    path: '/travel/UsedCars/Crossover',
+    path: '/travel/UsedCars/CrossOver',
     button: 'Shop Now',
   },
   {
     id: 5,
     name: 'MiniVan',
     img: MVI,
-    path: '/travel/UsedCars/Minivan',
+    path: '/travel/UsedCars/MiniVan',
     button: 'Shop Now',
   },
 ];

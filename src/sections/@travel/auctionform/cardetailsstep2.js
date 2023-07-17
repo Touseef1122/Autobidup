@@ -21,68 +21,106 @@ import {
   RadioGroup,
   TextField,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-const currencie = [
+const mileage = [
   {
     value: '1',
-    label: 'Please Select',
+    label: '10000',
   },
   {
     value: '2',
-    label: 'Mr',
+    label: '30000',
   },
   {
     value: '3',
-    label: 'Ms',
+    label: '50000',
   },
   {
     value: '4',
-    label: 'Mx',
+    label: '70000',
+  },
+  {
+    value: '5',
+    label: '90000',
   },
 ];
-Enterpricestep2.propTypes = {
-  services: PropTypes.array.isRequired,
-  icons: PropTypes.array.isRequired,
-  tours: PropTypes.array.isRequired,
-};
-const FormSchema = Yup.object().shape({
-  price: Yup.array()
-    .required()
-    .min(100000, 'minimum price is 8 lac')
-    .max(1000000000, 'maximum price is 100 crore'),
-});
+const year = [
+  {
+    value: '1',
+    label: '1990',
+  },
+  {
+    value: '2',
+    label: '2000',
+  },
+  {
+    value: '3',
+    label: '2010',
+  },
+  {
+    value: '4',
+    label: '2020',
+  },
+  {
+    value: '5',
+    label: '2023',
+  },
+];
+const make = [
+  {
+    value: '1',
+    label: 'Toyota',
+  },
+  {
+    value: '2',
+    label: 'Suzuki',
+  },
+  {
+    value: '3',
+    label: 'Honda',
+  },
+];
+const model = [
+  {
+    value: '1',
+    label: 'Corolla',
+  },
+  {
+    value: '2',
+    label: 'Mehran',
+  },
+  {
+    value: '3',
+    label: 'City',
+  },
+];
+const tans_type = [
+  {
+    value: '1',
+    label: 'Automatic',
+  },
+  {
+    value: '2',
+    label: 'Manual',
+  },
+];
+const car_location = [
+  {
+    value: '1',
+    label: 'Lahore',
+  },
+  {
+    value: '2',
+    label: 'Islamabad',
+  },
+  {
+    value: '3',
+    label: 'Karachi',
+  },
+];
 
-export default function Enterpricestep2({ tours, icons, services }) {
+export default function Enterpricestep2({ formValues, handleInputChange, errors }) {
   const router = useRouter();
-  const {
-    reset,
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm({
-    mode: 'onTouched',
-    resolver: yupResolver(FormSchema),
-    defaultValues: {
-      price: '',
-    },
-  });
-  const onSubmit = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(JSON.stringify(data, null, 2));
-    reset();
-  };
-  //   const [value, setValue] = React.useState('female');
-
-  //   const handleChange = (event) => {
-  //     setValue(event.target.value);
-  //   };
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -96,130 +134,148 @@ export default function Enterpricestep2({ tours, icons, services }) {
           <Typography variant="h3" textAlign="left" pb="15px">
             Car Details
           </Typography>
-          <Stack spacing={2} mt={2} direction={{ xs: 'column' }}>
-            <Controller
-              name="name"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <div>
-                  {/* <Typography fontSize="14px" fontWeight="bold">
-                    Chassis Number *
-                  </Typography> */}
 
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Chassis Number *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    // sx={{ width:'255px' }}
-                  />
-                </div>
-              )}
-            />
-            <Controller
-              name="phone"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <div>
-                  {/* <Typography fontSize="14px" fontWeight="bold">
-                    Engine Number *
-                  </Typography> */}
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Engine Number *"
-                    error={Boolean(error)}
-                    helperText={error?.message}
-                    // sx={{ width:'100%'}}
-                  />
-                </div>
-              )}
-            />
-          </Stack>
-          <Stack spacing={2} mt={3} direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="Request"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Year"
-                  sx={{ width: { xs: '100%' } }}
-                  size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
+          <Typography variant="h5" textAlign="left" mt={3}>
+            Chassis Number
+          </Typography>
+          <TextField
+            fullWidth
+            placeholder="Enter Chassis Number *"
+            name="chassis_no"
+            value={formValues.chassis_no}
+            onChange={handleInputChange}
+            error={!!errors.chassis_no}
+            helperText={errors.chassis_no}
+            sx={{ width: { xs: '100%' } }}
+          />
 
-            <Controller
-              name="Request"
+          <Typography variant="h5" textAlign="left" mt={3}>
+            Engine Number
+          </Typography>
+          <TextField
+            fullWidth
+            placeholder="Enter Engine Number *"
+            name="engine_no"
+            value={formValues.engine_no}
+            onChange={handleInputChange}
+            error={!!errors.engine_no}
+            helperText={errors.engine_no}
+            sx={{ width: { xs: '100%' }, mb: 3 }}
+          />
+
+          <Typography variant="h5" textAlign="left" mt={2}>
+            Specifications
+          </Typography>
+          <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Year *"
+              name="year"
+              value={formValues.year}
+              onChange={handleInputChange}
+              error={!!errors.year}
+              helperText={errors.year}
               sx={{ width: '100%' }}
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Maker"
-                  sx={{ width: { xs: '100%' } }}
-                  size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
+            >
+              {year.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Mileage *"
+              name="mileage"
+              value={formValues.mileage}
+              onChange={handleInputChange}
+              error={!!errors.mileage}
+              helperText={errors.mileage}
+              sx={{ width: '100%' }}
+            >
+              {mileage.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </Stack>
           <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-            <Controller
-              name="Request"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Model"
-                  sx={{ width: { xs: '100%' } }}
-                  size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
-
-            <Controller
-              name="Request"
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Make *"
+              name="make"
+              value={formValues.make}
+              onChange={handleInputChange}
+              error={!!errors.make}
+              helperText={errors.make}
               sx={{ width: '100%' }}
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <TextField
-                  id="outlined-select-currency"
-                  select
-                  label="Variant"
-                  sx={{ width: { xs: '100%' } }}
-                  size="small"
-                >
-                  {currencie.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
+            >
+              {make.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Model *"
+              name="model"
+              value={formValues.model}
+              onChange={handleInputChange}
+              error={!!errors.model}
+              helperText={errors.model}
+              sx={{ width: '100%' }}
+            >
+              {model.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Stack>
+
+          <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Transmission *"
+              name="tans_type"
+              value={formValues.tans_type}
+              onChange={handleInputChange}
+              error={!!errors.tans_type}
+              helperText={errors.tans_type}
+              sx={{ width: '100%' }}
+            >
+              {tans_type.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Car Location *"
+              name='car_location'
+              value={formValues.car_location}
+              onChange={handleInputChange}
+              error={!!errors.car_location}
+              helperText={errors.car_location}
+              sx={{ width: '100%' }}
+            >
+              {car_location.map((option) => (
+                <MenuItem key={option.value} value={option.label}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </Stack>
 
           <FormControl sx={{ mt: 4 }}>
@@ -228,34 +284,27 @@ export default function Enterpricestep2({ tours, icons, services }) {
             </Typography>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="stock"
-              name="radio-buttons-group"
+              defaultValue="Yes"
+              value={formValues.modified}
+              onChange={handleInputChange}
+              name="modified"
             >
-              <FormControlLabel value="stock" control={<Radio />} label="Completely stock " />
-              <FormControlLabel value="modified" control={<Radio />} label="Modified" />
+              <FormControlLabel value="Yes" control={<Radio />} label="Yes " />
+              <FormControlLabel value="No" control={<Radio />} label="No" />
             </RadioGroup>
+
             <Typography fontSize="16px" fontWeight="bold">
               Does your car fall under vintage or modified?
             </Typography>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="yes"
-              name="radio-buttons-group"
+              defaultValue="Modified"
+              value={formValues.car_type}
+              onChange={handleInputChange}
+              name="car_type"
             >
-              <FormControlLabel value="modified" control={<Radio />} label="Modified " />
-              <FormControlLabel value="vintage" control={<Radio />} label="Vintage" />
-            </RadioGroup>
-
-            <Typography fontSize="16px" fontWeight="bold">
-              Is this car for sale elsewhere?
-            </Typography>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="yes"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel value="yes" control={<Radio />} label="Yes " />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
+              <FormControlLabel value="Modified" control={<Radio />} label="Modified " />
+              <FormControlLabel value="Vintage" control={<Radio />} label="Vintage" />
             </RadioGroup>
           </FormControl>
         </Box>

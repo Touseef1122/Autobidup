@@ -22,7 +22,6 @@ import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 import { useRouter } from 'next/router';
 
-
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -46,39 +45,39 @@ export default function Displaycardetails({ posts }) {
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
-  console.log(item)
-
-  return (
-    <Page title="Buy/Sell Used Cars">
-      <Loader/>
-      <ChatButton/>
-      <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-        <Breadcrumbs
+  console.log('displaycard', item);
+  if (item) {
+    console.log("dard",item.images)
+    return (
+      <Page title="Buy/Sell Used Cars">
+        <Loader />
+        <ChatButton />
+        <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
+          {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
             { name: 'Components', href: '/components' },
-            { name: 'Breadcrumbs' },
+            { name: '' },
           ]}
           sx={{mb:4}}
-        />
-        <Grid justifyContent="center">
+        /> */}
+          <Grid justifyContent="center">
           <Grid item xs={10}>
-            <Carousel post={item} images={item?.images || ''}/>
-            {/* <TravelTourDetails/> */}
+            <Carousel post={item} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <TravelTourDetails post={item} />
+            <TravelTourDetails post={item} description={item?.description || ''} />
           </Grid>
           <Grid item xs={12} sm={5}>
-            <Box>{/* <TravelTourDetails /> */}</Box>
+            <Box></Box>
           </Grid>
         </Grid>
-        {/* tours={services} icons={summary} services={service}  */}
-      </Container>
-    </Page>
-  );
+        </Container>
+      </Page>
+    );
+  }
 }
 
 //-------------------------------------------------------------------------------

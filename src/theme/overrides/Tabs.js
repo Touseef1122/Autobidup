@@ -16,7 +16,7 @@ export default function Tabs(theme) {
           },
           '&:not(:last-of-type)': {
             marginRight: theme.spacing(3),
-            '@media (min-width: 600px)': {
+            '@media (minWidth: 600px)': {
               marginRight: theme.spacing(5),
             },
           },

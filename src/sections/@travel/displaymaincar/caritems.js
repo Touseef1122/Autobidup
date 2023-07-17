@@ -68,10 +68,22 @@ export default function Caritems(props) {
     const fetchData = async () => {
       try {
         const response = '';
-        if (props.search != ''){
+        if (props.search != '' && props.filterprice == ''){
           console.log('true')
           response = await fetch(`https://autobidup.pythonanywhere.com/store/search/?search=${props.search}`);
         }
+        else if (props.filterprice != '' && props.search == ''){
+          console.log('entered price')
+          var priceValue = props.filterprice[0].label
+          const [startValue, endValue] = priceValue.split(' to ');
+          response = await fetch(`https://autobidup.pythonanywhere.com/store/search/?price__gte=${startValue}&price__lte=${endValue}`);
+        }  
+        else if (props.filterprice != '' && props.search != ''){
+          console.log('entered price and search')
+          var priceValue = props.filterprice[0].label
+          const [startValue, endValue] = priceValue.split(' to ');
+          response = await fetch(`https://autobidup.pythonanywhere.com/store/search/?search=${props.search}&price__gte=${startValue}&price__lte=${endValue}`);
+        }  
         else{
           setData([])
         console.log("worked")
@@ -112,7 +124,6 @@ export default function Caritems(props) {
             {data.map((item) => (
               <div key={item.pid}>
                 <Box 
-                // onClick={() => router.push('/travel/buysellcar/displaystoreItems')}
                 onClick={() => router.push({
                   pathname: '/travel/buysellcar/displaystoreItems',
                   query: { data: JSON.stringify(item) }

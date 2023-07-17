@@ -5,27 +5,15 @@ import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-// icons
-// import Image from 'next/image';
-// @mui
 
 import {
-  FormControlLabel,
   Button,
   Typography,
   Stack,
   Box,
   TextField,
   Container,
-  MenuItem,
 } from '@mui/material';
-// utils
-// @utils
-// import agency from '../../../assets/images/agencyBg.jpg';
-// // components
-// import { Image, TextMaxLine } from '../../../components';
-// import { TravelLandingfull } from '../landing';
-// import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
 
 const FormSchema = Yup.object().shape({
@@ -35,10 +23,11 @@ const FormSchema = Yup.object().shape({
     .max(11, 'Phone number should of 11 digits'),
   name: Yup.string().required('Name is required'),
 });
-Shippinginfo.propTypes = {
-  post: PropTypes.array,
-};
-export default function Shippinginfo({ post }) {
+// Shippinginfo.propTypes = {
+//   post: PropTypes.array,
+// };
+export default function Shippinginfo({ post}) {
+
   const router = useRouter();
   const {
     reset,
@@ -55,6 +44,10 @@ export default function Shippinginfo({ post }) {
   });
 
   // const [show, setShow] = useState(false);
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate(); // Get the current day (1-31)
+  const currentMonth = currentDate.getMonth() + 1; // Get the current month (0-11) and add 1 to match human-readable month (1-12)
+  const currentYear = currentDate.getFullYear();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -62,6 +55,12 @@ export default function Shippinginfo({ post }) {
   const [zipCode, setZipCode] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
+
+  const formattedDate = `${currentYear}-${currentMonth.toString().padStart(2, '0')}-${currentDay
+    .toString()
+    .padStart(2, '0')}`;
+  console.log(formattedDate)
+  // setDate(formattedDate);
 
   console.log('post form', post);
   return (
@@ -107,7 +106,7 @@ export default function Shippinginfo({ post }) {
                 placeholder="Enter last name"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
                 value={lastName}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
           </Stack>
@@ -122,7 +121,7 @@ export default function Shippinginfo({ post }) {
                 placeholder="Enter address"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
                 value={address}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
             <div>
@@ -148,19 +147,19 @@ export default function Shippinginfo({ post }) {
                 placeholder="Enter zip code"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
                 value={zipCode}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
             <div>
               <Typography variant="h4" fontWeight="bold">
-                Phone Number *
+              Phone Number *
               </Typography>
               <TextField
                 fullWidth
                 placeholder="Enter phone number"
                 sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
                 value={phoneNumber}
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
           </Stack>
@@ -173,7 +172,7 @@ export default function Shippinginfo({ post }) {
             placeholder="Enter email"
             sx={{ width: { xs: '100%', sm: '50vh', md: '43vh', lg: '30vw' } }}
             value={email}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}>
@@ -185,24 +184,25 @@ export default function Shippinginfo({ post }) {
                 color: 'white',
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() =>
-                {
-                  const updatedPost = {
-                    ...post,
-                    firstName: firstName,
-                    lastName: lastName,
-                    address: address,
-                    city: "Lahore",
-                    zipCode: zipCode,
-                    phoneNumber: phoneNumber,
-                    email: email,
-                  };
-              
-                  router.push({
-                    pathname: '/travel/carRentals/payment',
-                    query: { data: JSON.stringify(updatedPost) },
-                  });
-                }}             
+              onClick={() => {
+                const updatedPost = {
+                  ...post,
+                  fname: firstName,
+                  lname: lastName,
+                  address: address,
+                  city: 'Lahore',
+                  zipcode: zipCode,
+                  phone: phoneNumber,
+                  email: email,
+                  date: formattedDate,
+                };
+                console.log('shipping data added', updatedPost);
+
+                router.push({
+                  pathname: '/travel/carRentals/payment',
+                  query: { data: JSON.stringify(updatedPost) },
+                });
+              }}
             >
               Proceed to Payment
             </Button>

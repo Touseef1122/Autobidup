@@ -6,10 +6,10 @@ import { useRef,useState,useEffect } from 'react';
 // import { CarouselDots, CarouselArrows } from '../../../src/components';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
-import image1 from '../../../Assets/Images/FordMinivan.jpg';
-import image2 from '../../../Assets/Images/FordMustang.jpg';
-import image3 from '../../../Assets/Images/ForTransit.jpg';
-import image4 from '../../../Assets/Images/JeepWrangler.jpg';
+import image1 from '../../../Assets/images/FordMinivan.jpg';
+import image2 from '../../../Assets/images/FordMustang.jpg';
+import image3 from '../../../Assets/images/ForTransit.jpg';
+import image4 from '../../../Assets/images/JeepWrangler.jpg';
 import { display } from '@mui/system';
 import ContactinfoAuction from './contactinfoAuction';
 
@@ -44,7 +44,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-export default function Carousel() {
+export default function Carousel({imagesInfo}) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);
 
@@ -75,9 +75,9 @@ export default function Carousel() {
   }, [images]);
 
   return (
-      <Grid container spacing={8} >
+      <Grid container spacing={2} >
           <Grid item xs={12} sm={7}>
-        <div style={{}}>
+        <div style={{ marginTop: '200px' }}>
         {images && images.length !== 0 &&
                   <div className={"animate-card"}>
                       <img
@@ -104,7 +104,7 @@ export default function Carousel() {
             
           </Grid>
           <Grid item xs={12} sm={5}>
-              <ContactinfoAuction/>
+              <ContactinfoAuction car={imagesInfo}/>
           </Grid>
       </Grid>
   );
