@@ -32,6 +32,7 @@ export default function Carfilterbar({ mobileOpen, onMobileClose, onFilterClick 
   const [filters, setFilters] = useState(defaultValues);
 
   const handlechangesearch = (keyword) => {
+    
     setFilters({
       ...filters,
       filtersearch: keyword,

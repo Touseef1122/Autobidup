@@ -17,7 +17,6 @@ import Carfilterprice from './carfilterprice';
 
 const defaultValues = {
   filterprice: [],
-  filtermake: [],
 };
 
 Storefilterbar.propTypes = {

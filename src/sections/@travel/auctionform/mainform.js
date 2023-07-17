@@ -192,40 +192,7 @@ export default function Mainform() {
     });
   }, [formValues1, formValues1p1, formValues2,formValues3]);
 
-  // const handleSubmit = async () => {
-  //   console.log('Form Data', formData);
-  //   if (validateForm(2)){
-  //     console.log('submitteeedddd now');
-  //     console.log(formData);
-  //     try {
-  //       console.log('form is submiting');
-  //       const response = await fetch('https://autobidup.pythonanywhere.com/bidding/mainform', {
-  //         method: 'POST',
-  //         mode: 'cors',
-  //         credentials: 'include',
-  //         headers: {
-  //           'Content-Type': 'multipart/form-data',
-  //         },
-  //         body: JSON.stringify(formData),
-  //       });
-  //       if (response.ok) {
-  //         // API call successful
-  //         const responseData = await response.json();
-  //         console.log('response data', responseData);
-  //         console.log('form submitted succesfully');
-  //         setOpen(true);
-  //         //
-  //       } else {
-  //         // API call failed
-  //         const errorData = await response.json();
-  //         // Handle the error data as needed
-  //       }
-  //     } catch (error) {
-  //       // Error occurred during the API call
-  //       console.error(error);
-  //     }
-  //   }
-  // };
+  
   const handleSubmit = async () => {
     console.log('Form Data', formData);
     if (validateForm(2)) {
