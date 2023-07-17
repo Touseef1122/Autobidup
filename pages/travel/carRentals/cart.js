@@ -57,21 +57,23 @@ export default function Cart() {
   if (typeof window !== 'undefined') {
     if (globalVariable.length > 0) {
       let it = globalVariable.pop();
+      console.log(it);
+      
 
       if (
-        JSON.parse(localStorage.getItem('cartItems')).some((v, i) => {
+        JSON.parse(localStorage.getItem('cartItems'))?.some((v, i) => {
           if (v['pid'] == it['pid']) {
             index = i;
             return true;
           }
         }) &&
-        items.length > 0
+        items?.length > 0
       ) {
         items[index]['quantity'] += it['quantity'];
         items[index]['price'] = parseFloat(items[index]['price']) + parseFloat(it['price']);
         localStorage.setItem('cartItems', JSON.stringify(items));
       } else {
-        items.push(it);
+        items?.push(it);
         localStorage.setItem('cartItems', JSON.stringify(items));
       }
     }
@@ -79,11 +81,11 @@ export default function Cart() {
   console.log(items);
 
   const handleRemoveItem = (productId) => {
-    const updatedItems = items.filter((item) => item.pid !== productId);
+    const updatedItems = items?.filter((item) => item.pid !== productId);
     setItems(updatedItems);
   };
-  let totalPrice = items.reduce((total, item) => {
-    return total + (parseFloat(item?.price) || 0);
+  let totalPrice = items?.reduce((total, item) => {
+    return total + item?.quantity*(parseFloat(item?.price) || 0);
   }, 0);
 
 
@@ -93,14 +95,14 @@ export default function Cart() {
     //   console.log(value);
     //
     if (typeof window !== 'undefined') {
-      if (JSON.parse(localStorage.getItem('cartItems')).length != 0) {
+      if (JSON.parse(localStorage.getItem('cartItems'))?.length != 0) {
         items = JSON.parse(localStorage.getItem('cartItems'));
-        totalPrice = items.reduce((total, item) => {
-          return total + (parseFloat(item?.price) || 0);
+        totalPrice = items?.reduce((total, item) => {
+          return total + item?.quantity*(parseFloat(item?.price) || 0);
         }, 0);
         console.log(items);
       }
-
+      if(items){
       for (let i of items) {
         console.log(i);
         if (i['pid'] != temp['product_ids']) {
@@ -108,6 +110,7 @@ export default function Cart() {
           temp['quantity'].push(i['quantity']);
         }
       }
+    }
       console.log("temp",temp);
     }
   }, []);
@@ -146,7 +149,7 @@ export default function Cart() {
         <Typography variant="h2"> Shopping Cart </Typography>
         <Grid spacing={2} container justifyContent="center">
           <Grid item xs={12} sm={7} md={8}>
-            {items.length > 0 && <Item item={items} data={temp} onRemoveItem={handleRemoveItem} />}
+            {items?.length > 0 && <Item item={items} data={temp} onRemoveItem={handleRemoveItem} />}
           </Grid>
           <Grid item xs={12} sm={5} md={4}>
             <Order totalPrice={totalPrice} post={items} data={temp} />

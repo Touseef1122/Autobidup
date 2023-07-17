@@ -121,7 +121,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),

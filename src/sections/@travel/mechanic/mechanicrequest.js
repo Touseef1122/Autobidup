@@ -192,7 +192,7 @@ export default function Mechanicrequest() {
       // Handle the error
     }
   };
-  useEffect(() => {
+  useState(() => {
     console.log(mechanicId);
 
     async function fetchData() {
@@ -265,8 +265,7 @@ export default function Mechanicrequest() {
       }
       fetchData1(mechanicId);
     } else {
-      console.log('hellllll');
-      
+      console.log('hellllll');      
       handleOpenError()
     }
   };
@@ -513,7 +512,7 @@ export default function Mechanicrequest() {
                   width: '100%',
                   mt: 1,
                 }}
-                // onClick={handleRemove}
+                onClick={handleRemove}
               >
                 Remove Mechanic
               </Button>

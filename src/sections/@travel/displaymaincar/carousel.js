@@ -26,7 +26,7 @@ Carousel.propTypes = {
   post: PropTypes.array.isRequired,
   images: PropTypes.array.isRequired,
 };
-export default function Carousel({ post, images }) {
+export default function Carousel({ post }) {
   console.log('post', post);
 
   const carouselRef = useRef(null);
@@ -56,7 +56,7 @@ export default function Carousel({ post, images }) {
     carouselRef.current?.slickNext();
   };
   if (post) {
-    console.log('image', post.images);
+    console.log('image', post?.images);
     return (
       <Grid container spacing={6}>
         <Grid item xs={12} sm={7}>
@@ -82,12 +82,12 @@ export default function Carousel({ post, images }) {
               }}
             >
               <Slider ref={carouselRef} {...carouselSettings}>
-                {post.images.map((image) => (
+                {post?.images.map((image) => (
                   <Box mt={2}>
                     <Image
                       key={image.image_url}
                       // alt={img.title}
-                      src={image.image_url}
+                      src={image?.image_url}
                       sx={{ width: '100%', height: '400px', p: 4 }}
                     />
                   </Box>
