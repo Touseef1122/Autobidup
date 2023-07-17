@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 // @mui
 import { Container, Grid, Box } from '@mui/material';
 // utils
+import { useState, useEffect } from 'react';
+
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
@@ -30,11 +32,12 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
+
 // ----------------------------------------------------------------------
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-export default function Displaycardetails({ posts }) {
+
+export default function Displaycardetails({post}) {
+
+  
   const { data: tours = [], error } = useRequest('/api/travel/tours');
   if (error) {
     return <ErrorScreen />;
@@ -43,13 +46,54 @@ export default function Displaycardetails({ posts }) {
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
   console.log('bidding item', item);
+  const [info, setData] = useState([]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://autobidup.pythonanywhere.com/bidding/search_all_bidding_cars?search=${item}`
+  //       );
+  //       const jsonData = await response.json();
+  //       console.log(jsonData, jsonData.length);
+  //       setData(jsonData);
+  //       // console.log("room",room);
+  //       console.log('created');
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://autobidup.pythonanywhere.com/bidding/search_bidding_room?search=${item}`
+        );
+        
+        const jsonData = await response.json();
+        console.log(jsonData, jsonData.length);
+        setData(jsonData);
+        // console.log("room",room);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+  
+
+  console.log(info)
+
   return (
     <Page title="Auction">
       <Loader />
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <CarouselAuction />
+            <CarouselAuction post={item} />
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
@@ -69,8 +113,7 @@ export default function Displaycardetails({ posts }) {
           >
             <TravelTourDetailsAuction />
           </Grid>
-          <Grid item xs={12} sm={5}>
-          </Grid>
+          <Grid item xs={12} sm={5}></Grid>
         </Grid>
       </Container>
     </Page>

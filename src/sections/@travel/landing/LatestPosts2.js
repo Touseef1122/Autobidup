@@ -122,7 +122,7 @@ export default function LatestPosts2({data}) {
                     >
            
                       <Image
-                        src={value.images[0]?.image_url}
+                        src={value.images}
                         sx={{ width: '100%', height: '200px' }}
                       />
                      
