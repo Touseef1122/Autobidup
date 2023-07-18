@@ -1,20 +1,13 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { Button, Grid, Box, Container, Stepper, Step, StepButton } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import Slider from 'react-slick';
 import { useRef } from 'react';
-// import { CarouselDots, CarouselArrows } from '../../../src/components';
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
-import image1 from '../../../Assets/images/FordMinivan.jpg';
-import image2 from '../../../Assets/images/FordMustang.jpg';
-import image3 from '../../../Assets/images/ForTransit.jpg';
-import image4 from '../../../Assets/images/JeepWrangler.jpg';
-import { display } from '@mui/system';
 import Contactinfo from './contactinfo';
 
 //--------------------------------------------------------------
-
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -60,7 +53,6 @@ export default function Carousel({ post }) {
     return (
       <Grid container spacing={6}>
         <Grid item xs={12} sm={7}>
-          {/* <Container sx={{ position: 'relative' }}> */}
           <Box
             position="relative"
             justifyContent="center"
@@ -95,17 +87,16 @@ export default function Carousel({ post }) {
               </Slider>
             </CarouselArrows>
           </Box>
-          {/* </Container> */}
         </Grid>
         <Grid item xs={12} sm={5}>
-        <Contactinfo
-          post={post}
-          make={post?.make || ''}
-          variant={post?.model || ''}
-          price={post?.price || ''}
-          year={post?.year || ''}
-        />
-      </Grid>
+          <Contactinfo
+            post={post}
+            make={post?.make || ''}
+            variant={post?.model || ''}
+            price={post?.price || ''}
+            year={post?.year || ''}
+          />
+        </Grid>
       </Grid>
     );
   }

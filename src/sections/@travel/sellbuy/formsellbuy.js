@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import {
   Button,
@@ -16,16 +16,12 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-
 import Step1 from '../sellbuy/carinformationstep1';
 import Step2 from '../sellbuy/enterpricestep2';
 import Step3 from '../sellbuy/featuresstep3';
 import Step4 from '../sellbuy/imagesstep4';
 import Step5 from '../sellbuy/finishstep5';
-
+//----------------------------------------------------------------
 const steps = [
   'Car Information',
   'Enter Price',
@@ -33,14 +29,6 @@ const steps = [
   'Upload Images',
   'Finish',
 ];
-
-const FormSchema2 = Yup.object().shape({
-  price: Yup.string()
-    .required()
-    .min(100000, 'minimum price is 1 lac')
-    .max(1000000000, 'maximum price is 100 crore'),
-});
-
 export default function Formsellbuy() {
   const [activeStep, setActiveStep] = useState(0);
   const [open, setOpen] = useState(false);
@@ -176,8 +164,7 @@ export default function Formsellbuy() {
         newErrors.images = 'Images is required';
         isValid = false;
       }
-    } 
-    else if (i == 4) {
+    } else if (i == 4) {
       if (!formValues5.description) {
         newErrors.description = 'Description is required';
         isValid = false;
@@ -208,7 +195,7 @@ export default function Formsellbuy() {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     } else if (isValid4 && actStep == 3) {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    } 
+    }
     // else if (isValid5 && actStep == 4) {
     //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
     // }
@@ -247,19 +234,6 @@ export default function Formsellbuy() {
       [name]: value,
     }));
   };
-  // const handleInputChange4 = (e) => {
-  //   var reader = new FileReader();
-  //   var file = e.target.files[0];
-  //   console.log(e);
-  //   reader.onload = () => {
-  //     // console.log(reader.result);
-  //     setFormValues4((prevValues) => ({
-  //       ...prevValues,
-  //       images: reader.result,
-  //     }));
-  //   };
-  //   reader.readAsDataURL(e.target.files[0]);
-  // };
   const handleInputChange4 = (e) => {
     const files = e.target.files;
     const imageArray = Array.from(files);
@@ -306,12 +280,7 @@ export default function Formsellbuy() {
 
   const handleNextButton = (e) => {
     e.preventDefault();
-    // Do something with the form values
-    // console.log(e);
     console.log(formValues2);
-    // console.log(formValues3);
-    // console.log(formValues3p1);
-    // console.log();
     handleNext(activeStep);
   };
 
@@ -328,7 +297,7 @@ export default function Formsellbuy() {
   }, [formValues1, formValues2, formValues3, formValues3p1, formValues4, formValues5]);
 
   const handleSubmit = async () => {
-    if (validateForm(4)){
+    if (validateForm(4)) {
       console.log(formValues5);
       console.log('submitteeedddd now');
       console.log(formData);
@@ -342,15 +311,12 @@ export default function Formsellbuy() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(formData),
-          // xhrFields: {
-          //   withCredentials: true,
-          // },
         });
-  
+
         if (response.ok) {
           // API call successful
           const responseData = await response.json();
-  
+
           console.log('response data', responseData);
           console.log('form submitted succesfully');
           setOpen(true);

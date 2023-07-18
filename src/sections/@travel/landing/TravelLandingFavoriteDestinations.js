@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 // icons
-import locationIcon from '@iconify/icons-carbon/location';
 import cssStyles from '../../../utils/cssStyles';
 
 // @mui
-import {alpha, styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import { Grid, Container, Typography, Stack, Box } from '@mui/material';
 // hooks
 import useResponsive from '../../../hooks/useResponsive';

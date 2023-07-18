@@ -1,13 +1,6 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-
 import {
-  FormControlLabel,
   Checkbox,
   Typography,
   Stack,
@@ -15,7 +8,7 @@ import {
   TextField,
   Container,
   Button,
-  MenuItem
+  MenuItem,
 } from '@mui/material';
 // ----------------------------------------------------------------------
 const check = [
@@ -157,7 +150,7 @@ export default function Featuresstep3({
   formValues3p1,
   handleInputChange,
   handleInputChange3p1,
-  errors
+  errors,
 }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
@@ -177,24 +170,6 @@ export default function Featuresstep3({
             }}
           >
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-              {/* <TextField
-                fullWidth
-                placeholder="Enter Engine Type"
-                name="engine_type"
-                label="Engine Type"
-                value={formValues.enginetype}
-                onChange={handleInputChange}
-                sx={{ width: { xs: '100%', sm: '50%' } }}
-              />
-              <TextField
-                fullWidth
-                placeholder="Enter Engine Capacity"
-                label="Engine Capacity"
-                name="engine_capacity"
-                value={formValues.engineCapacity}
-                onChange={handleInputChange}
-                sx={{ width: { xs: '100%', sm: '50%' } }}
-              /> */}
               <TextField
                 id="outlined-select-currency"
                 select
@@ -231,17 +206,7 @@ export default function Featuresstep3({
               </TextField>
             </Stack>
             <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-              {/* <TextField
-                fullWidth
-                placeholder="Enter Transmission"
-                label="Transmission"
-                name="transmission"
-                value={formValues.transmission}
-                onChange={handleInputChange}
-                // value={stepData.step1Data?.transmission || ''}
-                sx={{ width: { xs: '100%', sm: '50%' } }}
-              /> */}
-               <TextField
+              <TextField
                 id="outlined-select-currency"
                 select
                 label="Transmission *"
@@ -258,16 +223,7 @@ export default function Featuresstep3({
                   </MenuItem>
                 ))}
               </TextField>
-              {/* <TextField
-                fullWidth
-                placeholder="Enter Assembly"
-                label="Assembly"
-                name="assembly"
-                value={formValues.assembly}
-                onChange={handleInputChange}
-                sx={{ width: { xs: '100%', sm: '50%' } }}
-              />*/}
-             <TextField
+              <TextField
                 id="outlined-select-currency"
                 select
                 label="Assembly *"
@@ -284,7 +240,7 @@ export default function Featuresstep3({
                   </MenuItem>
                 ))}
               </TextField>
-            </Stack> 
+            </Stack>
           </Box>
           <Typography variant="h5" mb="6" fontWeight="bold">
             Features

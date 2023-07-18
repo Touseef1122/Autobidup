@@ -1,32 +1,15 @@
-import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-
-// icons
-import playIcon from '@iconify/icons-carbon/play';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Typography, Container, Stack, Box, Card } from '@mui/material';
-// hooks
-import { useBoundingClientRect, useResponsive } from '../../../hooks';
-// _data
-// import SUMMARY from '../../../../_data/mock/imagesos'; 
-// import Imagesos from '../../../../_data/mock/imagesos';
-
-
+import { Typography, Container, Stack, Box } from '@mui/material';
 // components
 import {
-  SvgIconStyle,
   Image,
-  TextIconLabel,
-  Iconify,
-  PlayerWithButton,
   TextMaxLine,
 } from '../../../components';
 import { useRouter } from 'next/router';
 
 // ----------------------------------------------------------------------
-
-
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -40,24 +23,7 @@ TravelLandingIntroduceOurServices.propTypes = {
   data: PropTypes.array.isRequired,
 };
 export default function TravelLandingIntroduceOurServices({data}) {
-  const isDesktop = useResponsive('up', 'md');
   const router = useRouter();
-
-  const containerRef = useRef(null);
-  const container = useBoundingClientRect(containerRef);
-
-  const [openVideo, setOpenVideo] = useState(false);
-
-  const handleOpenVideo = () => {
-    setOpenVideo(true);
-  };
-
-  const handleCloseVideo = () => {
-    setOpenVideo(false);
-  };
-
-  const offsetLeft = container && container.left + 20;
-
   return (
     <>
       <RootStyle>
@@ -106,7 +72,6 @@ export default function TravelLandingIntroduceOurServices({data}) {
           </Box>
         </Container>
       </RootStyle>
-      {/* <PlayerWithButton open={openVideo} onClose={handleCloseVideo} videoPath={_mock.video} /> */}
     </>
   );
 }

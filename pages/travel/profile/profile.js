@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// hooks
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
 import { Page } from '../../../src/components';
+//mui
 import { Button, Modal, Typography, Stack, Box } from '@mui/material';
 
 // ----------------------------------------------------------------------

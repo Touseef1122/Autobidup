@@ -1,26 +1,18 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 
 import { Image } from '../../../components';
 import image from '../../../Assets/Images/expert2.jpg';
 import { Grid, List, ListItem, Stack, Box, Typography } from '@mui/material';
-import Comments from '../displaymaincar/comments';
 
 //--------------------------------------------------------------
 
 export default function Expertprofile() {
   const router = useRouter();
-  // const [item, setItem] = useState({});
-  // let item = {};
-  // useState(() => {
   const { data } = router.query;
-
   let item = data ? JSON.parse(data) : null;
-  // console.log(item);
   console.log('items reached', item);
-  // }, []);
   if (item) {
     return (
       <Box

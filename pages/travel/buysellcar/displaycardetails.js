@@ -31,11 +31,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
 export default function Displaycardetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
@@ -47,41 +42,30 @@ export default function Displaycardetails({ posts }) {
   const item = data ? JSON.parse(data) : null;
   console.log('displaycard', item);
   if (item) {
-    console.log("dard",item.images)
+    console.log('dard', item.images);
     return (
       <Page title="Buy/Sell Used Cars">
         <Loader />
         <ChatButton />
         <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-          {/* <Breadcrumbs
-          links={[
-            { name: 'Home', href: '/' },
-            { name: 'Components', href: '/components' },
-            { name: '' },
-          ]}
-          sx={{mb:4}}
-        /> */}
           <Grid justifyContent="center">
-          <Grid item xs={10}>
-            <Carousel post={item} />
+            <Grid item xs={10}>
+              <Carousel post={item} />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container justifyContent="center">
-          <Grid item xs={12} sm={7} mb={2}>
-            <TravelTourDetails post={item} description={item?.description || ''} />
+          <Grid container justifyContent="center">
+            <Grid item xs={12} sm={7} mb={2}>
+              <TravelTourDetails post={item} description={item?.description || ''} />
+            </Grid>
+            <Grid item xs={12} sm={5}>
+              <Box></Box>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={5}>
-            <Box></Box>
-          </Grid>
-        </Grid>
         </Container>
       </Page>
     );
   }
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaycardetails.getLayout = function getLayout(page) {

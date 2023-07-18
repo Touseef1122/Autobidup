@@ -5,25 +5,12 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 // next
-import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import {
-  Grid,
-  Box,
-  LoadingButton,
-  Stack,
-  Container,
-  Typography,
-  Modal,
-  FormControl,
-  TextField,
-  Button,
-} from '@mui/material';
+import { Box, Stack, Container, Typography } from '@mui/material';
 
 import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
 import ReverseCounter from './timer';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 
 // ----------------------------------------------------------------------
 
@@ -55,22 +42,6 @@ const DotStyle = styled('span')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
-const items = [
-  {
-    image: img1,
-    heading: 'Honda',
-    time: '12:27',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
-
 export default function BlogMarketingLatestPosts({ bid_Id }) {
   const theme = useTheme();
   const router = useRouter();
@@ -86,23 +57,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
         );
         const jsonData = await response.json();
         console.log(jsonData, jsonData.length);
-        // for (let i = 0; i < jsonData.length; i++) {
-        //   console.log('entered');
-
-        //   if (jsonData[i].room_id_alloted) {
-        //     console.log('checking');
-
-        //     setData(jsonData[i]);
-        //     // setRoom([jsonData[i].room_id])
-        //     // break;
-        //   }
-        //   else{
-        //     console.log('nope');
-
-        //   }
-        // }
         setData(jsonData);
-        // console.log("room",room);
         console.log('created');
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -136,43 +91,6 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
       },
     ],
   };
-
-  // const handleOpenRoom = async (roomid) => {
-  //   console.log('Working');
-
-  //   try {
-  //     const response = await fetch(
-  //       'https://autobidup.pythonanywhere.com/bidding/enter_bidding_room',
-  //       {
-  //         method: 'POST',
-  //         mode: 'cors',
-  //         credentials: 'include',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ bids: roomid }),
-  //       }
-  //     );
-
-  //     if (response.ok) {
-  //       // API call successful
-  //       let responseData = await response.json();
-  //       console.log(responseData)
-
-  //       console.log('Bidding room Enterence successfully');
-  //       router.push({
-  //         pathname: '/travel/Auction/BiddingDetails',
-  //         query: { data: JSON.stringify(bid_Id) },
-  //       });
-  //     } else {
-  //       // API call failed
-  //       console.error('Failed to Enter bidding room');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error during API call:', error);
-  //   }
-  // };
-
   const handleOpenRoom = async (roomId) => {
     try {
       const response = await fetch(

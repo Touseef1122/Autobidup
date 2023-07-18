@@ -8,8 +8,6 @@ import { Box } from '@mui/material';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
@@ -20,8 +18,6 @@ import ChatButton from '../ChatButton';
 import { styled } from '@mui/material/styles';
 import Formsellbuy from '../../../src/sections/@travel/sellbuy/formsellbuy';
 import sell from '../../../src/Assets/Images/sellBg.webp';
-import { CHARSET } from 'stylis';
-
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -32,17 +28,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-const styling={
+const styling = {
   backgroundImage: `url(${sell.src})`,
   width: '100%',
   height: '100%',
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
-}
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+};
 export default function Form({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
@@ -52,22 +44,25 @@ export default function Form({ posts }) {
 
   return (
     <Page title="Selling Form">
-      <Loader/>
-      <ChatButton/>
-      <Box sx={{ position: 'relative',marginTop:{xs: '18%', sm: '10%',md:"8%"},overflowX: 'hidden' }} style={styling}>
+      <Loader />
+      <ChatButton />
+      <Box
+        sx={{
+          position: 'relative',
+          marginTop: { xs: '18%', sm: '10%', md: '8%' },
+          overflowX: 'hidden',
+        }}
+        style={styling}
+      >
         <Formsellbuy />
-        {/* tours={services} icons={summary} services={service}  */}
       </Box>
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Form.getLayout = function getLayout(page) {
-  return <Layout >{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------

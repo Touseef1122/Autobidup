@@ -1,21 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useState } from 'react';
-import * as Yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
 
-import {
-  Button,
-  Checkbox,
-  Typography,
-  Stack,
-  Box,
-  TextField,
-  Container,
-  MenuItem,
-} from '@mui/material';
+import { Typography, Stack, Box, TextField, Container } from '@mui/material';
 //------------------------------------------------------------------------------------
 export default function Finishstep5({ formValues, handleInputChange, errors }) {
   return (

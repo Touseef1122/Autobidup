@@ -1,34 +1,13 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-
 import { useRouter } from 'next/router';
-
-import {
-  FormControlLabel,
-  Checkbox,
-  Typography,
-  Stack,
-  Box,
-  TextField,
-  Container,
-  Button,
-} from '@mui/material';
-
+import { Typography, Stack, Box, Container } from '@mui/material';
 // // components
-import { Image } from '../../../components';
 import { LoadingButton } from '@mui/lab';
 // ----------------------------------------------------------------------
-export default function Imagesstep4({ handleInputChange,formValues , errors}) {
+export default function Imagesstep4({ handleInputChange, formValues, errors }) {
   const router = useRouter();
-  // const [selectedImage, setSelectedImage] = useState(null);
-  // const [imageUrl, setImageUrl] = useState(null);
-  // useEffect(() => {
-  //   if (selectedImage) {
-  //     setImageUrl(URL.createObjectURL(selectedImage));
-  //   }
-  // }, [selectedImage]);
 
- 
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>
@@ -60,13 +39,12 @@ export default function Imagesstep4({ handleInputChange,formValues , errors}) {
                 accept="image/png, image/jpeg, image/jpg"
                 // target={formValues.images}
                 style={{ display: 'none' }}
-                onChange={handleInputChange}                 
+                onChange={handleInputChange}
               />
             </LoadingButton>
 
-            <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold" 
-                >
-                {errors.images}
+            <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
+              {errors.images}
             </Typography>
             <Typography fontSize={{ xs: '10px', sm: '16px' }} p="12px" fontWeight="bold">
               Tip: Select several photos to add them in one go
@@ -97,7 +75,6 @@ export default function Imagesstep4({ handleInputChange,formValues , errors}) {
           )} */}
         </Box>
       </Container>
-
     </Box>
   );
 }

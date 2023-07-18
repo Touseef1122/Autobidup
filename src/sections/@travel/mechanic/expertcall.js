@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 
 import { Image } from '../../../components';
-import man from 'src/Assets/Images/expertMan.png'
-import {
-  Grid,
-  Button,
-  Stack,
-  Box,
-  Typography,
-  Modal
-} from '@mui/material';
+import man from 'src/Assets/Images/expertMan.png';
+import { Grid, Button, Stack, Box, Typography, Modal } from '@mui/material';
 
 //--------------------------------------------------------------
 const style = {
@@ -25,7 +18,7 @@ const style = {
   borderRadius: '10px',
   p: 6,
 };
-let calls = ''
+let calls = '';
 export default function Expertcall({ item, updateLeftCalls }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -35,7 +28,7 @@ export default function Expertcall({ item, updateLeftCalls }) {
 
   const handleCall = async (id) => {
     try {
-      console.log('form is submiting',id);
+      console.log('form is submiting', id);
       const response = await fetch('https://autobidup.pythonanywhere.com/mechanic/request_call', {
         method: 'POST',
         mode: 'cors',
@@ -43,20 +36,18 @@ export default function Expertcall({ item, updateLeftCalls }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(
-          { expert_id: id }
-        )
+        body: JSON.stringify({ expert_id: id }),
       });
 
       if (response.ok) {
         // API call successful
         const responseData = await response.json();
 
-        calls = responseData["left calls"]
+        calls = responseData['left calls'];
         updateLeftCalls(calls);
         console.log('response data', responseData);
         console.log('call done succesfully');
-        setOpen(true)
+        setOpen(true);
       } else {
         // API call failed
         const errorData = await response.json();
@@ -66,8 +57,7 @@ export default function Expertcall({ item, updateLeftCalls }) {
       // Error occurred during the API call
       console.error(error);
     }
-
-  }
+  };
 
   return (
     <Box
@@ -120,7 +110,6 @@ export default function Expertcall({ item, updateLeftCalls }) {
                       query: { data: JSON.stringify(value) },
                     });
                   }}
-                  
                 >
                   View Profile
                 </Button>
@@ -139,35 +128,35 @@ export default function Expertcall({ item, updateLeftCalls }) {
             </Grid>
           </Grid>
           <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h3" component="h2">
-              Your Call Request has been sent.
-            </Typography>
-            <Typography id="modal-modal-title" variant="h3" component="h2">
-              Expert will vontact you shortly
-            </Typography>
-            <Typography id="modal-modal-title" variant="h3" component="h2">
-              Thank You!
-            </Typography>
-            <Button
-              sx={{
-                backgroundColor: 'black',
-                color: 'white',
-                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-                width: '100%',
-                mt: 1,
-              }}
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-          </Box>
-        </Modal>
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h3" component="h2">
+                Your Call Request has been sent.
+              </Typography>
+              <Typography id="modal-modal-title" variant="h3" component="h2">
+                Expert will vontact you shortly
+              </Typography>
+              <Typography id="modal-modal-title" variant="h3" component="h2">
+                Thank You!
+              </Typography>
+              <Button
+                sx={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                  width: '100%',
+                  mt: 1,
+                }}
+                onClick={handleClose}
+              >
+                Close
+              </Button>
+            </Box>
+          </Modal>
         </Box>
       ))}
     </Box>

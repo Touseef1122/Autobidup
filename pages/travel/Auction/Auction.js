@@ -3,7 +3,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // _data
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
@@ -70,44 +69,6 @@ export default function Displaycarlist({ posts }) {
 
     fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       console.log('details fetching');
-  //       const response = await fetch(
-  //         `http://autobidup.pythonanywhere.com/bidding/get_bidding_records_roomid`,
-  //         {
-  //           method: 'GET',
-  //           credentials: 'include',
-  //           headers: {
-  //             'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
-  //           },
-  //         }
-  //       );
-
-  //       if (response.ok) {
-  //         // API call successful
-  //         let responseData = await response.json();
-  //         const automaticGeneratedBidId = responseData.automatic_generated_bid_id;
-  //         setBid_Id(automaticGeneratedBidId);
-
-  //         console.log('response data', responseData);
-  //         console.log('Automatic Generated Bid ID:', automaticGeneratedBidId);
-  //         console.log('customer details arrived succesfully');
-  //       } else {
-  //         // API call failed
-  //         const errorData = await response.json();
-  //         // Handle the error data as needed
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
-
   const Id = bid_Id;
 
   console.log('Bid ID:', bid_Id);

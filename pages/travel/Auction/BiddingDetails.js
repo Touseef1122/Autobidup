@@ -9,8 +9,6 @@ import { useState, useEffect } from 'react';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 import Loader from '../UsedCars/Loader.js';
@@ -24,7 +22,6 @@ import {
   Contactinfo,
   TravelTourDetailsAuction,
 } from '../../../src/sections/@travel/displaymaincar';
-// import {  } from '../../../src/sections/@travel';
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
   backgroundColor: theme.palette.background.neutral,
@@ -35,9 +32,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function Displaycardetails({post}) {
-
-  
+export default function Displaycardetails({ post }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
   if (error) {
     return <ErrorScreen />;
@@ -54,7 +49,7 @@ export default function Displaycardetails({post}) {
         const response = await fetch(
           `https://autobidup.pythonanywhere.com/bidding/search_bidding_room?search=${item}`
         );
-        
+
         const jsonData = await response.json();
         console.log(jsonData, jsonData.length);
         setData(jsonData);
@@ -66,9 +61,8 @@ export default function Displaycardetails({post}) {
     };
     fetchData();
   }, [0]);
-  
 
-  console.log(info)
+  console.log(info);
 
   return (
     <Page title="Auction">
@@ -94,7 +88,7 @@ export default function Displaycardetails({post}) {
               },
             }}
           >
-            <TravelTourDetailsAuction post={item}/>
+            <TravelTourDetailsAuction post={item} />
           </Grid>
           <Grid item xs={12} sm={5}></Grid>
         </Grid>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from '../../routes';
-import { _tours, _jobs, _courses } from '../../../_data/mock';
+// import { _tours, _jobs, _courses } from '../../../_data/mock';
 export const PageLinks = [
   {
     order: '1',
@@ -33,8 +33,6 @@ export const PageLinks = [
     items: [
       { title: 'Request a Mechanic', path: '/travel/mechanic/requestmechanic' },
       { title: 'Call an Expert', path: '/travel/mechanic/callexpert' },
-      // { title: 'Mechanic', path: '/travel/mechanic/mechaniclanding' },
-      // { title: 'Testimonials', path: '/travel/UsedCars/cityToCity' },
     ],
   },
 ];

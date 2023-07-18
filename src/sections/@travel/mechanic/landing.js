@@ -8,8 +8,6 @@ import Pageimage from '../../../sections/@travel/landing/pageimage';
 //mui
 import { Grid, Box, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-// import { Applying} from '../../../Assets/Images/tools.jpg'
-// import { Apply} from '../../../Assets/Images/tools.jpg'
 import Apply from '../../../Assets/Images/space.jpg';
 import Applying from '../../../Assets/Images/wood_.jpg';
 
@@ -20,13 +18,8 @@ const usedimage = [
     text: 'Best Mechanics and Experts ',
   },
 ];
-// Landing.propTypes = {
-//   item: PropTypes.array.isRequired,
-// };
-
 export default function Landing() {
   const router = useRouter();
-
   return (
     <>
       <Pageimage images={usedimage} />
@@ -49,7 +42,6 @@ export default function Landing() {
               backgroundRepeat: 'no-repeat',
             }}
           >
-
             <Typography variant="h4" pb={2}>
               Mechanic
             </Typography>
