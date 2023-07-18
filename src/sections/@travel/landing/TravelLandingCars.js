@@ -1,8 +1,5 @@
 // import { useRef, useState } from 'react';
 import React, { useRef, useEffect, useState } from 'react';
-
-// icons
-import playIcon from '@iconify/icons-carbon/play';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Typography, Container, Stack, Box, Card } from '@mui/material';
@@ -13,15 +10,9 @@ import _mock from '../../../../_data/mock';
 import { useRouter } from 'next/router';
 
 // components
-import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
+import { Image, TextIconLabel, PlayerWithButton } from '../../../components';
 
 // ----------------------------------------------------------------------
-import SUMMARY from './Images';
-// import SUMMARY from '../../../../_data/mock/data';
-import { addScaleCorrector } from 'framer-motion';
-import { summary } from '_data/mock/forChauffeursData';
-// import data from '../accessories/'
-
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0),
   [theme.breakpoints.up('md')]: {
@@ -30,28 +21,9 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-// TravelLandingCars.propTypes = {
-//   link: PropTypes.array,
-// };
 export default function TravelLandingCars() {
   const isDesktop = useResponsive('up', 'md');
   const router = useRouter();
- 
-  // console.log(props.link)
-  const containerRef = useRef(null);
-  const container = useBoundingClientRect(containerRef);
-
-  const [openVideo, setOpenVideo] = useState(false);
-
-  const handleOpenVideo = () => {
-    setOpenVideo(true);
-  };
-
-  const handleCloseVideo = () => {
-    setOpenVideo(false);
-  };
-
-  const offsetLeft = container && container.left + 20;
 
   const [data, setData] = useState([]);
 
@@ -61,7 +33,7 @@ export default function TravelLandingCars() {
         const response = await fetch('https://autobidup.pythonanywhere.com/store/all_products/');
         const jsonData = await response.json();
         setData(jsonData);
-        console.log("created", jsonData)
+        console.log('created', jsonData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -91,20 +63,20 @@ export default function TravelLandingCars() {
             {data.map((item) => (
               <div key={item.pid}>
                 {/* if (item.ptype == 1) */}
-                <Box 
-                // onClick={() => router.push()}
-                sx={{
-                  transition: 'all 0.3s',
-                  cursor:"pointer",
-                  mt: 8,
-                  '&: hover': {
-                    // pt: '40px',
-                    transform: 'scale(0.92)',
-                    transaction: '.3s',
-                    color: '#FFBE00',
-                  },
-                  
-                }}>
+                <Box
+                  // onClick={() => router.push()}
+                  sx={{
+                    transition: 'all 0.3s',
+                    cursor: 'pointer',
+                    mt: 8,
+                    '&: hover': {
+                      // pt: '40px',
+                      transform: 'scale(0.92)',
+                      transaction: '.3s',
+                      color: '#FFBE00',
+                    },
+                  }}
+                >
                   <Image
                     src={item.images}
                     sx={{
@@ -122,7 +94,6 @@ export default function TravelLandingCars() {
           </Box>
         </Container>
       </RootStyle>
-      <PlayerWithButton open={openVideo} onClose={handleCloseVideo} videoPath={_mock.video} />
     </>
   );
 }

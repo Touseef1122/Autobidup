@@ -30,11 +30,11 @@ const RootStyle = styled(Stack)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-CareerLandingHotCategories.propTypes = {
+Categories.propTypes = {
   categories: PropTypes.array.isRequired,
 };
 
-export default function CareerLandingHotCategories({ categories }) {
+export default function Categories({ categories }) {
 
   return (
     <RootStyle>
@@ -59,7 +59,6 @@ export default function CareerLandingHotCategories({ categories }) {
             <CategoryItem
               key={category.id}
               category={category}
-              // onClick={() => router.push(category.path)}
             />
           ))}
         </Box>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
 
 // @mui
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
@@ -37,18 +37,11 @@ const styling = {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
 };
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
 export default function Formmain({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
-
   if (error) {
     return <ErrorScreen />;
   }
-  // const { bidId } = router.query;
-  // const item = bidId;
   return (
     <Page title="Consignor Main Form">
       <Loader />
@@ -62,14 +55,10 @@ export default function Formmain({ posts }) {
         style={styling}
       >
         <Mainform />
-        {/* tours={services} icons={summary} services={service}  */}
       </Box>
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Formmain.getLayout = function getLayout(page) {

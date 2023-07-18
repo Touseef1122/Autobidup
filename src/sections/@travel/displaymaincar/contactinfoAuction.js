@@ -1,18 +1,9 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import location from '@iconify/icons-carbon/location';
-import { TextIconLabel, Iconify, Scrollbar } from '../../../components';
 import { Icon } from '@iconify/react';
-
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
-  Divider,
   Stack,
-  Container,
   Box,
   Typography,
   Button,
@@ -21,9 +12,7 @@ import { SellerinfoAuction, Sellerinfo } from './';
 
 //--------------------------------------------------------------
 
-export default function Contactinfo({post}) {
-  // console.log("caraiusel",post);
-  
+export default function Contactinfo({post}) {  
   const handleExitRoom = async () => {
     try {
       const response = await fetch(
@@ -65,8 +54,8 @@ export default function Contactinfo({post}) {
         </Stack>
         <Button
           variant="contained"
-          size="large" // Set the size to "large"
-          onClick={handleExitRoom} // Call the handleExitRoom function on button click
+          size="large" 
+          onClick={handleExitRoom} 
           target="_blank"
           rel="noopener"
         >

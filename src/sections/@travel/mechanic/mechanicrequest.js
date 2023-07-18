@@ -413,8 +413,6 @@ export default function Mechanicrequest() {
               placeholder={location}
               name="location"
               value={location}
-              // error={Boolean(error)}
-              // helperText={error?.location}
               sx={{ width: { xs: '100%' }, mb: 3 }}
             />
           </Stack>
@@ -467,8 +465,6 @@ export default function Mechanicrequest() {
             }}
             size="large"
             variant="contained"
-            // loading={isSubmitting}
-            // type="submit"
             onClick={handleMechanic}
           >
             Check Status Of Mechanic

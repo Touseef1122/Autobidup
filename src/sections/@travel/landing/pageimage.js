@@ -31,15 +31,6 @@ export default function Pageimage({ images }) {
             }}
           >
             <Typography variant="h2">{value.text}</Typography>
-            {/* <Button
-            sx={{
-              border: '1px solid #FFBE00 ',
-              color: '#FFBE00',
-              '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
-            }}
-          >
-            {value.button}
-          </Button> */}
           </Box>
         </Box>
       ))}

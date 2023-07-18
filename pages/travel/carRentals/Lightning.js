@@ -71,9 +71,6 @@ export default function Displaycarlist({ posts }) {
     setMobileOpen(false);
   };
 
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="Lightning : Store">
       <RootStyle>

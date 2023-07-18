@@ -1,20 +1,13 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import location from '@iconify/icons-carbon/location';
-import { TextIconLabel, Iconify, ButtonGroup, Button } from '../../../components';
+import { ButtonGroup, Button } from '../../../components';
 import { Icon } from '@iconify/react';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
-  Divider,
   Stack,
-  Container,
   Box,
   Typography,
 } from '@mui/material';

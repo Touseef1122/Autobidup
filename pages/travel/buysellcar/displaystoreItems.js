@@ -9,19 +9,16 @@ import { Container, Grid, Box } from '@mui/material';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import  Itemcarasol  from '../../../src/sections/@travel/displaymaincar/Itemcarasol';
+import Itemcarasol from '../../../src/sections/@travel/displaymaincar/Itemcarasol';
 // import { TravelTourDetails } from '../../../src/sections/@travel';
 import Itemdetail from '../../../src/sections/@travel/tours/Itemdetail';
 import { useRouter } from 'next/router';
-
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -33,10 +30,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
 export default function Displaystoredetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
@@ -46,13 +39,12 @@ export default function Displaystoredetails({ posts }) {
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
-  console.log(item)
- 
+  console.log(item);
 
   return (
     <Page title="Buy Store Accessories">
-      <Loader/>
-      <ChatButton/>
+      <Loader />
+      <ChatButton />
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
         <Breadcrumbs
           links={[
@@ -60,28 +52,28 @@ export default function Displaystoredetails({ posts }) {
             { name: 'Components', href: '/components' },
             { name: 'Breadcrumbs' },
           ]}
-          sx={{mb:4}}
+          sx={{ mb: 4 }}
         />
         <Grid justifyContent="center">
           <Grid item xs={10}>
-            <Itemcarasol post={item} name={item?.pname || ''} price={item?.price || ''} images={item?.images || ''}/>
-            {/* <TravelTourDetails/> */}
+            <Itemcarasol
+              post={item}
+              name={item?.pname || ''}
+              price={item?.price || ''}
+              images={item?.images || ''}
+            />
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={7} mb={2}>
-            <Itemdetail posts={item} description={item?.description || ''}/>
+            <Itemdetail posts={item} description={item?.description || ''} />
           </Grid>
-          <Grid item xs={12} sm={5}>
-          </Grid>
+          <Grid item xs={12} sm={5}></Grid>
         </Grid>
       </Container>
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaystoredetails.getLayout = function getLayout(page) {

@@ -2,14 +2,9 @@ import PropTypes from 'prop-types';
 import React, { useContext, useRef } from 'react';
 import { GlobalContext } from '../../../contexts/GlobalContext';
 import { Button, Grid, Box, Typography, ButtonGroup, Stack } from '@mui/material';
-import Slider from 'react-slick';
-import { Icon } from '@iconify/react';
+
 import { CarouselArrows, CarouselDots, Image } from '../../../components';
 import { styled, useTheme } from '@mui/material/styles';
-import image1 from '../../../Assets/images/FordMinivan.jpg';
-import image2 from '../../../Assets/images/FordMustang.jpg';
-import image3 from '../../../Assets/images/ForTransit.jpg';
-import image4 from '../../../Assets/images/JeepWrangler.jpg';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 //--------------------------------------------------------------

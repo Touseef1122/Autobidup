@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import userIcon from '@iconify/icons-carbon/user';
 import { useRouter } from 'next/router';
-import { Grid, Box, Typography, Container , Button} from '@mui/material';
+import { Grid, Box, Typography , Button} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import Apply from '../../../src/assets/Images/apply.jpg';
 import Applying from '../../../src/assets/Images/applying.jpg';

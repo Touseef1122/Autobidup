@@ -21,7 +21,6 @@ import {
 // ----------------------------------------------------------------------
 export default function Enterpricestep2({ formValues, handleInputChange, errors }) {
   const router = useRouter();
-
   return (
     <Box sx={{ width: '100%', overflowX: 'hidden' }}>
       <Container sx={{ width: '100%', padding: '20px', textAlign: 'left' }}>

@@ -4,22 +4,16 @@ import filterIcon from '@iconify/icons-carbon/filter';
 import { HEADER_MOBILE_HEIGHT, HEADER_DESKTOP_HEIGHT, DRAWER_WIDTH } from '../../../src/config';
 
 // @mui
-import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
+import { Container, Box, Stack, Button, Typography } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// hooks
-import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import { Caritemlist } from '../../../src/sections/@travel/displaymaincar';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
@@ -40,7 +34,6 @@ export default function Displaycarlist({ posts }) {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
   const [searchValues, setSearchValues] = useState('');
   const [filterprice, setFilterPrice] = useState('');
   const [filteryear, setFilterYear] = useState('');
@@ -71,9 +64,6 @@ export default function Displaycarlist({ posts }) {
     setMobileOpen(false);
   };
 
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="Sedan">
       <RootStyle>
@@ -130,9 +120,6 @@ export default function Displaycarlist({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaycarlist.getLayout = function getLayout(page) {
