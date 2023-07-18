@@ -178,7 +178,7 @@ export default function Mechanicrequest() {
       if (response.ok) {
         // API call successful
         const responseData = await response.json();
-        // mechanicId = responseData.Mechanic id;
+        mechanicId = responseData['Mechanic id'];
         console.log(responseData.mechanic);
         handleOpen()
       } else {
