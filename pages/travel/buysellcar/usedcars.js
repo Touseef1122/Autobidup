@@ -5,27 +5,17 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Box, Container } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// hooks
-import { useRequest } from '../../../src/hooks';
 // _data
-// import { _testimonials, _jobsByCategories, _jobsByCompanies } from '../../_data/mock';
+
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Image } from '../../../src/components';
-
+import { Page } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { TravelLandingHero, TravelLandingIntroduce } from '../../../src/sections/@travel';
-
+import {  TravelLandingIntroduce } from '../../../src/sections/@travel';
 import Pageimage from '../../../src/sections/@travel/landing/pageimage';
-import TravelLandingIntroduceOurServices from '../../../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../../../src/sections/@travel/landing/TravelLandingfull';
-import TravelLandingCars from '../../../src/sections/@travel/landing/TravelLandingCars';
-import Galviston from '../../../src/assets/images/bentley8.jpg';
-import Houston from '../../../src/assets/images/BMW3Series.jpg';
-import Dallas from '../../../src/assets/images/FordMustang.jpg';
-import Austin from '../../../src/assets/images/FordMinivan.jpg';
 import HBI from '../../../src/assets/images/HatchBackIcon.png';
 import SEI from '../../../src/assets/images/SedanIcon.png';
 import SUVI from '../../../src/assets/images/SUVIcon.png';

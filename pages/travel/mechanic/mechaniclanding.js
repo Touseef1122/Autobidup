@@ -18,8 +18,6 @@ import { styled } from '@mui/material/styles';
 import Landing from '../../../src/sections/@travel/mechanic/landing';
 import Trustmechanic from '../../../src/sections/@travel/mechanic/trustmechanic';
 import TravelLandingIntroduceOurServices from '../../../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from '../UsedCars/Loader.js';
 import ChatButton from '../ChatButton';
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // @mui
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 // utils
 import { getAllPosts } from '../src/utils/get-mardown/travel/posts';
 // hooks
@@ -17,14 +17,9 @@ import { Page, ErrorScreen } from '../src/components';
 import { styled } from '@mui/material/styles';
 import { TravelLandingHero, TravelLandingIntroduce } from '../src/sections/@travel';
 
-import TravelLandingTourFeaturedRoutes from '../src/sections/@travel/landing/TravelLandingTourFeaturedRoutes';
 import TravelLandingIntroduceOurServices from '../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../src/sections/@travel/landing/TravelLandingfull';
 import TravelLandingCars from '../src/sections/@travel/landing/TravelLandingCars';
-import Galviston from '../src/assets/images/bentley8.jpg';
-import Houston from '../src/assets/images/BMW3Series.jpg';
-import Dallas from '../src/assets/images/FordMustang.jpg';
-import Austin from '../src/assets/images/FordMinivan.jpg';
 import HBI from '../src/assets/images/HatchBackIcon.png';
 import SEI from '../src/assets/images/SedanIcon.png';
 import SUVI from '../src/assets/images/SUVIcon.png';
@@ -32,7 +27,6 @@ import COI from '../src/assets/images/CrossOverIcon.png';
 import MVI from '../src/assets/images/MiniVanIcon.png';
 import Loader from './travel/UsedCars/Loader';
 import ChatButton from './travel/ChatButton';
-// import LatestPosts from '../src/sections/@travel/landing/LatestPosts';
 import { useRouter } from 'next/router';
 import Serviceclassdata from '../_data/mock/imagesos';
 import LatestPosts2 from '../src/sections/@travel/landing/LatestPosts2';
@@ -45,9 +39,6 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 // ----------------------------------------------------------------------
-// TravelLandingPage.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
 
 export default function TravelLandingPage({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
@@ -99,102 +90,13 @@ export default function TravelLandingPage({ posts }) {
       </Box>
       <TravelLandingIntroduceOurServices data={Serviceclassdata} />
       <TravelLandingIntroduce categories={vehicalType} />
-      {/* <LatestPosts posts={bestcities} /> */}
       <LatestPosts2 data={data} />
-
       <TravelLandingfull />
       <TravelLandingCars />
     </Page>
   );
 }
 //-------------------------------------------------------------------------------
-const bestcities = [
-  {
-    id: 1,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
-  },
-  {
-    id: 2,
-    name: 'Crola Atlas',
-    dis: '2020',
-    price: 'Rs 3,000,000',
-    img: Dallas,
-  },
-  {
-    id: 3,
-    name: 'Mehran',
-    dis: '2016',
-    price: 'Rs 3,000,000',
-
-    img: Austin,
-  },
-  {
-    id: 4,
-    price: 'Rs 3,000,000',
-    name: 'Jeep',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 5,
-    price: 'Rs 3,000,000',
-    name: 'Honda City',
-    dis: '2019',
-    img: Houston,
-  },
-  {
-    id: 6,
-    price: 'Rs 3,000,000',
-    name: 'Crola Atlas',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 7,
-    name: 'Mehran',
-    price: 'Rs 3,000,000',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 8,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
-  },
-  {
-    id: 9,
-    name: 'Honda City',
-    dis: '2019',
-    price: 'Rs 3,000,000',
-    img: Houston,
-  },
-  {
-    id: 10,
-    name: 'Crola Atlas',
-    price: 'Rs 3,000,000',
-    dis: '2020',
-    img: Dallas,
-  },
-  {
-    id: 11,
-    price: 'Rs 3,000,000',
-    name: 'Mehran',
-    dis: '2016',
-    img: Austin,
-  },
-  {
-    id: 12,
-    name: 'Jeep',
-    price: 'Rs 3,000,000',
-    dis: '2018',
-    img: Galviston,
-  },
-];
 const vehicalType = [
   {
     id: 1,
