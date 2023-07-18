@@ -16,7 +16,6 @@ import { useRouter } from 'next/router';
 import { SvgIconStyle, Image, TextIconLabel, Iconify, PlayerWithButton } from '../../../components';
 
 // ----------------------------------------------------------------------
-import SUMMARY1 from '../../../../src/sections/@travel/landing/Images1';
 import { addScaleCorrector } from 'framer-motion';
 
 const RootStyle = styled('div')(({ theme }) => ({

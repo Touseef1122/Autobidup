@@ -17,88 +17,86 @@ import { TextIconLabel, Iconify } from '../../../components';
 
 // ----------------------------------------------------------------------
 
-const images1 = [
-  {
-    val: 'Petrol',
-    title: 'Engine Type',
-    icon: locationIcon,
-  },
-  {
-    val: 'Imported',
-    title: 'Assembly',
-    icon: userIcon,
-  },
-  {
-    val: '2017',
-    title: 'Year',
-    icon: userIcon,
-  },
-  {
-    val: 'Automatic',
-    title: 'Transmission',
-    icon: userIcon,
-  },
-  {
-    val: 'White',
-    title: 'Color',
-    icon: locationIcon,
-  },
-  {
-    val: 'Islamabad',
-    title: 'RegCity',
-    icon: locationIcon,
-  },
-  {
-    val: '2007cc',
-    title: 'Engine Capacity',
-    icon: locationIcon,
-  },
-  {
-    val: '20923',
-    title: 'Ad Ref# 20923',
-    icon: locationIcon,
-  },
-];
+let images1 = [];
 const data = [
   {
     description:
       'Lightweight allow rims . Complete original file is availble . Driven on petrol throughout . All token taxes are paid for life . Paint touchups in a few places. Brand new tires installed. Non accidental. Original Book is available. Will be sold to nearest offer.. Alloy Rims. Complete original file is availble . Driven on petrol throughout . Lifetime token tax paid. Few paint touchups on the body . Fitted with new tires. Price is slightly negotiable. Original Book is available. Token tax is up to date.',
   },
 ];
-const includes = [
-  // {
-  //   label:'ABS'
-  // },
-  {
-    label: 'AM/FM radio',
-  },
-  {
-    label: 'Air Conditioning',
-  },
-  {
-    label: 'Alloy rims',
-  },
+let includes = [];
+let knownKeys = [
+  // 'color',
+  'model',
+  'assembly',
+  'transmission',
+  'bodytype',
+  'mileage',
+  'engine_capacity',
+  'engine_type',
 ];
+let known = [
+  'airbags',
+  'ac',
+  'alloy_wheels',
+  'antilockbreakingsystem',
+  'coolbox',
+  'cupholders',
+  'foldingrearseat',
+  'immobilizer',
+  'powerdoorlocks',
+  'powersteering',
+  'powerwindows',
+  'powermirrors',
+  'rearwiper',
+  'tractioncontrol',
+  'rearseatent',
+  'climatecontrol',
+  'rearacvents',
+  'frontspeaker',
+  'rearspeaker',
+  'armrests',
+];
+export default function TravelTourDetails({post}) {
+  // console.log("tour",post.bidding_car);
+  
+  if (post) {
 
-// TravelTourDetails.propTypes = {
-//   tour: PropTypes.shape({
-//     availableEnd: PropTypes.string,
-//     availableStart: PropTypes.string,
-//     description: PropTypes.string,
-//     duration: PropTypes.string,
-//     highlights: PropTypes.array,
-//     includes: PropTypes.array,
-//     languages: PropTypes.array,
-//     location: PropTypes.string,
-//     program: PropTypes.array,
-//     tourGuide: PropTypes.shape({
-//       name: PropTypes.string,
-//       phoneNumber: PropTypes.string,
-//     }),
-//   }),
-// };
-
-export default function TravelTourDetails({ tour }) {
+    const processKnownKeys = () => {
+      const images1 = [];
+      for (let i = 0; i < knownKeys.length; i++) {
+        let key = knownKeys[i];
+        if (post.bidding_car.hasOwnProperty(key)) {
+          let dict = {
+            val: post.bidding_car[key],
+            title: key,
+          };
+          images1.push(dict);
+        }
+      }
+      return images1;
+    };
+  
+    const processIncludes = () => {
+      const includes = [];
+      for (let i = 0; i < known.length; i++) {
+        let key = known[i];
+        if (post.bidding_car.hasOwnProperty(key) && post.bidding_car[key] === true) {
+          let dict = {
+            val: post.bidding_car[key],
+            label: key,
+          };
+          includes.push(dict);
+        }
+      }
+      return includes;
+    };
+  
+    const images1 = processKnownKeys();
+    const includes = processIncludes();
+  
+    console.log(images1);
+    console.log(includes);
 
 
   return (
@@ -126,7 +124,7 @@ export default function TravelTourDetails({ tour }) {
           >
             {images1.map((value) => (
               <OverviewItem
-                icon={<Iconify icon={value.icon} />}
+                icon={<Iconify icon='ic:round-star' />}
                 label={value.title}
                 text={value.val}
               />
@@ -140,7 +138,7 @@ export default function TravelTourDetails({ tour }) {
             Description
           </Typography>
           {data.map((value) => (
-            <Typography mt={1}>{value.description}</Typography>
+            <Typography mt={1}>{post.bidding_car.ad_description}</Typography>
           ))}
         </section>
 
@@ -183,10 +181,11 @@ export default function TravelTourDetails({ tour }) {
             </Box>
           </Stack>
         </section>
-        <Comments />
+        {/* <Comments /> */}
       </Box>
     </Stack>
   );
+}
 }
 
 // ----------------------------------------------------------------------

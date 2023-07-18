@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 // @mui
 import { Container, Grid, Box } from '@mui/material';
 // utils
+import { useState, useEffect } from 'react';
+
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
@@ -30,6 +32,7 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
+
 // ----------------------------------------------------------------------
 
 export default function Displaycardetails({post}) {
@@ -43,6 +46,30 @@ export default function Displaycardetails({post}) {
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
   console.log('bidding item', item);
+  const [info, setData] = useState([]);
+
+  useState(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://autobidup.pythonanywhere.com/bidding/search_bidding_room?search=${item}`
+        );
+        
+        const jsonData = await response.json();
+        console.log(jsonData, jsonData.length);
+        setData(jsonData);
+        // console.log("room",room);
+        console.log('created');
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [0]);
+  
+
+  console.log(info)
+
   return (
     <Page title="Auction">
       <Loader />
@@ -67,10 +94,9 @@ export default function Displaycardetails({post}) {
               },
             }}
           >
-            <TravelTourDetailsAuction />
+            <TravelTourDetailsAuction post={item}/>
           </Grid>
-          <Grid item xs={12} sm={5}>
-          </Grid>
+          <Grid item xs={12} sm={5}></Grid>
         </Grid>
       </Container>
     </Page>

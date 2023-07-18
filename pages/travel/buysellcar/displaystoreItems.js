@@ -84,7 +84,7 @@ export default function Displaystoredetails({ posts }) {
 
 // ----------------------------------------------------------------------
 
-Displaycardetails.getLayout = function getLayout(page) {
+Displaystoredetails.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 

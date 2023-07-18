@@ -23,28 +23,6 @@ import { TextIconLabel, Iconify } from '../../../components';
 OverviewAuction.propTypes = {
   overviewAuction: PropTypes.array.isRequired,
 };
-// export default function OverviewAuction({ post }) {
-//   return (
-//     <section>
-//       {overviewAuction?.map((value) => (
-//         <Box  sx={{
-//           padding: "20px",
-//         }}>
-//           <Typography variant="h4">{value.title}</Typography>
-//             <Stack display="flex" alignItems="left">
-//               <OverviewItem
-//                 key={value.name}
-//                 icon={<Iconify icon={value.icon} />}
-//                 label={value.name}
-//                 text={value.text}
-//               />
-//               <Divider/>
-//             </Stack>
-//         </Box>
-//       ))}
-//     </section>
-//   );
-// }
 export default function OverviewAuction({ overviewAuction }) {
   return (
     <section>
@@ -78,7 +56,7 @@ OverviewItem.propTypes = {
   text: PropTypes.string,
 };
 
-function OverviewItem({ icon, label, text = '-' }) {
+function OverviewItem({ icon, label,phone, text = '-' }) {
   return (
     <TextIconLabel
       spacing={2}
@@ -92,9 +70,7 @@ function OverviewItem({ icon, label, text = '-' }) {
           <Typography variant="h6" sx={{ color: 'text.secondary' }}>
             {text}
           </Typography>
-          <Typography>
-            <Icon icon="material-symbols:add-call" width="30" /> : 03030000000{' '}
-          </Typography>
+         
         </Stack>
       }
       sx={{ '& svg': { width: 24, height: 24 } }}

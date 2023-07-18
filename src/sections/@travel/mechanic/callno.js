@@ -29,6 +29,7 @@ const style = {
 
 let Value = '';
 let callsValue = '';
+let neww = '';
 export default function Call({calls}) {
   console.log(calls)
   const [open, setOpen] = useState(false);
@@ -71,7 +72,7 @@ export default function Call({calls}) {
 
     fetchData();
   }, []);
-  console.log("value",Value)
+  
 
   const handleSubmit = async () => {
     // Access the selected value in the handleSubmit function
@@ -91,10 +92,10 @@ export default function Call({calls}) {
       if (response.ok) {
         // API call successful
         const responseData = await response.json();
-
+        neww = responseData['call credit ']
         console.log('response data', responseData['call credit ']);
         console.log('calls bought succesfully');
-
+        fetchData();
         setOpen(true);
         //
       } else {
@@ -109,13 +110,17 @@ export default function Call({calls}) {
     handleClose();
     // Perform any necessary actions with the selected value
   };
-
+  console.log("value",Value)
   if (calls != 0){
     callsValue = calls
+  }
+  else if (neww){
+    callsValue = neww
   }
   else{
     callsValue = Value
   }
+
   return (
     <Box
       sx={{

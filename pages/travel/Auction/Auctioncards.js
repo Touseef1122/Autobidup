@@ -121,7 +121,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
   const carouselSettings = {
     dots: true,
     arrows: false,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
     ...CarouselDots(),
@@ -254,7 +254,7 @@ export default function BlogMarketingLatestPosts({ bid_Id }) {
                       <ReverseCounter bid={value.bid_time} />
 
                       <Image
-                        src={value.images[1]}
+                        src={value.images[0]?.image_url}
                         sx={{ width: '100%', height: '200px' }}
                       />
                       <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>

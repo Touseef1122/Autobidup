@@ -1,22 +1,36 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { Image } from '../../../components';
+import { useState,useEffect } from 'react';
 
+import { Image } from '../../../components';
+import man from 'src/Assets/Images/expertMan.png'
 import {
   Grid,
   Button,
   Stack,
   Box,
   Typography,
+  Modal
 } from '@mui/material';
 
 //--------------------------------------------------------------
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'white',
+  borderRadius: '10px',
+  p: 6,
+};
 let calls = ''
 export default function Expertcall({ item, updateLeftCalls }) {
   const router = useRouter();
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   console.log('data reached', item);
 
   const handleCall = async (id) => {
@@ -42,6 +56,7 @@ export default function Expertcall({ item, updateLeftCalls }) {
         updateLeftCalls(calls);
         console.log('response data', responseData);
         console.log('call done succesfully');
+        setOpen(true)
       } else {
         // API call failed
         const errorData = await response.json();
@@ -75,7 +90,7 @@ export default function Expertcall({ item, updateLeftCalls }) {
             <Grid item xs={12} sm={4} display="flex" alignItems="center">
               <Image
                 alt={value.title}
-                src={value.image}
+                src={man.src}
                 sx={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '10%' }}
               />
             </Grid>
@@ -123,6 +138,36 @@ export default function Expertcall({ item, updateLeftCalls }) {
               </Stack>
             </Grid>
           </Grid>
+          <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h3" component="h2">
+              Your Call Request has been sent.
+            </Typography>
+            <Typography id="modal-modal-title" variant="h3" component="h2">
+              Expert will vontact you shortly
+            </Typography>
+            <Typography id="modal-modal-title" variant="h3" component="h2">
+              Thank You!
+            </Typography>
+            <Button
+              sx={{
+                backgroundColor: 'black',
+                color: 'white',
+                '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
+                width: '100%',
+                mt: 1,
+              }}
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </Box>
+        </Modal>
         </Box>
       ))}
     </Box>

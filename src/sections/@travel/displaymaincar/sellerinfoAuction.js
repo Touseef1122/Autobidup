@@ -200,17 +200,10 @@ import userIcon from '@iconify/icons-carbon/user';
 import { TextIconLabel, Iconify, Scrollbar } from '../../../components';
 import { Icon } from '@iconify/react';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
   Divider,
-  Stack,
-  Container,
   Box,
   ButtonGroup,
   Button,
@@ -226,22 +219,64 @@ const ScrollStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(1.5),
   },
 }));
-const comments = [
-  {
-    name: 'Asad Khan',
-    text: '26 lack',
-    icon: userIcon,
-  },
-  // Rest of the comments data
-];
+// const comments = [
+//   {
+//     name: 'Asad Khan',
+//     text: '26 lack',
+//     icon: userIcon,
+//   },
+// ]
 
 export default function Contactinfo({ post }) {
-  console.log('post', post);
-  const startingBid = parseInt(post?.bidding_car?.starting_bid || 0);
-  const [counter, setCounter] = useState(startingBid);
+  // console.log('post', post?.bidding_car?.starting_bid);
+  const [counter, setCounter] = useState('');
+  const [comments, setComments] = useState([]);
 
+  let startingBid = parseInt(post?.bidding_car?.starting_bid || 0);
+  useEffect(() => {
+    setCounter(startingBid)
+  }, []);
+  
   const handleBidClick = () => {
     console.log('Bid button clicked');
+    
+    async function fetchData() {
+      try {
+        console.log('details fetching');
+        const response = await fetch(
+          'https://autobidup.pythonanywhere.com/bidding/increase_bid',
+          {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        if (response.ok) {
+          // API call successful
+          let responseData = await response.json();
+          let dict = {
+            name: responseData.username,
+            icon: userIcon,
+            text: responseData['current bid'].toString(),
+          };
+          setComments((prevComments) => [...prevComments, dict]);
+        
+          console.log('response data', responseData);
+        } else {
+          // API call failed
+          const errorData = await response.json();
+          // Handle the error data as needed
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+
   };
 
   return (
@@ -288,9 +323,7 @@ export default function Contactinfo({ post }) {
                 color: '#FFBE00',
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() => {
-                setCounter((prevCounter) => prevCounter + 10000);
-              }}
+              onClick={() => {setCounter((prevCounter) => prevCounter + 10000);}}
             >
               +
             </Button>
@@ -315,11 +348,7 @@ export default function Contactinfo({ post }) {
           <ScrollStyle>
             <Typography variant="h4">Bidders List</Typography>
             <OverviewAuction
-              overviewAuction={comments.map((comment) => ({
-                ...comment,
-                text: counter.toString(),
-                name: post?.name || 'User Name',
-              }))}
+              overviewAuction={comments}
             />
 
             <Divider />
