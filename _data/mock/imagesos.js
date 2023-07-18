@@ -11,7 +11,7 @@ const Imagesos = [
         'Your stress-free solution for selling and purchasing vehicals, with AutoBidUp across the City.',
       image: a,
       // link: 'Learn More',
-      path:"/travel/UsedCars/cityToCity"
+      path:"/travel/buysellcar/usedcars"
     },
     {
       title: 'Auction',
