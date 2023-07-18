@@ -103,7 +103,7 @@ export default function LatestPosts2({data}) {
           }}
         >
           <Slider ref={carouselRef} {...carouselSettings}>
-            {data.map((value) => (
+            {data?.map((value) => (
               <Box
                 sx={{
                   px: 2,
@@ -122,7 +122,7 @@ export default function LatestPosts2({data}) {
                     >
            
                       <Image
-                        src={value.images}
+                        src={value.images[0]?.image_url}
                         sx={{ width: '100%', height: '200px' }}
                       />
                      

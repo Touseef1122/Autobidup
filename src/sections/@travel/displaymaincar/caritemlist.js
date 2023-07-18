@@ -139,7 +139,7 @@ export default function Caritemlist(props) {
         pr: { sm: 2 },
       }}
     >
-      {data.map((value) => (
+      {data?.map((value) => (
         <div key={value.cid}>
         <Box   sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1 }}  onClick={() =>
           router.push({
@@ -148,7 +148,7 @@ export default function Caritemlist(props) {
           })
         }>
           
-          <Image alt={value.title} src={value.images[0].image_url} sx={{ width: '100%', height: '200px' }} />
+          <Image alt={value.title} src={value.images[0]?.image_url} sx={{ width: '100%', height: '200px' }} />
           <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
           <Typography variant="h6">{value.year}</Typography>
           <Stack direction="row" justifyContent="space-between">
