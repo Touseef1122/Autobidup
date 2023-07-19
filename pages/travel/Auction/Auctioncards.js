@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Stack, Container, Typography } from '@mui/material';
-
 import { Image, CarouselArrows, CarouselDots } from '../../../src/components';
 import ReverseCounter from './timer';
 
