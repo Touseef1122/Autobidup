@@ -9,10 +9,13 @@ import {
   Button,
 } from '@mui/material';
 import { SellerinfoAuction, Sellerinfo } from './';
+import { useRouter } from 'next/router';
 
 //--------------------------------------------------------------
 
 export default function Contactinfo({post}) {  
+  const router = useRouter();
+
   const handleExitRoom = async () => {
     try {
       const response = await fetch(
@@ -31,7 +34,7 @@ export default function Contactinfo({post}) {
       if (response.ok) {
         // API call successful
         console.log('Bidding room Exit successfully');
-        router.push('/')
+        router.push('/travel/Auction/Auction/')
       } else {
         // API call failed
         console.error('Failed to Enter bidding room');

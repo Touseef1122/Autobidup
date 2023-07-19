@@ -16,7 +16,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function Carousel({post}) {
-    console.log('post', post);
+    // console.log('post', post);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [images, setImages] = useState([]);

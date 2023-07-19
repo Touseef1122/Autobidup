@@ -1,8 +1,8 @@
 // import a from '../../../assets/images/A03.jpg';
 
-import a from '../../../assets/images/SI1.JPg';
-import b from '../../../assets/images/SI2.JPg';
-import c from '../../../assets/images/SI3.JPg';
+// import a from '../../../assets/images/SI1.JPg';
+// import b from '../../../assets/images/SI2.JPg';
+// import c from '../../../assets/images/SI3.JPg';
 // import d from '../../../assets/images/SI4.JPg'
 // import e from '../../../assets/images/SI5.JPg'
 // import f from '../../../assets/images/SI6.JPg'

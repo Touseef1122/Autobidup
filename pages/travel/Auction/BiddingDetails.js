@@ -33,14 +33,13 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Displaycardetails({ post }) {
-  const { data: tours = [], error } = useRequest('/api/travel/tours');
-  if (error) {
-    return <ErrorScreen />;
-  }
+  // if (error) {
+  //   return <ErrorScreen />;
+  // }
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
-  console.log('bidding item', item);
+  // console.log('bidding item', item);
   const [info, setData] = useState([]);
 
   useState(() => {

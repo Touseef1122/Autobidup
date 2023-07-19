@@ -31,11 +31,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Displaystoredetails({ posts }) {
-  const { data: tours = [], error } = useRequest('/api/travel/tours');
-
-  if (error) {
-    return <ErrorScreen />;
-  }
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
@@ -46,14 +41,14 @@ export default function Displaystoredetails({ posts }) {
       <Loader />
       <ChatButton />
       <Container sx={{ marginTop: { xs: '33%', sm: '15%' } }}>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           links={[
             { name: 'Home', href: '/' },
             { name: 'Components', href: '/components' },
             { name: 'Breadcrumbs' },
           ]}
           sx={{ mb: 4 }}
-        />
+        /> */}
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <Itemcarasol
