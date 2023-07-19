@@ -1,22 +1,17 @@
 import PropTypes from 'prop-types';
-
 // @mui
 import { Box } from '@mui/material';
 // utils
 import { getAllPosts } from '../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../src/hooks';
-// _data
-import { _testimonials, _jobsByCategories, _jobsByCompanies } from '../_data/mock';
 // layouts
 import Layout from '../src/layouts';
 // components
 import { Page, ErrorScreen } from '../src/components';
-
 // sections
 import { styled } from '@mui/material/styles';
 import { TravelLandingHero, TravelLandingIntroduce } from '../src/sections/@travel';
-
 import TravelLandingIntroduceOurServices from '../src/sections/@travel/landing/TravelLandingIntroduceOurServices';
 import TravelLandingfull from '../src/sections/@travel/landing/TravelLandingfull';
 import TravelLandingCars from '../src/sections/@travel/landing/TravelLandingCars';

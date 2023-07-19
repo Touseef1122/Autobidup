@@ -5,8 +5,6 @@ import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
@@ -14,8 +12,6 @@ import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components
 // sections
 import { styled } from '@mui/material/styles';
 import { Caritemlist } from '../../../src/sections/@travel/displaymaincar';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
 import filterIcon from '@iconify/icons-carbon/filter';
@@ -27,16 +23,8 @@ const RootStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(5, 0),
   },
 }));
-// ----------------------------------------------------------------------
-
-const items = [
-  {
-    name: 'HatchBack',
-  },
-];
-
 import Pagination from '@mui/material/Pagination';
-
+// ----------------------------------------------------------------------
 export default function Displaycarlist({ posts }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [page, setPage] = useState(1);
@@ -75,9 +63,6 @@ export default function Displaycarlist({ posts }) {
     setMobileOpen(false);
   };
 
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="HatchBack">
       <RootStyle>
@@ -136,9 +121,6 @@ export default function Displaycarlist({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaycarlist.getLayout = function getLayout(page) {

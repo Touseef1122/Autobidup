@@ -1,18 +1,15 @@
 import PropTypes from 'prop-types';
-
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import { useRequest } from '../../../src/hooks';
 import Serviceclassdata from '../../../_data/mock/servicesmechanic';
-
-
 // @mui
-import { Container, Grid, Box,Stack,Button } from '@mui/material';
+import {Box } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Breadcrumbs,Iconify } from '../../../src/components';
+import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import Landing from '../../../src/sections/@travel/mechanic/landing';
@@ -49,9 +46,6 @@ export default function Mechaniclanding({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Mechaniclanding.getLayout = function getLayout(page) {

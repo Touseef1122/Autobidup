@@ -1,25 +1,17 @@
 import PropTypes from 'prop-types';
-// import Loader from './Premium/Loader';
 // import { services, summary, service } from '../../_data/mock/forChauffeursData';
-import { useState } from 'react';
 // icons
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-
 // @mui
-import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
 // components
-import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
+import { Page, ErrorScreen } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
 import Expertprofile from '../../../src/sections/@travel/mechanic/expertprofile';
-import Call from '../../../src/sections/@travel/mechanic/callno';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/expert1.jpg';
-import img2 from '../../../src/Assets/Images/expert2.jpg';
-import img3 from '../../../src/Assets/Images/expert3.jpg';
 import Loader from '../UsedCars/Loader';
 import ChatButton from '../ChatButton';
 
@@ -32,24 +24,10 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-var items = [
-  {
-    image: img1,
-    heading: 'Lisa Zen',
-    city: 'Lahore',
-    years: '2',
-  },
-  {
-    image: img2,
-    heading: 'Lisa Zen',
-    city: 'Lahore',
-    years: '2',
-  }
-];
 export default function Profile({ posts }) {
   return (
     <Page title="Expert Profile | AutoBidUp">
-      <Loader/>
+      <Loader />
       <ChatButton />
       <Container sx={{ mt: '10%', overflowX: 'hidden' }}>
         {/* <Breadcrumbs
@@ -61,14 +39,11 @@ export default function Profile({ posts }) {
           sx={{ mb: 4 }}
         /> */}
 
-        <Expertprofile/>
+        <Expertprofile />
       </Container>
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Profile.getLayout = function getLayout(page) {

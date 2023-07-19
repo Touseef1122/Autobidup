@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types';
 import { m } from 'framer-motion';
 import Slider from 'react-slick';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
 // next
-import NextLink from 'next/link';
 // @mui
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Link, Stack, Avatar, Container, Typography } from '@mui/material';
+import { Box, Stack, Container, Typography } from '@mui/material';
 // components
-import { varHover, varTranHover } from '../../../components/animate';
-import { Image, BgOverlay, CarouselArrows, CarouselDots, TextMaxLine } from '../../../components';
-import { price } from '_data/mock/number';
-import CarsCard from '../../@travel/displaymaincar/caritemlist';
-import img1 from '../../../../src/Assets/Images/FordMinivan.jpg';
-
+import { Image, CarouselArrows, CarouselDots } from '../../../components';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -34,14 +28,11 @@ const DotStyle = styled('span')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-const bestcities = [
-
-]
 LatestPosts2.propTypes = {
   data: PropTypes.array.isRequired,
 };
-export default function LatestPosts2({data}) {
-  console.log("data here", data)
+export default function LatestPosts2({ data }) {
+  console.log('data here', data);
   const theme = useTheme();
   const router = useRouter();
 
@@ -73,11 +64,6 @@ export default function LatestPosts2({data}) {
   const handleNext = () => {
     carouselRef.current?.slickNext();
   };
-
- 
-  // bestcities.push(data)
-  // console.log(bestcities)
-
   return (
     // <RootStyle>
     <Container>
@@ -85,7 +71,7 @@ export default function LatestPosts2({data}) {
         variant="h3"
         sx={{
           textAlign: 'center',
-          mt:2
+          mt: 2,
         }}
       >
         Latest Used Cars{' '}
@@ -111,43 +97,46 @@ export default function LatestPosts2({data}) {
                 }}
               >
                 <Box>
-                    <Box
-                      onClick={() => {
-                        router.push({
-                          pathname: '/travel/buysellcar/displaycardetails',
-                          query: { data: JSON.stringify(value) },
-                        });
-                      }}
-                      sx={{ p: 3, boxShadow: '0 1px 10px #64666B', borderRadius: '8px', mb: 1,cursor: 'pointer', }}
-                    >
-           
-                      <Image
-                        src={value.images[0]?.image_url}
-                        sx={{ width: '100%', height: '200px' }}
-                      />
-                     
-                      <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
-                      <Typography variant="h6">{value.year}</Typography>
-                      <Stack direction="row" justifyContent="space-between">
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.city}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.distance}
-                        </Typography>
-                        <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                          {value.fuel}
-                        </Typography>
-                      
-                      </Stack>
-                      <Typography variant="h4" color="#CE9A00">
-                        {' '}
-                        PKR {value.price}
+                  <Box
+                    onClick={() => {
+                      router.push({
+                        pathname: '/travel/buysellcar/displaycardetails',
+                        query: { data: JSON.stringify(value) },
+                      });
+                    }}
+                    sx={{
+                      p: 3,
+                      boxShadow: '0 1px 10px #64666B',
+                      borderRadius: '8px',
+                      mb: 1,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <Image
+                      src={value.images[0]?.image_url}
+                      sx={{ width: '100%', height: '200px' }}
+                    />
+
+                    <Typography variant="h4">{`${value.make} ${value.model}`}</Typography>
+                    <Typography variant="h6">{value.year}</Typography>
+                    <Stack direction="row" justifyContent="space-between">
+                      <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        {value.city}
                       </Typography>
-                  
-                    </Box>
+                      <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        {value.distance}
+                      </Typography>
+                      <Typography variant="body3" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                        {value.fuel}
+                      </Typography>
+                    </Stack>
+                    <Typography variant="h4" color="#CE9A00">
+                      {' '}
+                      PKR {value.price}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>             
+              </Box>
             ))}
           </Slider>
         </CarouselArrows>

@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 
 // @mui
-import { Box, Container } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// _data
-
 // layouts
 import Layout from '../../../src/layouts';
 // components
@@ -65,18 +62,14 @@ export default function Usedcars({ posts }) {
       <Loader />
       <Pageimage images={usedimage} />
       <ChatButton /> 
-      {/* <TravelLandingIntroduceOurServices /> */}
-
       <TravelLandingIntroduce categories={vehicalType}/>
       <TravelLandingfull />
-
       <LatestPosts2 data={data} />
     </Page>
   );
 }
 
 //-------------------------------------------------------------------------------
-
 const vehicalType = [
   {
     id: 1,

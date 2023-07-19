@@ -8,15 +8,13 @@ import { Container, Grid, Box } from '@mui/material';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, Breadcrumbs } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
+import { Carousel } from '../../../src/sections/@travel/displaymaincar';
 import { TravelTourDetails } from '../../../src/sections/@travel';
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -28,11 +26,6 @@ const RootStyle = styled('div')(({ theme }) => ({
 }));
 
 // ----------------------------------------------------------------------
-
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
 export default function Displaycardetails({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
@@ -50,12 +43,11 @@ export default function Displaycardetails({ posts }) {
             { name: 'Components', href: '/components' },
             { name: 'Breadcrumbs' },
           ]}
-          sx={{mb:4}}
+          sx={{ mb: 4 }}
         />
         <Grid justifyContent="center">
           <Grid item xs={10}>
             <Carousel />
-            {/* <TravelTourDetails/> */}
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
@@ -66,14 +58,10 @@ export default function Displaycardetails({ posts }) {
             <Box>{/* <TravelTourDetails /> */}</Box>
           </Grid>
         </Grid>
-        {/* tours={services} icons={summary} services={service}  */}
       </Container>
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaycardetails.getLayout = function getLayout(page) {

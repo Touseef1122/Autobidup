@@ -1,29 +1,21 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import location from '@iconify/icons-carbon/location';
-import { TextIconLabel, Iconify, Scrollbar } from '../../../components';
 import { Icon } from '@iconify/react';
-
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
-  Divider,
   Stack,
-  Container,
   Box,
   Typography,
   Button,
 } from '@mui/material';
 import { SellerinfoAuction, Sellerinfo } from './';
+import { useRouter } from 'next/router';
 
 //--------------------------------------------------------------
 
-export default function Contactinfo({post}) {
-  // console.log("caraiusel",post);
-  
+export default function Contactinfo({post}) {  
+  const router = useRouter();
+
   const handleExitRoom = async () => {
     try {
       const response = await fetch(
@@ -42,7 +34,7 @@ export default function Contactinfo({post}) {
       if (response.ok) {
         // API call successful
         console.log('Bidding room Exit successfully');
-        router.push('/')
+        router.push('/travel/Auction/Auction/')
       } else {
         // API call failed
         console.error('Failed to Enter bidding room');
@@ -65,8 +57,8 @@ export default function Contactinfo({post}) {
         </Stack>
         <Button
           variant="contained"
-          size="large" // Set the size to "large"
-          onClick={handleExitRoom} // Call the handleExitRoom function on button click
+          size="large" 
+          onClick={handleExitRoom} 
           target="_blank"
           rel="noopener"
         >

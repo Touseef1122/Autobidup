@@ -8,8 +8,6 @@ import { Box } from '@mui/material';
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 // hooks
 import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
@@ -37,10 +35,6 @@ const styling = {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
 };
-// Registerchauffeur.propTypes = {
-//   posts: PropTypes.array.isRequired,
-// };
-
 export default function Formmini({ posts }) {
   const { data: tours = [], error } = useRequest('/api/travel/tours');
 
@@ -66,9 +60,6 @@ export default function Formmini({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Formmini.getLayout = function getLayout(page) {

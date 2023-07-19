@@ -9,5 +9,5 @@ export { default as TravelTourDetailsAuction} from './TravelTourDetailsAuction'
 export { default as ContactinfoAuction } from './contactinfoAuction';
 export { default as Caritem } from './caritems';
 export { default as Itemcarasol } from './Itemcarasol';
-export { default as Iteminfo } from './Iteminfo';
+// export { default as Iteminfo } from './Iteminfo';
 

@@ -197,11 +197,9 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import userIcon from '@iconify/icons-carbon/user';
-import { TextIconLabel, Iconify, Scrollbar } from '../../../components';
-import { Icon } from '@iconify/react';
+import {  Scrollbar } from '../../../components';
 import { styled } from '@mui/material/styles';
 import { useState,useEffect } from 'react';
-
 import {
   Divider,
   Box,
@@ -209,7 +207,6 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-
 import { OverviewAuction } from '../../../../src/sections/@travel/tours';
 
 //--------------------------------------------------------------
@@ -219,16 +216,8 @@ const ScrollStyle = styled('div')(({ theme }) => ({
     padding: theme.spacing(1.5),
   },
 }));
-// const comments = [
-//   {
-//     name: 'Asad Khan',
-//     text: '26 lack',
-//     icon: userIcon,
-//   },
-// ]
 
 export default function Contactinfo({ post }) {
-  // console.log('post', post?.bidding_car?.starting_bid);
   const [counter, setCounter] = useState('');
   const [comments, setComments] = useState([]);
 
@@ -274,9 +263,7 @@ export default function Contactinfo({ post }) {
         console.error('Error fetching data:', error);
       }
     }
-
     fetchData();
-
   };
 
   return (
@@ -308,7 +295,7 @@ export default function Contactinfo({ post }) {
               }}
               disabled={counter <= 0}
               onClick={() => {
-                setCounter((prevCounter) => prevCounter - 10000);
+                setCounter((prevCounter) => prevCounter - 5000);
               }}
             >
               -
@@ -323,7 +310,7 @@ export default function Contactinfo({ post }) {
                 color: '#FFBE00',
                 '&:hover': { backgroundColor: '#FFBE00', color: 'white' },
               }}
-              onClick={() => {setCounter((prevCounter) => prevCounter + 10000);}}
+              onClick={() => {setCounter((prevCounter) => prevCounter + 5000);}}
             >
               +
             </Button>
@@ -350,7 +337,6 @@ export default function Contactinfo({ post }) {
             <OverviewAuction
               overviewAuction={comments}
             />
-
             <Divider />
           </ScrollStyle>
         </Scrollbar>
@@ -358,6 +344,3 @@ export default function Contactinfo({ post }) {
     </Box>
   );
 }
-
-// Contactinfo.propTypes = {
-//   post: PropTypes.object.isRequired,

@@ -148,12 +148,7 @@ const bodytype = [
     label: 'Minivan',
   },
 ];
-export default function Carinformationstep1({
-  formValues,
-  handleInputChange,
-  validateForm,
-  errors,
-}) {
+export default function Carinformationstep1({ formValues, handleInputChange, errors }) {
   const router = useRouter();
 
   return (
@@ -169,23 +164,11 @@ export default function Carinformationstep1({
             Enter Car Information
           </Typography>
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-            {/* <TextField
-                  type="text"
-                  fullWidth
-                  placeholder="Enter Registration City"
-                  name='reg_city'
-                  label="Registration City"
-                  value={formValues.reg_city}
-                  onChange={handleInputChange}
-                  error={!!errors.reg_city}
-                  helperText={errors.reg_city}
-                  sx={{ width: { xs: '100%', sm: '50%' } }}
-                /> */}
             <TextField
               id="outlined-select-currency"
               select
               label="Registration City *"
-              name='reg_city'
+              name="reg_city"
               value={formValues.reg_city}
               onChange={handleInputChange}
               error={!!errors.reg_city}
@@ -198,16 +181,6 @@ export default function Carinformationstep1({
                 </MenuItem>
               ))}
             </TextField>
-            {/* <TextField
-                  type="text"
-                  fullWidth
-                  placeholder="Enter City"
-                  label="City"
-                  name='city'
-                  value={formValues.city}
-                  onChange={handleInputChange}
-                  sx={{ width: { xs: '100%', sm: '50%' } }}
-                /> */}
             <TextField
               id="outlined-select-currency"
               select
@@ -226,30 +199,8 @@ export default function Carinformationstep1({
               ))}
             </TextField>
           </Stack>
-          <Stack mt="12px" >
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Color"
-              label="Color"
-              name="color"
-              value={formValues.color}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' } }}
-            /> */}
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Mileage"
-              label="Mileage *"
-              name="mileage"
-              value={formValues.mileage}
-              onChange={handleInputChange}
-              error={!!errors.mileage}
-              helperText={errors.mileage}
-              sx={{ width: { xs: '100%' } }}
-            /> */}
-             <TextField
+          <Stack mt="12px">
+            <TextField
               id="outlined-select-currency"
               select
               label="Mileage *"
@@ -265,23 +216,13 @@ export default function Carinformationstep1({
                   {option.label}
                 </MenuItem>
               ))}
-           </TextField>
+            </TextField>
           </Stack>
           <Typography variant="h5" mb="6" fontWeight="bold">
             Car Info *
           </Typography>
           <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Year"
-              label="Year"
-              name="year"
-              value={formValues.year}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' } }}
-            /> */}
-             <TextField
+            <TextField
               id="outlined-select-currency"
               select
               label="Year *"
@@ -298,17 +239,7 @@ export default function Carinformationstep1({
                 </MenuItem>
               ))}
             </TextField>
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Make"
-              label="Make"
-              name="make"
-              value={formValues.make}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' } }}
-            /> */}
-             <TextField
+            <TextField
               id="outlined-select-currency"
               select
               label="Make *"
@@ -327,17 +258,7 @@ export default function Carinformationstep1({
             </TextField>
           </Stack>
           <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Model"
-              label="Model"
-              name="model"
-              value={formValues.model}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' } }}
-            /> */}
-             <TextField
+            <TextField
               id="outlined-select-currency"
               select
               label="Model *"
@@ -354,16 +275,6 @@ export default function Carinformationstep1({
                 </MenuItem>
               ))}
             </TextField>
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Variant"
-              label="Variant"
-              name="variant"
-              value={formValues.variant}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' } }}
-            /> */}
             <TextField
               id="outlined-select-currency"
               select
@@ -383,17 +294,7 @@ export default function Carinformationstep1({
             </TextField>
           </Stack>
           <Stack spacing={2} mt="12px" direction={{ xs: 'column', sm: 'row' }}>
-            {/* <TextField
-              type="text"
-              fullWidth
-              placeholder="Enter Body Type"
-              label="Body Type"
-              name="bodytype"
-              value={formValues.bodytype}
-              onChange={handleInputChange}
-              sx={{ width: { xs: '100%', sm: '50%' }, mt: '12px' }}
-            /> */}
-             <TextField
+            <TextField
               id="outlined-select-currency"
               select
               label="Color *"
@@ -419,7 +320,7 @@ export default function Carinformationstep1({
               onChange={handleInputChange}
               error={!!errors.bodytype}
               helperText={errors.bodytype}
-              sx={{ width: '100%',mt: '12px' }}
+              sx={{ width: '100%', mt: '12px' }}
             >
               {bodytype.map((option) => (
                 <MenuItem key={option.value} value={option.label}>

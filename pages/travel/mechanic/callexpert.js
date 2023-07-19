@@ -18,7 +18,6 @@ import { Page} from '../../../src/components';
 import { styled } from '@mui/material/styles';
 import Expertcall from '../../../src/sections/@travel/mechanic/expertcall';
 import Call from '../../../src/sections/@travel/mechanic/callno';
-
 import landing from '../../../src/Assets/Images/expertCard.jpg';
 import Pageimage from '../../../src/sections/@travel/landing/pageimage';
 
@@ -77,14 +76,12 @@ export default function Callexpert({ posts }) {
     </Page>
   );
 }
+//-------------------------------------------------------------------------
 const usedimage=[
   {
     image: landing
   }
 ]
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Callexpert.getLayout = function getLayout(page) {

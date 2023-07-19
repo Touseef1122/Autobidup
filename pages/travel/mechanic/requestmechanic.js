@@ -1,11 +1,9 @@
-// icons
+
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
 import Loader from '../UsedCars/Loader.js';
 import ChatButton from '../ChatButton';
-
-
 // @mui
-import { Container, Grid, Box,Stack,Button } from '@mui/material';
+import { Box } from '@mui/material';
 // utils
 // layouts
 import Layout from '../../../src/layouts';
@@ -36,9 +34,6 @@ export default function Requestmechanic({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Requestmechanic.getLayout = function getLayout(page) {

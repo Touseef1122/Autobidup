@@ -98,7 +98,7 @@ export default function Shippinginfo({ post, price }) {
 
   const handleClose = () => {
     setOpen(false);
-    // router.push('/');
+    router.push('/travel/carRentals/storelanding/');
   };
 
   return (

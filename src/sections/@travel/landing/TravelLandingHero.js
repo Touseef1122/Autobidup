@@ -66,11 +66,3 @@ export default function AuthCarousel({ title }) {
     </RootStyle>
   );
 }
-
-// const images = [
-//   { src: 'path/to/wallpaper1.jpg' },
-//   { src: 'path/to/wallpaper2.jpg' },
-//   { src: 'path/to/wallpaper3.jpg' },
-//   { src: 'path/to/wallpaper4.jpg' },
-//   { src: 'path/to/wallpaper5.jpg' },
-// ];

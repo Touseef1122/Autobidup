@@ -63,10 +63,6 @@ export default function Displaycarlist({ posts }) {
   const handleMobileClose = () => {
     setMobileOpen(false);
   };
-
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="Car Care | Store">
       <RootStyle>

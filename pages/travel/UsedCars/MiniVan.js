@@ -1,21 +1,15 @@
 import { useState } from 'react';
 // @mui
-import { Container, Grid, Box, Stack, Button, Typography } from '@mui/material';
+import { Container, Box, Stack, Button, Typography } from '@mui/material';
 // utils
 import { getAllPosts } from '../../../src/utils/get-mardown/travel/posts';
-// hooks
-import { useRequest } from '../../../src/hooks';
-// _data
-import { _testimonials } from '../../../_data/mock';
 // layouts
 import Layout from '../../../src/layouts';
 // components
 import { Page, ErrorScreen, Breadcrumbs, Iconify } from '../../../src/components';
 // sections
 import { styled } from '@mui/material/styles';
-import { Caritemlist, Carousel, Contactinfo } from '../../../src/sections/@travel/displaymaincar';
-import { TravelTourDetails } from '../../../src/sections/@travel';
-import img1 from '../../../src/Assets/Images/FordMinivan.jpg';
+import { Caritemlist} from '../../../src/sections/@travel/displaymaincar';
 import Loader from './Loader';
 import ChatButton from '../ChatButton';
 import Carfilterbar from '../../../src/sections/@travel/filters/carfilterbar';
@@ -27,185 +21,14 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
-// ----------------------------------------------------------------------
-
-const items = [
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-  {
-    image: img1,
-    heading: 'Honda',
-    city: 'Lahore',
-    year: '2022',
-    distance: '2000km',
-    fuel: 'Petrol',
-    cc: '1200cc',
-    type: 'Manual',
-    price: '20 lac',
-  },
-];
-
 import Pagination from '@mui/material/Pagination';
-
+// ----------------------------------------------------------------------
 export default function Displaycarlist({ posts }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
 
   const [searchValues, setSearchValues] = useState('');
   const [filterprice, setFilterPrice] = useState('');
@@ -237,9 +60,6 @@ export default function Displaycarlist({ posts }) {
     setMobileOpen(false);
   };
 
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="MiniVan">
       <RootStyle>
@@ -293,9 +113,6 @@ export default function Displaycarlist({ posts }) {
     </Page>
   );
 }
-
-//-------------------------------------------------------------------------------
-
 // ----------------------------------------------------------------------
 
 Displaycarlist.getLayout = function getLayout(page) {

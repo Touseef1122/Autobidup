@@ -50,8 +50,6 @@ export default function Displaycarlist({ posts }) {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
   const [searchValues, setSearchValues] = useState('');
   const [filterprice, setFilterPrice] = useState('');
 
@@ -75,10 +73,6 @@ export default function Displaycarlist({ posts }) {
   const handleMobileClose = () => {
     setMobileOpen(false);
   };
-
-  if (error) {
-    return <ErrorScreen />;
-  }
   return (
     <Page title="Gadgets | Store">
       <RootStyle>
@@ -110,10 +104,8 @@ export default function Displaycarlist({ posts }) {
               <Caritem search={searchValues} value={5} filterprice={filterprice} />
             </Box>
           </Stack>
-          {/* tours={services} icons={summary} services={service}  */}
         </Container>
         <Stack spacing={2} justifyContent={'center'} alignItems={'center'} >
-          {/* <Typography >Page: {page}</Typography> */}
           <Pagination
             sx={{
               fontSize: '4.5rem',

@@ -1,18 +1,10 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import location from '@iconify/icons-carbon/location';
-import { TextIconLabel, Iconify } from '../../../components';
 import { Icon } from '@iconify/react';
 
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TextField,
-  Divider,
   Stack,
-  Container,
   Box,
   Typography,
 } from '@mui/material';
@@ -27,7 +19,7 @@ Contactinfo.propTypes = {
   year: PropTypes.array,
 };
 export default function Contactinfo({ post, make, variant, price, year }) {
-  console.log('make', post);
+  // console.log('make', post);
   if (post) {
     return (
       <Box>

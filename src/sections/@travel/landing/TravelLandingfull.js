@@ -1,68 +1,8 @@
-// // icons
-// import documentIcon from '@iconify/icons-carbon/document';
-// // @mui
-// import { styled } from '@mui/material/styles';
-// import { Grid, Container, Typography, Button ,Box, Stack} from '@mui/material';
-// // utils
-// import cssStyles from '../../../utils/cssStyles';
-// // components
-//  import { Image } from '../../../components';
-//  import bgc from '../../../assets/images/A06.jpg'
- 
-// // // ----------------------------------------------------------------------
-
-// // const myStyle={
-// //     backgroundImage:`url(${process.env.PUBLIC_URL+ "/image.png"})`
-// //             height:'100vh',
-// //             marginTop:'-70px',
-// //             fontSize:'50px',
-// //             backgroundSize: 'cover',
-// //             backgroundRepeat: 'no-repeat',
-// //             };
-
-// // ----------------------------------------------------------------------
-
-// export default function TravelLandingfull() {
-//   return (
-           
-//     //   <Box >
-    //   <Container>
-    //     <Stack spacing={3} alignItems="center" sx={{ color: 'white', textAlign: 'center' }}>
-    //       <Typography variant="h2">I'M MORE THAN A CHAUFFEUR</Typography>
-    //       <Typography>
-    //         I'M YOUR SAFE SPACE ON WHEELS
-    //       </Typography>
-    //       <h3>AutoBidup Chauffeur</h3>
-    //     </Stack>
-        
-    //   </Container>
-//     //   <Image  alt="recruitment" src={bgc.src}
-//     //    sx={{
-//     //         bgcolor: 'transparent',
-//     //       }} />  
-      
-//     //   </Box>      
-//     <div >
-//     <Image
-//       alt="travel"
-//       src="../../../assets/images/A06.jpg"
-//       layout="fill"
-//       objectFit="cover"
-//       quality={100}
-//     />
-// </div>
-
-
-
-//   );
-// }
-
 // @mui
-import { styled, alpha } from '@mui/material/styles';
-import { Stack, Button, Container, Typography, FilledInput, InputAdornment } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { Stack, Container, Typography } from '@mui/material';
 // utils
 import cssStyles from '../../../../src/utils/cssStyles';
-import Sb from '../../../../src/assets/Images/SBcars.jpg'
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -82,15 +22,9 @@ export default function TravelLandingfull() {
       <Container>
         <Stack spacing={3} alignItems="center" sx={{ color: 'white', textAlign: 'center' }}>
           <Typography variant="h2">AutoBidUp</Typography>
-          <Typography variant="h3">
-            The Smarter Way To Sell And Buy Cars.
-          </Typography>
-          {/* <Typography variant="h4">AutoBidup Chauffeur</Typography> */}
+          <Typography variant="h3">The Smarter Way To Sell And Buy Cars.</Typography>
         </Stack>
-        
       </Container>
     </RootStyle>
   );
 }
-      
-
