@@ -50,8 +50,6 @@ export default function Displaycarlist({ posts }) {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const { data: courses = [], error, isLoading } = useRequest('/api/e-learning/courses');
-
   const [searchValues, setSearchValues] = useState('');
   const [filterprice, setFilterPrice] = useState('');
 

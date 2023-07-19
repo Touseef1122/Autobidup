@@ -18,12 +18,6 @@ import { TextIconLabel, Iconify } from '../../../components';
 // ----------------------------------------------------------------------
 
 let images1 = [];
-// const data = [
-//   {
-//     description:
-//       'Lightweight allow rims . Complete original file is availble . Driven on petrol throughout . All token taxes are paid for life . Paint touchups in a few places. Brand new tires installed. Non accidental. Original Book is available. Will be sold to nearest offer.. Alloy Rims. Complete original file is availble . Driven on petrol throughout . Lifetime token tax paid. Few paint touchups on the body . Fitted with new tires. Price is slightly negotiable. Original Book is available. Token tax is up to date.',
-//   },
-// ];
 let includes = [];
 let knownKeys = [
   // 'color',
@@ -123,9 +117,7 @@ export default function TravelTourDetails({ post }) {
             <Typography variant="h4" paragraph mt={6}>
               Description
             </Typography>
-            {data.map((value) => (
-              <Typography mt={1}>{post.bidding_car.ad_description}</Typography>
-            ))}
+              <Typography mt={1}>{post?.bidding_car?.ad_description}</Typography>
           </section>
           <section>
             <Stack>

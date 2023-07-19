@@ -19,7 +19,7 @@ Contactinfo.propTypes = {
   year: PropTypes.array,
 };
 export default function Contactinfo({ post, make, variant, price, year }) {
-  console.log('make', post);
+  // console.log('make', post);
   if (post) {
     return (
       <Box>

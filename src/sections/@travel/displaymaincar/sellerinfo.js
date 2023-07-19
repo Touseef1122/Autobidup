@@ -13,6 +13,8 @@ Contactinfo.propTypes = {
   phone: PropTypes.array,
 };
 export default function Contactinfo({ post, name, phone, car }) {
+  // console.log('name',name);
+  
   if (post) {
     const [comments, setComments] = useState([]);
     useEffect(() => {

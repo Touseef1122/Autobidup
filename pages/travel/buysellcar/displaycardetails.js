@@ -40,7 +40,7 @@ export default function Displaycardetails({ posts }) {
   const router = useRouter();
   const { data } = router.query;
   const item = data ? JSON.parse(data) : null;
-  console.log('displaycard', item);
+  // console.log('displaycard', item);
   if (item) {
     console.log('dard', item.images);
     return (

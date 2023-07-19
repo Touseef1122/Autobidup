@@ -20,7 +20,7 @@ Carousel.propTypes = {
   images: PropTypes.array.isRequired,
 };
 export default function Carousel({ post }) {
-  console.log('post', post);
+  // console.log('post', post);
 
   const carouselRef = useRef(null);
   const theme = useTheme();
